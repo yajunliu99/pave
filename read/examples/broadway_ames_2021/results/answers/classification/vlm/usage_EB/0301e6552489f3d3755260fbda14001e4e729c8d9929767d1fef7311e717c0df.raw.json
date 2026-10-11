@@ -1,0 +1,170 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "surface_reason": "Retained. In the satellite, r1 is asphalt between a dark longitudinal seam (its left polygon edge) and the thick solid white separator; the stop bar crosses it. The near and mid forward views show the matching lane: a wide unmarked left lane between the solid yellow median-edge line (about 0.5 m from the granite median kerb) and the solid white separator. The dark seam runs on straight through the crosswalk past the median nose, so it is not the median edge. The real lane continues about 1.3-1.5 m left of the polygon to the yellow line, so r1 under-covers this lane but is the same facility. In the mid view this lane looks at least as wide as the right lane, consistent with that extra width.",
+        "use": "through_only",
+        "allowed_turns": [
+          "through"
+        ],
+        "basis": "inferred",
+        "confidence": "low",
+        "binding": "No arrow or word marking is visible in this lane anywhere between the mid camera (about 50 m) and the stop bar in the near view (about 28 m), and none in the sunlit satellite part. The adjacent r2 is marked 'ONLY' with a right-turn arrow, and the road continues straight across the junction, so through movement must be carried by r1; through is therefore inferred, not read from a marking. Whether left turns are also permitted from r1 cannot be determined: no arrow, and no legible lane-use or turn-prohibition sign faces EB (the median-nose sign is seen from behind). The lane may in fact be a shared left/through lane. Upstream (far view, about 101 m) only one motor lane exists. The second lane is added between the far and mid positions, and r1 continues the original single lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.476,
+              0.214,
+              0.656,
+              0.453
+            ],
+            "finding": "unmarked asphalt in r1 between the dark seam and the thick solid separator, crossed by the stop bar"
+          },
+          {
+            "source_id": "gsv_EB_near_forward",
+            "bbox_xyxy": [
+              0.17,
+              0.587,
+              0.646,
+              1.0
+            ],
+            "finding": "camera lane between the yellow median-edge line and the solid white separator, with no pavement arrow up to the stop bar"
+          },
+          {
+            "source_id": "gsv_EB_mid_forward",
+            "bbox_xyxy": [
+              0.28,
+              0.578,
+              0.672,
+              1.0
+            ],
+            "finding": "wide left lane with no arrow or word marking; only faded old broken-line remnants along the separator"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "surface_reason": "Retained. In the satellite, r2 is about 3.1 m between the thick solid separator and a thinner solid line, with a pavement arrow just behind the stop bar. In both forward views the right motor lane sits between the same solid separator and the line bordering the bicycle lane.",
+        "use": "right_only",
+        "allowed_turns": [
+          "right"
+        ],
+        "basis": "observed",
+        "confidence": "high",
+        "binding": "Near view: a large right-turn arrow (curved stem turning right, no straight branch) lies in the lane right of the solid separator, a few metres before the stop bar. Mid view: the word 'ONLY' is painted in the same lane (between the solid separator and the bicycle-lane line), with an arrow-shaped mark beyond it near the stop line in the same lane position. Satellite: a right-turn-shaped arrow inside r2 just behind the stop bar. The three are bound by the same left boundary (the solid separator, which is the satellite's r1/r2 line) and the same right neighbour (the bicycle strip). The arrow plus 'ONLY' supports a dedicated right-turn lane. Imagery is 2020-11 GSV and spring 2021 satellite; the two dates agree.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_EB_near_forward",
+            "bbox_xyxy": [
+              0.727,
+              0.633,
+              0.889,
+              0.825
+            ],
+            "finding": "right-turn-only arrow in the lane right of the solid separator"
+          },
+          {
+            "source_id": "gsv_EB_mid_forward",
+            "bbox_xyxy": [
+              0.604,
+              0.638,
+              0.744,
+              0.676
+            ],
+            "finding": "'ONLY' word marking in the same right motor lane"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.644,
+              0.241,
+              0.706,
+              0.278
+            ],
+            "finding": "right-turn-shaped arrow inside r2 just behind the stop bar"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "surface_reason": "Retained. r3 is about 1.4 m between the thin solid line and the right kerb. The satellite shows a green-painted patch inside it at the building-shadow edge. The mid forward view shows a green-painted bicycle lane immediately right of the 'ONLY' lane, separated by a solid white line. In the near view the narrow leaf-covered strip right of the right-turn lane runs to the kerb, and the stop bar extends across it. The strip is too narrow for a motor lane and carries no arrow.",
+        "use": "not_applicable",
+        "allowed_turns": [],
+        "basis": "observed",
+        "confidence": "medium",
+        "binding": "Bound by position: the strip directly right of the right-turn/ONLY lane's right line in all views, and r3 in the satellite. Green paint is observed in the mid view and in the satellite r3 strip. No bicycle symbol is readable near the stop bar (leaves in the near view, tree shadow on the satellite). Upstream (far view) the bicycle lane continues with green paint and a hatched buffer to its right. At the mid position an extra asphalt wedge lies between the green lane and the kerb; it is not a travel lane and has no region.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_EB_mid_forward",
+            "bbox_xyxy": [
+              0.68,
+              0.595,
+              1.0,
+              0.757
+            ],
+            "finding": "green-painted bicycle lane right of the 'ONLY' lane, behind a solid white line"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.59,
+              0.4,
+              0.66,
+              0.47
+            ],
+            "finding": "green-painted patch inside the r3 strip at the shadow edge"
+          },
+          {
+            "source_id": "gsv_EB_near_forward",
+            "bbox_xyxy": [
+              0.88,
+              0.6,
+              1.0,
+              0.72
+            ],
+            "finding": "narrow strip right of the right-turn lane's right line, running to the kerb"
+          }
+        ]
+      }
+    ],
+    "detail_requests": [],
+    "street_view_counts": [
+      {
+        "source_id": "gsv_EB_near_forward",
+        "motor_lanes": 2,
+        "other_lanes": "one narrow kerbside strip right of the right-turn lane (bicycle lane per green paint in the mid view and satellite; not identifiable in this frame)",
+        "unmatched": "none; left lane = r1 (its left 1.3-1.5 m, up to the yellow line, lies outside the r1 polygon), right-turn lane = r2, kerb strip = r3",
+        "settled": true
+      },
+      {
+        "source_id": "gsv_EB_mid_forward",
+        "motor_lanes": 2,
+        "other_lanes": "green bicycle lane; an asphalt wedge between the bicycle lane and the kerb of unknown purpose (driveway apron, loading or buffer)",
+        "unmatched": "the asphalt wedge right of the bicycle lane has no region and is not a travel lane as far as visible",
+        "settled": true
+      },
+      {
+        "source_id": "gsv_EB_far_forward",
+        "motor_lanes": 1,
+        "other_lanes": "bicycle lane (green at the crossing), chevron-hatched buffer, kerbside strip next to a shuttle/bus-stop sign",
+        "unmatched": "this cross-section (about 101 m) lies upstream of the traced regions; r2 does not exist yet here (the second motor lane is added between the far and mid positions). The kerbside strip's use is not determinable.",
+        "settled": false
+      }
+    ],
+    "notes": [
+      "Lane addition: one motor lane at about 101 m, two motor lanes at about 50 m and 28 m. The right-turn-only lane r2 is a pocket that starts between the far and mid views. The solid separator and the bicycle-lane line run continuously from the mid view to the stop bar.",
+      "Left-turn permission from r1 is not observed. 'through_only' records the only movement that can be inferred, not a confirmed prohibition of left turns.",
+      "The r1 polygon follows a pavement seam rather than the yellow median-edge line, so it is about 1.3-1.5 m narrower than the physical lane.",
+      "No detail crops requested: the signs that might settle left-turn permission are either seen from behind or too small at the native GSV resolution."
+    ]
+  },
+  "metadata": {}
+}

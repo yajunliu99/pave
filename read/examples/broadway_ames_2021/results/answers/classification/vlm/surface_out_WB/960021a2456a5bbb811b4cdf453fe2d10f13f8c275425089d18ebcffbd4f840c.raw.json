@@ -1,0 +1,137 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Continuous grey asphalt starting just beyond the crosswalk. Its left side is the kerb of a raised median island (with a shelter or bench structure and a planter at the island nose). Its right side is the left line of a painted buffer. Profiles across the strip show uniform pavement about 4.6-5 m wide with no lane line inside it, so it reads as one wide general-traffic lane, not two. The upper part lies in a building shadow, but the pavement continues. In the reverse GSV, the carriageway across the planted median also shows a single wide lane left of a two-line buffer.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.166,
+              0.298,
+              0.513,
+              0.691
+            ],
+            "finding": "raised median island with a kerb forming r1's left edge"
+          },
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.243,
+              0.238,
+              0.71,
+              0.715
+            ],
+            "finding": "uniform asphalt travel lane without an internal lane line"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.5,
+              0.42,
+              0.9,
+              0.55
+            ],
+            "finding": "across the median: one wide travel lane before the buffer lines"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "high",
+        "evidence": "About 1.3 m between two parallel solid white lines, with diagonal hatch marks painted between them at regular intervals along the whole strip. This is a painted buffer separating the travel lane from the kerbside bicycle lane, not a travel facility. In the reverse GSV, the far-side carriageway shows the same two-line buffer with a white flexible delineator post.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.4,
+              0.24,
+              0.75,
+              0.715
+            ],
+            "finding": "two parallel white lines with diagonal hatch marks (painted buffer)"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.7,
+              0.43,
+              1.0,
+              0.5
+            ],
+            "finding": "double buffer lines on the far-side carriageway"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.84,
+              0.43,
+              0.87,
+              0.47
+            ],
+            "finding": "white flexible delineator post on the buffer"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "clear",
+        "confidence": "medium",
+        "evidence": "Paved strip about 1.9-2.0 m wide between the buffer's right line and the kerb. Beyond the kerb lies a light sidewalk with a row of round reddish planters at its edge, granite-edged tree pits and further sidewalk. Near the lower part of the strip there is a white arrow pointing in the direction of travel with a glyph behind it consistent with a bicycle-lane symbol, though too small to resolve fully. The arrow is a direction marking for the bike lane, not a turn arrow. The width, the buffer and the marking fit a buffered bicycle lane; it is too narrow for a car lane. The reverse GSV shows the same kerbside strip beyond the buffer on the far-side carriageway.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.455,
+              0.602,
+              0.53,
+              0.709
+            ],
+            "finding": "white direction arrow plus a bicycle-symbol-like glyph in the strip"
+          },
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.49,
+              0.54,
+              0.62,
+              0.73
+            ],
+            "finding": "kerb with a row of planters bounding the strip on the right"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.8,
+              0.43,
+              1.0,
+              0.52
+            ],
+            "finding": "kerbside strip between the buffer and the sidewalk on the far-side carriageway"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "The GSV is a reverse view from the opposing (EB) approach, captured 2020-11. The out_WB carriageway appears only across the planted median at the right of that image and is small and distant, so it serves as layout support only. The satellite image is from spring 2021.",
+      "No lane line is visible inside r1. Its 4.6-5 m width reads as one wide lane, not two narrow ones.",
+      "Native bboxes assume the scene_out_WB panel as shown (about 721 x 839 px in the sheet) and the GSV panel as shown (about 1026 x 1026 px)."
+    ]
+  },
+  "metadata": {}
+}

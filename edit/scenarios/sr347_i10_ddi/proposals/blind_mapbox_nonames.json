@@ -1,0 +1,64 @@
+{
+  "evidence": [
+    "Panel A: I-10 runs vertically (NW-SE) as a wide divided freeway; Queen Creek Rd / SR 347 crosses it horizontally on a single grade-separated crossing.",
+    "Panel A: four diagonal one-way ramps, one per quadrant, meet the cross street at two separate at-grade junctions, one on each side of the freeway; no loop ramps and no crossovers between the junctions.",
+    "Panel A: the two ramp junctions sit well outside the freeway edges with the cross street running conventionally (right side) between them, which matches a conventional diamond rather than a tight diamond, SPUI or DDI.",
+    "Panel B / tables: freeway links 101-106 on two carriageways (x=-60 SE-bound, x=+60 NW-bound); ramps 301-304 each connect one merge_diverge node (11-14) to one terminal port.",
+    "Panel B / tables: arterial boundary nodes 1,2 at x=-600 and 3,4 at x=+600; eastbound on y=-22 (201, 205, 204), westbound on y=+22 (203, 206, 202).",
+    "Panel B / tables: west terminal (ports 21-26, x=-320..-210) has 6 connectors 401-406; east terminal (ports 31-36, x=210..320) has 6 connectors 411-416; 205 and 206 are the arterial links between the terminals.",
+    "Local axes: +x is NE along Queen Creek Rd, so the west terminal is the SW terminal and the east terminal is the NE terminal; both terminal centroids lie on y=0, the C/D grid line, and are assigned to row D."
+  ],
+  "facility_class": "diamond",
+  "arterial_axis_nodes": [1, 4],
+  "terminals": [
+    {
+      "name": "SW",
+      "anchor_cell": "D2",
+      "bindings": {
+        "approach_in": {"link_id": 201, "from_node_id": 1, "to_node_id": 21},
+        "departure_out": {"link_id": 202, "from_node_id": 22, "to_node_id": 2},
+        "bridge_in": {"link_id": 206, "from_node_id": 34, "to_node_id": 23},
+        "bridge_out": {"link_id": 205, "from_node_id": 24, "to_node_id": 33},
+        "offramp_in": {"link_id": 301, "from_node_id": 11, "to_node_id": 25},
+        "onramp_out": {"link_id": 302, "from_node_id": 26, "to_node_id": 12}
+      }
+    },
+    {
+      "name": "NE",
+      "anchor_cell": "D5",
+      "bindings": {
+        "approach_in": {"link_id": 203, "from_node_id": 3, "to_node_id": 31},
+        "departure_out": {"link_id": 204, "from_node_id": 32, "to_node_id": 4},
+        "bridge_in": {"link_id": 205, "from_node_id": 24, "to_node_id": 33},
+        "bridge_out": {"link_id": 206, "from_node_id": 34, "to_node_id": 23},
+        "offramp_in": {"link_id": 303, "from_node_id": 13, "to_node_id": 35},
+        "onramp_out": {"link_id": 304, "from_node_id": 36, "to_node_id": 14}
+      }
+    }
+  ],
+  "operations": [
+    {"op": "replace_facility", "from_class": "diamond", "to_class": "ddi", "terminals": ["SW", "NE"]}
+  ],
+  "expected_facts": [
+    "all_external_od_preserved",
+    "freeway_links_unchanged",
+    "six_terminal_movements_per_terminal",
+    "through_movements_cross_over_at_each_terminal",
+    "left_side_running_between_terminals",
+    "no_collateral_changes"
+  ],
+  "not_established": [
+    "Lane counts on the arterial, the ramps and the I-10 mainline, before and after the project",
+    "Exact location, spacing and geometry of the DDI crossovers relative to the ramp terminals",
+    "Signal control, phasing and timing at the existing terminals and at the new crossovers",
+    "Turn pocket, storage and taper lengths, and whether any right turns are free-flow or channelized",
+    "Traffic demand, turning volumes and peak-hour patterns",
+    "Speed limits and design speeds on the arterial and the ramps",
+    "Whether the existing bridge is widened, reused or replaced, and its lane allocation",
+    "Ramp metering, ramp lane counts and any ramp realignment that comes with the conversion",
+    "Pedestrian and bicycle accommodation through the interchange",
+    "Whether lane restrictions or vehicle-class restrictions apply on any link",
+    "Imagery date and whether any construction had already started",
+    "Changes to nearby driveways, frontage roads or adjacent intersections outside the bound terminals"
+  ]
+}

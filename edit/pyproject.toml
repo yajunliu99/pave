@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vlm4scenario"
+version = "0.1.0"
+description = "AI-assisted scenario editing of GMNS road networks: a vision-language model proposes over existing IDs, templates build the design, checks verify it"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Yajun Liu" }]
+keywords = ["GMNS", "traffic network", "scenario editing", "vision-language model", "interchange"]
+dependencies = [
+  "matplotlib>=3.7",
+  "numpy>=1.24",
+  "pillow>=10",
+  "pyyaml>=6",
+  "certifi",
+]
+
+[project.optional-dependencies]
+# applies the exported project cards; 1.0 is still a pre-release
+wrangler = ["network-wrangler==1.0b4"]
+
+[project.scripts]
+vlm4scenario = "vlm4scenario.cli:main"
+
+[project.urls]
+Repository = "https://github.com/yajunliu99/pave"
+
+[tool.setuptools]
+packages = ["vlm4scenario"]

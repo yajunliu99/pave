@@ -1,0 +1,810 @@
+<meta charset="utf-8">
+<title>SR 347 / I-10 Scenario Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800&family=Overpass+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a guide-sign header, the alternative picker, the 7-step pipeline as a strip that stays
+   at the top while scrolling, the step detail, the network map (schematic axes or satellite basemap)
+   with its legend and link/node details over it, then the design-guidance table.
+   Palette and faces follow the project's Interchange Atlas dashboards. */
+:root{
+  --bg:#edf0eb; --panel:#fbfcfa; --panel2:#f2f4f0; --ink:#17201a; --muted:#56615a; --line:#d3d9d1;
+  --accent:#00704a; --accent-ink:#ffffff; --accent-soft:#dcefe4; --focus:#1a66d9;
+  --good:#16784b; --good-soft:#dcefe4; --bad:#b0281e; --bad-soft:#f8dedb; --warn:#9a5a00; --warn-soft:#f6e7cf;
+  --info:#2d5e8a; --info-soft:#dde8f2; --mute-soft:#e6e9e4;
+  --sign:#006b3f; --sign-ink:#ffffff; --plaque:#f5c400; --plaque-ink:#141414;
+  --fw:#5b6576; --art:#1f5fd6; --ramp:#0b8a6f; --conn:#e07b10; --xover:#c8283c; --route:#c2187a; --ghost:#9aa39c;
+  --halo:rgba(229,57,53,.22); --canvas:#ffffff; --grid:#e3e7e1;
+  --shadow:0 1px 2px rgba(18,32,24,.07),0 6px 18px rgba(18,32,24,.06);
+  --font:"Overpass",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"Overpass Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1210; --panel:#151a17; --panel2:#1b221e; --ink:#e3e9e4; --muted:#96a299; --line:#2a332e;
+  --accent:#41cf8f; --accent-ink:#04140b; --accent-soft:#15302a; --focus:#80b4ff;
+  --good:#4fd18b; --good-soft:#143022; --bad:#ff7266; --bad-soft:#3a1714; --warn:#f0a64c; --warn-soft:#3a2a12;
+  --info:#7fb2e5; --info-soft:#152535; --mute-soft:#222924;
+  --sign:#0a6e43; --sign-ink:#ffffff; --plaque:#f5c400; --plaque-ink:#141414;
+  --fw:#9aa6b8; --art:#6b9bff; --ramp:#37c49f; --conn:#f29a3a; --xover:#ff6b7f; --route:#ff5fb4; --ghost:#5d675f;
+  --halo:rgba(255,107,127,.25); --canvas:#111613; --grid:#212823;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1210; --panel:#151a17; --panel2:#1b221e; --ink:#e3e9e4; --muted:#96a299; --line:#2a332e;
+  --accent:#41cf8f; --accent-ink:#04140b; --accent-soft:#15302a; --focus:#80b4ff;
+  --good:#4fd18b; --good-soft:#143022; --bad:#ff7266; --bad-soft:#3a1714; --warn:#f0a64c; --warn-soft:#3a2a12;
+  --info:#7fb2e5; --info-soft:#152535; --mute-soft:#222924;
+  --sign:#0a6e43; --sign-ink:#ffffff; --plaque:#f5c400; --plaque-ink:#141414;
+  --fw:#9aa6b8; --art:#6b9bff; --ramp:#37c49f; --conn:#f29a3a; --xover:#ff6b7f; --route:#ff5fb4; --ghost:#5d675f;
+  --halo:rgba(255,107,127,.25); --canvas:#111613; --grid:#212823;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--font);margin:0}
+.wrap{max-width:1440px;margin:0 auto;padding-inline:16px;padding-block:16px 40px;display:flex;flex-direction:column;gap:14px}
+h1,h2,h3,h4{line-height:1.2;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:14px 16px;min-width:0}
+.card h2{font-size:17px;font-weight:800}
+
+/* header: a guide sign with a plaque */
+.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.signwrap{position:relative;padding-top:21px;min-width:0;max-width:100%}
+.plaque{position:absolute;top:0;left:18px;background:var(--plaque);color:var(--plaque-ink);font-weight:800;font-size:12.5px;letter-spacing:.06em;
+  padding:3px 10px 2px;border-radius:5px 5px 0 0;border:2px solid var(--plaque-ink);border-bottom:0}
+.sign{background:var(--sign);color:var(--sign-ink);border-radius:10px;padding:11px 20px 12px;box-shadow:inset 0 0 0 2px var(--sign),inset 0 0 0 4px rgba(255,255,255,.92)}
+.sign h1{font-size:clamp(23px,3.4vw,34px);font-weight:800;letter-spacing:.01em}
+.sign p{font-size:14px;opacity:.94;margin-top:2px}
+.headmeta{display:flex;flex-direction:column;gap:4px;max-width:62ch;min-width:0}
+.headmeta q{font-size:15.5px;font-weight:600}
+.headmeta q::before,.headmeta q::after{color:var(--muted)}
+
+/* facility picker */
+.picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.pick{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;padding:10px 14px;box-shadow:var(--shadow)}
+.pick b{font-size:15.5px}
+.pick[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),var(--shadow);background:var(--accent-soft)}
+.pick:hover{border-color:var(--accent)}
+
+/* pipeline strip: a real sequence, so it is numbered. It stays at the top of the window while
+   scrolling, so steps can be switched while the map is in view; narrow screens scroll it sideways. */
+.steps{position:sticky;top:0;z-index:20;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;
+  background:var(--bg);padding:8px 0;margin:-8px 0}
+.step{flex:1 0 136px;position:relative;display:flex;gap:9px;align-items:flex-start;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+.step .n{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 12.5px var(--mono);background:var(--panel2);border:1px solid var(--line)}
+.step .t{display:flex;flex-direction:column;min-width:0}
+.step .t b{font-size:14px;line-height:1.25}
+.step .t span{font-size:12px;color:var(--muted);line-height:1.3}
+.step[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.step[aria-pressed="true"] .n{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.step.ai .n{border-style:dashed}
+/* phones: the pinned strip shrinks to one line of numbered titles; the status shows in the detail card */
+@media (max-width:720px){.step{flex:0 0 auto;padding:6px 10px;align-items:center}.step .t>span{display:none}.step .t b{white-space:nowrap;font-size:13.5px}.step .n{width:22px;height:22px}}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.dot.ok{background:var(--good)} .dot.no{background:var(--bad)} .dot.na{background:var(--line)}
+
+/* main grid */
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--panel2);padding:3px;gap:2px}
+.seg button{border:0;background:none;border-radius:999px;padding:4px 12px;font-weight:600;font-size:13.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg button:disabled{opacity:.4;cursor:default}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:13.5px}
+.chk input{accent-color:var(--accent);width:15px;height:15px}
+.zoomer{display:inline-flex;gap:4px}
+.zoomer button,.btn{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:3px 10px;font-size:13.5px;font-weight:600}
+.zoomer button:hover,.btn:hover{border-color:var(--accent)}
+.mapbox{position:relative;width:100%;aspect-ratio:16/9;max-height:78vh;max-width:100%;background:var(--canvas);border:1px solid var(--line);border-radius:8px;overflow:hidden;touch-action:none}
+@media (max-width:720px){.mapbox{aspect-ratio:1/1}}
+.mapbox svg{display:block;width:100%;height:100%;cursor:grab;user-select:none}
+.mapbox.active{outline:2px solid var(--accent);outline-offset:-2px}
+.zoomer button{min-width:32px}
+.mapbox svg.drag{cursor:grabbing}
+.credit{position:absolute;right:6px;bottom:6px;font-size:10.5px;color:#fff;background:rgba(0,0,0,.5);padding:1px 6px;border-radius:4px;pointer-events:none}
+.mapbox.sat .case{stroke:rgba(0,0,0,.45)}
+.mapbox.sat .nd.boundary,.mapbox.sat .nd.port,.mapbox.sat .nd.merge_diverge{fill:#fff;stroke:#111}
+.mapbox.sat .nid{fill:#fff;stroke:rgba(0,0,0,.75)}
+.maphint{font-size:12px;color:var(--muted);margin-top:6px}
+/* legend and link/node details float over the map on wide screens and sit below it on narrow ones */
+.mapwrap{position:relative}
+.legend{position:absolute;top:8px;left:8px;z-index:2;display:flex;flex-direction:column;gap:2px;max-width:45%;padding:7px 10px;
+  font-size:12px;color:var(--ink);background:color-mix(in srgb,var(--panel) 90%,transparent);border:1px solid var(--line);border-radius:8px;pointer-events:none}
+.legend i{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:3px}
+.legend i.c{width:9px;height:9px;border-radius:50%;vertical-align:0}
+.readout{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.routepick{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.routepick select{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:4px 8px;max-width:100%;min-width:0}
+.seq{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-family:var(--mono);font-size:12.5px}
+.seq span{padding:1px 6px;border-radius:5px;background:var(--panel2);border:1px solid var(--line)}
+.seq span.x{border-color:var(--xover);color:var(--xover);font-weight:600}
+.seq em{color:var(--muted);font-style:normal}
+.pinned{position:absolute;top:8px;right:8px;z-index:3;width:min(340px,60%);font-size:13.5px;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:8px 32px 8px 11px;box-shadow:var(--shadow)}
+.pinned .x{position:absolute;top:4px;right:4px;border:0;background:none;width:26px;height:26px;border-radius:6px;font-size:16px;line-height:1;color:var(--muted)}
+.pinned .x:hover{background:var(--panel2);color:var(--ink)}
+@media (max-width:720px){
+  .legend{position:static;flex-direction:row;flex-wrap:wrap;gap:4px 14px;max-width:none;padding:8px 0 0;background:none;border:0;color:var(--muted)}
+  .pinned{position:static;width:auto;margin-top:8px;box-shadow:none;background:var(--panel2)}
+}
+
+/* SVG network */
+.lk{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lk.freeway{stroke:var(--fw)} .lk.arterial{stroke:var(--art)} .lk.ramp{stroke:var(--ramp)} .lk.intersection_connector{stroke:var(--conn)}
+.ar.freeway{fill:var(--fw)} .ar.arterial{fill:var(--art)} .ar.ramp{fill:var(--ramp)} .ar.intersection_connector{fill:var(--conn)}
+.case{fill:none;stroke:var(--canvas);stroke-linecap:round}
+.halo{fill:none;stroke:var(--halo);stroke-linecap:round}
+.ghost{fill:none;stroke:var(--ghost);stroke-dasharray:6 5;opacity:.8}
+.rt{fill:none;stroke:var(--route);stroke-linecap:round;stroke-linejoin:round;opacity:.85;stroke-dasharray:14 9;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-23}}
+@media (prefers-reduced-motion:reduce){.rt{animation:none;stroke-dasharray:none}}
+.hit{fill:none;stroke:transparent;cursor:pointer}
+.nd{fill:var(--canvas);stroke:var(--ink)}
+.nd.crossover{fill:var(--xover);stroke:var(--xover)}
+.nd.roundabout{fill:var(--conn);stroke:var(--conn)}
+.nd.boundary{fill:var(--canvas)}
+.nd.chg{stroke:var(--xover)}
+.lid{font-family:var(--mono);font-weight:600;fill:#fff}
+.lbg.freeway{fill:var(--fw)} .lbg.arterial{fill:var(--art)} .lbg.ramp{fill:var(--ramp)} .lbg.intersection_connector{fill:var(--conn)}
+.nid{font-family:var(--mono);fill:var(--ink);paint-order:stroke;stroke:var(--canvas);stroke-linejoin:round}
+.nid.crossover{fill:var(--xover);font-weight:700}
+.gridline{stroke:var(--grid)}
+.hot .lk{stroke-width:inherit}
+
+/* detail panel */
+.detail h2{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.detail h2 .label{font-size:11px}
+.detail .sub{font-size:13px;color:var(--muted);margin-top:2px}
+.detail .body{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+/* on wide screens long step content scrolls inside the card, so the map below stays close */
+@media (min-width:721px){.detail .body{max-height:42vh;overflow:auto;padding-right:6px}}
+.detail .body>*{flex-shrink:0}
+/* step 2 shows the model's input image whole: no inner scrolling, and the image is sized to fit the window */
+.detail .body.full{max-height:none;overflow:visible}
+.figure.fit img{width:auto;max-width:100%;max-height:calc(100vh - 220px);margin-inline:auto}
+.figure.fit figcaption{text-align:center}
+dl.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;margin:0;font-size:14px}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0;min-width:0}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:6px 9px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--panel2);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+th.n{text-align:right}
+.pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;border:1px solid transparent}
+.pill.met,.pill.pass{background:var(--good-soft);color:var(--good)}
+.pill.not_met,.pill.fail{background:var(--bad-soft);color:var(--bad)}
+.pill.schematic{background:var(--info-soft);color:var(--info)}
+.pill.measured{background:var(--good-soft);color:var(--good);border-color:var(--good)}
+.pill.needs_data{background:var(--warn-soft);color:var(--warn)}
+.pill.info,.pill.skipped,.pill.na{background:var(--mute-soft);color:var(--muted)}
+ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+.gate{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.gate:last-child{border-bottom:0}
+.gate .why{grid-column:2;font-size:13px;color:var(--bad);font-family:var(--mono);overflow-wrap:anywhere}
+.figure img{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+.figure figcaption{font-size:12.5px;color:var(--muted);margin-top:5px}
+details>summary{cursor:pointer;font-weight:700;font-size:14px}
+pre.prompt{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.45 var(--mono);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px;max-height:340px;overflow:auto;margin:8px 0 0}
+.log{font-family:var(--mono);font-size:12.5px;display:flex;flex-direction:column;gap:4px;margin:0;padding-left:18px}
+.note{font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:10px}
+
+/* criteria */
+.crithead{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;justify-content:space-between}
+.tally{display:flex;flex-wrap:wrap;gap:6px}
+.crit td:first-child{font-family:var(--mono);white-space:nowrap}
+.crit td.src{font-size:12.5px;width:1%;white-space:nowrap}
+.lvl{display:inline-block;margin:0 0 3px;padding:0 6px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.lvl.az{background:var(--accent-soft);color:var(--accent)} .lvl.nat{background:var(--info-soft);color:var(--info)} .lvl.oth{background:var(--warn-soft);color:var(--warn)}
+.crit td.src a,.crit td.src>span.s{display:block}
+.statuskey{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.srclist{margin-top:12px;font-size:12.5px;color:var(--muted)}
+.srclist ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px}
+.srclist li{display:flex;gap:8px;align-items:baseline}
+.srclist .lvl{flex:none;min-width:9.5ch;text-align:center}
+/* narrow screens: one card per guidance item instead of a five-column table */
+@media (max-width:720px){
+  .crit thead{display:none}
+  .crit,.crit tbody{display:block}
+  .crit tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .crit tr:last-child{border-bottom:0}
+  .crit td{display:block;padding:0;border:0;min-width:0}
+  .crit td.c-id{grid-row:1;grid-column:1} .crit td.c-res{grid-row:1;grid-column:2;justify-self:end}
+  .crit td.c-crit{grid-row:2} .crit td.c-det{grid-row:3} .crit td.c-src{grid-row:4}
+  .crit td.c-crit,.crit td.c-det,.crit td.c-src{grid-column:1 / -1}
+  .crit td.c-crit{font-weight:600}
+  .crit td.c-det::before{content:"Network: ";color:var(--muted)}
+  .crit td.src{min-width:0;width:auto;white-space:normal}
+  .crit td.src .lvl{margin-right:6px}
+  .crit td.src a,.crit td.src>span.s{display:inline}
+  table.checks thead{display:none}
+  table.checks,table.checks tbody{display:block}
+  table.checks tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;padding:8px 10px;border-bottom:1px solid var(--line)}
+  table.checks tr:last-child{border-bottom:0}
+  table.checks td{display:block;padding:0;border:0;min-width:0}
+  table.checks td.k-name{grid-row:1;grid-column:1;font-weight:600} table.checks td.k-res{grid-row:1;grid-column:2}
+  table.checks td.k-det{grid-row:2;grid-column:1 / -1} table.checks td.k-ai{grid-row:3;grid-column:1 / -1;color:var(--muted)}
+  table.checks td.k-ai:empty{display:none} table.checks td.k-ai::before{content:"Model expected it: "}
+}
+
+footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="signwrap">
+      <div class="plaque">SPR-768 #2</div>
+      <div class="sign"><h1>SR 347 / I-10</h1><p>Queen Creek Rd interchange · model-assisted network editing</p></div>
+    </div>
+    <div class="headmeta">
+      <span class="label">Request given to the model</span>
+      <q id="sentence"></q>
+    </div>
+  </header>
+
+  <section aria-label="Alternatives">
+    <div class="picker" id="picker"></div>
+  </section>
+
+  <nav class="steps" id="steps" aria-label="Steps"></nav>
+
+  <main class="grid">
+
+    <section class="card detail" id="detail-card" aria-live="polite">
+      <h2 id="detail-title"></h2>
+      <p class="sub" id="detail-sub"></p>
+      <div class="body" id="detail"></div>
+    </section>
+    <section class="card" aria-label="Network">
+      <div class="toolbar">
+        <div class="seg" id="mode" role="group" aria-label="Network state">
+          <button id="mode-before" type="button">Before</button><button id="mode-after" type="button">After</button>
+        </div>
+        <label class="chk"><input type="checkbox" id="opt-ids"> Link IDs</label>
+        <label class="chk"><input type="checkbox" id="opt-nodes"> Node IDs</label>
+        <label class="chk"><input type="checkbox" id="opt-changes"> Highlight changes</label>
+        <label class="chk"><input type="checkbox" id="opt-sat"> Satellite image</label>
+        <div class="zoomer" role="group" aria-label="Zoom">
+          <button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-reset">Reset</button>
+        </div>
+        <div class="zoomer" id="zoomer" aria-label="Views"></div>
+      </div>
+      <div class="mapwrap">
+        <div class="mapbox" id="mapbox" tabindex="0" aria-label="Network map. Plus and minus zoom, arrows pan, 0 resets.">
+          <svg id="svg" role="img" aria-label="Road network map"></svg>
+          <span class="credit" id="credit" hidden></span>
+        </div>
+        <div class="legend" id="legend" aria-label="Legend"></div>
+        <div class="pinned" id="pinned" hidden></div>
+      </div>
+      <p class="maphint">Click a link or node for details · drag to pan · click the map, then scroll to zoom · double-click to zoom in · pinch on touch<span id="lblnote"></span></p>
+      <p class="small muted" id="satnote" hidden style="margin-top:6px"></p>
+      <div class="readout">
+        <div class="routepick">
+          <span class="label">Follow a trip</span>
+          <select id="route-o" aria-label="Origin"></select>
+          <span class="muted">to</span>
+          <select id="route-d" aria-label="Destination"></select>
+          <button class="btn" id="route-clear" type="button">Clear</button>
+        </div>
+        <div class="seq" id="route-seq"></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="card" aria-label="Design guidance">
+    <div class="crithead">
+      <h2 id="crit-title"></h2>
+      <div class="tally" id="crit-tally"></div>
+    </div>
+    <p class="small muted" style="margin-top:4px;max-width:90ch">Each item from the design guides is checked as far as a planning network can show it. The network is a drawing, not a design file: it has no lane counts, signal timing or traffic volumes, so geometric guidance can only be indicative. Sources are Arizona (ADOT) first, then national (NCHRP, AASHTO, FHWA); another state's guide is used only where neither gives a figure.</p>
+    <div class="tablewrap" style="margin-top:10px"><table class="crit"><thead><tr><th>Ref.</th><th>Guidance</th><th>Result</th><th>What the network shows</th><th>Source</th></tr></thead><tbody id="crit-body"></tbody></table></div>
+    <div class="statuskey" id="statuskey"></div>
+    <div class="srclist" id="srclist"></div>
+  </section>
+
+
+  <footer id="footer"></footer>
+</div>
+
+<script id="data" type="application/json">/*__DATA__*/{}</script>
+<script>
+(function(){
+"use strict";
+const D = JSON.parse(document.getElementById("data").textContent);
+const $ = id => document.getElementById(id);
+const SVGNS = "http://www.w3.org/2000/svg";
+function h(tag, attrs, ...kids){
+  const el = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs||{})){
+    if (v==null || v===false) continue;
+    if (k==="class") el.className = v; else if (k.startsWith("on")) el.addEventListener(k.slice(2), v); else el.setAttribute(k, v===true?"":v);
+  }
+  for (const k of kids.flat()){ if (k==null||k===false) continue; el.append(k.nodeType?k:document.createTextNode(String(k))); }
+  return el;
+}
+function put(el, ...kids){ el.append(...kids.flat(Infinity).filter(k=>k!=null && k!==false && k!=="")); return el; }
+function s(tag, attrs){ const el=document.createElementNS(SVGNS, tag); for (const [k,v] of Object.entries(attrs||{})) if (v!=null) el.setAttribute(k, v); return el; }
+const store = {get(k,d){try{const v=localStorage.getItem("sr347."+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},
+               set(k,v){try{localStorage.setItem("sr347."+k, JSON.stringify(v));}catch(e){}}};
+
+const TKEYS = Object.keys(D.targets);
+const S = {
+  target: TKEYS.includes(store.get("target","ddi")) ? store.get("target","ddi") : "ddi",
+  step: store.get("step", 2), mode: "after", ids: true, nodes: false, changes: true,
+  route: {o: 1, d: 4}, pin: null, vb: null, wrong: false, sat: store.get("sat", false)
+};
+const STEPS = [
+  {k:"base", n:"Existing network", d:"The road network as it is now"},
+  {k:"inputs", n:"What the model sees", d:"Satellite image, numbered network, link list"},
+  {k:"proposal", n:"Model proposal", d:"Interchange type, links involved, requested change", ai:true},
+  {k:"gates", n:"Proposal checks", d:"Reject wrong or invented IDs before any edit"},
+  {k:"template", n:"Building the design", d:"A design template draws the new interchange"},
+  {k:"checks", n:"Network checks", d:"Trips, turning movements, grade separation"},
+  {k:"export", n:"Export", d:"New network tables and list of changes"}
+];
+if (!(Number.isInteger(S.step) && S.step >= 0 && S.step < STEPS.length)) S.step = 2;
+const STATUS_TEXT = {met:"meets", not_met:"does not meet", schematic:"indicative", measured:"measured on real roads", needs_data:"needs design data", info:"background"};
+// wording for counts: "4 met", "1 needs design data", "5 need design data"
+const tallyText = (k, n) => `${n} ` + ({met:"met", not_met:"not met", needs_data: n===1 ? "needs design data" : "need design data"}[k] || STATUS_TEXT[k]);
+const STATUS_HELP = {met:"confirmed from how the network is connected and controlled", not_met:"the network contradicts this guidance",
+  schematic:"measured on the drawing; a real design could differ", measured:"measured on the real road layout (OpenStreetMap)",
+  needs_data:"needs lane-level design, signal timing or traffic volumes", info:"context only"};
+const FACIL = {diamond:"conventional diamond", ddi:"diverging diamond", spui:"single point urban interchange", roundabout_diamond:"diamond with roundabout ramp terminals"};
+const CHANGE_TEXT = {ddi:"Replace the diamond with a diverging diamond", spui:"Replace the diamond with a single point urban interchange", roundabout_diamond:"Replace the ramp terminal signals with roundabouts"};
+const ROLE_LABEL = {approach_in:"Arterial approach from the outer road", departure_out:"Arterial exit to the outer road",
+  bridge_in:"Arterial arriving over the freeway", bridge_out:"Arterial leaving over the freeway", offramp_in:"Off-ramp", onramp_out:"On-ramp"};
+const CHECK_LABEL = {"C1":"Network tables are consistent", "C2":"All trips between approach roads still possible",
+  "C3":"Required turns present, prohibited turns absent", "C4":"Arterial and freeway stay on separate levels",
+  "C5":"Freeway mainline unchanged", "C6":"No changes outside the interchange",
+  "DDI-1":"Through traffic crosses over at both ramp terminals", "DDI-2":"Left-side driving between the crossovers",
+  "DDI-3":"Each crossover keeps one node per direction", "SPUI-1":"One signal controls all movements",
+  "SPUI-2":"Each movement crosses the single intersection once"};
+const LEVEL_CLASS = {"Arizona":"az", "National":"nat", "Other state":"oth"};
+const GATE_TEXT = {pass:"pass", fail:"fail", skipped:"not reached"};
+const FT_LABEL = {freeway:"freeway", arterial:"arterial", ramp:"ramp", intersection_connector:"intersection connector"};
+const NODE_LABEL = {boundary:"edge of the study area", merge_diverge:"merge_diverge", port:"port", crossover:"crossover", roundabout:"roundabout"};
+const CTRL_LABEL = {signal_required_timing_unknown:"signal (timing not set)", control_to_verify:"control to be confirmed", yield_entry:"yield", circulating:"circulating", exit:"exit"};
+const termName = g => g==="SPUI" ? "single intersection" : `${g} ramp terminal`;
+const checkId = c => c.check.split(" ")[0];
+const T = () => D.targets[S.target];
+const isBefore = () => S.target==="diamond" || S.mode==="before";
+const curNet = () => isBefore() ? D.base : T().net;
+const curRoutes = () => isBefore() ? D.targets.diamond.routes : T().routes;
+const NX = n => S.sat ? n.X : n.x, NY = n => S.sat ? n.Y : n.y;
+const LG = l => S.sat ? l.d : l.geom;
+const legName = id => (D.scenario.legs||{})[String(id)] || ("node "+id);
+const checksPassed = t => t.checks.filter(c=>c.passed).length;
+
+/* ---------- header ---------- */
+$("sentence").textContent = D.scenario.sentence;
+
+/* ---------- facility picker ---------- */
+function renderPicker(){
+  const p = $("picker"); p.replaceChildren();
+  TKEYS.forEach((k,i)=>{
+    const t = D.targets[k], ok = checksPassed(t), all = t.checks.length;
+    const crit = t.standards.filter(c=>c.status==="met"||c.status==="measured").length;
+    p.append(h("button",{class:"pick", type:"button", "aria-pressed":String(S.target===k), onclick:()=>{setTarget(k);}},
+      h("span",{class:"label"}, k==="diamond" ? "Existing condition" : `Build alternative ${i}`),
+      h("b",null,t.label),
+      h("span",{class:"small"}, h("span",{class:"dot "+(ok===all?"ok":"no")}), k==="diamond" ? `${ok} of ${all} network checks pass` : `${ok} of ${all} network checks pass · ${crit} guidance items met`)));
+  });
+}
+function setTarget(k){
+  S.target = k; store.set("target", k); S.mode = "after"; S.vb = null; hidePin();
+  if (S.route && !curRoutes().some(r=>r.o===S.route.o && r.d===S.route.d)) S.route = null;
+  renderAll();
+}
+
+/* ---------- step strip ---------- */
+function stepState(k){
+  const t = T(), isBase = S.target==="diamond";
+  switch(k){
+    case "base": return ["ok", `${D.base.nodes.length} nodes · ${D.base.links.length} links`];
+    case "inputs": return ["ok", "road names hidden"];
+    case "proposal": return ["ok", `${D.proposer.proposal.facility_class} · 12 links`];
+    case "gates": { const n=D.proposer.gates.length; return ["ok", `${n} of ${n} checks pass`]; }
+    case "template": return isBase ? ["na","no change"] : ["ok", FACIL[S.target]];
+    case "checks": { const ok=checksPassed(t); return [ok===t.checks.length?"ok":"no", `${ok} of ${t.checks.length} pass`]; }
+    case "export": return isBase ? ["na","no change"] : ["ok", `${t.net.nodes.length} nodes · ${t.net.links.length} links`];
+  }
+}
+function renderSteps(){
+  const n = $("steps"); n.replaceChildren();
+  STEPS.forEach((st,i)=>{
+    const [state, sub] = stepState(st.k);
+    n.append(h("button",{class:"step"+(st.ai?" ai":""), type:"button", "data-k":st.k, title:st.d, "aria-pressed":String(S.step===i),
+        onclick:()=>{S.step=i; store.set("step",i); renderSteps(); renderDetail(); revealDetail();}},
+      h("span",{class:"n"}, i+1),
+      h("span",{class:"t"}, h("b",null,st.n), h("span",null, h("span",{class:"dot "+state}), sub))));
+  });
+  const cur = n.children[S.step];                         // keep the chosen step visible when the strip scrolls sideways
+  if (cur && n.scrollWidth > n.clientWidth) n.scrollLeft = Math.max(0, cur.offsetLeft - (n.clientWidth - cur.offsetWidth) / 2);
+}
+// a step picked from the pinned strip while the detail card is scrolled away brings the card back into view
+function revealDetail(){
+  const card = $("detail-card"), bar = $("steps").getBoundingClientRect().bottom;
+  if (card.getBoundingClientRect().top >= bar - 1) return;
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollBy({top: card.getBoundingClientRect().top - bar - 10, behavior: reduce ? "auto" : "smooth"});
+}
+
+/* ---------- network view ---------- */
+const svg = $("svg");
+function extentOf(nodes, pad){
+  let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+  for (const n of nodes){ x0=Math.min(x0,NX(n)); x1=Math.max(x1,NX(n)); y0=Math.min(y0,NY(n)); y1=Math.max(y1,NY(n)); }
+  const cx=(x0+x1)/2, cy=(y0+y1)/2, half=Math.max(x1-x0,y1-y0)/2+pad;
+  return {x:cx-half, y:-(cy+half), w:2*half, h:2*half};
+}
+function homeVB(){
+  if (S.sat){ const h=D.basemap.half_m; return {x:-h, y:-h, w:2*h, h:2*h}; }
+  // fit the drawing tightly; Before and After share one frame so switching does not jump
+  const ns = D.base.nodes.concat(S.target!=="diamond" && T().net ? T().net.nodes : []);
+  let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+  for (const n of ns){ x0=Math.min(x0,n.x); x1=Math.max(x1,n.x); y0=Math.min(y0,n.y); y1=Math.max(y1,n.y); }
+  const pad = Math.max(30, 0.035*Math.max(x1-x0, y1-y0));
+  return {x:x0-pad, y:-(y1+pad), w:(x1-x0)+2*pad, h:(y1-y0)+2*pad};
+}
+function presets(){
+  const net = curNet(), out=[["Whole", homeVB()]];
+  const groups = [...new Set(net.nodes.map(n=>n.g).filter(Boolean))].sort();
+  if (S.sat) out.push(["Interchange", {x:-420, y:-260, w:840, h:840}]);
+  for (const g of groups){ const ns=net.nodes.filter(n=>n.g===g); if (ns.length>1) out.push([g==="SPUI"?"Single point":g+" terminal", extentOf(ns, S.sat?55:45)]); }
+  return out;
+}
+function renderZoomer(){
+  const z=$("zoomer"); z.replaceChildren();
+  for (const [name,vb] of presets()) z.append(h("button",{type:"button", onclick:()=>{S.vb={...vb}; drawNet();}}, name));
+}
+function pointsAlong(geom, f){
+  const segs=[]; let tot=0;
+  for (let i=1;i<geom.length;i++){ const L=Math.hypot(geom[i][0]-geom[i-1][0], geom[i][1]-geom[i-1][1]); segs.push(L); tot+=L; }
+  let tgt=tot*f, acc=0;
+  for (let i=1;i<geom.length;i++){ const L=segs[i-1]; if (acc+L>=tgt && L>0){ const t=(tgt-acc)/L; const a=geom[i-1], b=geom[i];
+      return {x:a[0]+t*(b[0]-a[0]), y:a[1]+t*(b[1]-a[1]), dx:(b[0]-a[0])/L, dy:(b[1]-a[1])/L}; } acc+=L; }
+  const a=geom[geom.length-2], b=geom[geom.length-1], L=Math.hypot(b[0]-a[0],b[1]-a[1])||1;
+  return {x:b[0], y:b[1], dx:(b[0]-a[0])/L, dy:(b[1]-a[1])/L};
+}
+const ptsAttr = g => g.map(p=>p[0]+","+(-p[1])).join(" ");
+function drawNet(){
+  const net = curNet(), t = T();
+  const after = !isBefore();
+  if (!S.vb) S.vb = homeVB();
+  $("mapbox").classList.toggle("sat", S.sat);
+  const W = svg.clientWidth || 600, H = svg.clientHeight || W, A = H / W;
+  { const v=S.vb, cx=v.x+v.w/2, cy=v.y+v.h/2; let w=v.w, hh=v.h;        // show the whole requested box at the map's aspect
+    if (hh / w > A) w = hh / A; else hh = w * A; S.vb = {x:cx-w/2, y:cy-hh/2, w, h:hh}; }
+  const vb = S.vb;
+  svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+  const px = W, k = px / vb.w;                            // screen px per network metre
+  const u = v => v / k;                                   // px -> network units
+  const zoomed = k > 1.05;
+  svg.replaceChildren();
+  const nodes = new Map(net.nodes.map(n=>[n.id,n]));
+  const routeLinks = new Set(S.route ? (curRoutes().find(r=>r.o===S.route.o && r.d===S.route.d)||{links:[]}).links : []);
+  const gLay = n => svg.appendChild(s("g",{class:n}));
+  if (S.sat){
+    const h=D.basemap.half_m; svg.append(s("image",{href:D.basemap.src, x:-h, y:-h, width:2*h, height:2*h, preserveAspectRatio:"none"}));
+    const dt=D.basemap.detail; if (dt) svg.append(s("image",{href:dt.src, x:-dt.half_m, y:-dt.half_m, width:2*dt.half_m, height:2*dt.half_m, preserveAspectRatio:"none"}));
+  }
+  const gGhost=gLay("ghosts"), gHalo=gLay("halos"), gCase=gLay("cases"), gLink=gLay("links"), gRoute=gLay("route"), gArrow=gLay("arrows"), gNode=gLay("nodes"), gLab=gLay("labels"), gHit=gLay("hits");
+  // deleted base links, shown as ghosts in the after view
+  if (after && S.changes && t.deleted){
+    const del = new Set(t.deleted.link);
+    for (const l of D.base.links) if (del.has(l.id)) gGhost.append(s("polyline",{class:"ghost", points:ptsAttr(LG(l)), "stroke-width":u(1.6)}));
+  }
+  const labels = [], placed = [];                         // label candidates; boxes already taken (SVG units)
+  const order = l => l.t==="freeway"?0:(l.t==="intersection_connector"?2:1);
+  const links = [...net.links].sort((a,b)=>order(a)-order(b));
+  for (const l of links){
+    const G = LG(l), P = ptsAttr(G), w = l.t==="freeway"?2.6:(l.t==="intersection_connector"?2:2.4);
+    if (after && S.changes && t.changed["link:"+l.id]) gHalo.append(s("polyline",{class:"halo", points:P, "stroke-width":u(11)}));
+    gCase.append(s("polyline",{class:"case", points:P, "stroke-width":u(w+3.5)}));
+    gLink.append(s("polyline",{class:"lk "+l.t, points:P, "stroke-width":u(w), "data-id":l.id}));
+    if (routeLinks.has(l.id)) gRoute.append(s("polyline",{class:"rt", points:P, "stroke-width":u(6)}));
+    const a = pointsAlong(G, l.t==="intersection_connector"?0.62:0.56), L=u(l.t==="freeway"?9:8), W=u(4);
+    const tip=[a.x+a.dx*L/2, a.y+a.dy*L/2], b1=[a.x-a.dx*L/2-a.dy*W, a.y-a.dy*L/2+a.dx*W], b2=[a.x-a.dx*L/2+a.dy*W, a.y-a.dy*L/2-a.dx*W];
+    gArrow.append(s("polygon",{class:"ar "+l.t, points:[tip,b1,b2].map(p=>p[0]+","+(-p[1])).join(" ")}));
+    gHit.append(s("polyline",{class:"hit", points:P, "stroke-width":u(12), "data-link":l.id}));
+    if (S.ids && (l.t!=="intersection_connector" || zoomed)) labels.push({link:l, G, pr:{freeway:1, arterial:2, ramp:3}[l.t]||4});
+  }
+  // nodes: co-located ones share one mark and one label
+  const spots = new Map();
+  for (const n of net.nodes){ const key=NX(n)+","+NY(n); if (!spots.has(key)) spots.set(key,[]); spots.get(key).push(n); }
+  for (const group of spots.values()){
+    const n = group[0], r = u(n.t==="crossover"?5:(n.t==="roundabout"?3.2:3.6)), nx=NX(n), ny=NY(n);
+    const chg = after && S.changes && group.some(m=>t.changed["node:"+m.id]);
+    gNode.append(s("circle",{class:"nd "+n.t+(chg?" chg":""), cx:nx, cy:-ny, r, "stroke-width":u(chg?2:1.2)}));
+    gHit.append(s("circle",{cx:nx, cy:-ny, r:u(9), fill:"transparent", "data-node":group.map(m=>m.id).join("/"), style:"cursor:pointer"}));
+    placed.push([nx-r, -ny-r, nx+r, -ny+r]);
+    if (S.nodes || zoomed || n.t==="crossover") labels.push({node:n, nx, ny, txt:group.map(m=>m.id).join("/"), pr:n.t==="crossover"?0:5});
+  }
+  renderLegend(after);
+  { // the floating legend is an obstacle too, so no label hides underneath it
+    const lg=$("legend"), lr=lg.getBoundingClientRect(), sr=svg.getBoundingClientRect();
+    if (getComputedStyle(lg).position==="absolute" && lr.width && sr.width){ const kk=sr.width/vb.w;
+      placed.push([vb.x+(lr.left-sr.left)/kk, vb.y+(lr.top-sr.top)/kk, vb.x+(lr.right-sr.left)/kk, vb.y+(lr.bottom-sr.top)/kk]); }
+  }
+  // labels: crossovers first, then freeway, arterial, ramp and connector IDs; a label that would cover another
+  // label or a node tries other spots along its link and is left out if none is free (zooming in brings it back)
+  const pad = u(1.5), free = b => !placed.some(p => b[0]<p[2]+pad && b[2]>p[0]-pad && b[1]<p[3]+pad && b[3]>p[1]-pad);
+  let hidden = 0;
+  for (const L of labels.sort((a,b)=>a.pr-b.pr)){
+    if (L.node){
+      const n=L.node, fs=u(n.t==="crossover"?11:10.5), w=fs*0.62*L.txt.length, o=u(6);
+      const spotsN = [[L.nx+o, -L.ny-o], [L.nx-o-w, -L.ny-o], [L.nx+o, -L.ny+o+fs*0.8], [L.nx-o-w, -L.ny+o+fs*0.8]];
+      const at = spotsN.find(([x,y])=>free([x, y-fs*0.85, x+w, y+fs*0.2])) || spotsN[0];   // asked-for node IDs are always drawn
+      placed.push([at[0], at[1]-fs*0.85, at[0]+w, at[1]+fs*0.2]);
+      const tx=s("text",{class:"nid "+n.t, x:at[0], y:at[1], "font-size":fs, "stroke-width":u(3)}); tx.textContent=L.txt; gLab.append(tx);
+      continue;
+    }
+    const l=L.link, fs=u(l.t==="intersection_connector"?10:11), txt=String(l.id), wbox=fs*0.68*txt.length+u(6), hbox=fs*1.25;
+    const f0 = l.t==="freeway" ? (S.sat?0.12:0.3) : 0.5;
+    let spot = null;
+    for (const f of [f0, 0.5, 0.38, 0.62, 0.27, 0.73, 0.18, 0.82]){
+      const m = pointsAlong(L.G, f), b = [m.x-wbox/2, -m.y-hbox/2, m.x+wbox/2, -m.y+hbox/2];
+      if (free(b)){ spot = {m, b}; break; }
+    }
+    if (!spot){ hidden++; continue; }
+    placed.push(spot.b);
+    const m = spot.m, g=s("g",{"pointer-events":"none"});
+    g.append(s("rect",{class:"lbg "+l.t, x:m.x-wbox/2, y:-m.y-hbox/2, width:wbox, height:hbox, rx:u(3)}));
+    const tx=s("text",{class:"lid", x:m.x, y:-m.y+fs*0.36, "font-size":fs, "text-anchor":"middle"}); tx.textContent=txt; g.append(tx);
+    gLab.append(g);
+  }
+  $("lblnote").textContent = hidden ? ` · ${hidden} link ID${hidden>1?"s":""} hidden to avoid overlap; zoom in to see ${hidden>1?"them":"it"}` : "";
+  $("credit").hidden = !S.sat; $("credit").textContent = D.basemap.attribution;
+  $("satnote").hidden = !S.sat;
+  $("satnote").textContent = "Satellite image from Mapbox, turned so that up points northwest along I-10. Existing roads are drawn where they were measured on this image (within about 10 m). New or moved parts are placed relative to each ramp terminal. This placement is for viewing only; the network files keep the drawing's coordinates.";
+}
+function renderLegend(after){
+  const L=$("legend"); L.replaceChildren();
+  const item=(cls,txt,circle)=>h("span",null,h("i",{class:circle?"c":"", style:`background:var(--${cls})`}),txt);
+  L.append(item("fw","freeway"), item("art","arterial"), item("ramp","ramp"), item("conn","intersection connector"), item("xover","crossover",true));
+  if (after && S.changes) L.append(h("span",null,h("i",{style:"background:var(--halo);height:8px"}),"changed"), h("span",null,h("i",{style:"background:repeating-linear-gradient(90deg,var(--ghost) 0 5px,transparent 5px 9px)"}),"removed"));
+  if (S.route) L.append(item("route","trip being followed"));
+}
+// pan and zoom: drag, wheel (Ctrl/pinch always; plain wheel once the map is clicked), double-click, touch pinch, keys
+const MINW = 40;
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+function setVB(){ svg.setAttribute("viewBox", `${S.vb.x} ${S.vb.y} ${S.vb.w} ${S.vb.h}`); }
+function zoomBy(f, fx=0.5, fy=0.5, redraw=true){
+  const vb=S.vb, w=clamp(vb.w*f, MINW, homeVB().w*2.4), hh=w*vb.h/vb.w;
+  S.vb={x:vb.x+fx*(vb.w-w), y:vb.y+fy*(vb.h-hh), w, h:hh};
+  redraw ? drawNet() : setVB();
+}
+function setActive(on){ S.active=on; $("mapbox").classList.toggle("active", on); }
+(function(){
+  const box=$("mapbox"), pts=new Map(); let drag=null, pinch=null, redrawT=null;
+  const later=()=>{ clearTimeout(redrawT); redrawT=setTimeout(drawNet, 140); };
+  svg.addEventListener("pointerdown",e=>{
+    if (e.pointerType==="mouse" && e.button!==0) return;
+    setActive(true); svg.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if (pts.size===1) drag={x:e.clientX, y:e.clientY, vb:{...S.vb}, moved:false};
+    else if (pts.size===2){ const [a,b]=[...pts.values()]; pinch={d:Math.hypot(a.x-b.x,a.y-b.y)||1, vb:{...S.vb}, mx:(a.x+b.x)/2, my:(a.y+b.y)/2}; drag=null; }
+  });
+  svg.addEventListener("pointermove",e=>{
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if (pinch && pts.size>=2){
+      const [a,b]=[...pts.values()], d=Math.hypot(a.x-b.x,a.y-b.y), r=svg.getBoundingClientRect();
+      const fx=(pinch.mx-r.left)/r.width, fy=(pinch.my-r.top)/r.height, v=pinch.vb;
+      const w=clamp(v.w*pinch.d/d, MINW, homeVB().w*2.4), hh=w*v.h/v.w;
+      S.vb={x:v.x+fx*(v.w-w), y:v.y+fy*(v.h-hh), w, h:hh}; setVB(); return;
+    }
+    if (!drag) return;
+    const k=(svg.clientWidth||600)/drag.vb.w, dx=(e.clientX-drag.x)/k, dy=(e.clientY-drag.y)/k;
+    if (Math.abs(dx)+Math.abs(dy) > 3/k){ drag.moved=true; svg.classList.add("drag"); S.vb={...drag.vb, x:drag.vb.x-dx, y:drag.vb.y-dy}; setVB(); }
+  });
+  const up=e=>{
+    pts.delete(e.pointerId);
+    if (pinch){ if (pts.size<2){ pinch=null; drag=null; drawNet(); } return; }
+    if (!drag) return;
+    const moved=drag.moved; drag=null; svg.classList.remove("drag");
+    if (moved) drawNet(); else pick(e);
+  };
+  svg.addEventListener("pointerup",up);
+  svg.addEventListener("pointercancel",e=>{ pts.delete(e.pointerId); drag=null; pinch=null; svg.classList.remove("drag"); });
+  box.addEventListener("pointerleave",()=>setActive(false));
+  svg.addEventListener("wheel",e=>{
+    if (!(e.ctrlKey || e.metaKey || S.active)) return;
+    e.preventDefault();
+    const r=svg.getBoundingClientRect(), rate=(e.ctrlKey||e.metaKey) ? 0.01 : 0.0022;
+    zoomBy(Math.exp(clamp(e.deltaY*rate, -0.6, 0.6)), (e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height, false); later();
+  }, {passive:false});
+  svg.addEventListener("dblclick",e=>{ const r=svg.getBoundingClientRect(); zoomBy(0.5, (e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height); });
+  box.addEventListener("keydown",e=>{
+    const step=S.vb.w*0.15, keys={ArrowLeft:[-step,0], ArrowRight:[step,0], ArrowUp:[0,-step], ArrowDown:[0,step]};
+    if (e.key==="+"||e.key==="=") zoomBy(1/1.5); else if (e.key==="-"||e.key==="_") zoomBy(1.5);
+    else if (e.key==="0"){ S.vb=homeVB(); drawNet(); }
+    else if (keys[e.key]){ S.vb={...S.vb, x:S.vb.x+keys[e.key][0], y:S.vb.y+keys[e.key][1]}; drawNet(); }
+    else return;
+    e.preventDefault();
+  });
+  $("zoom-in").addEventListener("click",()=>zoomBy(1/1.5));
+  $("zoom-out").addEventListener("click",()=>zoomBy(1.5));
+  $("zoom-reset").addEventListener("click",()=>{ S.vb = S.sat ? {x:-420,y:-260,w:840,h:840} : homeVB(); drawNet(); });
+})();
+function pick(e){
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  if (!el) return;
+  const net = curNet();
+  if (el.dataset && el.dataset.link){ const l=net.links.find(x=>x.id===+el.dataset.link); if (l) showPin("link", l); }
+  else if (el.dataset && el.dataset.node){ const ids=el.dataset.node.split("/").map(Number); showPin("node", ids.map(i=>net.nodes.find(n=>n.id===i))); }
+}
+function hidePin(){ S.pin = null; const P=$("pinned"); P.hidden = true; P.replaceChildren(); }
+function showPin(kind, obj){
+  const P=$("pinned"); P.replaceChildren(); P.hidden = false; S.pin = kind;
+  P.append(h("button",{class:"x", type:"button", "aria-label":"Close details", onclick:hidePin}, "×"));
+  const t=T(), after=!isBefore();
+  if (kind==="link"){
+    const ch = after ? t.changed["link:"+obj.id] : null;
+    put(P, h("b",null,"Link "+obj.id), " from node ", h("span",{class:"mono"}, obj.a), " to node ", h("span",{class:"mono"}, obj.b), " · ", FT_LABEL[obj.t]||obj.t,
+      obj.s ? ` · ${CTRL_LABEL[obj.s]||obj.s}` : null, obj.g ? ` · ${termName(obj.g)}` : null, ` · ${obj.len} m on the drawing`,
+      ch ? [" ", h("span",{class:"pill "+(ch==="added"?"schematic":"needs_data")}, ch==="modified"?"changed":ch)] : null);
+  } else {
+    put(P, obj.map((n,i)=>[i?h("br"):null, h("b",null,"Node "+n.id), " · ", NODE_LABEL[n.t]||n.t, n.c?` · ${n.c}`:"", n.g?` · ${termName(n.g)}`:"",
+      after && t.changed["node:"+n.id] ? [" ", h("span",{class:"pill schematic"}, t.changed["node:"+n.id]==="modified"?"moved":t.changed["node:"+n.id])] : null]));
+    if (obj.length>1) P.append(h("div",{class:"small muted"},"Two nodes at the same spot, one for each travel direction. They are kept separate so traffic cannot turn from one direction to the other here."));
+  }
+}
+
+/* ---------- route tracer ---------- */
+function renderRoutePicker(){
+  const routes=curRoutes(), oSel=$("route-o"), dSel=$("route-d");
+  const origins=[...new Set(routes.map(r=>r.o))];
+  oSel.replaceChildren(h("option",{value:""},"from…"), ...origins.map(o=>h("option",{value:o, selected:S.route&&S.route.o===o}, legName(o))));
+  const ds = S.route ? routes.filter(r=>r.o===S.route.o) : [];
+  dSel.replaceChildren(h("option",{value:""},"to…"), ...ds.map(r=>h("option",{value:r.d, selected:S.route&&S.route.d===r.d}, legName(r.d))));
+  dSel.disabled = !S.route;
+  const seq=$("route-seq"); seq.replaceChildren();
+  if (S.route && S.route.d){
+    const r=routes.find(x=>x.o===S.route.o && x.d===S.route.d);
+    if (r){
+      const nodes=new Map(curNet().nodes.map(n=>[n.id,n]));
+      const xs=r.nodes.filter(n=>nodes.get(n) && nodes.get(n).t==="crossover");
+      seq.append(h("em",null,"via links"));
+      r.links.forEach((l,i)=>{ if(i) seq.append(h("em",null,"→")); seq.append(h("span",null,l)); });
+      seq.append(h("em",null," · nodes"));
+      if (xs.length) seq.append(h("em",null,` (crossovers in red)`));
+      r.nodes.forEach((n,i)=>{ if(i) seq.append(h("em",null,"→")); seq.append(h("span",{class:xs.includes(n)?"x":""},n)); });
+    }
+  }
+}
+$("route-o").addEventListener("change",e=>{ const o=+e.target.value; if(!o){S.route=null;} else { const first=curRoutes().find(r=>r.o===o); S.route={o, d:first?first.d:null}; } renderRoutePicker(); drawNet(); });
+$("route-d").addEventListener("change",e=>{ if(S.route){ S.route.d=+e.target.value||null; } renderRoutePicker(); drawNet(); });
+$("route-clear").addEventListener("click",()=>{ S.route=null; renderRoutePicker(); drawNet(); });
+
+/* ---------- toolbar ---------- */
+function renderToolbar(){
+  const isBase = S.target==="diamond";
+  $("mode-before").setAttribute("aria-pressed", String(isBase || S.mode==="before"));
+  $("mode-after").setAttribute("aria-pressed", String(!isBase && S.mode==="after"));
+  $("mode-after").disabled = isBase;
+  $("opt-ids").checked=S.ids; $("opt-nodes").checked=S.nodes; $("opt-changes").checked=S.changes; $("opt-changes").disabled=isBase; $("opt-sat").checked=S.sat;
+}
+$("mode-before").addEventListener("click",()=>{ S.mode="before"; hidePin(); renderToolbar(); renderZoomer(); drawNet(); renderRoutePicker(); });
+$("mode-after").addEventListener("click",()=>{ S.mode="after"; hidePin(); renderToolbar(); renderZoomer(); drawNet(); renderRoutePicker(); });
+$("opt-ids").addEventListener("change",e=>{S.ids=e.target.checked; drawNet();});
+$("opt-nodes").addEventListener("change",e=>{S.nodes=e.target.checked; drawNet();});
+$("opt-changes").addEventListener("change",e=>{S.changes=e.target.checked; drawNet();});
+$("opt-sat").addEventListener("change",e=>{S.sat=e.target.checked; store.set("sat",S.sat); S.vb=S.sat?{x:-420,y:-260,w:840,h:840}:null; renderZoomer(); drawNet();});
+
+/* ---------- step detail ---------- */
+const pill = (cls, txt) => h("span",{class:"pill "+cls}, txt);
+const kv = rows => h("dl",{class:"kv"}, ...rows.filter(Boolean).map(([k,v])=>[h("dt",null,k), h("dd",null,v)]).flat());
+function table(head, rows, cls){
+  const num = head.map((_,i)=>rows.length>0 && rows.every(r=>r.children[i] && r.children[i].classList.contains("n")));
+  return h("div",{class:"tablewrap"}, h("table",{class:cls||null}, h("thead",null,h("tr",null,...head.map((x,i)=>h("th",num[i]?{class:"n"}:null,x)))), h("tbody",null,...rows)));
+}
+function detailText(d){ return Array.isArray(d) ? d.join("; ") : String(d); }
+function renderDetail(){
+  const st=STEPS[S.step], t=T(), body=$("detail"), title=$("detail-title");
+  title.replaceChildren(); put(title, h("span",{class:"label"},`Step ${S.step+1} of ${STEPS.length}`), " ", st.n);
+  $("detail-sub").textContent = st.d;
+  body.replaceChildren(); body.scrollTop = 0; body.classList.toggle("full", st.k==="inputs");
+  const P = D.proposer.proposal;
+  if (st.k==="base"){
+    const site=D.scenario.site;
+    body.append(kv([["Nodes", h("span",{class:"num"}, D.base.nodes.length)], ["Links (one per direction)", h("span",{class:"num"}, D.base.links.length)],
+      ["Turning movements", h("span",{class:"num"}, D.base.movements)], ["Interchange type in the network", pill("pass", D.table_signature)],
+      ["Location", h("span",{class:"mono"}, `${site.lat}, ${site.lon}`)], ["Matched to", site.atlas],
+      ["Road directions", `I-10 runs ${site.freeway_bearing_deg}° and Queen Creek Rd ${site.crossroad_bearing_deg}° (compass)`]]),
+      h("p",{class:"note"},"This is the SR 347 / I-10 network package in GMNS format, drawn to approximate scale but not tied to real coordinates. Lane counts, speeds and capacities are blank because they are unknown, not zero."));
+  }
+  if (st.k==="inputs"){
+    body.append(h("figure",{class:"figure fit",style:"margin:0"}, h("img",{src:D.proposer.image.src, width:D.proposer.image.w, height:D.proposer.image.h, alt:"What the model sees: a satellite image and the numbered network"}),
+      h("figcaption",null,"This is the only image the model saw. Left: the satellite image, turned to match the network drawing. Right: the existing network with link numbers in boxes, node numbers at the circles, and a 6 × 6 grid for describing locations.")),
+      h("details",null, h("summary",null,"Prompt text (road names hidden)"), h("pre",{class:"prompt"}, D.proposer.prompt)));
+  }
+  if (st.k==="proposal"){
+    const terms=P.terminals;
+    const rows=D.roles.map(r=>h("tr",null, h("td",null,ROLE_LABEL[r]||r), ...terms.map(tm=>{ const b=tm.bindings[r]; return h("td",{class:"mono"}, h("b",null,"link "+b.link_id), h("span",{class:"muted"},` (node ${b.from_node_id} → ${b.to_node_id})`)); })));
+    body.append(h("p",{class:"small"}, `${D.proposer.label ? `Written by ${D.proposer.label}. ` : ''}The proposer saw only the image and the prompt in step 2.`),
+      kv([["Existing interchange type", pill("pass", P.facility_class)], ["Requested change", P.operations.map(o=>CHANGE_TEXT[o.to_class]||`${o.op} ${o.from_class} → ${o.to_class}`).join("; ")],
+          ["Ramp terminals found", terms.map(tm=>`${tm.name} (grid square ${tm.anchor_cell})`).join(", ")]]),
+      h("p",{class:"small",style:"margin:0"},"The links the model identified for each part of the two ramp terminals:"),
+      table(["Part of the ramp terminal", ...terms.map(tm=>tm.name)], rows),
+      h("details",null, h("summary",null,`What the model observed (${P.evidence.length})`), h("ul",{class:"plain small",style:"margin-top:6px"}, ...P.evidence.map(x=>h("li",null,x)))),
+      h("details",null, h("summary",null,`What the model could not determine (${P.not_established.length})`), h("ul",{class:"plain small",style:"margin-top:6px"}, ...P.not_established.map(x=>h("li",null,x)))));
+    if (S.target!=="diamond" && S.target!==P.operations[0].to_class)
+      body.append(h("p",{class:"note"}, `The model was asked for a ${FACIL[P.operations[0].to_class]}. You picked the ${FACIL[S.target]}, so the tool reuses the links the model identified and builds that design instead.`));
+  }
+  if (st.k==="gates"){
+    const src = S.wrong && D.wrong ? D.wrong : D.proposer;
+    body.append(h("div",{class:"seg",role:"group","aria-label":"Which answer"},
+      h("button",{type:"button","aria-pressed":String(!S.wrong), onclick:()=>{S.wrong=false; renderDetail();}},"The model's answer"),
+      D.wrong ? h("button",{type:"button","aria-pressed":String(S.wrong), onclick:()=>{S.wrong=true; renderDetail();}},"Example of a rejected answer") : null),
+      h("p",{class:"small"}, S.wrong && D.wrong ? `${D.wrong.what}. The checks stop it before anything in the network changes.`
+        : "Before anything in the network changes, the model's answer has to pass every check below. A failed check sends the specific problem back to the model once for a corrected answer."));
+    body.append(h("div",null, ...src.gates.map(g=>h("div",{class:"gate"}, pill(g.status, GATE_TEXT[g.status]||g.status), h("span",null, g.text, " ", h("span",{class:"mono small muted"}, g.gate.split(" ")[0])),
+      ...g.defects.map(x=>h("span",{class:"why"}, x))))));
+  }
+  if (st.k==="template"){
+    if (S.target==="diamond"){ body.append(h("p",null,"The existing interchange is not changed. Pick a build alternative above to see the new design.")); }
+    else {
+      body.append(h("p",{class:"small",style:"margin:0"},`What the ${FACIL[S.target]} template did:`), h("ol",{class:"log"}, ...t.log.map(x=>h("li",null,x))),
+        kv(Object.entries(t.groups).map(([g,v])=>[termName(g).replace(/^./,c=>c.toUpperCase()), `${v.required} turning movements required, ${v.forbidden} prohibited`])),
+        h("p",{class:"note"},"The design template places every node and link and decides every turning movement. The model only said which existing links play which part."));
+    }
+  }
+  if (st.k==="checks"){
+    body.append(table(["Check","Result","Model expected it","Details"], t.checks.map(c=>h("tr",null,
+      h("td",{class:"k-name"}, CHECK_LABEL[checkId(c)]||c.check, " ", h("span",{class:"mono small muted"}, checkId(c))), h("td",{class:"k-res"},pill(c.passed?"pass":"fail", c.passed?"pass":"fail")),
+      h("td",{class:"small k-ai"}, c.asserted_by_proposal==null?"":(c.asserted_by_proposal?"yes":"no")), h("td",{class:"small k-det"}, detailText(c.detail)))), "checks"),
+      h("p",{class:"note"}, S.target==="diamond" ? "The same checks are run on the existing network for comparison." : "“Model expected it” marks the conditions the model said must hold after the change."));
+  }
+  if (st.k==="export"){
+    if (!t.changes){ body.append(h("p",null,"No files are written for the existing network.")); }
+    else {
+      const OBJ = {node:"Nodes", link:"Links", movement:"Turning movements"};
+      body.append(table(["","Unchanged","Changed","Added","Removed"], Object.entries(t.changes).map(([o,c])=>h("tr",null,
+        h("td",null,OBJ[o]||o), h("td",{class:"n"},c.unchanged), h("td",{class:"n"},c.modified), h("td",{class:"n"},c.added), h("td",{class:"n"},c.deleted)))),
+        kv([["New network", `${t.net.nodes.length} nodes, ${t.net.links.length} links, ${t.net.movements} turning movements`],
+            ["Files written", h("span",{class:"mono small"},"node.csv · link.csv · movement.csv · config.csv · route_checks.csv · change_table.csv · edit_summary.json · report.md")]]),
+        h("p",{class:"note"},"The network files follow the GMNS format."));
+    }
+  }
+}
+
+/* ---------- design guidance ---------- */
+function renderCriteria(){
+  const t=T();
+  $("crit-title").textContent = "Design guidance check · " + t.label;
+  const tally={}; t.standards.forEach(c=>tally[c.status]=(tally[c.status]||0)+1);
+  $("crit-tally").replaceChildren(...["met","measured","schematic","needs_data","not_met","info"].filter(k=>tally[k]).map(k=>pill(k, tallyText(k, tally[k]))));
+  const lvl = c => h("span",{class:"lvl "+(LEVEL_CLASS[c.level]||"oth")}, c.level||"other");
+  $("crit-body").replaceChildren(...t.standards.map(c=>h("tr",null, h("td",{class:"c-id"},c.id), h("td",{class:"c-crit"},c.criterion),
+    h("td",{class:"c-res"},pill(c.status, STATUS_TEXT[c.status])), h("td",{class:"small c-det"}, c.detail),
+    h("td",{class:"src c-src"}, lvl(c), c.url ? h("a",{href:c.url, target:"_blank", rel:"noopener", title:c.source}, c.short||c.source) : h("span",{class:"s", title:c.source}, c.short||c.source)))));
+  $("statuskey").replaceChildren(...Object.keys(STATUS_TEXT).map(k=>h("span",null,pill(k,STATUS_TEXT[k])," ",STATUS_HELP[k])));
+  // each document once, in the order Arizona, national, other state
+  const docs = new Map();
+  for (const c of t.standards) if (!docs.has(c.doc||c.source)) docs.set(c.doc||c.source, c);
+  const rank = {"Arizona":0, "National":1};
+  $("srclist").replaceChildren(h("span",{class:"label"},"Sources"), h("ul",null, ...[...docs.values()].sort((a,b)=>(rank[a.level]??2)-(rank[b.level]??2)).map(c=>h("li",null, lvl(c),
+    h("span",null, h("b",null,c.doc_short||""), ": ", c.doc_url ? h("a",{href:c.doc_url, target:"_blank", rel:"noopener"}, c.doc) : (c.doc||c.source))))));
+}
+
+function renderAll(){ renderPicker(); renderSteps(); renderToolbar(); renderZoomer(); drawNet(); renderRoutePicker(); renderDetail(); renderCriteria(); }
+$("footer").append(h("span",null,`Imagery © Mapbox © Maxar © OpenStreetMap contributors (satellite-v9, fetched ${D.basemap.fetched_utc.replace("T"," ").replace("Z"," UTC")}, centre ${D.scenario.site.lat}, ${D.scenario.site.lon}). Network: SR 347 / I-10 GMNS package (drawn to approximate scale). Location match: Phoenix Interchange Atlas (OpenStreetMap data of 2025-03-10).`),
+  h("span",null,"Self-contained page generated by vlm4scenario (tools/build_dashboard.py). Design guidance was read from the linked documents: ADOT RDG and NCHRP 959 on 2026-10-07, the others on 2026-10-05."));
+renderAll();
+let rz; window.addEventListener("resize",()=>{ clearTimeout(rz); rz=setTimeout(drawNet,120); });
+})();
+</script>

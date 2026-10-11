@@ -1,0 +1,83 @@
+{
+  "response": {
+    "movements": [
+      {
+        "turn": "left",
+        "to_direction": "WB",
+        "status": "candidate",
+        "lane_pairs": [
+          {
+            "in_region_id": "r1",
+            "out_region_id": "r1"
+          }
+        ],
+        "basis": "observed",
+        "confidence": "high",
+        "evidence_refs": [
+          "in_NB:r1",
+          "out_WB:r1",
+          "gsv_context_NB_mid:o1",
+          "gsv_context_NB_mid:o2",
+          "gsv_context_NB_mid:o4",
+          "gsv_context_NB_near:o7"
+        ],
+        "assumptions": [
+          "out_WB r1 is the single supported motor receiving lane on the WB leg (one wide ~4.6-5 m lane, no internal lane line); out_WB r2 is a hatched buffer and out_WB r3 a bicycle strip, so neither is an endpoint.",
+          "Pavement arrows reflect current lane use; the street views (2020-11) and satellite (spring 2021) agree."
+        ],
+        "reason": "in_NB r1 is the lane next to the centre line. In the full satellite view it carries two left-curving arrows, one near its set-back stop line and one upstream, with no through or right branch. The mid forward street view shows a left-turn arrow in the first lane right of the double yellow line; that binds to r1 by its order next to the centre line, not by ordinal alone. NB has no outgoing leg straight ahead: the satellite shows a building and plaza beyond the cross street, and the network lists no NB outgoing link. So r1's only movement is the left turn onto the WB leg (upper-left). There the only supported motor receiving facility is out_WB r1, beside the raised median island, so r1->r1 is the single pair. This agrees with the model lane-use prediction (r1 left_only)."
+      },
+      {
+        "turn": "right",
+        "to_direction": "EB",
+        "status": "candidate",
+        "lane_pairs": [
+          {
+            "in_region_id": "r2",
+            "out_region_id": "r2"
+          }
+        ],
+        "basis": "observed",
+        "confidence": "high",
+        "evidence_refs": [
+          "in_NB:r2",
+          "out_EB:r2",
+          "gsv_context_NB_mid:o3",
+          "gsv_context_NB_mid:o5",
+          "gsv_context_NB_far:o2",
+          "gsv_context_NB_far:o3",
+          "gsv_context_NB_near:o3"
+        ],
+        "assumptions": [
+          "out_EB r2 is the only supported motor receiving lane on the EB leg; out_EB r1 is a planted median, r3 a bicycle strip and r4 a parking lane, none of them endpoints.",
+          "The bicycle strips r4/r5 on in_NB are not motor endpoints; their straight arrow and the green crossing paint concern bicycles, not motor permissions."
+        ],
+        "reason": "in_NB r2 is the second lane from the centre line, bounded on the right by the post-lined double white buffer (r3). In the satellite it carries two right-curving arrows and an L-shaped stop bar. The mid forward street view shows a right-turn arrow in the second lane, with no through branch, bound to r2 by its position between the left-arrow lane and the post-lined line. The far view (113 m) shows one travel lane plus kerbside parking, so r2 opens as a right-turn pocket between the far and mid positions. The right turn heads to the EB leg (lower-right), where out_EB r2 is the only supported motor receiving lane, giving the pair r2->r2. Right-turning traffic crosses the path of the kerbside bicycle strip (r5), which continues to the green crossing paint beyond the crosswalk. This is a conflict area, not a lane-use change. This agrees with the model lane-use prediction (r2 right_only)."
+      },
+      {
+        "turn": "u_turn",
+        "to_direction": "SB",
+        "status": "not_proposed",
+        "lane_pairs": [],
+        "basis": "inferred",
+        "confidence": "low",
+        "evidence_refs": [
+          "in_NB:r1",
+          "out_SB:r1",
+          "gsv_context_NB_near:o2",
+          "gsv_context_NB_near:o8"
+        ],
+        "assumptions": [],
+        "reason": "out_SB r1 is a supported receiving lane immediately left of the double yellow line, and the near street view camera stands in it. However, no U-turn arrow is visible in r1 in the satellite or street views, and no readable sign permits or prohibits U-turns (near view signals and signs unreadable). The left-turn arrows in r1 do not by themselves establish U-turn permission. With no supporting evidence, no U-turn pair is proposed; permission remains unknown rather than shown to be prohibited."
+      }
+    ],
+    "gsv_alignment_notes": [
+      "The near forward view (29.6 m) is taken from left of the double yellow line, i.e. from out_SB r1. Only r1's set-back stop line crosses the frame at the camera position; r2 shows as the L-shaped stop bar ahead at upper right, and r3-r5 are out of frame. It shows a building frontage and plaza straight ahead, consistent with no NB through leg.",
+      "The mid forward view (59 m), also from left of the centre line, shows two NB lanes: a left-arrow lane next to the double yellow (r1) and a right-arrow lane (r2) bounded by a post-lined white line (r3), then a kerbside bicycle space (r4/r5, split not resolvable).",
+      "The far forward view (113 m) shows one NB travel lane, a kerbside parking lane and a hatched, post-lined buffer with a kerbside bike lane, so r2 is a pocket that opens in the former parking space. The lane count at the stop bar (2 motor lanes) is not contradicted, because the views sample different cross-sections.",
+      "Most of in_NB lies in building shadow in the satellite. The arrows are still legible and agree with the 2020-11 street views, so a temporal change between dates is not indicated.",
+      "The intersection shows dashed guide lines and green bicycle-crossing paint. No through motor path from NB is marked, and the network supplies no NB outgoing link."
+    ]
+  },
+  "metadata": {}
+}

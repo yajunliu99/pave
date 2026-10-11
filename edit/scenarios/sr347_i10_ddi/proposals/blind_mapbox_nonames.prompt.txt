@@ -1,0 +1,124 @@
+=== SYSTEM ===
+You are the proposer stage of a traffic-network scenario-editing pipeline.
+You never draw, digitize or estimate coordinates. You answer only with IDs that exist in the
+tables you are given and with labels from the closed catalogs. Topology, turning movements and
+geometry are produced afterwards by deterministic templates and checked by code; anything you
+name that is not in the tables is rejected. Return exactly one JSON object and nothing else.
+
+=== QUERY ===
+SCENARIO
+SR 347 / I-10 (Queen Creek Rd interchange): convert the conventional diamond interchange to a diverging diamond interchange (DDI).
+
+IMAGE
+The image has two panels.
+Panel A (left): satellite image of the site BEFORE the project (Mapbox imagery, no network drawn on it).
+Panel B (right): the GMNS base network rendered in a schematic local coordinate system.
+  Local schematic coordinates in metres: x increases toward the NE along SR 347 / Queen Creek Rd, y increases toward the NW along I-10. Panel A is rotated to the same axes: up is NW along I-10 and right is NE along Queen Creek Rd.
+  Link IDs are printed in coloured boxes (grey freeway, blue arterial, green ramp); intersection
+  connectors are orange and unlabelled. Node IDs are printed next to the white circles.
+  A 6x6 grid is overlaid on panel B: rows A-F top to bottom, columns 1-6 left to right
+  (cell "C2" = third row, second column).
+
+NODE TABLE (node_id,name,node_type,x,y)
+1,,boundary,-600,-22
+2,,boundary,-600,22
+3,,boundary,600,22
+4,,boundary,600,-22
+5,,boundary,-60,550
+6,,boundary,60,550
+7,,boundary,60,-550
+8,,boundary,-60,-550
+11,,merge_diverge,-60,360
+12,,merge_diverge,-60,-360
+13,,merge_diverge,60,-360
+14,,merge_diverge,60,360
+21,,port,-310,-22
+22,,port,-310,22
+23,,port,-210,22
+24,,port,-210,-22
+25,,port,-320,130
+26,,port,-320,-130
+31,,port,310,22
+32,,port,310,-22
+33,,port,210,-22
+34,,port,210,22
+35,,port,320,-130
+36,,port,320,130
+
+LINK TABLE (link_id,name,from_node_id,to_node_id,facility_type); all links are directed
+101,,5,11,freeway
+102,,11,12,freeway
+103,,12,8,freeway
+104,,7,13,freeway
+105,,13,14,freeway
+106,,14,6,freeway
+201,,1,21,arterial
+202,,22,2,arterial
+203,,3,31,arterial
+204,,32,4,arterial
+205,,24,33,arterial
+206,,34,23,arterial
+301,,11,25,ramp
+302,,26,12,ramp
+303,,13,35,ramp
+304,,36,14,ramp
+401,,21,24,intersection_connector
+402,,23,22,intersection_connector
+403,,21,26,intersection_connector
+404,,23,26,intersection_connector
+405,,25,22,intersection_connector
+406,,25,24,intersection_connector
+411,,31,34,intersection_connector
+412,,33,32,intersection_connector
+413,,31,36,intersection_connector
+414,,33,36,intersection_connector
+415,,35,32,intersection_connector
+416,,35,34,intersection_connector
+
+CLOSED CATALOGS
+facility_class: diamond, tight_diamond, ddi, spui, roundabout_diamond, parclo_a, parclo_b, parclo_ab, cloverleaf, directional, trumpet, other_or_unclear
+operations: replace_facility, add_lane, add_ramp, add_flyover, realign_ramp, add_managed_lanes, meter_ramps, set_allowed_uses
+terminal roles (one host link per role, per ramp terminal):
+  - approach_in: arterial link arriving at this terminal from its outer leg (the side away from the freeway) (facility_type must be arterial)
+  - departure_out: arterial link leaving this terminal toward its outer leg (facility_type must be arterial)
+  - bridge_in: arterial link arriving at this terminal from the other terminal, across the freeway (facility_type must be arterial)
+  - bridge_out: arterial link leaving this terminal toward the other terminal, across the freeway (facility_type must be arterial)
+  - offramp_in: off-ramp link that ends at this terminal (facility_type must be ramp)
+  - onramp_out: on-ramp link that starts at this terminal (facility_type must be ramp)
+expected_facts vocabulary:
+  - all_external_od_preserved: every external origin-destination pair reachable before the edit stays reachable
+  - freeway_links_unchanged: no freeway mainline link changes
+  - six_terminal_movements_per_terminal: each terminal keeps its 6 movements and gains no U-turn or ramp-to-ramp movement
+  - through_movements_cross_over_at_each_terminal: both arterial through movements pass a crossover node at each terminal
+  - left_side_running_between_terminals: between the terminals, arterial traffic runs on the left side
+  - no_collateral_changes: nothing outside the bound terminals and the links between them changes
+  - ten_spui_movements: (SPUI) the single point carries the 10 through, left and right movements and no U-turn or ramp-to-ramp movement
+  - single_signal_controls_all_ramp_movements: (SPUI) one signal controls every ramp and cross-street movement
+  - all_entries_reach_all_exits: (roundabout terminals) every entry reaches every exit, U-turns included
+  - counterclockwise_circulation: (roundabout terminals) each ring circulates counter-clockwise
+  - yield_controlled_entries: (roundabout terminals) entries yield; no signals on the rings
+
+TASK
+1. Read the facility class of the existing interchange from panel A and the tables.
+2. Identify each ramp terminal (the at-grade junction where ramps meet the arterial). Name it by
+   its compass side along the arterial (for example "SW", "NE") and give the grid cell that contains it.
+3. For each terminal bind every role to exactly one link_id from the LINK TABLE. For every link you
+   name, copy its from_node_id and to_node_id from the table; a mismatch rejects the proposal.
+4. Write the operation list that the scenario sentence asks for, using only catalog operations.
+5. List the expected_facts (from the vocabulary) that must hold after the edit.
+6. List everything the image and text do not establish (lane counts, signal timing, turn pockets,
+   demand, ...) in not_established. Unknown is not zero.
+
+OUTPUT: one JSON object with the keys in exactly this order
+{
+  "evidence": ["<short observations from the image and tables, written before any decision>"],
+  "facility_class": "<facility_class from the catalog>",
+  "arterial_axis_nodes": [<boundary node id at one end of the arterial>, <boundary node id at the other end>],
+  "terminals": [
+    {"name": "<side>", "anchor_cell": "<grid cell>",
+      "bindings": {"<role>": {"link_id": <int>, "from_node_id": <int>, "to_node_id": <int>}, ...all 6 roles...}}
+  ],
+  "operations": [{"op": "<operation>", "from_class": "<facility_class>", "to_class": "<facility_class>", "terminals": ["<side>", ...]}],
+  "expected_facts": ["<fact>", ...],
+  "not_established": ["<free text>", ...]
+}

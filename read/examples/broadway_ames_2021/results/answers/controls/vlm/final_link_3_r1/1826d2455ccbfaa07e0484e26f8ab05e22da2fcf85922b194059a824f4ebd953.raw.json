@@ -1,0 +1,402 @@
+{
+  "response": {
+    "controls": [
+      {
+        "id": "c1",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "red circular indication lit in top section (2020-10 close-up); green upward arrow lit in bottom section (2020-11 context, small)",
+        "description": "Leftmost three-section head at the free end of the far-side mast arm that extends left from the far-right corner pole over the eastbound roadway. The 2020-10 close-up shows the top lens lit as a red circular ball, yellow and bottom lenses unlit (bottom lens symbol not readable when unlit). In the 2020-11 context capture the same head shows a small lit green upward arrow in the bottom section. Instantaneous appearances from two capture dates; no phasing inferred.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces cameras looking along the 120 deg approach heading from a far-side mast arm over the approach; it is the leftmost head, but arm position alone does not fix which of r1-r3 it governs.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_3_3b7d41a9e9f9",
+            "bbox_xyxy": [
+              234,
+              167,
+              397,
+              463
+            ],
+            "finding": "red circular top lamp lit, front face, 2020-10"
+          },
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              287,
+              294,
+              309,
+              332
+            ],
+            "finding": "leftmost head on mast arm, red lamp"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              312,
+              353,
+              326,
+              379
+            ],
+            "finding": "same head in 2020-11, small green up arrow lit"
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "red lamp lit in top section (2020-10, shape not resolvable at context scale); green upward arrow lit in bottom section (2020-11, small)",
+        "description": "Second vehicle head on the same mast arm, right of c1. Seen only in context views: 2020-10 shows a lit red top lamp, 2020-11 shows a small lit green upward arrow in the lower section. No close-up supplied.",
+        "face_status": "front",
+        "readability": "partial",
+        "confidence": "medium",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the eastbound approach from the far-side mast arm between c1 and the right-arrow head; lane binding not provable from image position.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              380,
+              294,
+              405,
+              334
+            ],
+            "finding": "red top lamp lit"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              363,
+              355,
+              377,
+              381
+            ],
+            "finding": "small green up arrow lit"
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "red right-pointing arrow lit in top section; middle and bottom lenses unlit",
+        "description": "Three-section head on the mast arm immediately left of the NO TURN ON RED sign. Two 2020-10 close-ups show a lit red right arrow in the top lens; lower lenses dark, symbols unreadable. The 2020-11 context shows a red lamp at the same head.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the eastbound approach from the far-side mast arm and is the motor-vehicle arrow head nearest the right pole; its governed lane among r1-r3 is not established by the imagery.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_3_ba9d0dc9fb12",
+            "bbox_xyxy": [
+              222,
+              181,
+              326,
+              437
+            ],
+            "finding": "red right arrow lit, front face"
+          },
+          {
+            "source_id": "gsv_detail_link_3_67b3a47dbf0f",
+            "bbox_xyxy": [
+              0,
+              94,
+              108,
+              383
+            ],
+            "finding": "same head (cut at left edge), red right arrow lit"
+          },
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              472,
+              295,
+              504,
+              337
+            ],
+            "finding": "head in context, red arrow lamp"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              416,
+              356,
+              432,
+              381
+            ],
+            "finding": "same head in 2020-11, red lamp"
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "kind": "turn_restriction_sign",
+        "observed_text": "NO TURN ON RED",
+        "symbol": "text-only white regulatory sign",
+        "description": "White rectangular sign hung on the mast arm between the red-right-arrow head (c3) and the head nearest the pole (c5). Text clearly legible in two close-ups; no exception plaque or time qualifier visible beside it.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the eastbound approach on the far-side mast arm next to the right-arrow head; it plausibly concerns turns on red from this approach, but governed lanes are not fixed by the image.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_3_ba9d0dc9fb12",
+            "bbox_xyxy": [
+              341,
+              261,
+              429,
+              387
+            ],
+            "finding": "NO TURN ON RED legible"
+          },
+          {
+            "source_id": "gsv_detail_link_3_67b3a47dbf0f",
+            "bbox_xyxy": [
+              115,
+              193,
+              217,
+              327
+            ],
+            "finding": "same sign legible"
+          },
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              499,
+              304,
+              522,
+              324
+            ],
+            "finding": "white sign on mast arm in context"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              431,
+              357,
+              443,
+              379
+            ],
+            "finding": "same sign, 2020-11"
+          }
+        ]
+      },
+      {
+        "id": "c5",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "unknown (2020-10: red top lamp partly visible behind visor; 2020-11: green lamp lit in bottom section, symbol too small)",
+        "description": "Three-section head on the mast arm closest to the far-right corner pole. In the 2020-10 close-ups it is seen slightly obliquely and only part of the lit red top lens is visible, so its symbol cannot be read. In the 2020-11 context the bottom lens is lit green but the symbol is too small to identify. Whether it is a general vehicle head or a mode-specific (e.g. bicycle) head is not established from these images.",
+        "face_status": "front",
+        "readability": "partial",
+        "confidence": "medium",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the eastbound approach from the far-side mast arm nearest the pole; neither its symbol nor its governed lane or user group is resolved.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_3_ba9d0dc9fb12",
+            "bbox_xyxy": [
+              475,
+              249,
+              582,
+              488
+            ],
+            "finding": "red top lamp partly visible, symbol obscured"
+          },
+          {
+            "source_id": "gsv_detail_link_3_67b3a47dbf0f",
+            "bbox_xyxy": [
+              264,
+              183,
+              377,
+              449
+            ],
+            "finding": "same head, red top lamp partly visible"
+          },
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              524,
+              295,
+              559,
+              337
+            ],
+            "finding": "head next to pole, red lamp"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              444,
+              356,
+              461,
+              382
+            ],
+            "finding": "bottom green lamp lit, symbol unreadable"
+          }
+        ]
+      },
+      {
+        "id": "c6",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "red lamp lit in top section; shape unresolved (light partly shaded by visor)",
+        "description": "Pole-mounted three-section head on the left side of the far-right corner mast pole, below the mast arm, facing the camera. 2020-10 close-up shows the top lens lit red with an irregular bright shape that may be partly hidden by the visor; middle and bottom lenses unlit. Circle vs pictogram cannot be decided.",
+        "face_status": "front",
+        "readability": "partial",
+        "confidence": "medium",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the eastbound approach from the far-right corner pole at low height; it may be a supplementary near-curb head, but its user group and lane binding are not established.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_3_e6bc71b66067",
+            "bbox_xyxy": [
+              282,
+              231,
+              375,
+              516
+            ],
+            "finding": "three-section head, red top lamp lit"
+          },
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              569,
+              368,
+              592,
+              397
+            ],
+            "finding": "red lamp on pole below mast arm"
+          }
+        ]
+      },
+      {
+        "id": "c7",
+        "kind": "regulatory_sign",
+        "observed_text": "",
+        "symbol": "white sign with red circle-and-slash over a dark symbol (arrow type unresolved)",
+        "description": "Small white prohibition-style sign (red circle with slash) on a post at the left beyond the junction, near the start of the planted median of the road ahead, facing the camera. The prohibited symbol under the slash (left turn, U-turn or other) cannot be read at context scale. A second panel may be mounted below it in the 2020-11 view.",
+        "face_status": "front",
+        "readability": "unreadable",
+        "confidence": "low",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Appears to face eastbound traffic from the far-left side of the junction, but its prohibited movement and whether it governs this approach or the road beyond are unknown.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              247,
+              430,
+              264,
+              450
+            ],
+            "finding": "red circle-slash prohibition sign, symbol unreadable"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              277,
+              432,
+              287,
+              443
+            ],
+            "finding": "same location, tiny red/white sign(s)"
+          }
+        ]
+      },
+      {
+        "id": "c8",
+        "kind": "other_sign",
+        "observed_text": "",
+        "symbol": "orange rectangular panel with dark text lines",
+        "description": "Orange rectangular sign on a post on the far-right side beyond the junction, facing the camera; it carries several lines of dark text that are unreadable. Orange colour suggests a temporary/work-zone sign; it is not a lit signal (in the 2020-11 view it looks bright orange because of lighting).",
+        "face_status": "front",
+        "readability": "unreadable",
+        "confidence": "medium",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Located beyond the junction on the right; content unknown, so no movement scope can be assigned.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_3_73051d258c",
+            "bbox_xyxy": [
+              409,
+              431,
+              426,
+              447
+            ],
+            "finding": "orange sign with unreadable text"
+          },
+          {
+            "source_id": "gsv_control_link_3_1c684f5e7f",
+            "bbox_xyxy": [
+              392,
+              432,
+              404,
+              445
+            ],
+            "finding": "same sign, 2020-11"
+          }
+        ]
+      }
+    ],
+    "unresolved": [
+      "Lane binding of all mast-arm heads (c1-c3, c5) to r1-r3 is unresolved; only their left-to-right order on the arm is visible (two heads with green up arrows/red balls, red right arrow, NO TURN ON RED sign, head nearest the pole).",
+      "Symbol of the head nearest the pole (c5) and of the pole-mounted head (c6) is not resolved; their user group is unknown.",
+      "The prohibited movement on the far-left circle-slash sign (c7) is unreadable.",
+      "Unlit lens symbols of every head are not confirmed, so full head configurations are not established.",
+      "No time qualifier or exception plaque visible with the NO TURN ON RED sign.",
+      "Both supplied panoramas are within or just past the junction; no near-side controls upstream of the stop line are visible."
+    ],
+    "notes": [
+      "Captures 2020-10 (station +1.0 m, panorama jWg2...) and 2020-11 (station -3.8 m, panorama _3wh...) are both within the preferred window; lamp states differ between them and are reported per capture without phase inference.",
+      "Detail images 3b7d, ba9d, 67b3 and e6bc share the 2020-10 panorama with gsv_control_link_3_73051d258c and are treated as one source.",
+      "Boxes are in native pixels assuming 640x640 GSV images."
+    ],
+    "resampling_requests": [
+      {
+        "source_id": "gsv_control_link_3_73051d258c",
+        "bbox_xyxy": [
+          247,
+          430,
+          264,
+          450
+        ],
+        "problem": "unresolved_arrow",
+        "reason": "A close-up of the circle-slash sign at the far-left median would show which movement (left turn, U-turn, etc.) is prohibited and whether a plaque is mounted below it."
+      },
+      {
+        "source_id": "gsv_detail_link_3_ba9d0dc9fb12",
+        "bbox_xyxy": [
+          475,
+          249,
+          582,
+          488
+        ],
+        "problem": "oblique",
+        "reason": "The head nearest the pole is seen obliquely with its lit lens partly hidden; a more frontal view could reveal whether it carries a bicycle or other mode-specific symbol."
+      }
+    ]
+  },
+  "metadata": {}
+}

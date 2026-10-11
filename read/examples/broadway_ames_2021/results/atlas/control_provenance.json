@@ -1,0 +1,8 @@
+{
+  "base_atlas": "runs/cambridge2021b/geospatial_evidence_cambridge2021b_95",
+  "base_data_sha256": "e8d9987236ba93754d8ae61a6821a5fa1bbfcd9348b130a0cc19da6af479fe3c",
+  "audit_manifest_sha256": "cc04b3663b2ac9ad84b520f79fc9b731c359c0978af804c0a989f1cf810bc658",
+  "audit_predictions_sha256": "ea88908d48bb9561aa649380407d8c96441363990e60b5223ba24111bcb930f6",
+  "lane_and_movement_mutations": false,
+  "reviewer_answers_used": false
+}

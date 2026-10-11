@@ -1,0 +1,26 @@
+{
+  "response": {
+    "stop_line": {
+      "y": 824,
+      "kind": "stop_bar",
+      "evidence": "Solid white transverse bar at y~824 spanning x~450-592, right of the raised island, about 65 px behind the near crosswalk (y~690-760); a right-turn arrow (x~520-555, y~855-870) sits just behind it in the lane between lane lines x~510 and x~567. The lanes left of the island (x~275-375, with a hatched bike buffer at x~245-275) have no stop bar and are read as the opposing, downward lanes."
+    },
+    "cross_sections": [
+      {
+        "y": 824,
+        "left_x": 455,
+        "right_x": 597,
+        "evidence": "Left: right kerb of the raised channelising island (bright kerb x~444-460). Right: kerb of the corner bulb-out, dark kerb edge at x~596-604. Inside: lane lines at x~510 and x~567; the strip x~567-597 is narrow (~1.5 m), possibly a bike lane. A long thin pole shadow runs along x~470 and is not a lane line."
+      },
+      {
+        "y": 1277,
+        "left_x": 465,
+        "right_x": 708,
+        "evidence": "In deep building shadow; read after contrast stretch. Left: continuation of the island/median right edge, light strip peaking x~462. Lane lines continue at x~512 and x~570. Right of x~570 a ~7 m band (darker x~605-640) runs to a lighter strip starting about x~706-712, taken as the kerb; a parked-looking car sits at x~680-720, y~1120-1200."
+      }
+    ],
+    "confidence": "medium",
+    "notes": "Stop bar and the stop-line section are clear. The upstream row lies entirely in a building shadow, so its kerb (right_x) is weakly supported: the band x~570-708 upstream probably holds a bike lane and/or on-street parking rather than extra motor lanes, and the road visibly widens to the right of the bulb-out kerb seen at the stop line. Whether the raised island still exists at y~1277 or has become a painted centre line cannot be confirmed in the shadow; the left limit is the same light edge either way. The dashed network line (x~489) runs through the target lanes, not along their left edge."
+  },
+  "metadata": {}
+}

@@ -1,0 +1,36 @@
+{
+  "use": "post_run_comparison_only_not_inference_input",
+  "reference_source": "User pilot feedback; not an independently surveyed test set",
+  "cases": [
+    {
+      "section_id": "out_EB",
+      "region_id": "r4",
+      "field": "existence",
+      "expected": "rejected"
+    },
+    {
+      "section_id": "out_EB",
+      "region_id": "r5",
+      "field": "existence",
+      "expected": "rejected"
+    },
+    {
+      "section_id": "out_WB",
+      "region_id": "r4",
+      "field": "existence",
+      "expected": "rejected"
+    },
+    {
+      "section_id": "in_EB",
+      "region_id": "r5",
+      "field": "use",
+      "expected": "right_only"
+    },
+    {
+      "section_id": "in_WB",
+      "region_id": "r5",
+      "field": "use",
+      "expected": "right_only"
+    }
+  ]
+}

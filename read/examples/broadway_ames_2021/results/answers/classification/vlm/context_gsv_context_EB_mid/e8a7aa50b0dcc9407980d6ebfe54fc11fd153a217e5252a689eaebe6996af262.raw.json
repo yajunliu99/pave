@@ -1,0 +1,82 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Left edge of the approach: a raised median with a granite kerb, planted with grass, leaves and trees, runs from the bottom-left (about x 0-270, y 360-640). A solid yellow edge line runs along the left side of the left travel lane (about x 80 at the bottom to x 270 at y 365). A narrow leaf-filled gutter lies between the kerb and the yellow line."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white line separates the two motor lanes. It runs from about (340,365) at the stop line to about (490,640) at the bottom. Faded remnants of older broken markings run along its left side (visible about x 390-460, y 450-640). Two motor lanes are visible side by side here: a left lane and a right lane."
+      },
+      {
+        "id": "o3",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The pavement word 'ONLY' is painted in the right motor lane (about x 385-475, y 410-430), between the solid white separator and the white line at the bike lane. This marks the right lane as an 'only' (turn-only) lane, but the word does not show which movement."
+      },
+      {
+        "id": "o4",
+        "kind": "arrow",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Beyond 'ONLY', just before the stop line in the right lane, there is an arrow-shaped white marking (about x 355-395, y 369-377). It is so foreshortened and low-resolution that its direction (right, left or through) cannot be read, so no arrow direction is reported."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "No pavement arrow or word marking is visible in the left motor lane between the camera and the stop line (about x 100-400, y 365-640). This is absence of marking in the visible stretch, not evidence of permitted movements."
+      },
+      {
+        "id": "o6",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A green-painted bicycle lane runs along the right side of the right motor lane, separated from it by a solid white line. It is visible from about (440,385) near the stop line to the right image edge at about y 450-485. Further down at the bottom-right (about x 560-640, y 480-560) the strip right of the white line continues as grey pavement without green paint."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Between the green bike lane and the kerb of the tree strip there is a widening wedge of asphalt (about x 520-640, y 375-470), with a short white marking near (570,375). Its purpose cannot be determined: it could be a driveway or curb-cut apron, parking or loading space, or a buffer. It is not a motor travel lane of the approach as far as can be seen."
+      },
+      {
+        "id": "o8",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A white stop line crosses the approach at about y 363-368, from the yellow edge line to the bike lane. Beyond it a ladder crosswalk spans the road (about y 352-360), and the intersection lies ahead. The crosswalk and the far-side road beyond the junction are not part of the incoming approach."
+      },
+      {
+        "id": "o9",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Left of the median (about x 0-150, y 355-410) a separate road surface is visible. This is the opposing or other carriageway beyond the median, not the target incoming lanes."
+      },
+      {
+        "id": "o10",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "The approach pavement between the camera and the stop line is unoccluded; no vehicle stands in the approach lanes. The YOLO 'car' hints (about x 250-350 and 550-606, y 321-354) are vehicles beyond the stop line or parked off to the right. The pedestrian hint (x 235-246) is on the crosswalk to the left. Signal heads are visible on the far side (about x 310-375, y 275-291), but no lane-use or turn-restriction sign is legible."
+      }
+    ],
+    "notes": [
+      "Capture date 2020-11. Camera about 50 m from the centre, so the stop line and the marking just before it are small and foreshortened.",
+      "The right-lane arrow next to 'ONLY' could not be read. Its direction should come from a closer view, not from this image.",
+      "Two motor lanes plus a bike lane are visible at this position. Lanes could still be added or dropped between here and the stop line, though the solid separator and the bike-lane line appear to run continuously to the stop line."
+    ]
+  },
+  "metadata": {}
+}

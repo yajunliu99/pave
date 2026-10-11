@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intersection Explorer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d2330'/%3E%3Cpath d='M10 26V6M16 26V6M22 26V6' stroke='white' stroke-width='2.5' stroke-dasharray='4 3'/%3E%3C/svg%3E">
+<style>/*__LEAFLET_CSS__*/</style>
+<style>
+:root{
+  --bg:#f4f5f7;--panel:#fff;--panel2:#f8f9fb;--seg:#eceef2;--ink:#1d2330;--muted:#667085;--faint:#98a2b3;--line:#e3e6eb;--line2:#eef0f3;
+  --accent:#4a78b5;--accent-soft:#edf2f9;--accent-ink:#2f5d99;--sel:#f1f3f6;
+  --L:#e06d5b;--T:#4a78b5;--R:#3f9a7b;--U:#8d6cc4;--unk:#d5dae1;--bike:#5aae61;--rail:#d39532;
+  --ok:#3f9a7b;--warn:#d39532;--bad:#d0574a;--neutral:#98a2b3;
+  --radius:14px;--shadow:0 1px 2px rgba(16,24,40,.04),0 2px 10px rgba(16,24,40,.05);
+  --glass:rgba(255,255,255,.9);--glass-line:rgba(16,24,40,.08);--on:#1d2330;--on-ink:#fff;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1014;--panel:#16191f;--panel2:#1b1f26;--seg:#20242c;--ink:#e7e9ee;--muted:#9aa1ad;--faint:#6b7280;--line:#272b33;--line2:#1f232a;
+  --accent:#7fa6dc;--accent-soft:#1b2433;--accent-ink:#a9c3e8;--sel:#1f242c;
+  --L:#ec8473;--T:#6f9ad3;--R:#5bb592;--U:#a68bd8;--unk:#353b45;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 4px 16px rgba(0,0,0,.25);--glass:rgba(22,25,31,.9);--glass-line:rgba(255,255,255,.08);
+  --on:#e7e9ee;--on-ink:#14171c;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1014;--panel:#16191f;--panel2:#1b1f26;--seg:#20242c;--ink:#e7e9ee;--muted:#9aa1ad;--faint:#6b7280;--line:#272b33;--line2:#1f232a;
+  --accent:#7fa6dc;--accent-soft:#1b2433;--accent-ink:#a9c3e8;--sel:#1f242c;
+  --L:#ec8473;--T:#6f9ad3;--R:#5bb592;--U:#a68bd8;--unk:#353b45;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 4px 16px rgba(0,0,0,.25);--glass:rgba(22,25,31,.9);--glass-line:rgba(255,255,255,.08);
+  --on:#e7e9ee;--on-ink:#14171c;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+h1,h2,h3{margin:0;letter-spacing:-.015em}
+.muted{color:var(--muted)}.small{font-size:12px}
+
+/* header */
+.top{background:var(--panel);border-bottom:1px solid var(--line);padding:14px 22px 12px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;position:relative}
+.top::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--L) 0 25%,var(--T) 25% 50%,var(--R) 50% 75%,var(--U) 75%)}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--on);display:grid;place-items:center}
+.brand h1{font-size:18px;font-weight:700}
+.brand h1 span{font-weight:500;color:var(--muted)}
+.brand .sub{font-size:12.5px;color:var(--muted);max-width:540px}
+.metrics{margin-left:auto;display:flex;align-items:stretch}
+.metric{padding:2px 18px;border-left:1px solid var(--line);min-width:0}
+.metric:first-child{border-left:0}
+.metric b{display:block;font-size:20px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.metric b small{font-size:12px;font-weight:600;color:var(--muted)}
+.metric span{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.metric .bar{height:4px;border-radius:2px;background:var(--line2);margin-top:5px;overflow:hidden;width:110px}
+.metric .bar i{display:block;height:100%;background:var(--ok);border-radius:2px}
+.iconbtn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;display:grid;place-items:center}
+.iconbtn:hover{color:var(--ink);border-color:var(--faint)}
+
+/* layout */
+.app{display:grid;grid-template-columns:minmax(330px,410px) minmax(0,1fr);height:calc(100% - 70px)}
+.side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:var(--panel)}
+.mapcard{position:relative;height:clamp(260px,42vh,480px);margin:12px 12px 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:var(--seg);flex:none}
+#map{position:absolute;inset:0}
+.mapui{position:absolute;z-index:500;display:flex;gap:6px;pointer-events:none}
+.mapui>*{pointer-events:auto}
+.mapui.tl{top:10px;left:10px;flex-wrap:wrap;right:96px}
+.mapui.tr{top:10px;right:10px}
+.layers{position:absolute;z-index:700;top:48px;right:10px;width:210px;background:var(--glass);border:1px solid var(--glass-line);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.layers[hidden]{display:none}
+.layers .lh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:4px 6px}
+.layers .opt,#basemaps button{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;text-align:left;padding:6px 8px;border-radius:8px;font-size:12.8px;cursor:pointer;color:var(--ink)}
+#basemaps button:hover,.layers .opt:hover{background:var(--accent-soft)}
+#basemaps button .sw{width:22px;height:16px;border-radius:4px;border:1px solid var(--line)}
+#basemaps button.on{font-weight:700;color:var(--accent-ink)}
+#basemaps button.on::after{content:"✓";margin-left:auto}
+.seg{display:flex;background:var(--glass);border:1px solid var(--glass-line);border-radius:10px;padding:3px;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.seg button{border:0;background:none;padding:4px 9px;border-radius:7px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--on);color:var(--on-ink)}
+.glassbtn{border:1px solid var(--glass-line);background:var(--glass);border-radius:10px;height:32px;min-width:32px;padding:0 9px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.glassbtn.on{color:var(--accent-ink);border-color:var(--accent)}
+.leaflet-container{font:inherit;background:var(--seg)}
+.leaflet-control-attribution{font-size:10px;background:var(--glass)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--muted)}
+.site-dot{fill:var(--accent);stroke:#fff}
+.pulse{animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{stroke-opacity:.9;stroke-width:2}100%{stroke-opacity:0;stroke-width:16}}
+body.mapfull .mapcard{position:fixed;inset:14px;margin:0;height:auto;z-index:1500;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+body.mapfull::before{content:"";position:fixed;inset:0;background:rgba(8,12,20,.55);z-index:1400;backdrop-filter:blur(2px)}
+#sitecard{position:absolute;z-index:600;left:12px;bottom:12px;width:min(360px,calc(100% - 24px));background:var(--glass);border:1px solid var(--glass-line);border-radius:14px;padding:12px 14px;backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,.18);display:none}
+body.mapfull #sitecard.show{display:block}
+#sitecard h3{font-size:15px}
+
+.tools{padding:12px 14px 8px;display:flex;flex-direction:column;gap:9px}
+.search{position:relative}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--faint)}
+#search{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);outline:none;transition:border-color .15s,box-shadow .15s}
+#search:focus{border-color:var(--faint);box-shadow:0 0 0 3px var(--accent-soft)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .12s}
+.chip:hover{border-color:var(--faint)}
+.chip.on{background:var(--on);border-color:var(--on);color:var(--on-ink)}
+.chip .n{opacity:.65;margin-left:3px}
+#list{list-style:none;margin:0;padding:2px 8px 16px;overflow:auto;flex:1;min-height:0}
+#list li{padding:9px 10px;border-radius:10px;cursor:pointer;display:grid;gap:1px;margin-bottom:2px;transition:background .12s}
+#list li:hover{background:var(--panel2)}
+#list li.sel{background:var(--sel)}
+#list li.sel .nm{color:var(--ink)}
+#list .nm{font-weight:600;font-size:13.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#list .meta{color:var(--muted);font-size:11.5px}
+
+/* main */
+.main{overflow:auto;padding:20px 26px 48px;min-width:0;scroll-behavior:smooth}
+.empty{color:var(--muted);padding:70px 20px;text-align:center}
+.site-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.site-head h2{font-size:24px;font-weight:700}
+.eyebrow{font-size:11.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:1px 8px}
+.tag.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 35%,var(--line))}
+.note{display:flex;gap:10px;align-items:flex-start;background:color-mix(in srgb,var(--warn) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--warn) 35%,var(--line));border-radius:12px;padding:10px 12px;font-size:12.8px;margin:6px 0 14px}
+.tabs{display:inline-flex;gap:2px;background:var(--seg);border-radius:11px;padding:3px;margin:8px 0 16px}
+.tabs button{border:0;background:none;padding:6px 14px;color:var(--muted);cursor:pointer;border-radius:9px;font-weight:600;font-size:13px}
+.tabs button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.tabs button .n{font-weight:500;opacity:.7;margin-left:4px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
+.card h3{font-size:13.5px;margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:16px;align-items:start}
+.sticky{position:sticky;top:0}
+.stack{display:flex;flex-direction:column;gap:12px}
+.mapbar{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.mapbar label{display:flex;gap:5px;align-items:center;cursor:pointer}
+.mapframe{border-radius:10px;overflow:hidden;background:#1b1f26}
+#sat{width:100%;display:block;aspect-ratio:1/1}
+#sat polygon{cursor:pointer;transition:fill-opacity .12s}
+#sat polygon:hover{fill-opacity:.45}
+#sat .lbl{font-weight:700;paint-order:stroke;stroke:#0c1117;stroke-width:5px;stroke-linejoin:round;pointer-events:none;fill:#fff}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.appr{padding:12px 14px;cursor:pointer;transition:border-color .12s,transform .12s}
+.appr:hover{border-color:var(--faint)}
+.appr.on{border-color:var(--on);box-shadow:0 0 0 1px var(--on)}
+.appr-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.appr-head b{font-size:16px}
+.badge{font-size:11.5px;font-weight:650;border-radius:999px;padding:1px 9px;color:#fff}
+.row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:8px;margin:4px 0}
+.row .src{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em}
+.row .n{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+.lanes{display:flex;gap:3px;flex-wrap:wrap}
+.lane{min-width:30px;height:26px;padding:0 6px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;position:relative}
+.lane.inf{background:var(--panel)!important;border:2px solid;font-weight:650}
+.lane.unk{background:var(--unk)!important;color:var(--muted)}
+.lane.rail::after{content:"";position:absolute;left:3px;right:3px;bottom:2px;height:3px;background:repeating-linear-gradient(90deg,var(--rail) 0 4px,transparent 4px 7px)}
+.lane.bike{background:var(--bike);min-width:14px;padding:0 3px;font-size:10px}
+.gsv{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px;border-radius:6px;font-size:12px;color:var(--muted);background:var(--panel2);border:1px solid var(--line)}
+.gsv b{color:var(--ink);font-size:13px}
+.gsv.off{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,var(--panel))}
+.gsv.unsure{border-style:dashed}
+.check{margin-top:9px;font-size:12.5px;border-left:3px solid var(--line);padding:2px 0 2px 10px}
+.check .what{font-weight:650}
+.linkish{color:var(--accent-ink);cursor:pointer;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;background:none;border:0;padding:0;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+th{text-align:left;font-weight:650;color:var(--muted);font-size:11.5px;letter-spacing:.03em;padding:7px 8px;border-bottom:1px solid var(--line)}
+td{padding:7px 8px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr.grp td{background:var(--panel2);font-weight:700;color:var(--ink)}
+.turn{display:inline-block;width:20px;height:20px;border-radius:6px;color:#fff;font-weight:700;font-size:11.5px;text-align:center;line-height:20px}
+.st{font-size:11.5px;font-weight:650;border-radius:6px;padding:1px 7px}
+.st.candidate{background:color-mix(in srgb,var(--ok) 15%,var(--panel));color:var(--ok)}
+.st.unresolved{background:color-mix(in srgb,var(--warn) 15%,var(--panel));color:var(--warn)}
+.st.not_proposed{background:var(--panel2);color:var(--muted)}
+.rule{font-size:11px;font-weight:650;color:var(--accent-ink);background:var(--accent-soft);border-radius:6px;padding:1px 6px;margin-left:4px}
+.reason{color:var(--muted);font-size:12px;max-width:540px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:10px}
+.thumb{background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden;cursor:pointer;position:relative;transition:transform .12s,box-shadow .12s}
+.thumb:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.thumb img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--line2)}
+.thumb .cap{padding:6px 8px;font-size:11.5px;color:var(--muted);line-height:1.35}
+.thumb .cap b{color:var(--ink);font-weight:650}
+.hist{color:var(--warn);font-weight:650}
+.boxwrap{position:relative;display:inline-block;line-height:0}
+.boxwrap .bx{position:absolute;border:2px solid #ffd43b;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.5)}
+.boxwrap .bx.hi{border-color:#ff4d6d}
+.section-title{font-size:13px;font-weight:700;margin:20px 0 9px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.section-title:first-child{margin-top:0}
+.ctl{display:grid;grid-template-columns:1fr 150px;gap:12px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:12.8px}
+.kv span{color:var(--muted)}
+#lightbox{position:fixed;inset:0;background:rgba(6,10,16,.84);display:flex;align-items:center;justify-content:center;z-index:2000;padding:24px;backdrop-filter:blur(3px)}
+#lightbox[hidden]{display:none}
+.lb{background:var(--panel);border-radius:16px;max-width:1200px;width:100%;max-height:100%;display:grid;grid-template-columns:minmax(0,1fr) 330px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lb .pic{background:#0a0e13;display:flex;align-items:center;justify-content:center;padding:12px}
+.lb .pic .boxwrap img{max-width:100%;max-height:78vh}
+.lb .info{padding:16px;overflow:auto;max-height:86vh}
+.lb .nav{display:flex;gap:6px;margin-top:12px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:5px 12px;cursor:pointer;font-weight:600;font-size:12.5px}
+.btn:hover{border-color:var(--faint)}
+.btn.primary{background:var(--on);border-color:var(--on);color:var(--on-ink)}
+.find{font-size:12.5px;margin:8px 0;padding-left:9px;border-left:3px solid #ffd43b}
+.find.hi{border-left-color:#ff4d6d}
+.fig img{width:100%;border-radius:10px;cursor:zoom-in;display:block}
+.fade{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (max-width:1150px){.grid2{grid-template-columns:1fr}.sticky{position:static}.lb{grid-template-columns:1fr}}
+@media (max-width:1180px){.brand .sub{display:none}}
+@media (max-width:780px){.app{grid-template-columns:1fr;height:auto}.side{border-right:0}#list{max-height:40vh}.main{padding:16px}.top{padding:14px 16px 12px}
+  .metrics{margin-left:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 0;width:100%}.metric:nth-child(3){border-left:0}#theme{position:absolute;top:14px;right:16px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="logo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M6 20V4" stroke="var(--L)"/><path d="M12 20V4" stroke="var(--T)" stroke-dasharray="3.2 3"/><path d="M18 20v-8l-3-4" stroke="var(--R)"/></svg></div>
+    <div><h1 id="title">Intersection Explorer</h1><div class="sub" id="subtitle"></div></div>
+  </div>
+  <div class="metrics" id="metrics"></div>
+  <button class="iconbtn" id="theme" title="Switch light or dark"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="app">
+  <aside class="side">
+    <section class="mapcard" id="mapcard">
+      <div id="map"></div>
+      <div class="mapui tr">
+        <button class="glassbtn" id="layersBtn" title="Base map and overlays"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg><span id="baseName">Streets</span></button>
+        <button class="glassbtn" id="expandBtn" title="Full-screen map"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </div>
+      <div class="layers" id="layers" hidden>
+        <div class="lh">Base map</div><div id="basemaps"></div>
+        <div class="lh">Overlay</div>
+        <label class="opt" title="Shown from street level (zoom 16 and closer)"><input type="checkbox" id="lanesBox"> VLM-traced lanes</label>
+      </div>
+      <div id="sitecard"></div>
+    </section>
+    <div class="tools">
+      <div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" placeholder="Search intersection, UTDF ID or node" autocomplete="off"></div>
+      <div class="chips" id="filters"></div>
+    </div>
+    <ul id="list"></ul>
+  </aside>
+  <main class="main" id="main"><div class="empty">Select an intersection.</div></main>
+</div>
+<div id="lightbox" hidden></div>
+<script id="index" type="application/json">/*__INDEX__*/</script>
+<script>/*__LEAFLET_JS__*/</script>
+<script>
+(() => {
+'use strict';
+const IX = JSON.parse(document.getElementById('index').textContent);
+const SITES = IX.sites, byId = new Map(SITES.map(s => [s.id, s]));
+const hasRef = s => s.utdf != null;   // false for a run with no UTDF intersection (e.g. another city)
+const idLine = s => `${hasRef(s) ? 'UTDF ' + s.utdf + ' · ' : ''}node ${s.node}`;
+const anyRef = SITES.some(hasRef);
+const COL = {L:'var(--L)',T:'var(--T)',R:'var(--R)',U:'var(--U)'};
+const HEX = {L:'#e06d5b',T:'#4a78b5',R:'#3f9a7b',U:'#8d6cc4'};
+const VERDICT = {utdf:['Imagery agrees with UTDF','#d39532'], model:['Imagery agrees with the VLM','#4a78b5'],
+                 neither:['Neither matches the imagery','#d0574a'], unclear:['Imagery unclear','#98a2b3']};
+const STYLE = {motor:'#5bb8d4', exit:'#a9cbe8', bike:'#5aae61', rail:'#d39532', other:'#a3abb7', unsure:'#e9c46a', rejected:'#7d8590'};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = {get(k, d){ try { return localStorage.getItem(k) ?? d; } catch { return d; } }, set(k, v){ try { localStorage.setItem(k, v); } catch {} }};
+const data = {}, state = {id:null, tab:'lanes', filter:'all', query:'', region:null, approach:null, showExits:true, showOther:true, showCams:false};
+let lightboxList = [], lightboxAt = 0;
+const IMG = (d, name) => (d.img || {})[name] || '';
+
+/* ---------- theme ---------- */
+const applyTheme = t => { if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme; };
+applyTheme(store.get('atlas-theme', ''));
+$('theme').onclick = () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const next = dark ? 'light' : 'dark'; applyTheme(next); store.set('atlas-theme', next);
+};
+
+/* ---------- header ---------- */
+$('title').innerHTML = 'Intersection Explorer <span>· ' + esc(IX.title) + '</span>';
+$('subtitle').textContent = 'Lanes and movements read by a VLM from satellite and street-view imagery' + (anyRef ? ', beside UTDF and OSM' : '') + '. Model output is a prediction, not reference data.';
+const ac = IX.auto_checks || {}, rv = IX.reviews || {};
+const share = IX.approaches ? IX.agree / IX.approaches : 0;
+$('metrics').innerHTML = `
+  <div class="metric"><b>${SITES.length}</b><span>intersection${SITES.length === 1 ? '' : 's'}</span></div>` + (!IX.approaches ? '' : `
+  <div class="metric" title="approaches whose VLM lane count equals UTDF"><b>${IX.agree} <small>/ ${IX.approaches}</small></b><span>lane count = UTDF</span><div class="bar"><i style="width:${(share*100).toFixed(0)}%"></i></div></div>
+  <div class="metric" title="blind model reading of the approaches whose lane counts differ"><b>${ac.utdf||0} <small>·</small> ${ac.model||0}</b><span>auto check: UTDF · VLM right</span></div>
+  <div class="metric" title="assistant's reading of the same imagery"><b>${rv.utdf||0} <small>·</small> ${rv.model||0}</b><span>manual check: UTDF · VLM right</span></div>`);
+
+/* ---------- list ---------- */
+const differs = s => s.approaches.some(a => a.utdf.length && !a.agree);
+const FILTERS = [['all','All',() => true],['differ','Lane count differs',differs],
+  ['utdf','UTDF right',s => s.approaches.some(a => [a.auto, a.review].some(r => r && r.verdict === 'utdf'))],
+  ['model','VLM right',s => s.approaches.some(a => [a.auto, a.review].some(r => r && r.verdict === 'model'))],
+  ['note','UTDF match note',s => !!s.match_note]];
+$('filters').innerHTML = FILTERS.filter(([k]) => anyRef || k === 'all').map(([k,l,f]) => `<button class="chip${k==='all'?' on':''}" data-f="${k}">${l}<span class="n">${SITES.filter(f).length}</span></button>`).join('');
+$('filters').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; state.filter = b.dataset.f;
+  [...$('filters').children].forEach(c => c.classList.toggle('on', c === b)); renderList(); };
+$('search').oninput = e => { state.query = e.target.value.toLowerCase(); renderList(); };
+function visible(s){
+  if (state.query && !(`${s.name} ${s.id} ${s.node}`.toLowerCase().includes(state.query))) return false;
+  return FILTERS.find(f => f[0] === state.filter)[2](s);
+}
+function renderList(){
+  $('list').innerHTML = SITES.filter(visible).map(s => `<li data-id="${s.id}" class="${s.id===state.id?'sel':''}">
+    <span class="nm" title="${esc(s.name)}">${esc(s.name)}</span>
+    <span class="meta">${idLine(s)} · ${s.legs||'?'} legs</span></li>`).join('')
+    || '<li class="muted small">No intersection matches.</li>';
+}
+$('list').onclick = e => { const li = e.target.closest('li[data-id]'); if (li) select(+li.dataset.id, {fly:true}); };
+
+/* ---------- map ---------- */
+const BASE = {
+  streets:['Streets','https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',18,'Tiles © Esri'],
+  satellite:['Satellite','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',19,'Imagery © Esri, Maxar, Earthstar Geographics'],
+  light:['Light','https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',16,'Tiles © Esri'],
+  dark:['Dark','https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',16,'Tiles © Esri'],
+  osm:['OSM','https://tile.openstreetmap.org/{z}/{x}/{y}.png',19,'© OpenStreetMap contributors']};
+let map = null, base = null, markers = {}, halo = null, laneLayer = null, showLanes = store.get('atlas-lanes', '1') === '1', touched = false;
+const LANES_FROM = 16;
+function setBase(key){
+  if (!BASE[key]) key = 'streets';
+  const [, url, nz, attr] = BASE[key];
+  if (base) map.removeLayer(base);
+  base = L.tileLayer(url, {maxNativeZoom:nz, maxZoom:21, attribution:attr}).addTo(map); base.bringToBack();
+  [...$('basemaps').children].forEach(b => b.classList.toggle('on', b.dataset.k === key)); store.set('atlas-base', key);
+  $('baseName').textContent = BASE[key][0];
+}
+function laneColor(label, style){
+  if (style === 'motor'){ const t = (label.match(/[LTRU]/i) || [''])[0].toUpperCase(); return HEX[t] || STYLE.motor; }
+  return STYLE[style] || STYLE.other;
+}
+function updateLanes(){
+  if (!map) return;
+  const on = showLanes && map.getZoom() >= LANES_FROM;
+  $('lanesBox').checked = showLanes;
+  if (on && !map.hasLayer(laneLayer)) laneLayer.addTo(map);
+  if (!on && map.hasLayer(laneLayer)) map.removeLayer(laneLayer);
+}
+if (window.L){
+  map = L.map('map', {zoomControl:false, scrollWheelZoom:true, zoomSnap:.5, preferCanvas:false, maxZoom:21});
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  const SWATCH = {streets:'linear-gradient(135deg,#f4efe6 50%,#f7d27a 50%)', satellite:'linear-gradient(135deg,#3d4a3a,#6d7a5e)', light:'#e9ebee', dark:'#2b2f36', osm:'linear-gradient(135deg,#f2efe9 50%,#aad3df 50%)'};
+  $('basemaps').innerHTML = Object.entries(BASE).map(([k,[l]]) => `<button data-k="${k}"><span class="sw" style="background:${SWATCH[k]}"></span>${l}</button>`).join('');
+  $('basemaps').onclick = e => { const b = e.target.closest('button'); if (b) setBase(b.dataset.k); };
+  $('layersBtn').onclick = e => { e.stopPropagation(); $('layers').hidden = !$('layers').hidden; };
+  $('layers').onclick = e => e.stopPropagation();
+  document.addEventListener('click', () => { $('layers').hidden = true; });
+  setBase(store.get('atlas-base', 'streets'));
+  laneLayer = L.layerGroup();
+  for (const s of SITES) for (const [section, label, style, ring] of ((IX.geo || {})[s.id] || [])){
+    const c = laneColor(label, style);
+    L.polygon(ring.map(([x, y]) => [y, x]), {color:c, weight:1, fillColor:c, fillOpacity:style === 'motor' ? .45 : .25, opacity:.9})
+      .bindTooltip(`${esc(s.name)} · ${esc(section)} · ${esc(label)}`, {sticky:true}).on('click', () => select(s.id)).addTo(laneLayer);
+  }
+  const pts = [];
+  for (const s of SITES){ if (s.lat == null) continue; pts.push([s.lat, s.lon]);
+    markers[s.id] = L.circleMarker([s.lat, s.lon], {radius:6.5, weight:2, fillOpacity:1, className:'site-dot'})
+      .addTo(map).bindTooltip(`<b>${esc(s.name)}</b><br>${idLine(s)}`, {direction:'top', offset:[0,-6]})
+      .on('click', () => select(s.id, {fly:true})); }
+  // Fit every site once the container has its real size (it can be 0 while the page is still laying out or
+  // the tab is hidden); refit on later resizes until the user moves the map themselves.
+  const fitAll = () => { if (pts.length && !touched) map.fitBounds(pts, {padding:[30,30], maxZoom:16}); };  // one site alone would zoom to the deepest level
+  ['pointerdown','wheel','touchstart'].forEach(ev => $('map').addEventListener(ev, () => { touched = true; }, {once:true, passive:true}));
+  fitAll();
+  if (window.ResizeObserver) new ResizeObserver(() => { map.invalidateSize(); fitAll(); }).observe($('map'));
+  map.on('zoomend', updateLanes); updateLanes();
+  $('lanesBox').onchange = () => { showLanes = $('lanesBox').checked; store.set('atlas-lanes', showLanes ? '1' : '0'); updateLanes();
+    if (showLanes && map.getZoom() < LANES_FROM && state.id) { const s = byId.get(state.id); map.flyTo([s.lat, s.lon], 18); } };
+  $('expandBtn').onclick = () => toggleFull();
+} else { $('mapcard').style.display = 'none'; }
+function toggleFull(on){
+  const full = on ?? !document.body.classList.contains('mapfull');
+  document.body.classList.toggle('mapfull', full);
+  setTimeout(() => map && map.invalidateSize(), 60);
+  siteCard();
+}
+function siteCard(){
+  const s = byId.get(state.id), card = $('sitecard');
+  if (!s) { card.classList.remove('show'); return; }
+  card.innerHTML = `<div class="eyebrow">${idLine(s)}</div><h3>${esc(s.name)}</h3>
+    <div class="small muted" style="margin:4px 0 10px">${s.legs||'?'} legs</div>
+    <div style="display:flex;gap:8px"><button class="btn primary" id="cardOpen">Open details</button><button class="btn" id="cardLanes">Zoom to lanes</button></div>`;
+  card.classList.add('show');
+  $('cardOpen').onclick = () => toggleFull(false);
+  $('cardLanes').onclick = () => { showLanes = true; updateLanes(); map.flyTo([s.lat, s.lon], 19); };
+}
+
+/* ---------- selection ---------- */
+function siteData(id){
+  if (data[id]) return data[id];
+  const el = document.getElementById('site-' + id);
+  if (!el) return null;
+  data[id] = JSON.parse(el.textContent);
+  return data[id];
+}
+function select(id, opts = {}){
+  if (!byId.has(id)) return;
+  const s = byId.get(id);
+  if (state.id !== id) { state.region = null; state.approach = null; }
+  state.id = id; history.replaceState(null, '', '#' + id);
+  renderList();
+  if (map) {
+    if (halo) map.removeLayer(halo);
+    halo = L.circleMarker([s.lat, s.lon], {radius:11, color:'#ffffff', weight:2, fill:false, className:'pulse', interactive:false}).addTo(map);
+    Object.values(markers).forEach(m => m.setRadius(6.5)); markers[id] && markers[id].setRadius(9).bringToFront();
+    if (opts.fly) { touched = true; map.flyTo([s.lat, s.lon], Math.max(map.getZoom(), 17), {duration:.8}); }
+  }
+  siteCard();
+  const d = siteData(id);
+  if (!d) {
+    $('main').innerHTML = '<div class="empty">Loading…</div>';
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => state.id === id && select(id), {once:true});
+    else $('main').innerHTML = '<div class="empty">The data for this intersection is missing from the file.</div>';
+    return;
+  }
+  render();
+}
+
+/* ---------- shared pieces ---------- */
+function laneBlocks(lanes, kind){
+  return lanes.map(l => {
+    const t = l.t || '', first = t[0];
+    if (!t) return `<span class="lane unk${l.rail?' rail':''}" title="lane ${l.n}: use not established">?</span>`;
+    const inf = kind === 'vlm' && l.basis === 'movement';
+    const style = inf ? `border-color:${COL[first]};color:${COL[first]}` : `background:${COL[first]}`;
+    const tip = `lane ${l.n}: ${t}${kind==='vlm' ? (inf ? ' (paired by the movement step)' : ' (read from pavement markings)') : ''}${l.rail?' · shared with rail':''}`;
+    return `<span class="lane${inf?' inf':''}${l.rail?' rail':''}" style="${style}" title="${tip}">${t}</span>`;
+  }).join('');
+}
+function gsvRow(a){
+  const g = (a.gsv || []).filter(x => x.lanes != null);
+  if (!g.length) return '';
+  // far views stand ~100 m out, where pockets have often not opened yet: only near and mid counts are held against the trace
+  const differs = x => x.settled && x.pos !== 'far' && x.lanes !== a.vlm.length;
+  const off = g.some(differs);
+  const chips = g.map(x => `<span class="gsv${differs(x) ? ' off' : ''}${x.settled ? '' : ' unsure'}"
+      title="${esc(`${x.pos} street view, ${x.dist} m from the centre, ${x.date || 'date unknown'}${x.other && x.other !== 'none' ? ' · also: ' + x.other : ''}${x.unmatched && x.unmatched !== 'none' ? ' · not matching the traced regions: ' + x.unmatched : ''}${x.settled ? '' : ' · count not settled'}`)}">${esc(x.pos || '?')} <b>${x.lanes}</b></span>`).join('');
+  return `<div class="row"><span class="src" title="motor lanes of this direction counted in the forward street views">GSV</span><span class="lanes">${chips}</span><span class="n">${off ? '<span style="color:var(--warn)" title="a street view shows a different number of lanes than were traced">≠</span>' : ''}</span></div>`;
+}
+function matchHtml(a){
+  const m = a.match;
+  if (m && m.by === 'name') return `<div class="check muted">UTDF ${esc(a.dir)} is matched by direction name only: UTDF's movement table does not tie it to this link, so the two may describe different legs. The automated check skips such approaches.</div>`;
+  if (m && m.also.length) return `<div class="check muted">This link also carries UTDF ${m.also.map(esc).join(', ')}; its rows are listed separately under Movements.</div>`;
+  return '';
+}
+function checksHtml(a){
+  if (!a.utdf.length) return `<div class="check muted">No UTDF lane layout ${a.match ? 'for this approach' : 'tied to this link'}.</div>`;
+  if (a.agree) return '';
+  if (!a.auto && !a.review) return '<div class="check muted">Lane counts differ; not checked against the imagery.</div>';
+  const line = (who, r, sheet) => { const [txt, c] = VERDICT[r.verdict] || [r.verdict, '#7a8796'];
+    return `<div class="check" style="border-left-color:${c}"><span class="small muted">${who}</span><br><span class="what" style="color:${c}">${txt}</span>
+      <span class="muted"> · seen: ${esc(r.layout_seen||'–')} · ${esc((r.cause||'').replaceAll('_',' '))} · ${esc(r.confidence||'')} confidence</span>
+      ${sheet?` · <button class="linkish" data-sheet="${esc(sheet)}">image checked</button>`:''}<div class="muted">${esc(r.note||'')}</div></div>`; };
+  return (a.auto ? line('Automated check · blind model reading of the imagery', a.auto, a.auto.sheet) : '')
+       + (a.review ? line('Manual check · assistant reading of the same imagery', a.review) : '');
+}
+function turnChip(t){ return `<span class="turn" style="background:${COL[t]||'#9aa5b2'}">${t}</span>`; }
+function thumb(view, d){
+  const i = d.views.indexOf(view), boxes = d.observations.filter(o => o.view === i);
+  return `<div class="thumb" data-view="${i}"><img loading="lazy" decoding="async" src="${IMG(d, view.src)}" alt="">
+    <div class="cap"><b>${esc(view.group)}</b> · ${esc(view.role)}${view.position?' · '+esc(view.position):''}<br>
+    ${view.dist} m · ${esc(view.date||'date unknown')}${view.relation==='historical'?' · <span class="hist">historical</span>':''}${boxes.length?` · ${boxes.length} obs.`:''}</div></div>`;
+}
+function wireThumbs(root, d, list){ root.querySelectorAll('.thumb').forEach(t => t.onclick = () => openViews(d, list, +t.dataset.view)); }
+
+/* ---------- render ---------- */
+function render(){
+  const s = byId.get(state.id), d = data[state.id]; if (!s || !d) return;
+  const dates = s.dates ? (s.dates[0] === s.dates[1] ? s.dates[0] : s.dates.join(' – ')) : 'unknown';
+  const views = d.views.filter(v => !v.group.startsWith('Signals')).length;
+  const TABS = [['lanes','Lanes',s.approaches.length],['movements','Movements',d.movements.length],['views','Street views',views],['signals','Signals & signs',d.controls.length],['figures','Figures','']];
+  $('main').innerHTML = `<div class="fade"><div class="site-head"><div><div class="eyebrow">${idLine(s)}</div><h2>${esc(s.name)}</h2><div class="tags">
+      <span class="tag">${s.legs||'?'} legs</span>
+      ${s.control?`<span class="tag">${esc(s.control)}${s.cycle?' · '+s.cycle+' s cycle':''}</span>`:''}
+      <span class="tag">street views ${esc(dates)}</span>
+      ${s.untraced.length?`<span class="tag warn">untraced: ${esc(s.untraced.join(', '))}</span>`:''}
+      ${s.missing_views.length?`<span class="tag warn">${s.missing_views.length} street views missing</span>`:''}</div></div>
+</div>
+    ${s.match_note?`<div class="note"><b>UTDF match</b><span>${esc(s.match_note)}</span></div>`:''}
+    <nav class="tabs">${TABS.map(([k,l,n]) => `<button data-t="${k}" class="${k===state.tab?'on':''}">${l}${n!==''?`<span class="n">${n}</span>`:''}</button>`).join('')}</nav>
+    <div id="tab"></div></div>`;
+  $('main').querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; state.tab = b.dataset.t; render(); };
+  const shownKey = state.id + '/' + state.tab;
+  if (render.last !== shownKey) { $('main').scrollTop = 0; render.last = shownKey; }
+  ({lanes:renderLanes, movements:renderMovements, views:renderViews, signals:renderSignals, figures:renderFigures})[state.tab](s, d);
+}
+
+/* Lanes */
+function renderLanes(s, d){
+  $('tab').innerHTML = `<div class="grid2"><div class="stack sticky">
+      <div class="card"><div class="mapbar"><b style="color:var(--ink)">Traced lanes</b>
+        <label><input type="checkbox" id="tgExits" ${state.showExits?'checked':''}>exits</label>
+        <label><input type="checkbox" id="tgOther" ${state.showOther?'checked':''}>bike, rail, buffer</label>
+        <label><input type="checkbox" id="tgCams" ${state.showCams?'checked':''}>cameras</label>
+        ${state.approach?`<button class="btn" id="clearAppr">all approaches</button>`:''}</div>
+        <div class="mapframe"><svg id="sat"></svg></div>
+        <div class="legend"><span><i style="background:${HEX.L}"></i>left</span><span><i style="background:${HEX.T}"></i>through</span><span><i style="background:${HEX.R}"></i>right</span>
+          <span><i style="background:${STYLE.motor}"></i>use unknown</span><span><i style="background:${STYLE.exit}"></i>exit lane</span>
+          <span><i style="background:${STYLE.bike}"></i>bike</span><span><i style="background:${STYLE.rail}"></i>rail</span><span><i style="background:${STYLE.other}"></i>buffer / parking</span><span><i style="background:${STYLE.unsure}"></i>unresolved</span></div>
+        <div class="small muted" style="margin-top:6px">L1 = left-turn lane, numbered from the driver's left; lower case = turn paired by the movement step; o2 = exit lane 2. Click a lane for details.</div></div>
+      <div class="card" id="laneInfo"></div></div>
+    <div class="stack" id="approaches"></div></div>`;
+  ['Exits','Other','Cams'].forEach(k => $('tg'+k).onchange = e => { state['show'+k] = e.target.checked; drawSat(d); });
+  if ($('clearAppr')) $('clearAppr').onclick = () => { state.approach = null; renderLanes(s, d); };
+  $('approaches').innerHTML = s.approaches.map(a => `<div class="card appr${state.approach===a.key?' on':''}" data-key="${a.key}">
+      <div class="appr-head"><b>${a.dir}</b>${a.dir!==a.key?`<span class="small muted">network ${esc(a.key)}</span>`:''}
+        ${!a.utdf.length?'':a.agree?'<span class="badge" style="background:var(--ok)">lane count = UTDF</span>':`<span class="badge" style="background:var(--bad)">${a.vlm.length} vs UTDF ${a.utdf.length}</span>`}</div>
+      <div class="row"><span class="src">VLM</span><span class="lanes">${laneBlocks(a.vlm,'vlm')}${a.bike?'<span class="lane bike" title="bicycle lane">bike</span>'.repeat(a.bike):''}</span><span class="n">${a.vlm.length}</span></div>
+      ${!hasRef(s) ? '' : `<div class="row"><span class="src">UTDF</span><span class="lanes">${laneBlocks(a.utdf,'utdf')||'<span class="muted small">—</span>'}</span><span class="n">${a.utdf.length||''}</span></div>
+      <div class="row"><span class="src">OSM</span><span class="lanes">${laneBlocks(a.osm,'osm')||'<span class="muted small">—</span>'}</span><span class="n">${a.osm.length||''}</span></div>`}
+      ${gsvRow(a)}${hasRef(s) ? matchHtml(a) + checksHtml(a) : ''}</div>`).join('') || '<div class="card muted">No approach could be traced.</div>';
+  $('approaches').querySelectorAll('.appr').forEach(c => c.onclick = e => {
+    const link = e.target.closest('[data-sheet]');
+    if (link) { e.stopPropagation(); openImage(IMG(d, link.dataset.sheet), 'Image shown to the blind lane-count check (no answer was shown)'); return; }
+    state.approach = state.approach === c.dataset.key ? null : c.dataset.key; renderLanes(s, d); });
+  drawSat(d); renderLaneInfo(d);
+}
+function drawSat(d){
+  const svg = $('sat');
+  const shown = d.regions.filter(r => (state.showExits || r.inbound) && (state.showOther || ['motor','exit','unsure'].includes(r.style)) && r.style !== 'rejected'
+    && (!state.approach || r.section === 'in_' + state.approach || !r.inbound));
+  const pts = (shown.length ? shown : d.regions).flatMap(r => r.poly);
+  const [x1,y1,x2,y2] = [Math.min(...pts.map(p=>p[0])), Math.min(...pts.map(p=>p[1])), Math.max(...pts.map(p=>p[0])), Math.max(...pts.map(p=>p[1]))];
+  const pad = 60, w = Math.max(x2-x1, y2-y1) + 2*pad, cx = (x1+x2)/2, cy = (y1+y2)/2;
+  svg.setAttribute('viewBox', `${cx-w/2} ${cy-w/2} ${w} ${w}`);
+  // Label size follows the typical lane width, so neighbouring labels do not run into each other.
+  const widthOf = poly => { let a = 0, L = 0; poly.forEach((p, i) => { const q = poly[(i+1) % poly.length]; a += p[0]*q[1] - q[0]*p[1]; });
+    poly.forEach(p => poly.forEach(q => { L = Math.max(L, Math.hypot(p[0]-q[0], p[1]-q[1])); })); return Math.abs(a) / 2 / Math.max(L, 1); };
+  const motor = shown.filter(r => r.style === 'motor').map(r => widthOf(r.poly)).sort((a,b) => a-b);
+  const fs = Math.max(w / 55, Math.min(w / 44, (motor[Math.floor(motor.length/2)] || 30) * .62));
+  const NAMES = {bike:'bicycle lane', rail:'rail area', other:'buffer or parking', unsure:'unresolved region', exit:'exit lane', motor:'approach lane'};
+  let h = `<image href="${IMG(d, d.sat.src)}" width="${d.sat.size[0]}" height="${d.sat.size[1]}"/>`;
+  for (const r of shown){
+    const c = laneColor(r.label || '', r.style), sel = state.region === r.id;
+    h += `<polygon data-id="${r.id}" points="${r.poly.map(p=>p.join(',')).join(' ')}" fill="${c}" fill-opacity="${sel?.55:.24}" stroke="${sel?'#fff':c}" stroke-width="${sel?w/260:w/420}"><title>${esc(r.section+' · '+(r.style==='motor'?r.label:NAMES[r.style]||r.label))}</title></polygon>`;
+  }
+  for (const r of shown){
+    if (r.style !== 'motor' && r.style !== 'exit') continue;
+    const xs = r.poly.map(p=>p[0]), ys = r.poly.map(p=>p[1]);
+    const x = xs.reduce((a,b)=>a+b,0)/xs.length, y = ys.reduce((a,b)=>a+b,0)/ys.length;
+    const text = r.style === 'exit' ? r.label.replace('out','o') : r.label.replace(' rail','');
+    h += `<text class="lbl" x="${x}" y="${y}" font-size="${r.style==='exit'?fs*.8:fs}" ${r.style==='exit'?'opacity=".8"':''} text-anchor="middle" dominant-baseline="middle">${esc(text)}</text>`;
+  }
+  if (state.showCams) d.views.forEach((v, i) => { if (!v.xy) return; const a = v.heading*Math.PI/180, L = w/30;
+    h += `<g data-view="${i}" style="cursor:pointer"><line x1="${v.xy[0]}" y1="${v.xy[1]}" x2="${v.xy[0]+L*Math.sin(a)}" y2="${v.xy[1]-L*Math.cos(a)}" stroke="#fff" stroke-width="${w/320}"/>
+      <circle cx="${v.xy[0]}" cy="${v.xy[1]}" r="${w/150}" fill="${v.relation==='historical'?'#d39532':'#4a78b5'}" stroke="#fff" stroke-width="${w/600}"/><title>${esc(v.group+' · '+v.role+' · '+v.date)}</title></g>`; });
+  svg.innerHTML = h;
+  svg.querySelectorAll('polygon').forEach(p => p.onclick = () => { state.region = p.dataset.id; drawSat(d); renderLaneInfo(d); });
+  svg.querySelectorAll('g[data-view]').forEach(g => g.onclick = () => openViews(d, d.views.map((_,i)=>i), +g.dataset.view));
+}
+function renderLaneInfo(d){
+  const r = d.regions.find(x => x.id === state.region);
+  if (!r) { $('laneInfo').innerHTML = '<h3>Lane details</h3><div class="muted small">Click a lane on the image to see how the model classified it and the street views where it was seen.</div>'; return; }
+  const useTxt = r.turns.length ? r.turns.join(', ') + ' (read from markings)' : r.paired.length ? r.paired.join('') + ' (paired by the movement step)' : 'not established';
+  const viewIds = [...new Set(d.observations.filter(o => o.regions.includes(r.id)).map(o => o.view))];
+  $('laneInfo').innerHTML = `<h3>${esc(r.section)} · ${esc(r.label)}</h3>
+    <div class="kv"><span>facility</span><b>${esc(r.type.replaceAll('_',' '))}${r.existence!=='supported'?' · '+esc(r.existence):''}</b>
+      ${r.inbound?`<span>use</span><b>${esc(useTxt)}</b>`:''}<span>confidence</span><b>${esc(r.confidence||'–')}</b></div>
+    <p class="small" style="margin:10px 0 4px">${esc(r.evidence)}</p>${r.binding?`<p class="small muted" style="margin:4px 0">${esc(r.binding)}</p>`:''}
+    ${viewIds.length?`<div class="section-title">Seen in ${viewIds.length} street view${viewIds.length>1?'s':''}</div><div class="gal">${viewIds.map(i => thumb(d.views[i], d)).join('')}</div>`:''}`;
+  wireThumbs($('laneInfo'), d, viewIds);
+}
+
+/* Movements */
+function renderMovements(s, d){
+  const groups = {};
+  s.movements.forEach(m => { const g = m.group || m.code.slice(0,2); (groups[g] = groups[g] || []).push(m); });
+  const rng = r => r ? (r[0] === r[1] ? r[0] : r[0] + '–' + r[1]) : '–';
+  const src = e => e ? `${e.lanes ?? '–'} <span class="muted small">${e.in?'in '+rng(e.in):''}${e.out?' → '+rng(e.out):''}</span>` : '<span class="muted">–</span>';
+  let rows = '';
+  for (const dir of Object.keys(groups).sort()){
+    rows += `<tr class="grp"><td colspan="${hasRef(s) ? 5 : 3}">${esc(dir)}</td></tr>`;
+    for (const m of groups[dir]){
+      const v = m.vlm, t = m.code[2] === 'L' ? 'L' : m.code[2] === 'T' ? 'T' : m.code[2] === 'R' ? 'R' : 'U';
+      const rule = v && v.reason.includes('Default rule');
+      rows += `<tr><td>${turnChip(t)} <span class="small muted">${m.code}</span></td>${!hasRef(s) ? '' : `<td>${src(m.utdf)}${m.vol?` <span class="small muted">· ${m.vol} veh/h</span>`:''}</td><td>${src(m.osm)}</td>`}
+        <td>${v ? `<span class="st ${v.status}">${v.status.replace('_',' ')}</span>${rule?'<span class="rule" title="added by the traffic-law default for the kerbside lane">rule</span>':''} ${v.status==='candidate'?src(v):''}` : '<span class="muted">–</span>'}</td>
+        <td class="reason">${v ? esc(v.reason.length > 200 ? v.reason.slice(0,200) + '…' : v.reason) : ''}</td></tr>`;
+    }
+  }
+  $('tab').innerHTML = `<div class="card"><table><thead><tr><th>Movement</th>${hasRef(s) ? '<th>UTDF lanes</th><th>OSM lanes</th>' : ''}<th>VLM</th><th>VLM reasoning</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="small muted" style="margin:10px 0 0">Lanes are numbered from the driver's left; "in" is the approach lane range, "→" the receiving lanes. VLM movements are hypotheses; "unresolved" means the imagery did not settle them. "rule": the rightmost lane may turn right unless a marking or sign prohibits it.</p></div>`;
+}
+
+/* Street views */
+function renderViews(s, d){
+  const groups = {};
+  d.views.forEach((v, i) => { if (!v.group.startsWith('Signals')) (groups[v.group] = groups[v.group] || []).push(i); });
+  const order = Object.keys(groups).sort((a,b) => (a.startsWith('Exit') - b.startsWith('Exit')) || a.localeCompare(b));
+  $('tab').innerHTML = order.map(g => `<div class="section-title">${esc(g)} <span class="muted small">${groups[g].length}</span></div><div class="gal" data-g="${esc(g)}">${groups[g].map(i => thumb(d.views[i], d)).join('')}</div>`).join('')
+    || '<div class="empty">No street views.</div>';
+  $('tab').querySelectorAll('.gal').forEach(g => wireThumbs(g, d, groups[g.dataset.g]));
+}
+
+/* Signals & signs */
+const CTL = {traffic_signal:'Vehicle signal',pedestrian_signal:'Pedestrian signal',lane_use_sign:'Lane-use sign',turn_restriction_sign:'Turn-restriction sign',regulatory_sign:'Regulatory sign',street_name_sign:'Street-name sign',other_sign:'Other sign'};
+function renderSignals(s, d){
+  if (!d.controls.length) { $('tab').innerHTML = '<div class="empty">No signals or signs were audited here.</div>'; return; }
+  const groups = {};
+  d.controls.forEach(c => (groups[c.dir || '–'] = groups[c.dir || '–'] || []).push(c));
+  $('tab').innerHTML = Object.keys(groups).sort().map(g => `<div class="section-title">Approach ${esc(g)}</div><div class="stack">${groups[g].map(c => {
+      const ref = c.refs[0];
+      return `<div class="card ctl"><div><b>${esc(CTL[c.kind]||c.kind)}</b>${c.symbol?` · ${esc(c.symbol)}`:''}${c.text?` · “${esc(c.text)}”`:''}
+        <span class="small muted"> · ${esc(c.confidence||'')} confidence · applies to ${esc((c.applies||'').replaceAll('_',' '))}</span>
+        <p class="small" style="margin:6px 0 0">${esc(c.description)}</p></div>
+        ${ref?`<div class="thumb" data-view="${ref.view}"><img loading="lazy" src="${IMG(d, d.views[ref.view].src)}" alt=""><div class="cap">${c.refs.length} view${c.refs.length>1?'s':''}</div></div>`:'<div></div>'}</div>`; }).join('')}</div>`).join('');
+  $('tab').querySelectorAll('.thumb').forEach(t => t.onclick = () => { const v = +t.dataset.view;
+    const c = d.controls.find(c => c.refs[0] && c.refs[0].view === v); openViews(d, c.refs.map(r => r.view), v, c); });
+}
+
+/* Figures */
+function renderFigures(s, d){
+  const f = d.figures;
+  $('tab').innerHTML = (f.overview || f.sections) ? `<div class="stack">
+      ${f.overview?`<div class="card fig"><h3>Labelled overview</h3><img src="${IMG(d, f.overview.src)}" data-src="${f.overview.src}" alt=""></div>`:''}
+      ${f.sections?`<div class="card fig"><h3>Sections: lane number, type and movements</h3><img src="${IMG(d, f.sections.src)}" data-src="${f.sections.src}" alt=""></div>`:''}</div>`
+    : '<div class="empty">No figures were exported for this intersection.</div>';
+  $('tab').querySelectorAll('.fig img').forEach(img => img.onclick = () => openImage(IMG(d, img.dataset.src), img.closest('.card').querySelector('h3').textContent));
+}
+
+/* ---------- lightbox ---------- */
+function openViews(d, list, at, control){ lightboxList = list; lightboxAt = Math.max(0, list.indexOf(at)); showView(d, control); }
+function showView(d, control){
+  const i = lightboxList[lightboxAt], v = d.views[i];
+  const obs = control ? control.refs.filter(r => r.view === i).map(r => ({box:r.box, finding:r.finding, regions:[]})) : d.observations.filter(o => o.view === i);
+  const [w, h] = v.size;
+  const boxes = obs.filter(o => o.box).map(o => { const [a,b,c,e] = o.box, hi = state.region && o.regions.includes(state.region);
+    return `<span class="bx${hi?' hi':''}" style="left:${a*100}%;top:${b*100}%;width:${(c-a)*100}%;height:${(e-b)*100}%"></span>`; }).join('');
+  $('lightbox').innerHTML = `<div class="lb"><div class="pic"><span class="boxwrap"><img src="${IMG(d, v.src)}" width="${w}" height="${h}" alt="">${boxes}</span></div>
+    <div class="info"><h3>${esc(v.group)} · ${esc(v.role)}</h3>
+      <div class="kv small" style="margin-top:8px"><span>position</span><b>${esc(v.position||'–')} · ${v.dist} m from centre</b><span>heading</span><b>${v.heading}°</b>
+        <span>captured</span><b>${esc(v.date||'unknown')}${v.relation==='historical'?' <span class="hist">historical</span>':''}</b></div>
+      ${obs.length?`<div class="section-title">What the model noted here</div>${obs.map(o => `<div class="find${state.region&&o.regions.includes(state.region)?' hi':''}">${esc(o.finding||'(no note)')}</div>`).join('')}`:'<p class="muted small">No located observations in this view.</p>'}
+      <div class="nav"><button class="btn" id="lbPrev" ${lightboxAt?'':'disabled'}>‹ Prev</button><span class="small muted" style="align-self:center">${lightboxAt+1} / ${lightboxList.length}</span>
+        <button class="btn" id="lbNext" ${lightboxAt<lightboxList.length-1?'':'disabled'}>Next ›</button><span style="flex:1"></span><button class="btn" id="lbClose">Close</button></div></div></div>`;
+  $('lightbox').hidden = false;
+  $('lbPrev').onclick = () => { lightboxAt--; showView(d, control); };
+  $('lbNext').onclick = () => { lightboxAt++; showView(d, control); };
+  $('lbClose').onclick = closeLightbox;
+}
+function openImage(src, title){
+  $('lightbox').innerHTML = `<div class="lb" style="grid-template-columns:1fr"><div class="pic"><img src="${src}" style="max-width:100%;max-height:82vh" alt=""></div>
+    <div class="info" style="display:flex;align-items:center"><b>${esc(title)}</b><span style="flex:1"></span><button class="btn" id="lbClose">Close</button></div></div>`;
+  $('lightbox').hidden = false; $('lbClose').onclick = closeLightbox;
+}
+function closeLightbox(){ $('lightbox').hidden = true; $('lightbox').innerHTML = ''; }
+$('lightbox').onclick = e => { if (e.target === $('lightbox')) closeLightbox(); };
+document.addEventListener('keydown', e => {
+  if ($('lightbox').hidden) { if (e.key === 'Escape' && document.body.classList.contains('mapfull')) toggleFull(false); return; }
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight' && $('lbNext') && !$('lbNext').disabled) $('lbNext').click();
+  if (e.key === 'ArrowLeft' && $('lbPrev') && !$('lbPrev').disabled) $('lbPrev').click(); });
+
+/* ---------- start ---------- */
+renderList();
+const first = +location.hash.slice(1);
+select(byId.has(first) ? first : SITES[0]?.id);
+window.addEventListener('hashchange', () => { const id = +location.hash.slice(1); if (id !== state.id) select(id, {fly:true}); });
+})();
+</script>
+<!--__SITES__-->
+</body>
+</html>

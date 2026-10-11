@@ -1,0 +1,173 @@
+{
+  "tagline": "a harness for vision-language models (VLMs) that read and edit networks",
+  "eyebrow": "PAVE · a harness for VLMs that read and edit networks",
+  "lead": "A vision-language model reads imagery of the real road and writes into a GMNS network. The harness around it renders what the model sees, ties every answer to network IDs and image coordinates, checks each answer and returns failures with the reason, and records every step so a run can be replayed. The model makes the judgements; the harness measures, checks and edits.",
+  "stages": [
+    {
+      "key": "P",
+      "name": "Perceive",
+      "short": "what the model sees",
+      "text": "Satellite crops with rulers, street views tied to the network by camera pose, ID-marked drawings of the network. The model can ask for closer views."
+    },
+    {
+      "key": "A",
+      "name": "Anchor",
+      "short": "answers tied to IDs",
+      "text": "Every answer points at something that can be checked: a stop bar, a lane boundary in crop pixels, a link or node ID."
+    },
+    {
+      "key": "V",
+      "name": "Verify",
+      "short": "checks, not rewards",
+      "text": "A real road gives no reward. Geometry checks, street-view lane counts, proposal gates and network and design checks stand in."
+    },
+    {
+      "key": "E",
+      "name": "Edit",
+      "short": "writes back to GMNS",
+      "text": "Lanes, lane use and movements written to GMNS, or a new design built from templates and exported as GMNS tables and a project card."
+    }
+  ],
+  "loop_back": "a failed check goes back to the model with the reason",
+  "read": {
+    "example": "read/examples/broadway_ames_2021",
+    "dashboard": "read/dashboard/intersection_explorer_example.html",
+    "image": "read/examples/broadway_ames_2021/results/annotated/labels/overview.jpg",
+    "kind": "Read · inventory",
+    "title": "Broadway & Ames Street, Cambridge MA",
+    "context": "The model reads lanes, lane use, movements, signals and signs from a 2021 orthophoto and dated street views. Model output is a prediction, not reference data.",
+    "text": "Lanes, lane use, turning movements, and signal and sign readings for a signalised T-junction, traced on a 2021 orthophoto and checked against street views.",
+    "stages": [
+      "satellite crops, dated street views",
+      "stop bars, lane boundaries",
+      "lane review, street-view counts",
+      "lanes, movements, signals"
+    ],
+    "marks": {
+      ".tabs button[data-t=\"views\"]": "P",
+      ".tabs button[data-t=\"signals\"]": "A",
+      ".tabs button[data-t=\"lanes\"]": "A",
+      ".tabs button[data-t=\"movements\"]": "A",
+      ".tabs button[data-t=\"figures\"]": "E",
+      ".check:not(.muted)": "V"
+    },
+    "lexicon": [
+      [
+        "> VLM-traced lanes</label>",
+        "> Model-traced lanes</label>"
+      ],
+      [
+        "'Imagery agrees with the VLM'",
+        "'Imagery agrees with the model'"
+      ],
+      [
+        "'Lanes and movements read by a VLM from",
+        "'Lanes and movements read by the model from"
+      ],
+      [
+        "title=\"approaches whose VLM lane count equals UTDF\"",
+        "title=\"approaches whose model lane count equals UTDF\""
+      ],
+      [
+        "<span>auto check: UTDF · VLM right</span>",
+        "<span>model re-check: UTDF · model right</span>"
+      ],
+      [
+        "title=\"assistant's reading of the same imagery\"",
+        "title=\"a second, manual reading of the same imagery\""
+      ],
+      [
+        "<span>manual check: UTDF · VLM right</span>",
+        "<span>manual check: UTDF · model right</span>"
+      ],
+      [
+        "['model','VLM right',",
+        "['model','Model right',"
+      ],
+      [
+        "'Automated check · blind model reading of the imagery'",
+        "'Model re-check · blind reading of the imagery'"
+      ],
+      [
+        "'Manual check · assistant reading of the same imagery'",
+        "'Manual check · second reading of the same imagery'"
+      ],
+      [
+        "<span class=\"src\">VLM</span>",
+        "<span class=\"src\">Model</span>"
+      ],
+      [
+        "<th>VLM</th><th>VLM reasoning</th>",
+        "<th>Model</th><th>Model reasoning</th>"
+      ],
+      [
+        "VLM movements are hypotheses",
+        "Model movements are hypotheses"
+      ]
+    ]
+  },
+  "edit": {
+    "dashboard": "edit/dashboard/sr347_scenario_editor.html",
+    "image": "edit/docs/before_after_ddi.png",
+    "kind": "Edit · scenario design",
+    "title": "SR 347 / I-10 interchange, Arizona",
+    "context": "The model names the existing links that make up the interchange. A template builds each alternative from them, and checks verify the result before it is written back as GMNS.",
+    "text": "The existing diamond is rebuilt as a diverging diamond, a single point urban interchange or roundabout ramp terminals. The model names the links involved, templates build each design, and checks verify it.",
+    "facts": [
+      [
+        "3",
+        "build alternatives"
+      ],
+      [
+        "32/32",
+        "network checks pass over 4 forms"
+      ],
+      [
+        "P0–P8",
+        "proposal gates passed by the first answer"
+      ]
+    ],
+    "stages": [
+      "satellite image, ID-marked network",
+      "link and node IDs",
+      "checks P0–P8 and C1–C6",
+      "template build, GMNS export"
+    ],
+    "marks": {
+      ".step[data-k=\"base\"] .t b": "P",
+      ".step[data-k=\"inputs\"] .t b": "P",
+      ".step[data-k=\"proposal\"] .t b": "A",
+      ".step[data-k=\"gates\"] .t b": "V",
+      ".step[data-k=\"template\"] .t b": "E",
+      ".step[data-k=\"checks\"] .t b": "V",
+      ".step[data-k=\"export\"] .t b": "E"
+    }
+  },
+  "principles": [
+    [
+      "Observations stay images",
+      "The model reads rendered imagery, not a text dump of the network. Every source image is kept and can be looked at again."
+    ],
+    [
+      "The harness measures, the model judges",
+      "Code computes positions, widths, headings and projections; open questions go to the model as choices among candidates."
+    ],
+    [
+      "Answers point at checkable things",
+      "Stop-bar positions, boundary coordinates, link and node IDs, each with the image region it relies on."
+    ],
+    [
+      "Checks replace an environment",
+      "Geometry, cross-view and network checks decide whether an answer stands; a failure returns with the reason for another try."
+    ],
+    [
+      "Every step can be replayed",
+      "Prompts, images and raw answers are kept, so a run can be repeated or extended without new model calls."
+    ],
+    [
+      "One harness, any model",
+      "The same interface has run with different vision-language models; the model is a parameter, not part of the design."
+    ]
+  ],
+  "footer": "Model output is a prediction, not reference data. Imagery: MassGIS (Commonwealth of Massachusetts), © Google, © Mapbox, © Maxar; network data © OpenStreetMap contributors (ODbL)."
+}

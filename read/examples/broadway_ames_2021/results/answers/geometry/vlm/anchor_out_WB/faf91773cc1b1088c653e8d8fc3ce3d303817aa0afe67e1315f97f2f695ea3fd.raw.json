@@ -1,0 +1,26 @@
+{
+  "response": {
+    "stop_line": {
+      "y": 888,
+      "kind": "crosswalk_edge",
+      "evidence": "Top (downstream) edge of the zebra crosswalk spanning the road just above the junction box; across the receiving lane and bike lane the bars start at about y 885-892 (crosswalk is slightly tilted, higher on the left). The opposing approach has its own stop bar further up at about y 804 left of the island, which is not used."
+    },
+    "cross_sections": [
+      {
+        "y": 888,
+        "left_x": 348,
+        "right_x": 521,
+        "evidence": "Left: right edge of the raised teardrop splitter island (its rounded nose ends just above the crosswalk at about x 300-350), projected to the crosswalk. Right: kerb / sidewalk edge. Between them: one wide motor lane (about x 348-459), a hatched buffer between white lines at about x 459 and 487, and a bike lane (bike symbol and arrow upstream) from x 487 to the kerb."
+      },
+      {
+        "y": 435,
+        "left_x": 388,
+        "right_x": 528,
+        "evidence": "Left: continuous longitudinal line at about x 386-390 that continues the island's right edge line upstream (median/centre edge; partly in building shadow above y ~430). Right: kerb at about x 528 next to the sidewalk with tree pits. One motor lane x 388-~469, hatched buffer lines at about x 470 and 492, bike lane x 492-528."
+      }
+    ],
+    "confidence": "medium",
+    "notes": "Receiving side shows a single motor lane plus a buffered bike lane; no lane line divides the motor lane even where it widens beside the island. Upstream cross-section lies at the edge of a large building shadow covering the upper-left of the crop, so the left boundary line is faint there. Kerb x is estimated from the brightness step to the sidewalk (+/- 5 px). The magenta cross sits in the junction box about 290 px below the crosswalk; the crossing road meets from the left. Colour of the left boundary line (yellow vs white) cannot be determined."
+  },
+  "metadata": {}
+}

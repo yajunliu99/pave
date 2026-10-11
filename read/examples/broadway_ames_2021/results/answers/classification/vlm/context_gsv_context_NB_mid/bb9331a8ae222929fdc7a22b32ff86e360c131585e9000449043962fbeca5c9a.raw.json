@@ -1,0 +1,87 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A double yellow centre line runs from the bottom centre (x~415-460, y~640) toward the junction and bends left as it nears the crosswalk (to x~380-400 at y~370). The camera stands on the left side of this line, so the incoming NB lanes are the pavement to its right. Its bend suggests the NB side widens near the junction."
+      },
+      {
+        "id": "o2",
+        "kind": "arrow",
+        "observed_arrows": [
+          "left"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "A foreshortened white turn arrow with its head pointing left is painted in the first lane right of the double yellow line (x~430-495, y~390-400), roughly 20-30 m ahead of the camera. Read as a left-turn arrow."
+      },
+      {
+        "id": "o3",
+        "kind": "arrow",
+        "observed_arrows": [
+          "right"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "A foreshortened white turn arrow curving to the right, head pointing right, is painted in the second lane right of the yellow line (x~532-577, y~390-399). Read as a right-turn arrow. No through arrow is visible in either lane in this frame."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A white line separates the left-arrow lane from the right-arrow lane. It is solid from about x~420,y~362 to x~550,y~416, then dashed closer to the camera (dashes at x~560-620, y~427-475)."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white line runs along the right side of the right-arrow lane (from x~480,y~365 toward x~640,y~405). Right of it, a row of white flexible delineator posts (plus one orange post) stands at x~490-620, y~345-395."
+      },
+      {
+        "id": "o6",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Right of the post-separated buffer is further pavement toward the right kerb, apparently a separated bicycle lane, with faint bluish/white line paint near x~600-640, y~405-425. A row of bike-share bicycles is docked on the right sidewalk (x~590-640, y~345-370). No bicycle symbol or readable sign is visible, so the strip's use is inferred only from the posts and its position."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Left of the double yellow line: the camera's own lane, a solid white parking edge line (x~80-310, y~565-375), and cars parked along the left kerb facing the camera (YOLO car hints at x~252-313, y~343-401). This is the opposing (outgoing) side under right-hand traffic. A brick sidewalk with bike racks and trees is on the far left."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Short white transverse bars near x~385-475, y~365-370, just before a zebra crosswalk (y~355), are probably stop lines of the incoming lanes. The junction lies beyond."
+      },
+      {
+        "id": "o9",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Small signs on poles on the left sidewalk (x~160-180, y~285-305) and a pink banner on the right (x~518-530, y~255-280) cannot be read. No readable lane-use or turn-restriction sign is visible."
+      },
+      {
+        "id": "o10",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Strong tree shadows fall across the incoming lanes and partly obscure the lane paint between the camera and the arrows. The delineator posts and distance make the right-hand strip hard to read. The far part of the approach near the stop line is small in the frame."
+      }
+    ],
+    "notes": [
+      "The camera is about 59 m from the junction centre and stands left of the double yellow line, so the incoming lanes are seen obliquely from the opposing side. Markings in the right half of the frame are small and foreshortened.",
+      "The arrow types are read from foreshortened shapes; the left and right readings are moderately confident. No through arrow is visible, but its absence in this frame does not prove there is none.",
+      "This describes the local cross-section about 20-35 m ahead of the camera, not necessarily the stop bar layout.",
+      "Capture date given as 2020-11; the layout may have changed since."
+    ]
+  },
+  "metadata": {}
+}

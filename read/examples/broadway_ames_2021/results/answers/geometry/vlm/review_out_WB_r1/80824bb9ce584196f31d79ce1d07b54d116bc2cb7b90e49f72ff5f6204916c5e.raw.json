@@ -1,0 +1,20 @@
+{
+  "response": {
+    "issue_responses": [
+      {
+        "issue": "possible_merged_lanes:r1:a54bb429",
+        "decision": "dismiss",
+        "reason": "r1 (about 80-90 crop units, ~4.5 m) is uniform sunlit asphalt from S2 to S5. Brightness profiles across it, corrected for the slight slant of the road, show no line between the island kerb and e2: values stay flat at about 137-148, with only a broad darker tyre/oil patch near x~180-190 between S2 and S3. The only painted lines in the section are e2 and e3, the solid edges of the diagonally hatched buffer. It is one wide lane leaving the junction, not two merged strips."
+      }
+    ],
+    "edits": [],
+    "verdict": "accept",
+    "notes": [
+      "e1 follows the right kerb of the raised island with the shelter: bright kerb at x~146 (S2), ~150 (S3), ~143 (S4). Above S2 it continues as a light line in the building shadow at x~136 (S1). At S5 the island nose has ended and the pavement is open, so e1=130 there is an extension, not a visible edge.",
+      "e2 and e3 match the two solid white lines of the hatched buffer at every station (peaks at about 226/247, 229/250, 232/255, 235/260, 238/264).",
+      "r3 holds bicycle symbols at x~276-283 near S4. e4 matches the kerb within 2-3 units: road brightness drops at x~287-290 (S1, S2), a light kerb stone at x~286-292 (S3, S4), and a gutter dip before the sidewalk ramp at S5.",
+      "No pavement lies between e4 and the kerb, and nothing is missing on the right."
+    ]
+  },
+  "metadata": {}
+}

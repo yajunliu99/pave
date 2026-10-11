@@ -1,0 +1,158 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Satellite (spring 2021, after the 2020-11 window): continuous grey asphalt from just beyond the crosswalk. On the left is the kerb of a raised median island with a bench/shelter structure and planters at its rounded nose; r1's left edge follows that kerb and the nose curve. On the right is the left line of a hatched painted buffer. Cross-section profiles on the sunlit part show no lane line inside r1 between the island kerb and the buffer line: one wide general-traffic lane, roughly 4.5-5 m (scale estimated from vehicle length). The upper ~35% lies in building shadow; the island kerb line and the pavement continue there. Street views (2020-11, in the window): at 34.6 m the away view shows the camera in a single wide WB lane between a yellow edge line along the raised grass median with trees and a hatched buffer with white flexible posts. The 34.6 m toward view shows the same single lane back to the crosswalk. At 54.1 m the lane continues as one lane where the median jogs (S-bend). Matched by physical sequence (median kerb, lane, hatched buffer, bike lane, kerb), not by ordinal. The 104 m views show a wider multi-lane cross-section with dashed lines, beyond this polygon; they do not change r1's single-lane reading near the junction.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.297,
+              0.397,
+              0.568,
+              0.697
+            ],
+            "finding": "unmarked asphalt with no internal lane line"
+          },
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.28,
+              0.252,
+              0.585,
+              0.659
+            ],
+            "finding": "kerb of the raised median island forming r1's left edge"
+          },
+          {
+            "source_id": "gsv_out_WB_025_away",
+            "bbox_xyxy": [
+              0.14,
+              0.41,
+              0.79,
+              1.0
+            ],
+            "finding": "single WB travel lane between yellow edge line and hatched buffer"
+          },
+          {
+            "source_id": "gsv_out_WB_025_away",
+            "bbox_xyxy": [
+              0.0,
+              0.38,
+              0.37,
+              1.0
+            ],
+            "finding": "raised grass median with trees and yellow edge line on the left"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "high",
+        "evidence": "Satellite: a narrow strip (about 1 m) between two parallel solid white lines, with diagonal hatch bars painted between them at regular intervals along its whole length. This is a painted buffer, not a travel facility. Street views (2020-11): at 34.6 m (away and toward) the same two-line buffer with diagonal hatching carries white flexible delineator posts and separates the travel lane from the kerbside bicycle lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.43,
+              0.52,
+              0.548,
+              0.66
+            ],
+            "finding": "two solid white lines with diagonal hatch bars"
+          },
+          {
+            "source_id": "gsv_out_WB_025_away",
+            "bbox_xyxy": [
+              0.54,
+              0.41,
+              1.0,
+              0.75
+            ],
+            "finding": "hatched buffer with white flexible delineator posts"
+          },
+          {
+            "source_id": "gsv_out_WB_025_toward",
+            "bbox_xyxy": [
+              0.0,
+              0.48,
+              0.44,
+              0.81
+            ],
+            "finding": "same hatched buffer seen looking back toward the junction"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "clear",
+        "confidence": "high",
+        "evidence": "Satellite: a paved strip (about 1.7-1.9 m) between the buffer's right line and the kerb. Beyond the kerb are a light sidewalk with a row of round reddish planters, granite-edged tree pits and further sidewalk. Inside the strip near the junction is a bicycle-lane glyph with a straight arrow ahead of it pointing in the WB travel direction. The arrow is a bike-lane direction marking, not a motor turn arrow. Street views (2020-11): at 34.6 m the strip beyond the post-lined buffer runs along the kerb, with parked bikes and a sidewalk beyond. At 54.1 m the kerbside lane continues with green paint and bicycle markings. The width, buffer and markings fit a buffered bicycle lane; it is too narrow for a car lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.445,
+              0.589,
+              0.554,
+              0.718
+            ],
+            "finding": "bicycle glyph and straight direction arrow inside the strip"
+          },
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.455,
+              0.507,
+              0.666,
+              0.745
+            ],
+            "finding": "kerb, then sidewalk with round planters immediately right of the strip"
+          },
+          {
+            "source_id": "gsv_out_WB_025_away",
+            "bbox_xyxy": [
+              0.6,
+              0.41,
+              1.0,
+              0.6
+            ],
+            "finding": "kerbside bicycle lane beyond the post-lined buffer"
+          },
+          {
+            "source_id": "gsv_out_WB_050_away",
+            "bbox_xyxy": [
+              0.61,
+              0.44,
+              1.0,
+              0.64
+            ],
+            "finding": "green-painted bicycle lane continuing along the kerb"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "All six street views are 2020-11, inside the target window, from three panoramas (34.6, 54.1, 104.0 m); the away/toward pairs are not independent. The satellite is spring 2021, later context; it agrees with the street views on all three regions.",
+      "The cameras are on the WB carriageway itself (median on the left looking away, kerb and bike lane on the right), so no across-median correspondence was needed.",
+      "An orange temporary lane-shift warning sign stands on the right sidewalk in the 34.6 m away view. Lane positions may have been temporarily altered at that time, though the paint seen matches the satellite.",
+      "Downstream (104 m) the carriageway widens to several lanes with dashed lines; that lies beyond these candidate regions."
+    ]
+  },
+  "metadata": {}
+}

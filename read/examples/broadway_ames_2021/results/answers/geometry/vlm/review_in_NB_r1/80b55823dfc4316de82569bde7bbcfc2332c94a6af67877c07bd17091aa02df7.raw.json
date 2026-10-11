@@ -1,0 +1,40 @@
+{
+  "response": {
+    "issue_responses": [
+      {
+        "issue": "possible_merged_lanes:r1:52a2d639",
+        "decision": "dismiss",
+        "reason": "r1 is about 58 crop units (about 3.2 m), a normal single-lane width. Its two left-turn arrows (near y 370 px and 790 px) are stacked one behind the other at the same lateral position (about x 150-170), and no longitudinal line shows inside r1 in either panel. It looks wide only because its right-hand neighbours r3-r5 are narrow buffer and bicycle-width strips."
+      },
+      {
+        "issue": "possible_merged_lanes:r2:5710ab23",
+        "decision": "dismiss",
+        "reason": "r2 is about 54 units (about 3.0 m). It holds one column of right-turn arrows (about x 200-225 near y 370 and 790 px) and has its own stop bar (x about 185-255 at the top). No separator line is visible inside it. It is a single lane, wide only relative to the narrow strips to its right."
+      },
+      {
+        "issue": "narrow_region_check_facility:r3:cdb21cea",
+        "decision": "dismiss",
+        "reason": "r3 lies between two distinct parallel solid white lines (brightness peaks at about x 243 and 252, with a darker gap between them). They are clearly visible in the sunlit band from the stop bar down past S1-S2 and continue down the section. This is a painted double-line buffer between the right-turn lane r2 and the bicycle-symbol strip r4. It is legitimately narrow."
+      },
+      {
+        "issue": "sliver_region:r3:cdb21cea",
+        "decision": "dismiss",
+        "reason": "e3 and e4 trace two separate painted lines, not one line twice. Both are visible as separate white lines, joined to the stop bar at the top (about x 243 and 253) and separated by about 10 units. The 0.7 m strip is a painted buffer, not a travel strip."
+      },
+      {
+        "issue": "width_varies_along_section:r3:cdb21cea",
+        "decision": "dismiss",
+        "reason": "Between S4 and S5 a white line runs diagonally down-left along e3 (from about x 235 at S4 to about 212 at S5) while e4 stays straight at about 250. Hatching/chevron blobs are visible between them. The buffer really widens into a hatched area toward the bottom of the crop, so the taper is real."
+      }
+    ],
+    "edits": [],
+    "verdict": "accept",
+    "notes": [
+      "e4 (about 253), e5 (about 284) and e6 (about 316) all match visible light lines in the sunlit band near S1-S2. Right of e6 the surface is warmer/tan, with tree-shadow mottling further down, consistent with sidewalk, so no region is missing on the right.",
+      "r4 (about 1.7 m) has a bicycle-like symbol near y 340-370 px and no stop bar at the main stop line. r5 (about 1.8 m) has an up (straight) arrow near y 345-410 px and a short stop-bar segment at x 284-305. Both are narrower than a motor lane. What they are for is not settled by this image.",
+      "Below S4 the leftward bends of e1 and e2 sit in mottled tree shadow. A light spot near x 155-160 just above S5 is consistent with e2's bent position, but most of e1's lower segment is not visible. These were left unchanged; they are neither confirmed nor refuted.",
+      "No camera marker is drawn on the crop. In the street view, a double yellow line lies just right of the camera in the near field, and the road ahead is in heavy building shadow with a bright sunlit patch. Only the stop bar and a diagonal lane line on the right are clear. The projected markers sit near the far crosswalk, so the street view adds little evidence for e1/e2."
+    ]
+  },
+  "metadata": {}
+}

@@ -1,0 +1,746 @@
+[
+  {
+    "section_id": "gsv_context_EB_near",
+    "kind": "gsv_forward_context",
+    "direction": "EB",
+    "source_id": "gsv_EB_near_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "near",
+    "distance_to_center_m": 28.16,
+    "pano_id": "hRVL8qhrNI-JfNB6FQeqGw",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "arrow",
+        "observed_arrows": [
+          "right"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "A large white right-turn-only arrow (curved stem turning right, no straight branch) is painted in the lane right of the camera's lane, about 2-6 m before the stop bar (image x~465-570, y~405-525). This lane's asphalt is darker than the camera lane's."
+      },
+      {
+        "id": "o2",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "No pavement arrow is visible in the camera's own (left) lane between the bottom of the frame and the stop bar. Any marking behind the camera or under the bottom edge cannot be seen."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The left edge of the approach is a solid yellow line (image x~20-215, running from the bottom-left up to the stop bar). About half a metre left of it is a granite kerb of a raised, grass/leaf-covered median. The median ends in a rounded nose at the crosswalk, with a signal mast-arm pole and a sign post on it."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white lane line runs from the stop bar (x~380, y~375) down to the bottom edge (x~520, y~640). It separates the camera lane from the right-turn-arrow lane."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A second solid white line starts at the stop bar (x~540, y~380) and runs toward the right edge (x~640, y~440) along the right side of the right-turn-arrow lane. Right of it, a narrow leaf-covered asphalt strip continues to the right kerb and corner sidewalk. The stop bar extends across this strip toward the kerb. No bicycle symbol, colour or sign identifying the strip is visible in this frame; it is partly out of frame on the right."
+      },
+      {
+        "id": "o6",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A white stop bar crosses the approach from the median nose to near the right kerb (y~368-380), followed by a zebra crosswalk across the approach (y~310-330)."
+      },
+      {
+        "id": "o7",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Dotted white guide/extension lines inside the junction beyond the crosswalk (x~440-620, y~265-300) curve toward the right. They belong to movements through or across the intersection, not to the incoming approach's lanes."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Visible beyond the junction: crosswalks on the left and right legs, a multi-lane cross street, cars parked along the far-left kerb, and the far-side receiving road with dashed lane lines. A silver SUV (YOLO car hint at x~342-385) is on the far side/cross street. A pedestrian (YOLO person hint) is on the crosswalk in front of the approach."
+      },
+      {
+        "id": "o9",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "A row of parked bicycles (bike-share-style dock) is on the far-right corner sidewalk beyond the cross street. It is not a road facility of this approach. No rail tracks and no coloured (green) bicycle-lane paint are visible on the incoming approach."
+      },
+      {
+        "id": "o10",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "The sign on the median-nose post is seen from behind (blank grey back) and cannot be read. A small sign on the far-right corner pole (x~615, y~255-275) is too small to read. No readable lane-use or turn-restriction sign is visible."
+      },
+      {
+        "id": "o11",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Fallen leaves cover the gutters and parts of the markings. The narrow strip right of the right-turn lane is cut off by the right image edge. The pedestrian hides part of the crosswalk. Otherwise the approach pavement up to the stop bar is unobstructed."
+      }
+    ],
+    "notes": [
+      "The view is a single forward frame about 28 m from the junction centre and roughly 8-10 m before the stop bar. It shows only this cross-section and the stop-bar area; markings behind the camera are not visible.",
+      "At this position the approach shows two motor-vehicle-width lanes between the yellow median edge line and the right solid white line (left lane with no visible arrow; right lane with a right-turn arrow), plus a narrow strip to the right kerb whose purpose is not marked in view. This is a local description, not a lane count for the stop bar.",
+      "Signal indications and vehicle movements were not used as evidence of permitted movements.",
+      "Capture date given as 2020-11; the layout may have changed since."
+    ]
+  },
+  {
+    "section_id": "gsv_context_EB_mid",
+    "kind": "gsv_forward_context",
+    "direction": "EB",
+    "source_id": "gsv_EB_mid_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "mid",
+    "distance_to_center_m": 49.83,
+    "pano_id": "kD7P5QIM1p11ulUllRiVMA",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Left edge of the approach: a raised median with a granite kerb, planted with grass, leaves and trees, runs from the bottom-left (about x 0-270, y 360-640). A solid yellow edge line runs along the left side of the left travel lane (about x 80 at the bottom to x 270 at y 365). A narrow leaf-filled gutter lies between the kerb and the yellow line."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white line separates the two motor lanes. It runs from about (340,365) at the stop line to about (490,640) at the bottom. Faded remnants of older broken markings run along its left side (visible about x 390-460, y 450-640). Two motor lanes are visible side by side here: a left lane and a right lane."
+      },
+      {
+        "id": "o3",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The pavement word 'ONLY' is painted in the right motor lane (about x 385-475, y 410-430), between the solid white separator and the white line at the bike lane. This marks the right lane as an 'only' (turn-only) lane, but the word does not show which movement."
+      },
+      {
+        "id": "o4",
+        "kind": "arrow",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Beyond 'ONLY', just before the stop line in the right lane, there is an arrow-shaped white marking (about x 355-395, y 369-377). It is so foreshortened and low-resolution that its direction (right, left or through) cannot be read, so no arrow direction is reported."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "No pavement arrow or word marking is visible in the left motor lane between the camera and the stop line (about x 100-400, y 365-640). This is absence of marking in the visible stretch, not evidence of permitted movements."
+      },
+      {
+        "id": "o6",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A green-painted bicycle lane runs along the right side of the right motor lane, separated from it by a solid white line. It is visible from about (440,385) near the stop line to the right image edge at about y 450-485. Further down at the bottom-right (about x 560-640, y 480-560) the strip right of the white line continues as grey pavement without green paint."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Between the green bike lane and the kerb of the tree strip there is a widening wedge of asphalt (about x 520-640, y 375-470), with a short white marking near (570,375). Its purpose cannot be determined: it could be a driveway or curb-cut apron, parking or loading space, or a buffer. It is not a motor travel lane of the approach as far as can be seen."
+      },
+      {
+        "id": "o8",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A white stop line crosses the approach at about y 363-368, from the yellow edge line to the bike lane. Beyond it a ladder crosswalk spans the road (about y 352-360), and the intersection lies ahead. The crosswalk and the far-side road beyond the junction are not part of the incoming approach."
+      },
+      {
+        "id": "o9",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Left of the median (about x 0-150, y 355-410) a separate road surface is visible. This is the opposing or other carriageway beyond the median, not the target incoming lanes."
+      },
+      {
+        "id": "o10",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "The approach pavement between the camera and the stop line is unoccluded; no vehicle stands in the approach lanes. The YOLO 'car' hints (about x 250-350 and 550-606, y 321-354) are vehicles beyond the stop line or parked off to the right. The pedestrian hint (x 235-246) is on the crosswalk to the left. Signal heads are visible on the far side (about x 310-375, y 275-291), but no lane-use or turn-restriction sign is legible."
+      }
+    ],
+    "notes": [
+      "Capture date 2020-11. Camera about 50 m from the centre, so the stop line and the marking just before it are small and foreshortened.",
+      "The right-lane arrow next to 'ONLY' could not be read. Its direction should come from a closer view, not from this image.",
+      "Two motor lanes plus a bike lane are visible at this position. Lanes could still be added or dropped between here and the stop line, though the solid separator and the bike-lane line appear to run continuously to the stop line."
+    ]
+  },
+  {
+    "section_id": "gsv_context_EB_far",
+    "kind": "gsv_forward_context",
+    "direction": "EB",
+    "source_id": "gsv_EB_far_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "far",
+    "distance_to_center_m": 101.36,
+    "pano_id": "LjNle9ec1QCAD6L80QWp6Q",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "On the left, a yellow longitudinal edge line runs along the kerb of a planted grass median (from bottom-left about x 0-60, y 470-500 toward x 220, y 340). Beyond the median at far left is the opposing carriageway. This is the left limit of the EB carriageway at this cross-section."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white longitudinal line runs from about (315, 640) at the bottom up to about (290, 360). It separates the camera's motor-vehicle strip, between the yellow edge line and this line, from a bicycle lane to its right. At this position only one motor-lane-width strip is visible between the yellow line and this white line."
+      },
+      {
+        "id": "o3",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A bicycle lane lies immediately right of the solid white line. Where it crosses the crosswalk in front of the camera (about x 290-430, y 425-535) it is painted green, with short dashed white edge lines. A second green patch is visible further ahead (about x 290-320, y 350-360). No bicycle symbol is legible in this view."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right of the bicycle lane, a chevron-hatched painted buffer (about x 325-405, y 360-430) is bounded by white lines. It is widest nearest the camera and tapers to a point further ahead."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Between the hatched buffer and the right kerb (about x 400-580, y 360-470) there is a paved kerbside strip with a storm-drain grate and no lane markings or vehicles. A shuttle/bus-stop sign stands on the adjacent sidewalk. Whether this strip is a bus stop, parking or loading zone, or a travel lane cannot be determined from the image."
+      },
+      {
+        "id": "o6",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Pole at the right kerb (about x 600-615, y 255-345) with a transit/shuttle stop sign (bus pictogram) and red-and-white regulatory plates below it. The plate text is not readable at this resolution."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "In the near field the camera stands just before a faded, patched crosswalk (y about 480-570) crossing the whole EB carriageway, with a transverse white stop line at bottom right (about x 470-640, y 585-600). This is an upstream crossing about 100 m from the junction centre, not the target approach's stop bar."
+      },
+      {
+        "id": "o8",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Further downstream, a white longitudinal line appears within the motor carriageway (about x 255-258, y 337-356), with a short transverse white mark to its right (about x 262-278, y 346). This may mark an added lane or lane split closer to the junction, but it is too distant and small to confirm."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Downstream on the right, street trees and a raised kerb/planter area beside the bicycle lane (about x 300-340, y 330-355) partly hide the kerbside layout near the junction. An orange diamond warning sign (about x 322-334, y 293-307) is unreadable. Distant pavement near the junction is too low-resolution to read markings."
+      }
+    ],
+    "notes": [
+      "No pavement arrows (left, through, right or U-turn) are visible anywhere in this view, near or far.",
+      "The view describes the upstream cross-section about 100 m from the junction centre. Turn pockets or lane additions near the stop bar (see o8) cannot be read from this image.",
+      "YOLO hints: the 'person' box matches a pedestrian with a dog on the right sidewalk. The 'car' boxes are distant vehicles near the junction. None occlude the near pavement.",
+      "Capture date 2020-11 (as supplied). The layout may differ in newer imagery."
+    ]
+  },
+  {
+    "section_id": "gsv_context_NB_near",
+    "kind": "gsv_forward_context",
+    "direction": "NB",
+    "source_id": "gsv_NB_near_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "near",
+    "distance_to_center_m": 29.57,
+    "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "arrow",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "No pavement arrow symbols are visible anywhere on the approach pavement between the camera and the crosswalk (y~360-640). The right half of the pavement (x~250-640, y~360-520) is under heavy tree shadow, so faint or worn arrows there could be missed."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Double yellow center line directly in front of and slightly right of the camera at the bottom (x~405-475, y~580-640). It ends at a bright transverse white bar (x~390-640, y~515-590, stepped at x~520) that looks like a stop line or other transverse marking but is smeared by near-camera panorama distortion. The camera appears to stand left of the double yellow, so lanes right of it would be the NB side. This relationship is uncertain because of the distortion."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "On the right, a solid white longitudinal line runs from about (515,375) toward (640,460). A transverse white stop line at y~370-378 runs from x~510 to the right image edge, just before the crosswalk. These probably belong to the lane(s) on the right of the approach, but the number of lanes they bound cannot be read."
+      },
+      {
+        "id": "o4",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Continental (ladder) crosswalk across the approach ahead of the camera (x~170-640, y~325-355). It marks the near side of the intersection for this approach."
+      },
+      {
+        "id": "o5",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "A short green-painted pavement patch just beyond the crosswalk on the right (x~525-585, y~305-322) is consistent with a bicycle crossing or conflict marking. It sits at or inside the intersection edge, not on the approach lanes, so it may belong to a crossing bike facility. No bike-lane symbol or bike lane line is visible on the approach itself."
+      },
+      {
+        "id": "o6",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Left curb and sidewalk, with a curb extension or corner bulb at the crosswalk (x~0-200, y~290-390). A black post with a small unreadable sign stands at x~133-152, y~235-322. A parked car occupies the left curb edge at the bottom left (YOLO car x~0-85, y~384-536), which suggests curbside parking on the left at this position."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Beyond the near crosswalk: an open intersection area with dashed/dotted guide marks (y~285-305) and a crosswalk across the cross street on the far left (x~150-240, y~278-300). These are crossing or outgoing pavement, not the target approach."
+      },
+      {
+        "id": "o8",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Signal heads on a mast arm at upper right (x~560-612, y~170-203) and on far-side poles/arm near the center (x~270-290, y~195-215; x~380-400, y~205-225). No lane-use or turn-restriction signs are readable on them."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Strong tree shadows cover most of the right side of the approach pavement (x~250-640, y~360-520). Near-camera panorama distortion smears the bottom markings (y>500). Together they limit marking visibility."
+      }
+    ],
+    "notes": [
+      "No turn or through arrows are visible, so no lane-use designation can be read from this view.",
+      "A total lane count is not determinable from this view. The camera's position relative to the double yellow (camera apparently left of it) is unusual and may reflect the capture vehicle's lane or panorama distortion; treat the side assignment as uncertain.",
+      "No rail tracks or bus-lane markings are visible.",
+      "Imagery dated 2020-11; it cannot confirm the current layout."
+    ]
+  },
+  {
+    "section_id": "gsv_context_NB_mid",
+    "kind": "gsv_forward_context",
+    "direction": "NB",
+    "source_id": "gsv_NB_mid_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "mid",
+    "distance_to_center_m": 59.36,
+    "pano_id": "pftZedWg5jk2t7Cj1rGcMA",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A double yellow centre line runs from the bottom centre (x~415-460, y~640) toward the junction and bends left as it nears the crosswalk (to x~380-400 at y~370). The camera stands on the left side of this line, so the incoming NB lanes are the pavement to its right. Its bend suggests the NB side widens near the junction."
+      },
+      {
+        "id": "o2",
+        "kind": "arrow",
+        "observed_arrows": [
+          "left"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "A foreshortened white turn arrow with its head pointing left is painted in the first lane right of the double yellow line (x~430-495, y~390-400), roughly 20-30 m ahead of the camera. Read as a left-turn arrow."
+      },
+      {
+        "id": "o3",
+        "kind": "arrow",
+        "observed_arrows": [
+          "right"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "A foreshortened white turn arrow curving to the right, head pointing right, is painted in the second lane right of the yellow line (x~532-577, y~390-399). Read as a right-turn arrow. No through arrow is visible in either lane in this frame."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A white line separates the left-arrow lane from the right-arrow lane. It is solid from about x~420,y~362 to x~550,y~416, then dashed closer to the camera (dashes at x~560-620, y~427-475)."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white line runs along the right side of the right-arrow lane (from x~480,y~365 toward x~640,y~405). Right of it, a row of white flexible delineator posts (plus one orange post) stands at x~490-620, y~345-395."
+      },
+      {
+        "id": "o6",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Right of the post-separated buffer is further pavement toward the right kerb, apparently a separated bicycle lane, with faint bluish/white line paint near x~600-640, y~405-425. A row of bike-share bicycles is docked on the right sidewalk (x~590-640, y~345-370). No bicycle symbol or readable sign is visible, so the strip's use is inferred only from the posts and its position."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Left of the double yellow line: the camera's own lane, a solid white parking edge line (x~80-310, y~565-375), and cars parked along the left kerb facing the camera (YOLO car hints at x~252-313, y~343-401). This is the opposing (outgoing) side under right-hand traffic. A brick sidewalk with bike racks and trees is on the far left."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Short white transverse bars near x~385-475, y~365-370, just before a zebra crosswalk (y~355), are probably stop lines of the incoming lanes. The junction lies beyond."
+      },
+      {
+        "id": "o9",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Small signs on poles on the left sidewalk (x~160-180, y~285-305) and a pink banner on the right (x~518-530, y~255-280) cannot be read. No readable lane-use or turn-restriction sign is visible."
+      },
+      {
+        "id": "o10",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Strong tree shadows fall across the incoming lanes and partly obscure the lane paint between the camera and the arrows. The delineator posts and distance make the right-hand strip hard to read. The far part of the approach near the stop line is small in the frame."
+      }
+    ],
+    "notes": [
+      "The camera is about 59 m from the junction centre and stands left of the double yellow line, so the incoming lanes are seen obliquely from the opposing side. Markings in the right half of the frame are small and foreshortened.",
+      "The arrow types are read from foreshortened shapes; the left and right readings are moderately confident. No through arrow is visible, but its absence in this frame does not prove there is none.",
+      "This describes the local cross-section about 20-35 m ahead of the camera, not necessarily the stop bar layout.",
+      "Capture date given as 2020-11; the layout may have changed since."
+    ]
+  },
+  {
+    "section_id": "gsv_context_NB_far",
+    "kind": "gsv_forward_context",
+    "direction": "NB",
+    "source_id": "gsv_NB_far_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "far",
+    "distance_to_center_m": 113.12,
+    "pano_id": "RBEaUL-rnmXBTNCOeg0w9w",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A double yellow centre line runs from the bottom-left (about x 0-60, y 540-600) into the distance (about x 210-280, y 355-385). It is the left limit of the NB carriageway. Left of it is one opposing lane with an oncoming dark car (about x 96-186, y 350-402)."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right of the camera's lane are two white lines close together: a dashed line (about x 340-370, y 377-440) and, a short distance to its right, a solid line (about x 358-395, y 357-475). Between the double yellow and these lines, one motor-lane-width strip is visible at this position, and the camera is in it."
+      },
+      {
+        "id": "o3",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right of the solid white line is a kerbside parking lane with parked vehicles: a silver sedan (about x 392-516, y 368-457), a white van (about x 367-455, y 329-402) and further vans/trucks beyond."
+      },
+      {
+        "id": "o4",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "At the near end of the parking lane (bottom right, about x 400-640, y 490-640) is a white-outlined hatched buffer. Along its right side a row of white flexible delineator posts (about x 510-600, y 415-510) and an orange post (about x 518-527, y 380-432) separate a strip next to the right kerb. This is consistent with a parking-protected bicycle lane, but no bicycle symbol or green paint is legible here. Short white dashes lie inside that kerbside strip (about x 557-573, y 407-412 and x 617-637, y 433-440)."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The right kerb and a sidewalk with brick and concrete paving run along the right side (about x 460-640, y 355-410) beyond the post-separated strip."
+      },
+      {
+        "id": "o6",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A box truck with its rear door open and cargo visible (YOLO labels it 'bus', about x 288-354, y 286-375) stands in the travel lane just right of the double yellow and appears stopped for loading. It and the parked vans hide the downstream pavement of the NB approach, including any markings closer to the junction."
+      },
+      {
+        "id": "o7",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "A blue 'P' parking sign (about x 183-198, y 262-276) is mounted on the left (opposite-side) sidewalk. It refers to the opposite side, not to the NB lanes."
+      }
+    ],
+    "notes": [
+      "No pavement arrows are visible in this view. The near pavement shows only lines, hatching and posts, and the far pavement is hidden by the stopped box truck.",
+      "This is the upstream cross-section about 113 m from the junction centre. Lane additions or turn pockets nearer the stop bar cannot be seen here.",
+      "The purpose of the narrow strip between the dashed and solid white lines right of the travel lane (buffer or door zone) is not marked legibly.",
+      "Capture date 2020-11 (as supplied). The layout may differ in newer imagery."
+    ]
+  },
+  {
+    "section_id": "gsv_context_WB_near",
+    "kind": "gsv_forward_context",
+    "direction": "WB",
+    "source_id": "gsv_WB_near_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "near",
+    "distance_to_center_m": 23.48,
+    "pano_id": "uhFChog3QwBpKqKx650Sug",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Between the camera and the near crosswalk, the travel area of the approach (about x 0-480, y 395-540) is freshly paved black asphalt with no lane lines, arrows or stop bar visible on it. At capture time the markings on this stretch seem not to have been restored, so lane use cannot be read from paint here."
+      },
+      {
+        "id": "o2",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A green-painted strip runs along the right kerb from the foreground (about x 540-640, y 430-520) up to the near crosswalk (about x 440-470, y 395). This is consistent with a bicycle lane on the kerb side of the approach. No bicycle symbol is readable in this view."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Between the black new asphalt and the green strip lies a band of older grey asphalt (about x 430-560 in the foreground, narrowing toward the crosswalk). A thin reddish/pink longitudinal line runs along the edge of the black asphalt (about (430,440) to (485,530)). Whether this grey band is a buffer, part of the bicycle facility or a travel-lane remnant cannot be told."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Continental crosswalk across the approach at about y 350-395, ahead of the camera. No stop bar is visible between the camera and this crosswalk."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Beyond the near crosswalk, inside the junction: a yellow dotted centre-line extension (about x 130-210, y 300-340) and a row of white dotted lane-extension dashes (about y 285-290). On the right, two solid white lines diverge away from the camera (about (390,345) to (330,270)), continuing toward the far side. These guide markings are in the junction or on the far side, not on the incoming approach pavement."
+      },
+      {
+        "id": "o6",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A pale, smeared band across the bottom of the image (about y 510-600), with a blue/purple blur below, looks like camera-vehicle or stitching artefact rather than paint. It hides the pavement directly under and just ahead of the camera, so a stop bar or arrow there could not be checked."
+      },
+      {
+        "id": "o7",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Traffic signals are visible far ahead over the road and a green sign/kiosk stands on the right sidewalk (about x 485-505, y 245-280). No regulatory sign text (turn restriction, lane use) is readable."
+      }
+    ],
+    "notes": [
+      "No pavement arrows are visible for the incoming approach in this view. That is not evidence of any particular turn permission: the near pavement is freshly resurfaced and unmarked.",
+      "Capture 2020-11, about 23.5 m from the centre. The resurfacing suggests the markings were repainted later, so later imagery may differ.",
+      "No count of incoming lanes can be read from paint here."
+    ]
+  },
+  {
+    "section_id": "gsv_context_WB_mid",
+    "kind": "gsv_forward_context",
+    "direction": "WB",
+    "source_id": "gsv_WB_mid_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "mid",
+    "distance_to_center_m": 55.56,
+    "pano_id": "lzsK1P01E2cICP8hIN7rww",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "arrow",
+        "observed_arrows": [
+          "left"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "In the leftmost lane of the approach (beside the median), the word 'ONLY' is painted at about x 165-250, y 398-412, and a turn arrow lies further ahead at about x 240-272, y 365-371. The arrow is wide and flat in perspective (about twice the width of the straight arrow in the next lane), with its bent stem on the right and its tip toward the left, which reads as a left-turn arrow. It is small and blurred at this distance."
+      },
+      {
+        "id": "o2",
+        "kind": "arrow",
+        "observed_arrows": [
+          "through"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "Compact straight-ahead arrow (head pointing forward) in the camera's lane near the stop line, at about x 312-326, y 366-371."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Solid white lane line from about (290,360) to (120,640) separating the 'ONLY' lane from the camera lane, solid along the whole visible length."
+      },
+      {
+        "id": "o4",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Solid white line on the right, from about (345,360) to (510,570), with a short break near (515-530, 565-610) beside a manhole before it resumes at the bottom edge. Between it and the granite curb is a strip about bicycle-lane width. No bicycle symbol or green paint is visible in this frame, so a bicycle lane is inferred from the layout."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Left edge of the approach: a raised granite curb of a grass median with street trees (from about (0,450) to (240,355)). The opposing carriageway lies beyond the median on the far left and does not apply."
+      },
+      {
+        "id": "o6",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right edge: granite curb at the bicycle-lane edge, then a brick strip and sidewalk (from about (380,360) to (640,540))."
+      },
+      {
+        "id": "o7",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Transverse white stop line across both motor lanes at about y 359 (x~236-348), with a crosswalk just beyond it (y~353-357). The bicycle-lane line continues past it toward the junction."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Part of a white pavement marking under the camera at the bottom centre (x~305-395, y~615-640), in the camera lane. Too little is visible to tell whether it is an arrow or a word."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "No vehicles on the approach. Markings near the stop line are 50+ m away and small, so arrow shapes are low-resolution. A rectangular patch outline in the camera lane (x~295-435, y~575-610) is a pavement repair, not a marking."
+      }
+    ],
+    "notes": [
+      "Capture 2020-11: the layout may have changed since.",
+      "At this cross-section the approach shows a left lane marked with a turn arrow and 'ONLY', a through lane with a straight arrow, and a curbside strip that is probably a bicycle lane, between a raised median and the right curb. That describes this position only.",
+      "The left-turn reading of o1 rests on the arrow's perspective shape; its exact head direction is blurry."
+    ]
+  },
+  {
+    "section_id": "gsv_context_WB_far",
+    "kind": "gsv_forward_context",
+    "direction": "WB",
+    "source_id": "gsv_WB_far_forward",
+    "reverse_view": false,
+    "capture_date": "2020-11",
+    "sampling_position": "far",
+    "distance_to_center_m": 103.84,
+    "pano_id": "o4yBx0whdlDVUd5WmnUFyg",
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The left edge of the WB carriageway is a raised kerb of a wide grass median with trees, running from about (265,375) to the lower-left (about (0,500)). The opposing carriageway lies beyond the median, not beside the WB lanes."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white longitudinal line on the right runs from about (340,338) to (530,640), separating the general traffic lane from a narrow strip along the right kerb."
+      },
+      {
+        "id": "o3",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A narrow strip (roughly a bicycle-lane width, leaves along the gutter) lies between the solid white line and the right kerb. It looks like a bicycle lane or shoulder; no bicycle symbol or sign is visible in this view to confirm it."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The right kerb (granite kerb, then a brick band and concrete sidewalk with trees and lamp posts) runs from about (350,340) to (640,540)."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "At the camera position no lane line is visible between the median kerb and the solid white line, so this cross-section shows one wide general lane. Tree shadows across the near pavement could hide very faint paint."
+      },
+      {
+        "id": "o6",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Far ahead a new white lane line begins at about (297-312, 337-355), between the median side and the right line. This suggests the carriageway splits into two lanes nearer the junction (an added lane or turn pocket downstream of this position)."
+      },
+      {
+        "id": "o7",
+        "kind": "arrow",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "A faint white pavement marking far ahead at about (262-292, 349-353), left of where the new lane line starts, is too distant to read (it could be an arrow or a word). No direction is assigned."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Beyond the median on the left: the opposing carriageway with parked/moving cars (about 0-194, 329-352), its far sidewalk and buildings. It does not belong to the WB approach."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Strong tree shadows cover the near pavement, and the distant section near the junction is small and partly hidden by vehicles (dark car about 289-305, 324-337), so markings near the stop bar cannot be read."
+      }
+    ],
+    "notes": [
+      "Image dated 2020-11 (autumn), about 104 m from the junction centre (far sampling position); it may not reflect later restriping.",
+      "At this cross-section the WB side is a median-divided carriageway with one wide general lane plus a narrow kerbside strip. A lane split begins further ahead, but where it starts and what movement it serves cannot be read here.",
+      "No arrows are legible; nothing is inferred from vehicles or signals."
+    ]
+  }
+]

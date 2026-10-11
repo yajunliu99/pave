@@ -1,0 +1,29 @@
+link_id,name,from_node_id,to_node_id,directed,dir_flag,length,facility_type,lanes,free_speed,capacity,geometry,scenario,control_group,control_status,geometry_status,operating_data_status,layer
+101,I10 EB approach,5,11,true,1,0.19,freeway,,,,"LINESTRING (-60 550, -60 360)",before_diamond,,,schematic_not_georeferenced,unknown,0
+102,I10 EB through,11,12,true,1,0.72,freeway,,,,"LINESTRING (-60 360, -60 -360)",before_diamond,,,schematic_not_georeferenced,unknown,0
+103,I10 EB departure,12,8,true,1,0.19,freeway,,,,"LINESTRING (-60 -360, -60 -550)",before_diamond,,,schematic_not_georeferenced,unknown,0
+104,I10 WB approach,7,13,true,1,0.19,freeway,,,,"LINESTRING (60 -550, 60 -360)",before_diamond,,,schematic_not_georeferenced,unknown,0
+105,I10 WB through,13,14,true,1,0.72,freeway,,,,"LINESTRING (60 -360, 60 360)",before_diamond,,,schematic_not_georeferenced,unknown,0
+106,I10 WB departure,14,6,true,1,0.19,freeway,,,,"LINESTRING (60 360, 60 550)",before_diamond,,,schematic_not_georeferenced,unknown,0
+201,SR347 to SW terminal NE,1,21,true,1,0.29,arterial,,,,"LINESTRING (-600 -22, -310 -22)",before_diamond,,,schematic_not_georeferenced,unknown,1
+202,SW terminal to SR347 SW,22,2,true,1,0.29,arterial,,,,"LINESTRING (-310 22, -600 22)",before_diamond,,,schematic_not_georeferenced,unknown,1
+203,Queen Creek to NE terminal SW,3,31,true,1,0.29,arterial,,,,"LINESTRING (600 22, 310 22)",before_diamond,,,schematic_not_georeferenced,unknown,1
+204,NE terminal to Queen Creek NE,32,4,true,1,0.29,arterial,,,,"LINESTRING (310 -22, 600 -22)",before_diamond,,,schematic_not_georeferenced,unknown,1
+205,Arterial NE bridge,24,33,true,1,0.42,arterial,,,,"LINESTRING (-210 -22, 210 -22)",before_diamond,,,schematic_not_georeferenced,unknown,1
+206,Arterial SW bridge,34,23,true,1,0.42,arterial,,,,"LINESTRING (210 22, -210 22)",before_diamond,,,schematic_not_georeferenced,unknown,1
+301,I10 EB off-ramp,11,25,true,1,0.347131,ramp,,,,"LINESTRING (-60 360, -320 130)",before_diamond,,,schematic_not_georeferenced,unknown,1
+302,I10 EB on-ramp,26,12,true,1,0.347131,ramp,,,,"LINESTRING (-320 -130, -60 -360)",before_diamond,,,schematic_not_georeferenced,unknown,1
+303,I10 WB off-ramp,13,35,true,1,0.347131,ramp,,,,"LINESTRING (60 -360, 320 -130)",before_diamond,,,schematic_not_georeferenced,unknown,1
+304,I10 WB on-ramp,36,14,true,1,0.347131,ramp,,,,"LINESTRING (320 130, 60 360)",before_diamond,,,schematic_not_georeferenced,unknown,1
+401,NE_through,21,24,true,1,0.1,intersection_connector,,,,"LINESTRING (-310 -22, -210 -22)",before_diamond,SW,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+402,SW_through,23,22,true,1,0.1,intersection_connector,,,,"LINESTRING (-210 22, -310 22)",before_diamond,SW,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+403,NE_to_EB_right,21,26,true,1,0.108462,intersection_connector,,,,"LINESTRING (-310 -22, -320 -130)",before_diamond,SW,control_to_verify,schematic_not_georeferenced,unknown,1
+404,SW_to_EB_left,23,26,true,1,0.187627,intersection_connector,,,,"LINESTRING (-210 22, -320 -130)",before_diamond,SW,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+405,EB_to_SW_right,25,22,true,1,0.108462,intersection_connector,,,,"LINESTRING (-320 130, -310 22)",before_diamond,SW,control_to_verify,schematic_not_georeferenced,unknown,1
+406,EB_to_NE_left,25,24,true,1,0.187627,intersection_connector,,,,"LINESTRING (-320 130, -210 -22)",before_diamond,SW,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+411,SW_through,31,34,true,1,0.1,intersection_connector,,,,"LINESTRING (310 22, 210 22)",before_diamond,NE,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+412,NE_through,33,32,true,1,0.1,intersection_connector,,,,"LINESTRING (210 -22, 310 -22)",before_diamond,NE,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+413,SW_to_WB_right,31,36,true,1,0.108462,intersection_connector,,,,"LINESTRING (310 22, 320 130)",before_diamond,NE,control_to_verify,schematic_not_georeferenced,unknown,1
+414,NE_to_WB_left,33,36,true,1,0.187627,intersection_connector,,,,"LINESTRING (210 -22, 320 130)",before_diamond,NE,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1
+415,WB_to_NE_right,35,32,true,1,0.108462,intersection_connector,,,,"LINESTRING (320 -130, 310 -22)",before_diamond,NE,control_to_verify,schematic_not_georeferenced,unknown,1
+416,WB_to_SW_left,35,34,true,1,0.187627,intersection_connector,,,,"LINESTRING (320 -130, 210 22)",before_diamond,NE,signal_required_timing_unknown,schematic_not_georeferenced,unknown,1

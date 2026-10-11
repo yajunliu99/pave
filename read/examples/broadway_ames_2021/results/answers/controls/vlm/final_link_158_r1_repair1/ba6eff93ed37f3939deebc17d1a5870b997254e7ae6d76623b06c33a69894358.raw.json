@@ -1,0 +1,397 @@
+{
+  "response": {
+    "controls": [
+      {
+        "id": "c1",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "2019-10: red left-pointing arrow lit in top section; 2020-11: small lit green left-pointing arrow (uncertain at context scale)",
+        "description": "Vehicle head at the free left end of the far-side mast arm that extends leftward from the far-right corner pole and faces the northbound camera. The 2019-10 close-up (low light, noisy) shows a lit red left arrow in the top lens; the lower lenses are dark and unreadable. In the 2020-11 sunny context view the head at this position appears to show a small lit green left arrow. Instantaneous appearances only; no phasing inferred.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Front face toward cameras looking along the 29.8 deg approach heading from the far-side mast arm; a left-arrow head controls left-turning traffic of this approach, but which of r1-r5 it governs is not proven by imagery.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_158_292d208efe9f",
+            "bbox_xyxy": [
+              0.448,
+              0.399,
+              0.567,
+              0.636
+            ],
+            "finding": "red left arrow lit in top lens, arm extending right"
+          },
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.434,
+              0.565,
+              0.455,
+              0.6
+            ],
+            "finding": "leftmost head on arm, red lamp"
+          },
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.532,
+              0.52,
+              0.546,
+              0.547
+            ],
+            "finding": "same position 2020-11, small green left-arrow-like lamp"
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "2019-10: red top lamp lit, shape not resolvable at context scale; 2020-11: small lit green left-arrow-like lamp",
+        "description": "Second head on the same mast arm, right of c1. No close-up shows its face (its red lamp is only cut at the frame edges of the adjacent close-ups). Context views give a red top lamp (2019-10) and a small green left-arrow-like lamp (2020-11).",
+        "face_status": "front",
+        "readability": "partial",
+        "confidence": "medium",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the northbound approach from the far-side mast arm; symbol only partly resolved and lane binding not provable from position.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.493,
+              0.565,
+              0.514,
+              0.628
+            ],
+            "finding": "red top lamp lit, 2019-10"
+          },
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.575,
+              0.521,
+              0.59,
+              0.546
+            ],
+            "finding": "small green left-arrow-like lamp, 2020-11"
+          },
+          {
+            "source_id": "gsv_detail_link_158_361d9938b53e",
+            "bbox_xyxy": [
+              0.0,
+              0.3,
+              0.025,
+              0.375
+            ],
+            "finding": "edge of a red lamp at left frame border, consistent with this head"
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "green right-pointing arrow lit (2019-10); head body and other lenses not visible in the dark",
+        "description": "Third head on the mast arm, right of c2 and left of the white sign. Two 2019-10 close-ups show a lit green right arrow; the head housing and unlit lenses are lost against dark foliage. In the 2020-11 context this head appears dark/unresolved.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the northbound approach from the far-side mast arm; a right-arrow indication relates to right-turning traffic, but the governed lane is not established from imagery.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_158_361d9938b53e",
+            "bbox_xyxy": [
+              0.474,
+              0.468,
+              0.556,
+              0.558
+            ],
+            "finding": "green right arrow lit"
+          },
+          {
+            "source_id": "gsv_detail_link_158_47846d9cf256",
+            "bbox_xyxy": [
+              0.231,
+              0.515,
+              0.32,
+              0.612
+            ],
+            "finding": "same lamp, green right arrow"
+          },
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.553,
+              0.586,
+              0.573,
+              0.608
+            ],
+            "finding": "green lamp on arm in context"
+          },
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.616,
+              0.524,
+              0.631,
+              0.548
+            ],
+            "finding": "same head 2020-11, dark/unresolved"
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "kind": "regulatory_sign",
+        "observed_text": "",
+        "symbol": "white rectangular sign, content blurred",
+        "description": "Small white rectangular sign hung on the mast arm right of c3. In both 2019-10 close-ups the sign face is blurred into an unreadable patch; in the 2020-11 context it is too small to read.",
+        "face_status": "front",
+        "readability": "unreadable",
+        "confidence": "medium",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces the northbound approach on the far-side mast arm next to the right-arrow head; its content and governed scope are unknown.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_158_361d9938b53e",
+            "bbox_xyxy": [
+              0.646,
+              0.372,
+              0.811,
+              0.517
+            ],
+            "finding": "white sign, face blurred"
+          },
+          {
+            "source_id": "gsv_detail_link_158_47846d9cf256",
+            "bbox_xyxy": [
+              0.42,
+              0.426,
+              0.579,
+              0.591
+            ],
+            "finding": "same sign, blurred"
+          },
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.58,
+              0.578,
+              0.602,
+              0.6
+            ],
+            "finding": "white sign on arm in context"
+          },
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.637,
+              0.526,
+              0.652,
+              0.54
+            ],
+            "finding": "white sign on arm 2020-11, too small to read"
+          }
+        ]
+      },
+      {
+        "id": "c5",
+        "kind": "street_name_sign",
+        "observed_text": "",
+        "symbol": "blade with light lettering, unreadable",
+        "description": "Small street-name style blade on the arm right of the white sign in the 2020-11 view; unreadable.",
+        "face_status": "front",
+        "readability": "unreadable",
+        "confidence": "low",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "not_applicable",
+        "binding_reason": "Street identification only.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.652,
+              0.53,
+              0.677,
+              0.54
+            ],
+            "finding": "blade on arm, unreadable"
+          }
+        ]
+      },
+      {
+        "id": "c6",
+        "kind": "other_sign",
+        "observed_text": "",
+        "symbol": "red/orange diamond with three faint lines of text, unreadable",
+        "description": "Diamond-shaped sign on a post on the far sidewalk (bicycle locked to the post), 2019-10. Colour is distorted by the low-light pink cast (red or orange); the diamond appears narrowed, suggesting it is viewed obliquely. Text unreadable; likely a warning sign.",
+        "face_status": "unclear",
+        "readability": "unreadable",
+        "confidence": "low",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Oblique view and unreadable text; it may face a different approach.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_158_45a3210b0809",
+            "bbox_xyxy": [
+              0.457,
+              0.384,
+              0.55,
+              0.639
+            ],
+            "finding": "diamond sign on post, faint text"
+          },
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.379,
+              0.66,
+              0.399,
+              0.706
+            ],
+            "finding": "same sign in context"
+          }
+        ]
+      },
+      {
+        "id": "c7",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "unknown (lit green and red lamps visible obliquely)",
+        "description": "At least three heads on a diagonal mast arm from the far-left corner pole. In 2019-10 lit green and red lamps are visible, but the heads are seen obliquely or side-on in both captures, so their facing and symbols cannot be read.",
+        "face_status": "side",
+        "readability": "unreadable",
+        "confidence": "medium",
+        "applies_to": "other_approach",
+        "lane_candidates": [],
+        "binding_status": "not_applicable",
+        "binding_reason": "Arm runs diagonally away from cameras looking along the northbound heading and the heads are oblique, suggesting they face the crossing road; not confirmed.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.188,
+              0.486,
+              0.32,
+              0.596
+            ],
+            "finding": "diagonal-arm heads with lit lamps, oblique"
+          },
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.434,
+              0.485,
+              0.464,
+              0.54
+            ],
+            "finding": "same arm heads, side-on"
+          }
+        ]
+      },
+      {
+        "id": "c8",
+        "kind": "other_sign",
+        "observed_text": "",
+        "symbol": "white upper panel with blue lettering above a panel with a dark arrow-like symbol (unresolved)",
+        "description": "Two-panel sign on a post at the left curb near the crosswalk in the 2020-11 view; content unreadable.",
+        "face_status": "unclear",
+        "readability": "unreadable",
+        "confidence": "low",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Unreadable content and uncertain facing.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_158_ccf0dc5362",
+            "bbox_xyxy": [
+              0.147,
+              0.565,
+              0.169,
+              0.616
+            ],
+            "finding": "unreadable two-panel sign"
+          }
+        ]
+      },
+      {
+        "id": "c9",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "small red lamp, unresolved",
+        "description": "Small red light low near the far-right corner in the 2019-10 context view; could be a pedestrian or pole-mounted head. Not resolvable.",
+        "face_status": "unclear",
+        "readability": "unreadable",
+        "confidence": "low",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Too small and dark to determine type or facing.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_158_a85b418687",
+            "bbox_xyxy": [
+              0.674,
+              0.625,
+              0.695,
+              0.646
+            ],
+            "finding": "small red light near far-right corner"
+          }
+        ]
+      }
+    ],
+    "unresolved": [
+      "Lane binding of the mast-arm heads (c1 left arrow, c2 likely left arrow, c3 right arrow) to r1-r5 is unresolved; only their left-to-right order is visible.",
+      "c2 has no close-up; its arrow shape is only suggested by the small 2020-11 context view.",
+      "Unlit lenses of all heads are unreadable (2019-10 imagery is dark and noisy).",
+      "The white sign on the arm (c4) is blurred in the close-ups and too small in the 2020-11 view; its text is unknown.",
+      "No time qualifier or exception plaque could be read.",
+      "No near-side controls for the northbound approach are identifiable."
+    ],
+    "notes": [
+      "All bounding boxes are normalized [0,1] coordinates of the named native image (x0, y0, x1, y1).",
+      "Two panoramas within the preferred window: a85b418687 with its four close-ups (2019-10, low light, pink cast, heavy noise) and ccf0dc5362 (2020-11, sunny, farther). Lamp states differ between them because they are different moments; grouping is by mounting position."
+    ],
+    "resampling_requests": [
+      {
+        "source_id": "gsv_control_link_158_ccf0dc5362",
+        "bbox_xyxy": [
+          0.632,
+          0.52,
+          0.657,
+          0.546
+        ],
+        "problem": "unreadable_text",
+        "reason": "The mast-arm sign next to the right-arrow head is blurred in the 2019-10 close-ups; a well-lit 2020-11 close-up could read its text."
+      },
+      {
+        "source_id": "gsv_control_link_158_ccf0dc5362",
+        "bbox_xyxy": [
+          0.57,
+          0.515,
+          0.595,
+          0.552
+        ],
+        "problem": "unresolved_arrow",
+        "reason": "Middle head (c2) has no close-up; a 2020-11 close-up could confirm whether its lit indication is a left arrow."
+      }
+    ]
+  },
+  "metadata": {}
+}

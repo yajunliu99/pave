@@ -1,0 +1,5 @@
+{
+  "runs_root": "runs",
+  "results_root": "results",
+  "note": "runs_root holds full run folders (large); results_root receives compact results exported after each site. Relative paths are resolved from the repository root. NET2CELL_RUNS_ROOT / NET2CELL_RESULTS_ROOT override."
+}

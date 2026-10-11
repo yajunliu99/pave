@@ -1,0 +1,84 @@
+{
+  "response": {
+    "movements": [
+      {
+        "turn": "left",
+        "to_direction": "SB",
+        "status": "candidate",
+        "lane_pairs": [
+          {
+            "in_region_id": "r1",
+            "out_region_id": "r1"
+          }
+        ],
+        "basis": "observed",
+        "confidence": "high",
+        "evidence_refs": [
+          "in_WB:r1",
+          "gsv_context_WB_mid:o1",
+          "gsv_context_WB_mid:o5",
+          "gsv_context_WB_far:o6",
+          "out_SB:r1"
+        ],
+        "assumptions": [
+          "out_SB r1 is one SB travel lane (its left ~3.5 m) plus a kerbside parking strip; the left turn is received only by the travel-lane part.",
+          "Left-turning traffic comes from in_WB r1 alone. No left-turn arrow or ONLY marking was read in r2."
+        ],
+        "reason": "in_WB r1 is the lane beside the raised median. On the satellite (spring 2021) it holds two arrows whose stems bend to the driver's left with no U-turn hook. The mid street view (2020-11) shows the same lane between the median kerb and a solid white line, with 'ONLY' and a wide, flat turn arrow ahead; the satellite shapes fix that arrow as a left turn. In the overview the south leg leaves the junction on the WB driver's left. out_SB r1, the single SB travel lane beside the double-yellow centre line, is the only supported SB motor region. The far view (104 m) shows one wide lane, with a new lane line starting downstream, so r1 is a left-turn pocket."
+      },
+      {
+        "turn": "through",
+        "to_direction": "WB",
+        "status": "candidate",
+        "lane_pairs": [
+          {
+            "in_region_id": "r2",
+            "out_region_id": "r1"
+          }
+        ],
+        "basis": "observed",
+        "confidence": "medium",
+        "evidence_refs": [
+          "in_WB:r2",
+          "gsv_context_WB_mid:o2",
+          "gsv_context_WB_mid:o3",
+          "out_WB:r1",
+          "out_WB:r2",
+          "out_WB:r3"
+        ],
+        "assumptions": [
+          "out_WB has one motor receiving lane (r1, about 4.6-5 m, no internal lane line). out_WB r2 is a hatched buffer and r3 a buffered bicycle lane; neither receives motor traffic.",
+          "in_WB r3 (kerbside bicycle strip) is not a motor endpoint."
+        ],
+        "reason": "in_WB r2 has straight-ahead arrows on the satellite, near the stop bar and upstream. The mid street view shows a compact straight arrow in the camera lane, between the solid line shared with the ONLY lane and the solid line beside the bicycle strip. In the overview the WB carriageway continues across the junction as one wide travel lane (out_WB r1), between the median-island kerb and a hatched buffer. So the through lane maps one-to-one to out_WB r1. r1 does not feed through: its arrows are left-turn and it is marked ONLY. Confidence is medium because the satellite arrows lie in building shadow, and the near view (2020-11) shows freshly resurfaced, unmarked pavement at the stop line."
+      },
+      {
+        "turn": "u_turn",
+        "to_direction": "EB",
+        "status": "unresolved",
+        "lane_pairs": [],
+        "basis": "inferred",
+        "confidence": "low",
+        "evidence_refs": [
+          "in_WB:r1",
+          "out_EB:r1",
+          "out_EB:r2",
+          "gsv_context_WB_mid:o1",
+          "gsv_context_WB_mid:o9"
+        ],
+        "assumptions": [
+          "Geometric hypothesis only, not proposed as a pair: a U-turn would start from the median-side lane in_WB r1 and enter out_EB r2, the EB travel lane beside the median (out_EB r1 is the median itself)."
+        ],
+        "reason": "No U-turn arrow, U-turn sign or U-turn prohibition sign is visible in any view. The r1 arrows read as left-turn shapes without a U-turn hook, though they are low-resolution and shadowed. A raised median separates the carriageways. In the overview the EB receiving lane lies directly beyond that median, so the path is geometrically conceivable, but whether it is permitted cannot be seen. The movement stays unresolved with no lane pairs."
+      }
+    ],
+    "gsv_alignment_notes": [
+      "Mid view (55.6 m, 2020-11), bound by physical order from the median kerb: ONLY/left lane = in_WB r1, straight-arrow camera lane = r2, kerbside strip to the granite kerb = r3. This order matches the satellite regions.",
+      "Far view (103.8 m) shows a single wide general lane plus a kerbside strip. The lane line that creates r1 starts downstream of it, so r1 has no counterpart there: it is a turn pocket.",
+      "Near view (23.5 m) shows freshly resurfaced black asphalt without lane lines or arrows at capture time, so it gives no lane-use evidence. Its green kerbside strip supports r3 as a bicycle facility. The 2021 satellite arrows postdate that resurfacing and agree with the mid view.",
+      "In the overview, the pavement left of in_WB r1 is the median followed by the EB receiving carriageway (out_EB r2, its bicycle strip and the parked cars), not another WB lane.",
+      "There is no motor leg on the north side, consistent with no right-turn movement being requested for WB."
+    ]
+  },
+  "metadata": {}
+}

@@ -1,0 +1,14 @@
+{
+  "response": {
+    "issue_responses": [],
+    "edits": [],
+    "verdict": "accept",
+    "notes": [
+      "e1 matches a painted line traced (red channel, between the dashes) at u~123-127 from S2 down to S5. It is the right edge of the opposing lanes: their stop bar at y~1030 runs from u~70 to ~125 and ends on it, and the turn arrows at u~30-110 belong to the down-moving traffic.",
+      "e2 lies at the kerb. Parked cars line up along u~185-225 from S1 to S3+, and the surface colour turns warmer (sidewalk) from u~228-232 on at every height. Near S5 the light kerb edge of the sunlit corner sits at u~231. e2 may be 2-5 units inside the kerb face, which is too small to move.",
+      "No longitudinal paint was found inside r1 between the travel part and the parked cars, so r1 is kept as one strip (travel lane plus parking along the kerb). The whole section is in deep shadow, so a faint parking edge line cannot be excluded.",
+      "Above S2 a faint light line at u~133-143 sits just right of e1. It may mean the dividing line drifts right near the top of the crop, or it may be a shadow/branch artefact; it is too weak to justify moving e1."
+    ]
+  },
+  "metadata": {}
+}

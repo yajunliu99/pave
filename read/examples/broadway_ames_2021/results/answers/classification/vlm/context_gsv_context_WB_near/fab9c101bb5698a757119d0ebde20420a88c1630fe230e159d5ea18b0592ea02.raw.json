@@ -1,0 +1,61 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Between the camera and the near crosswalk, the travel area of the approach (about x 0-480, y 395-540) is freshly paved black asphalt with no lane lines, arrows or stop bar visible on it. At capture time the markings on this stretch seem not to have been restored, so lane use cannot be read from paint here."
+      },
+      {
+        "id": "o2",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A green-painted strip runs along the right kerb from the foreground (about x 540-640, y 430-520) up to the near crosswalk (about x 440-470, y 395). This is consistent with a bicycle lane on the kerb side of the approach. No bicycle symbol is readable in this view."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Between the black new asphalt and the green strip lies a band of older grey asphalt (about x 430-560 in the foreground, narrowing toward the crosswalk). A thin reddish/pink longitudinal line runs along the edge of the black asphalt (about (430,440) to (485,530)). Whether this grey band is a buffer, part of the bicycle facility or a travel-lane remnant cannot be told."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Continental crosswalk across the approach at about y 350-395, ahead of the camera. No stop bar is visible between the camera and this crosswalk."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Beyond the near crosswalk, inside the junction: a yellow dotted centre-line extension (about x 130-210, y 300-340) and a row of white dotted lane-extension dashes (about y 285-290). On the right, two solid white lines diverge away from the camera (about (390,345) to (330,270)), continuing toward the far side. These guide markings are in the junction or on the far side, not on the incoming approach pavement."
+      },
+      {
+        "id": "o6",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A pale, smeared band across the bottom of the image (about y 510-600), with a blue/purple blur below, looks like camera-vehicle or stitching artefact rather than paint. It hides the pavement directly under and just ahead of the camera, so a stop bar or arrow there could not be checked."
+      },
+      {
+        "id": "o7",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Traffic signals are visible far ahead over the road and a green sign/kiosk stands on the right sidewalk (about x 485-505, y 245-280). No regulatory sign text (turn restriction, lane use) is readable."
+      }
+    ],
+    "notes": [
+      "No pavement arrows are visible for the incoming approach in this view. That is not evidence of any particular turn permission: the near pavement is freshly resurfaced and unmarked.",
+      "Capture 2020-11, about 23.5 m from the centre. The resurfacing suggests the markings were repainted later, so later imagery may differ.",
+      "No count of incoming lanes can be read from paint here."
+    ]
+  },
+  "metadata": {}
+}

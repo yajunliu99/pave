@@ -1,0 +1,17 @@
+{
+  "source": "Mapbox Static Images API",
+  "style": "mapbox/satellite-v9",
+  "center_lat": 33.255569,
+  "center_lon": -111.948255,
+  "zoom": 15.9,
+  "bearing_up_deg": 326.8,
+  "size_px": [
+    2560,
+    2560
+  ],
+  "metres_per_pixel": 1.0704,
+  "content_type": "image/jpeg",
+  "fetched_utc": "2026-10-06T07:50:39Z",
+  "attribution": "Imagery \u00a9 Mapbox \u00a9 OpenStreetMap contributors \u00a9 Maxar",
+  "request": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-111.948255,33.255569,15.9,326.8/1280x1280@2x"
+}

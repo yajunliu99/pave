@@ -1,0 +1,2 @@
+dataset_name,short_length,long_length,speed,crs,geometry_field_format,id_type
+SR347 I10 before_diamond,meter,kilometer,kilometer/hour,"LOCAL_CS[""Schematic_not_georeferenced"",LOCAL_DATUM[""arbitrary"",0],UNIT[""metre"",1],AXIS[""NE"",EAST],AXIS[""NW"",NORTH]]",WKT,integer

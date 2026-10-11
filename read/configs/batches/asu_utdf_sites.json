@@ -1,0 +1,1093 @@
+{
+  "bbox_source": "multiagent_dta/implementation/data/intersection_with_CV/ASU/network/node.csv (extent only)",
+  "bbox_lonlat": [
+    -111.9424,
+    33.4127,
+    -111.9224,
+    33.4312
+  ],
+  "network": "../net2cell_utdf/build/network/macronet",
+  "utdf_to_node": "../net2cell_utdf/build/movements/movement_utdf.csv (utdf_intid -> node_id)",
+  "sites": [
+    {
+      "utdf_intid": 18,
+      "utdf_name": "Rural Road & Rio Salado Parkway",
+      "node_id": 7880,
+      "network_name": "East Rio Salado Parkway x North Scottsdale Road",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 21,
+      "utdf_name": "Packard Dr & Rio Salado Parkway",
+      "node_id": 7819,
+      "network_name": "East Rio Salado Parkway x South Packard Drive",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 27,
+      "utdf_name": "Mill Avenue & 5th Street",
+      "node_id": 7914,
+      "network_name": "East 5th Street x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 28,
+      "utdf_name": "Mill Avenue & 4th Street",
+      "node_id": 7829,
+      "network_name": "South Mill Avenue x West 4th Street",
+      "arms": [
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 29,
+      "utdf_name": "Mill Avenue & Rio Salado Parkway",
+      "node_id": 7891,
+      "network_name": "East Rio Salado Parkway x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 30,
+      "utdf_name": "Mill Avenue & 6th Street",
+      "node_id": 7780,
+      "network_name": "East 6th Street x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 31,
+      "utdf_name": "Mill Avenue & 7th Street",
+      "node_id": 7879,
+      "network_name": "East 7th Street x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 33,
+      "utdf_name": "Rural Road & 6th Street",
+      "node_id": 7930,
+      "network_name": "East 6th Street x South Rural Road",
+      "arms": [
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 43,
+      "utdf_name": "Mill Avenue & University Drive",
+      "node_id": 7750,
+      "network_name": "East University Drive x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 44,
+      "utdf_name": "Myrtle Avenue & University Drive",
+      "node_id": 7777,
+      "network_name": "East University Drive x South Myrtle Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 45,
+      "utdf_name": "Forest & University Drive",
+      "node_id": 7797,
+      "network_name": "East University Drive x South Forest Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 46,
+      "utdf_name": "College Avenue & University Drive",
+      "node_id": 7755,
+      "network_name": "East University Drive x South College Avenue",
+      "arms": [
+        "E",
+        "N",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 47,
+      "utdf_name": "Van Ness & University Drive",
+      "node_id": 7890,
+      "network_name": "East University Drive",
+      "arms": [
+        "E",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 48,
+      "utdf_name": "Packard Dr & 6th Street",
+      "node_id": 344,
+      "network_name": "East 6th Street x South Packard Drive",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 49,
+      "utdf_name": "Rural Road & University Drive",
+      "node_id": 7915,
+      "network_name": "East University Drive x South Rural Road",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 52,
+      "utdf_name": "Normal Ave & Apache Boulevard",
+      "node_id": 7909,
+      "network_name": "East Apache Boulevard x South Normal Avenue",
+      "arms": [
+        "E",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SEB",
+        "in_link_10877",
+        "in_link_10880",
+        "in_link_15202",
+        "in_link_15203"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NWB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 48
+    },
+    {
+      "utdf_intid": 54,
+      "utdf_name": "Paseo Del Saber & Apache Boulevard",
+      "node_id": 7913,
+      "network_name": "East Apache Boulevard",
+      "arms": [
+        "E",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 56,
+      "utdf_name": "Hayden Ferry & Rio Salado Parkway",
+      "node_id": 7842,
+      "network_name": "East Rio Salado Parkway",
+      "arms": [
+        "E",
+        "SW"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 58,
+      "utdf_name": "MH West & Rio Salado Parkway",
+      "node_id": 5128,
+      "network_name": "East Rio Salado Parkway",
+      "arms": [
+        "SE",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 59,
+      "utdf_name": "MH East & Rio Salado Parkway",
+      "node_id": 7938,
+      "network_name": "East Rio Salado Parkway",
+      "arms": [
+        "E",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 60,
+      "utdf_name": "Mill Avenue & 10th Street",
+      "node_id": 7766,
+      "network_name": "East 10th Street x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 62,
+      "utdf_name": "McAllister Avenue & Terrace Road",
+      "node_id": 7037,
+      "network_name": "South McAllister Avenue",
+      "arms": [
+        "N",
+        "S"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20,
+      "match_note": "Terrace Road is visible on the image but not connected to this node in the network, so only the McAllister Avenue approaches are traced."
+    },
+    {
+      "utdf_intid": 63,
+      "utdf_name": "Rural Road & Terrace Road",
+      "node_id": 6462,
+      "network_name": "South Rural Road",
+      "arms": [
+        "N",
+        "S"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20,
+      "match_note": "Terrace Road is not connected to this node in the network, so only the Rural Road approaches are traced."
+    },
+    {
+      "utdf_intid": 64,
+      "utdf_name": "Rural Road & Lemon Street",
+      "node_id": 6458,
+      "network_name": "East Lemon Street x South Rural Road",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 65,
+      "utdf_name": "Ped Crossing",
+      "node_id": 7036,
+      "network_name": "South McAllister Avenue",
+      "arms": [
+        "NE",
+        "SW"
+      ],
+      "approaches": [
+        "in_NB"
+      ],
+      "exits": [
+        "out_NB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 10,
+      "match_note": "Mid-block pedestrian crossing: two road arms."
+    },
+    {
+      "utdf_intid": 71,
+      "utdf_name": "Mill Avenue",
+      "node_id": 7834,
+      "network_name": "East 13th Street x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 72,
+      "utdf_name": "Apache Boulevard",
+      "node_id": 7820,
+      "network_name": "East Apache Boulevard x South Mill Avenue",
+      "arms": [
+        "N",
+        "S",
+        "SE"
+      ],
+      "approaches": [
+        "in_NEB",
+        "in_NWB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 24
+    },
+    {
+      "utdf_intid": 73,
+      "utdf_name": "Forest & Apache Boulevard",
+      "node_id": 7746,
+      "network_name": "East Apache Boulevard x South Forest Avenue",
+      "arms": [
+        "E",
+        "N",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30,
+      "match_note": "UTDF joins two offset T-junctions into one node: Forest Avenue (north) meets Apache Boulevard at node 7746, analysed here; the leg from the south meets it at node 7833, 11 m from the UTDF position."
+    },
+    {
+      "utdf_intid": 74,
+      "utdf_name": "College Avenue & Apache Boulevard",
+      "node_id": 7816,
+      "network_name": "East Apache Boulevard x South College Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 34
+    },
+    {
+      "utdf_intid": 75,
+      "utdf_name": "McAllister Avenue & Apache Boulevard",
+      "node_id": 7789,
+      "network_name": "East Apache Boulevard x South McAllister Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 76,
+      "utdf_name": "Rural Road & Apache Boulevard",
+      "node_id": 7735,
+      "network_name": "East Apache Boulevard x South Rural Road",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 82,
+      "utdf_name": "Rural Road & Spence Ave",
+      "node_id": 6576,
+      "network_name": "East Spence Avenue x South Rural Road",
+      "arms": [
+        "E",
+        "N",
+        "S"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 201,
+      "utdf_name": "Mill Avenue",
+      "node_id": 7905,
+      "network_name": "East Apache Boulevard x South Mill Avenue",
+      "arms": [
+        "N",
+        "S"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_link_12967",
+        "out_link_15478"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 26
+    },
+    {
+      "utdf_intid": 511,
+      "utdf_name": "Mill Avenue & 3rd Street",
+      "node_id": 7906,
+      "network_name": "East 3rd Street x South Mill Avenue",
+      "arms": [
+        "E",
+        "N",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 512,
+      "utdf_name": "College Avenue & 5th Street",
+      "node_id": 7902,
+      "network_name": "East 5th Street x East Veterans Way",
+      "arms": [
+        "E",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 513,
+      "utdf_name": "Veterans Ped Cross & Veterans Way",
+      "node_id": 7866,
+      "network_name": "East Veterans Way",
+      "arms": [
+        "NW",
+        "SE"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 514,
+      "utdf_name": "ASU Ped #2",
+      "node_id": 4668,
+      "network_name": "East Veterans Way",
+      "arms": [
+        "NW",
+        "SE"
+      ],
+      "approaches": [
+        "in_WB"
+      ],
+      "exits": [
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 10,
+      "match_note": "Mid-block pedestrian crossing: two road arms."
+    },
+    {
+      "utdf_intid": 515,
+      "utdf_name": "6th Street & Veterans Way",
+      "node_id": 7865,
+      "network_name": "East 6th Street x East Veterans Way",
+      "arms": [
+        "N",
+        "SE",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 516,
+      "utdf_name": "McAllister Avenue & University Drive",
+      "node_id": 5877,
+      "network_name": "East University Drive x East Veterans Way",
+      "arms": [
+        "E",
+        "NW",
+        "S",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 517,
+      "utdf_name": "Rural Road & Tyler Street",
+      "node_id": 7897,
+      "network_name": "South Rural Road x South Terrace Road",
+      "arms": [
+        "N",
+        "S",
+        "SE"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_NWB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    },
+    {
+      "utdf_intid": 519,
+      "utdf_name": "Terrace Road",
+      "node_id": 4655,
+      "network_name": "South Terrace Road",
+      "arms": [
+        "NW",
+        "SE"
+      ],
+      "approaches": [
+        "in_SB"
+      ],
+      "exits": [
+        "out_EB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 10,
+      "match_note": "Mid-block point on Terrace Road; the driveway and pedestrian legs in UTDF are not in the network."
+    },
+    {
+      "utdf_intid": 520,
+      "utdf_name": "Lemon Street",
+      "node_id": 7806,
+      "network_name": "East Lemon Street x South Terrace Road",
+      "arms": [
+        "E",
+        "NW",
+        "SE",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 40
+    },
+    {
+      "utdf_intid": 5278,
+      "utdf_name": "Apache Boulevard",
+      "node_id": 973,
+      "network_name": "East 13th Street x East Apache Boulevard",
+      "arms": [
+        "E",
+        "NE",
+        "NW",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20,
+      "match_note": "Matched by net2cell_utdf to node 5314, a residential street 82 m away. The UTDF position is 11 m from node 973, where Apache Boulevard, 13th Street and the connector between them meet."
+    },
+    {
+      "utdf_intid": 5281,
+      "utdf_name": "Mill Avenue",
+      "node_id": 7900,
+      "network_name": "South Mill Avenue",
+      "arms": [
+        "N",
+        "S"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SB"
+      ],
+      "exits": [
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 5293,
+      "utdf_name": "13th Street",
+      "node_id": 7687,
+      "network_name": "East 13th Street",
+      "arms": [
+        "E",
+        "W"
+      ],
+      "approaches": [
+        "in_EB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_WB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 20
+    },
+    {
+      "utdf_intid": 7054,
+      "utdf_name": "Lemon Street",
+      "node_id": 2068,
+      "network_name": "East Lemon Street x South McAllister Avenue",
+      "arms": [
+        "E",
+        "NE",
+        "SW"
+      ],
+      "approaches": [
+        "in_NB",
+        "in_SB",
+        "in_WB"
+      ],
+      "exits": [
+        "out_EB",
+        "out_NB",
+        "out_SB"
+      ],
+      "all_crops_inside_image": true,
+      "street_view_images_max": 30
+    }
+  ],
+  "utdf_overrides": "configs/utdf_node_overrides.json applied; original list in asu_utdf_sites.original.json"
+}

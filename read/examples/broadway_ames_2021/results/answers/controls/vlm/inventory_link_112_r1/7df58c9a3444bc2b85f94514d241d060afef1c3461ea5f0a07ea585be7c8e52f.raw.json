@@ -1,0 +1,55 @@
+{
+  "response": {
+    "observations": [
+      "gsv_control_link_112_2313b6b71a (2020-11, station +1.4 m) is the clearest front-facing view of the far-side mast arm: the arm extends left from a far-right corner pole over the westbound roadway and carries three vehicle heads facing the camera. Leftmost head shows a lit red lamp whose shape (circle vs arrow) is not resolvable; middle head shows a lit green upward arrow (YOLO traffic-light proposal); right head (nearest the pole) shows a lit green upward arrow, any other indications unresolved.",
+      "gsv_control_link_112_c28aca3e20 (2020-11, station -9.3 m) shows the same far-side mast arm and heads at smaller size (YOLO box = leftmost head), plus a near-right corner pole whose mast arm runs diagonally away from the camera; heads on that near arm and on the near-right pole are seen side-on or from behind, so their faces cannot be read and they likely face a crossing road.",
+      "In c28aca3e20 a small pedestrian-style head with a red/orange lit display stands on the right sidewalk beyond the near-right pole; symbol not resolvable. A white sign is cut off at the right frame edge near the bottom of the near-right pole; unreadable.",
+      "In 2313b6b71a a small red/orange diamond-like sign (the YOLO 'stop sign' proposal) stands on the far right sidewalk beyond the crosswalk; its shape and text are not resolvable and it may not be a stop sign. A white sign with a dark arrow-like symbol stands in the planted median on the left beyond the crosswalk; symbol and facing unclear.",
+      "A thin horizontal object on a vertical stalk above the far mast arm in 2313b6b71a is seen edge-on (possibly a sign blade or luminaire); not readable.",
+      "No lane-use arrow signs or turn-restriction text facing the westbound approach are readable at this resolution."
+    ],
+    "detail_requests": [
+      {
+        "source_id": "gsv_control_link_112_2313b6b71a",
+        "bbox_xyxy": [
+          243,
+          313,
+          273,
+          357
+        ],
+        "question": "Leftmost head on the far-side mast arm: is the lit red indication a circular ball or a left-turn arrow, and what are the unlit lens symbols?"
+      },
+      {
+        "source_id": "gsv_control_link_112_2313b6b71a",
+        "bbox_xyxy": [
+          388,
+          319,
+          419,
+          361
+        ],
+        "question": "Head nearest the far-right pole: confirm the green arrow direction(s) and check for any additional arrow or sign mounted beside it."
+      },
+      {
+        "source_id": "gsv_control_link_112_2313b6b71a",
+        "bbox_xyxy": [
+          351,
+          428,
+          370,
+          451
+        ],
+        "question": "Red/orange sign on the far right sidewalk (YOLO stop-sign proposal): shape, text, and whether it faces the westbound approach."
+      },
+      {
+        "source_id": "gsv_control_link_112_2313b6b71a",
+        "bbox_xyxy": [
+          226,
+          420,
+          247,
+          451
+        ],
+        "question": "White sign in the left median beyond the crosswalk: read its symbol/text (keep-right, one-way, turn restriction?) and its facing."
+      }
+    ]
+  },
+  "metadata": {}
+}

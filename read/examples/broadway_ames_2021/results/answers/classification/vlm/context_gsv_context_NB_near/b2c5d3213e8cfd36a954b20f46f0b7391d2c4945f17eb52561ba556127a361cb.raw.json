@@ -1,0 +1,76 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "arrow",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "No pavement arrow symbols are visible anywhere on the approach pavement between the camera and the crosswalk (y~360-640). The right half of the pavement (x~250-640, y~360-520) is under heavy tree shadow, so faint or worn arrows there could be missed."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Double yellow center line directly in front of and slightly right of the camera at the bottom (x~405-475, y~580-640). It ends at a bright transverse white bar (x~390-640, y~515-590, stepped at x~520) that looks like a stop line or other transverse marking but is smeared by near-camera panorama distortion. The camera appears to stand left of the double yellow, so lanes right of it would be the NB side. This relationship is uncertain because of the distortion."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "On the right, a solid white longitudinal line runs from about (515,375) toward (640,460). A transverse white stop line at y~370-378 runs from x~510 to the right image edge, just before the crosswalk. These probably belong to the lane(s) on the right of the approach, but the number of lanes they bound cannot be read."
+      },
+      {
+        "id": "o4",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Continental (ladder) crosswalk across the approach ahead of the camera (x~170-640, y~325-355). It marks the near side of the intersection for this approach."
+      },
+      {
+        "id": "o5",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "A short green-painted pavement patch just beyond the crosswalk on the right (x~525-585, y~305-322) is consistent with a bicycle crossing or conflict marking. It sits at or inside the intersection edge, not on the approach lanes, so it may belong to a crossing bike facility. No bike-lane symbol or bike lane line is visible on the approach itself."
+      },
+      {
+        "id": "o6",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Left curb and sidewalk, with a curb extension or corner bulb at the crosswalk (x~0-200, y~290-390). A black post with a small unreadable sign stands at x~133-152, y~235-322. A parked car occupies the left curb edge at the bottom left (YOLO car x~0-85, y~384-536), which suggests curbside parking on the left at this position."
+      },
+      {
+        "id": "o7",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Beyond the near crosswalk: an open intersection area with dashed/dotted guide marks (y~285-305) and a crosswalk across the cross street on the far left (x~150-240, y~278-300). These are crossing or outgoing pavement, not the target approach."
+      },
+      {
+        "id": "o8",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Signal heads on a mast arm at upper right (x~560-612, y~170-203) and on far-side poles/arm near the center (x~270-290, y~195-215; x~380-400, y~205-225). No lane-use or turn-restriction signs are readable on them."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Strong tree shadows cover most of the right side of the approach pavement (x~250-640, y~360-520). Near-camera panorama distortion smears the bottom markings (y>500). Together they limit marking visibility."
+      }
+    ],
+    "notes": [
+      "No turn or through arrows are visible, so no lane-use designation can be read from this view.",
+      "A total lane count is not determinable from this view. The camera's position relative to the double yellow (camera apparently left of it) is unusual and may reflect the capture vehicle's lane or panorama distortion; treat the side assignment as uncertain.",
+      "No rail tracks or bus-lane markings are visible.",
+      "Imagery dated 2020-11; it cannot confirm the current layout."
+    ]
+  },
+  "metadata": {}
+}

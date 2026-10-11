@@ -1,0 +1,21 @@
+{
+  "response": {
+    "issue_responses": [
+      {
+        "issue": "narrow_region_check_facility:r3:fadfe2fd",
+        "decision": "dismiss",
+        "reason": "r3 is a real narrow strip. On the sunlit crop, e3 sits on a crisp solid white line (brightness peak at u~286-289 at S1, u~272 at S2) that bounds the right-turn-arrow lane r2 (arrow at u~237-275 near S1). e4 sits where the grey asphalt meets the brownish corner-sidewalk area (u~312-318 at S1, ~300 at S2), with a faint line tracked in shadow at ~u281 (S3), 263 (S4) and 252-255 (S5). Street view S shows the same layout: right of the right-turn-arrow lane is a solid white line, then a narrow leaf-covered asphalt strip with no other marking, then the kerb. The stop bar runs across that strip to the kerb. In S the strip is about 0.45-0.5 of the right-turn lane's width, matching r3/r2 = 26/56 at S1. It is a legitimately narrow edge strip (shoulder or bicycle space), not a misplaced boundary."
+      }
+    ],
+    "edits": [],
+    "verdict": "accept",
+    "notes": [
+      "Each boundary was checked against brightness profiles at every station. e2 follows the solid white lane line (peaks 231-233, 215-217, 197-200, 181-183, 165-169 at S1-S5). e3 follows the white line right of the right-turn arrow (286-289, 271-272, 253-258, 239-240, 221-223). e1 follows the median kerb: a bright kerb top ending at u~183 (S1) and ~171 (S2), then a dark gutter/kerb-shadow band, and a matching edge at ~138 (S4). All are within about 2-3 units.",
+      "Street view S: grassy raised median with kerb on the left, yellow edge line about half a metre off the kerb, the camera lane (no arrow visible), a solid white lane line, a lane with a large right-turn arrow, a solid white line, a narrow strip, then the right kerb and corner sidewalk. That is three strips between median and kerb, matching r1-r3. The projected e2/e3/e4 sit about half a lane left of the painted lines they stand for; e1 projects onto the median.",
+      "Possible refinement not applied: the yellow edge line may be the light band at about u~199-201 at S1, about 13 units right of e1. If so, r1 includes a gutter strip between the kerb and the yellow line; it is not a separate lane.",
+      "Unresolved, outside the current regions: right of e4 below the diagonal building shadow (S3-S5) is a wide dark paved area (u~280-440) with a car parked parallel to the road at u~355-390 between S3 and S4, then a raised structure with bollard-like dots at u~425-500. No kerb line shows in the shadow, so it cannot be settled from this image whether that area is a separate lay-by, parking area or plaza. The street view shows the kerb directly beyond the narrow strip near the stop bar, so no region was added.",
+      "The lower half of the crop is in deep building shadow with heavy JPEG blocking. Positions there come from faint traces in the lightened panel."
+    ]
+  },
+  "metadata": {}
+}

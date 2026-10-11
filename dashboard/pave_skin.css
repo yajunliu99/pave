@@ -1,0 +1,84 @@
+/* PAVE skin: one look for the two embedded example dashboards (Read: Intersection Explorer, Edit: scenario editor).
+   pave.html puts it into each page before the page renders, marks the page with data-pave-app="read" or "edit" and
+   adds the PAVE header (.pave-brand, .pave-rail); the dashboards' own files are not changed. The shell always sets
+   data-theme on the page, so the dark tokens key on it. pave.html also adds the stage letters (P, A, V, E) on steps
+   and tabs, from the "marks" in pave_content.json. */
+
+:root[data-pave-app]{
+  --pave-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  --pave-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --pave-bg:#f5f6f8;--pave-panel:#ffffff;--pave-panel2:#f7f8fa;--pave-chip:#f1f3f7;--pave-ink:#121620;--pave-muted:#5b6474;
+  --pave-faint:#98a1b0;--pave-line:#e1e5eb;--pave-line2:#eef0f4;--pave-accent:#3b82f6;--pave-accent-soft:#eaf2fe;--pave-accent-ink:#1d5fd1;
+  --pave-p:#3b82f6;--pave-a:#10b3a3;--pave-v:#f2a516;--pave-e:#ef5350;--pave-read:var(--pave-p);--pave-edit:var(--pave-e);--pave-radius:16px;
+  --pave-shadow:0 1px 2px rgba(18,22,32,.04),0 8px 24px rgba(18,22,32,.06);
+}
+:root[data-pave-app][data-theme="dark"]{
+  --pave-bg:#0a0c11;--pave-panel:#131821;--pave-panel2:#171d27;--pave-chip:#1a202b;--pave-ink:#e9ecf2;--pave-muted:#9aa3b2;
+  --pave-faint:#5f6878;--pave-line:#222936;--pave-line2:#1b212b;--pave-accent:#6ea2f7;--pave-accent-soft:#16233a;--pave-accent-ink:#a9c6fb;
+  --pave-shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+}
+
+/* the dashboards' own tokens, mapped onto PAVE's */
+:root[data-pave-app][data-theme]{
+  --bg:var(--pave-bg)!important;--panel:var(--pave-panel)!important;--panel2:var(--pave-panel2)!important;--ink:var(--pave-ink)!important;
+  --muted:var(--pave-muted)!important;--line:var(--pave-line)!important;--accent:var(--pave-accent)!important;
+  --accent-soft:var(--pave-accent-soft)!important;--shadow:var(--pave-shadow)!important;
+}
+:root[data-pave-app="read"][data-theme]{
+  --faint:var(--pave-faint)!important;--line2:var(--pave-line2)!important;--seg:var(--pave-chip)!important;--sel:var(--pave-accent-soft)!important;
+  --accent-ink:var(--pave-accent-ink)!important;--radius:var(--pave-radius)!important;
+  --glass:color-mix(in srgb,var(--pave-panel) 88%,transparent)!important;--glass-line:var(--pave-line)!important;
+}
+:root[data-pave-app="edit"][data-theme]{
+  --accent-ink:#ffffff!important;--focus:var(--pave-accent)!important;--canvas:var(--pave-panel)!important;--grid:var(--pave-line2)!important;
+  --mute-soft:var(--pave-chip)!important;--font:var(--pave-font)!important;--mono:var(--pave-mono)!important;
+}
+:root[data-pave-app] body{font-family:var(--pave-font);background:var(--pave-bg);-webkit-font-smoothing:antialiased}
+
+/* one header for both: eyebrow, title, one line of context; the page's own figures or request on the right;
+   below, the four harness stages as this example uses them */
+:root[data-pave-app] .top{background:var(--pave-panel)!important;border-bottom:1px solid var(--pave-line)!important;padding:16px 24px 14px!important;
+  display:flex!important;flex-wrap:wrap;align-items:center!important;justify-content:flex-start!important;gap:12px 28px!important;margin:0!important}
+.pave-brand{flex:1 1 420px;min-width:0}
+.pave-eyebrow{display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.pave-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+:root[data-pave-app="read"] .pave-eyebrow{color:var(--pave-read)}
+:root[data-pave-app="edit"] .pave-eyebrow{color:var(--pave-edit)}
+.pave-title{margin:3px 0 0;font-size:22px;font-weight:800;letter-spacing:-.015em;line-height:1.2;color:var(--pave-ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pave-chip{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--pave-muted);background:var(--pave-chip);border:1px solid var(--pave-line);border-radius:999px;padding:1px 9px}
+.pave-context{font-size:13px;line-height:1.5;color:var(--pave-muted);margin-top:4px;max-width:700px}
+.pave-rail{order:9;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--pave-panel2);border:1px solid var(--pave-line);border-radius:12px;overflow:hidden}
+.pave-stage{display:flex;align-items:center;gap:8px;padding:7px 12px;font-size:12.5px;line-height:1.35;color:var(--pave-muted);min-width:0;border-left:1px solid var(--pave-line)}
+.pave-stage:first-child{border-left:0}
+.pave-stage b{color:var(--pave-ink);font-weight:700;flex:0 0 auto}
+.pave-stage span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pave-stage i{font-style:normal;display:inline-grid;place-items:center;flex:0 0 18px;width:18px;height:18px;border-radius:6px;color:#fff;
+  font:800 10.5px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
+@media (max-width:980px){.pave-rail{grid-template-columns:1fr 1fr}.pave-stage:nth-child(3){border-left:0}.pave-stage:nth-child(n+3){border-top:1px solid var(--pave-line)}}
+@media (max-width:640px){.pave-context{display:none}.pave-rail{grid-template-columns:1fr}.pave-stage{border-left:0!important}.pave-stage+.pave-stage{border-top:1px solid var(--pave-line)}}
+
+/* Read: the Intersection Explorer's own title block gives way to the PAVE one; the map and list fill the rest */
+:root[data-pave-app="read"] .top::before,:root[data-pave-app="read"] .brand{display:none!important}
+:root[data-pave-app="read"] .metrics{margin-left:auto}
+@media (min-width:781px){:root[data-pave-app="read"] body{display:flex;flex-direction:column}
+  :root[data-pave-app="read"] .app{flex:1 1 auto;min-height:0;height:auto!important}}
+
+/* Edit: the guide-sign title gives way to the PAVE one; the request stays on the right */
+:root[data-pave-app="edit"] .wrap{max-width:none!important;padding:0 0 40px!important;gap:16px}
+:root[data-pave-app="edit"] .wrap>*:not(.top){margin-inline:24px}
+:root[data-pave-app="edit"] .signwrap{display:none!important}
+:root[data-pave-app="edit"] .headmeta{max-width:58ch;margin-left:auto}
+:root[data-pave-app="edit"] .step .t b{display:block;padding-right:22px}
+:root[data-pave-app="edit"] .step .t b::before{position:absolute;top:9px;right:9px;margin:0!important}   /* stage letter in the step's corner */
+:root[data-pave-app="edit"] .headmeta q{font-size:14.5px}
+
+/* shared components */
+:root[data-pave-app] .card{border-radius:var(--pave-radius)!important;border-color:var(--pave-line)!important;box-shadow:var(--pave-shadow)!important}
+:root[data-pave-app="edit"] .pick,:root[data-pave-app="edit"] .step{border-radius:14px!important}
+:root[data-pave-app="edit"] .pick[aria-pressed="true"],:root[data-pave-app="edit"] .step[aria-pressed="true"]{border-color:var(--pave-accent)!important;background:var(--pave-accent-soft)!important}
+:root[data-pave-app="edit"] .step[aria-pressed="true"] .n{background:var(--pave-accent)!important;border-color:var(--pave-accent)!important;color:#fff!important}
+/* segmented controls look like PAVE's own tabs: the chosen one is a raised panel */
+:root[data-pave-app="edit"] .seg{background:var(--pave-chip)!important;border-color:var(--pave-line)!important;border-radius:12px!important}
+:root[data-pave-app="edit"] .seg button{border-radius:9px!important;color:var(--pave-muted)}
+:root[data-pave-app="edit"] .seg button[aria-pressed="true"]{background:var(--pave-panel)!important;color:var(--pave-ink)!important;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+:root[data-pave-app] .mono,:root[data-pave-app] .num,:root[data-pave-app] code{font-family:var(--pave-mono)}

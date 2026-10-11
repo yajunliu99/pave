@@ -1,0 +1,92 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "arrow",
+        "observed_arrows": [
+          "right"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "A large white right-turn-only arrow (curved stem turning right, no straight branch) is painted in the lane right of the camera's lane, about 2-6 m before the stop bar (image x~465-570, y~405-525). This lane's asphalt is darker than the camera lane's."
+      },
+      {
+        "id": "o2",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "No pavement arrow is visible in the camera's own (left) lane between the bottom of the frame and the stop bar. Any marking behind the camera or under the bottom edge cannot be seen."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The left edge of the approach is a solid yellow line (image x~20-215, running from the bottom-left up to the stop bar). About half a metre left of it is a granite kerb of a raised, grass/leaf-covered median. The median ends in a rounded nose at the crosswalk, with a signal mast-arm pole and a sign post on it."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white lane line runs from the stop bar (x~380, y~375) down to the bottom edge (x~520, y~640). It separates the camera lane from the right-turn-arrow lane."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A second solid white line starts at the stop bar (x~540, y~380) and runs toward the right edge (x~640, y~440) along the right side of the right-turn-arrow lane. Right of it, a narrow leaf-covered asphalt strip continues to the right kerb and corner sidewalk. The stop bar extends across this strip toward the kerb. No bicycle symbol, colour or sign identifying the strip is visible in this frame; it is partly out of frame on the right."
+      },
+      {
+        "id": "o6",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A white stop bar crosses the approach from the median nose to near the right kerb (y~368-380), followed by a zebra crosswalk across the approach (y~310-330)."
+      },
+      {
+        "id": "o7",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Dotted white guide/extension lines inside the junction beyond the crosswalk (x~440-620, y~265-300) curve toward the right. They belong to movements through or across the intersection, not to the incoming approach's lanes."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Visible beyond the junction: crosswalks on the left and right legs, a multi-lane cross street, cars parked along the far-left kerb, and the far-side receiving road with dashed lane lines. A silver SUV (YOLO car hint at x~342-385) is on the far side/cross street. A pedestrian (YOLO person hint) is on the crosswalk in front of the approach."
+      },
+      {
+        "id": "o9",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "A row of parked bicycles (bike-share-style dock) is on the far-right corner sidewalk beyond the cross street. It is not a road facility of this approach. No rail tracks and no coloured (green) bicycle-lane paint are visible on the incoming approach."
+      },
+      {
+        "id": "o10",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "The sign on the median-nose post is seen from behind (blank grey back) and cannot be read. A small sign on the far-right corner pole (x~615, y~255-275) is too small to read. No readable lane-use or turn-restriction sign is visible."
+      },
+      {
+        "id": "o11",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Fallen leaves cover the gutters and parts of the markings. The narrow strip right of the right-turn lane is cut off by the right image edge. The pedestrian hides part of the crosswalk. Otherwise the approach pavement up to the stop bar is unobstructed."
+      }
+    ],
+    "notes": [
+      "The view is a single forward frame about 28 m from the junction centre and roughly 8-10 m before the stop bar. It shows only this cross-section and the stop-bar area; markings behind the camera are not visible.",
+      "At this position the approach shows two motor-vehicle-width lanes between the yellow median edge line and the right solid white line (left lane with no visible arrow; right lane with a right-turn arrow), plus a narrow strip to the right kerb whose purpose is not marked in view. This is a local description, not a lane count for the stop bar.",
+      "Signal indications and vehicle movements were not used as evidence of permitted movements.",
+      "Capture date given as 2020-11; the layout may have changed since."
+    ]
+  },
+  "metadata": {}
+}

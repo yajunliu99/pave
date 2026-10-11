@@ -1,0 +1,508 @@
+{
+  "schema_version": 1,
+  "pilot_id": "site_95",
+  "node_id": 95,
+  "name": "Ames Street x Broadway",
+  "network": {
+    "link_csv": "data/cambridge_kendall_2021/link.csv",
+    "node_csv": "data/cambridge_kendall_2021/node.csv"
+  },
+  "vlm": {
+    "preset": "default",
+    "max_tokens": 6144,
+    "temperature": 0.0
+  },
+  "yolo": {
+    "weights": "~/.cache/net2cell-vlm/weights/yolo26n.pt",
+    "expected_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "device": "cpu",
+    "imgsz": 1280,
+    "confidence": 0.25,
+    "high_bbox_coverage": 0.25,
+    "occluder_classes": [
+      "car",
+      "truck",
+      "bus",
+      "motorcycle",
+      "bicycle",
+      "person"
+    ]
+  },
+  "inference_mode": "visual_evidence",
+  "sources": {
+    "satellite": {
+      "kind": "image",
+      "path": "cache/mapbox_sites/51bf8318f815bcef5dd825560827faebd3a1afdaf5e7d728fea5a7810cf0f8ee.jpg",
+      "role": "satellite",
+      "capture_date": "2021",
+      "date_status": "provider_reported",
+      "provider": "MassGIS 2021 statewide orthoimagery (15 cm)",
+      "date_note": "spring 2021, leaf-off",
+      "attribution": "MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts",
+      "georeference": {
+        "kind": "viewport",
+        "viewport": {
+          "width": 2560,
+          "height": 2560,
+          "mercator_bounds": [
+            -7913508.371012691,
+            5215566.73125426,
+            -7913317.278441979,
+            5215757.823824973
+          ],
+          "provenance": "mapbox_static_centre_zoom: zoom 19, 512 px tiles, @2x; imagery alignment itself unverified",
+          "absolute_error_m": null
+        },
+        "ground_mpp": 0.0551540061766233
+      }
+    },
+    "gsv_EB_near_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "EB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 28.16,
+      "view_settings": {
+        "pitch": -12,
+        "fov": 90,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "hRVL8qhrNI-JfNB6FQeqGw",
+      "actual_lat": 42.3640552327385,
+      "actual_lon": -71.08773296058679,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 120.243,
+      "path": "cache/gsv_lanes/images/fef9001740cd20bf8773981a748e7430515e699360dbf540246ca764dfdae300.jpg",
+      "image_sha256": "2358442f5516fc793a7ff9e917c12045726f5fc5cce7a1f445ba5e3c44d6a9ff",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 2.664431439363026,
+      "copyright": "© Google"
+    },
+    "gsv_EB_near_look_back": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "EB",
+      "reverse_view": true,
+      "camera_role": "reverse_auxiliary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 28.16,
+      "view_settings": {
+        "pitch": -12,
+        "fov": 90,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "hRVL8qhrNI-JfNB6FQeqGw",
+      "actual_lat": 42.3640552327385,
+      "actual_lon": -71.08773296058679,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 300.243,
+      "path": "cache/gsv_lanes/images/ae705cfe6dc805815791ed61bebe5af75a11656d56831b463fca4d9070f1f3c6.jpg",
+      "image_sha256": "6538f0e4756adfdca5a68487c782ca81899d992106e8dbb92f29247ed1321f2b",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 2.664431439363026,
+      "copyright": "© Google"
+    },
+    "gsv_EB_mid_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "EB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "distance_to_center_m": 49.83,
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "kD7P5QIM1p11ulUllRiVMA",
+      "actual_lat": 42.36415161759155,
+      "actual_lon": -71.08797034138243,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 120.243,
+      "path": "cache/gsv_lanes/images/9b3f915a06e22c0f13cf826d049435903e63cb7860c19930be3289dcc8036089.jpg",
+      "image_sha256": "e2cde2743ef724c3372f85521f7109cfdadcf3502fee158b567a68e33714b9a0",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 2.6981178690549563,
+      "copyright": "© Google"
+    },
+    "gsv_EB_far_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "EB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "distance_to_center_m": 101.36,
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "LjNle9ec1QCAD6L80QWp6Q",
+      "actual_lat": 42.36437665272493,
+      "actual_lon": -71.08852462227891,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 126.175,
+      "path": "cache/gsv_lanes/images/57a9b360d65cbb9142907674fdf4c0a19f519aad711185934371b679f03dffd7.jpg",
+      "image_sha256": "c6d7dc4cbcf53260acde8dbcd9fb8b5646d61ae4138876beeda64702ebdbf769",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 4.6726606680490494,
+      "copyright": "© Google"
+    },
+    "gsv_NB_near_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "NB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 29.57,
+      "view_settings": {
+        "pitch": -12,
+        "fov": 90,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+      "actual_lat": 42.36378741658628,
+      "actual_lon": -71.08760828574351,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 29.503,
+      "path": "cache/gsv_lanes/images/681937525fff151a5974a5fba62d0f8b8703a0f0ff736d328f03bd5e47499579.jpg",
+      "image_sha256": "61e30febc3541586f9fa56053a15162b49f71a55e49965c461ffba06dbfd3bf7",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 5.647725199866868,
+      "copyright": "© Google"
+    },
+    "gsv_NB_near_look_back": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "NB",
+      "reverse_view": true,
+      "camera_role": "reverse_auxiliary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 29.57,
+      "view_settings": {
+        "pitch": -12,
+        "fov": 90,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+      "actual_lat": 42.36378741658628,
+      "actual_lon": -71.08760828574351,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 209.503,
+      "path": "cache/gsv_lanes/images/218b0d775c8cadbe1914d6408fcd081cb093f7a0a7eea878061d454520dbdd11.jpg",
+      "image_sha256": "0fb133be8386a5b49192862ae3839a2cda56ce1d3706825da50753b8f176d9aa",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 5.647725199866868,
+      "copyright": "© Google"
+    },
+    "gsv_NB_mid_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "NB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "distance_to_center_m": 59.36,
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "pftZedWg5jk2t7Cj1rGcMA",
+      "actual_lat": 42.36356229722824,
+      "actual_lon": -71.08780658673079,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 29.385,
+      "path": "cache/gsv_lanes/images/70ede28bf310bf96feab51ac21a7da5dfb986539d4f633f3fa6ffc1f870eb1c5.jpg",
+      "image_sha256": "5fc8a6cffcb9f6af84114697507228927de0f4e51f9ca4e1c0d254fdc5b39ace",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 10.71822767103808,
+      "copyright": "© Google"
+    },
+    "gsv_NB_far_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "NB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "distance_to_center_m": 113.12,
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "RBEaUL-rnmXBTNCOeg0w9w",
+      "actual_lat": 42.36312827802712,
+      "actual_lon": -71.08810408336612,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 26.826,
+      "path": "cache/gsv_lanes/images/8befed492d53a2f6dc672d805f11216746f808df7fca4b0ef44e877ccfa296f5.jpg",
+      "image_sha256": "37977bef6880a8754c1325e4fbf4d991ad507ab0605805829c1530fb045539da",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 13.819898819676814,
+      "copyright": "© Google"
+    },
+    "gsv_WB_near_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "WB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 23.48,
+      "view_settings": {
+        "pitch": -12,
+        "fov": 90,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "uhFChog3QwBpKqKx650Sug",
+      "actual_lat": 42.36390661675459,
+      "actual_lon": -71.08714222817173,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 300.314,
+      "path": "cache/gsv_lanes/images/2da60a01943a49efaaa3bc9dc2bbe30614d95c459b50d3c138ed72734b023712.jpg",
+      "image_sha256": "5738e574ce8e556a6c6ee17e2bfc1fc85cd15455f35a51a0da58e9c727297ee6",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 2.639113498615217,
+      "copyright": "© Google"
+    },
+    "gsv_WB_near_look_back": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "WB",
+      "reverse_view": true,
+      "camera_role": "reverse_auxiliary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 23.48,
+      "view_settings": {
+        "pitch": -12,
+        "fov": 90,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "uhFChog3QwBpKqKx650Sug",
+      "actual_lat": 42.36390661675459,
+      "actual_lon": -71.08714222817173,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 120.314,
+      "path": "cache/gsv_lanes/images/2e596d495297cb2a17944598ef05b407f6593523b27cf2c9d54b05a00b9a8f1e.jpg",
+      "image_sha256": "6e515dea9e713f6865db733b31e73bcf00bf684c4fc7b223f9afba7948ba2b71",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 2.639113498615217,
+      "copyright": "© Google"
+    },
+    "gsv_WB_mid_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "WB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "distance_to_center_m": 55.56,
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "lzsK1P01E2cICP8hIN7rww",
+      "actual_lat": 42.3637682820962,
+      "actual_lon": -71.08679875971961,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 300.314,
+      "path": "cache/gsv_lanes/images/a20132479abdab79f9cbb798debd7f8b3e9fdb9548331ef8a1171959869ba29d.jpg",
+      "image_sha256": "6d2cd46386e54685a13d39c5b2d35ee12d5984eccbcea87a3fa8e917e1cefbbe",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 5.7989227337318425,
+      "copyright": "© Google"
+    },
+    "gsv_WB_far_forward": {
+      "kind": "image",
+      "role": "gsv",
+      "direction": "WB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "distance_to_center_m": 103.84,
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          640,
+          640
+        ]
+      },
+      "pano_id": "o4yBx0whdlDVUd5WmnUFyg",
+      "actual_lat": 42.36355541716062,
+      "actual_lon": -71.08628527928168,
+      "capture_date": "2020-11",
+      "compass_heading_deg": 299.512,
+      "path": "cache/gsv_lanes/images/79074a2d347dec8adc0e66d16c34e94e88554f057f171f1a93228496f66e5e2b.jpg",
+      "image_sha256": "156090f262c8d422778a7dd36150ed87f83957046749517725fa5acb4cb6173f",
+      "image_origin": "official_static_street_view",
+      "request_snap_distance_m": 4.16551884872172,
+      "copyright": "© Google"
+    }
+  },
+  "sections": [],
+  "gsv_views": [],
+  "context_views": [
+    {
+      "id": "gsv_context_EB_near",
+      "source_id": "gsv_EB_near_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_EB_mid",
+      "source_id": "gsv_EB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_EB_far",
+      "source_id": "gsv_EB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "far"
+    },
+    {
+      "id": "gsv_context_NB_near",
+      "source_id": "gsv_NB_near_forward",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_NB_mid",
+      "source_id": "gsv_NB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_NB_far",
+      "source_id": "gsv_NB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "far"
+    },
+    {
+      "id": "gsv_context_WB_near",
+      "source_id": "gsv_WB_near_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_WB_mid",
+      "source_id": "gsv_WB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_WB_far",
+      "source_id": "gsv_WB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "far"
+    }
+  ],
+  "gsv_sampling": {
+    "center_lat_lon": [
+      42.3640032,
+      -71.0873969
+    ],
+    "positions": {
+      "near": {
+        "target_m": 25,
+        "allowed_distance_m": [
+          15,
+          40
+        ]
+      },
+      "mid": {
+        "target_m": 50,
+        "allowed_distance_m": [
+          40,
+          65
+        ]
+      },
+      "far": {
+        "target_m": 100,
+        "allowed_distance_m": [
+          80,
+          120
+        ]
+      }
+    },
+    "minimum_position_separation_m": 10.0,
+    "missing": []
+  },
+  "geometry_checks": {
+    "merged_width_ratio": 1.65,
+    "minimum_motor_width_ratio": 0.65,
+    "straight_review_lane_widths": 0.65,
+    "straight_hard_lane_widths": 1.5,
+    "straight_review_angle_deg": 8
+  },
+  "reference": {
+    "status": "withheld_from_inference",
+    "file": null
+  },
+  "far_upstream": {
+    "status": "context_views_only_not_full_lane_crosssections"
+  }
+}

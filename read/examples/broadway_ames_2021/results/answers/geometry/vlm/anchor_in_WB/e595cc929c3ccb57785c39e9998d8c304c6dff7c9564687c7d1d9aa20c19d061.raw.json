@@ -1,0 +1,26 @@
+{
+  "response": {
+    "stop_line": {
+      "y": 843,
+      "kind": "stop_bar",
+      "evidence": "White transverse stop bar at y~839-848 starting at x~330 and running right past x~396; a white car stands on it at x~405-432 (y~795-860). It lies ~50 px upstream of the crosswalk (stripes y~737-792)."
+    },
+    "cross_sections": [
+      {
+        "y": 846,
+        "left_x": 330,
+        "right_x": 498,
+        "evidence": "Left limit: left end of the stop bar, on the line at x~330-334 that separates the target lanes from the opposing lanes (left-turn arrow sits just right of it). Right limit: kerb estimated at x~495-500, where the road edge is seen in the sunlit parts up- and downstream; at this row it is in shadow. Inside: solid white line x~393, solid white line x~455-458 with a ~45 px strip to the kerb (likely bicycle lane)."
+      },
+      {
+        "y": 1296,
+        "left_x": 332,
+        "right_x": 500,
+        "evidence": "Left limit: faint line at x~330-334 (in the sunlit part at y~1530-1630 it reads as a slightly yellowish line at x~334). Right limit: kerb at x~500 (bright kerb edge visible in sun at y~1450-1630, sidewalk x~500-525, planting beyond). Lane lines in between at x~393 (solid) and x~455 (solid); left-turn arrows at x~350-380 (y~940-975 and ~1380-1415) in lane x~333-393, small straight arrows at x~420-425 in lane x~393-455."
+      }
+    ],
+    "confidence": "medium",
+    "notes": "Most of the approach lies in a deep building shadow; lines were found with contrast enhancement and column brightness profiles. The strip between the solid line at x~455 and the kerb at ~500 has no visible arrows and looks like a bicycle lane; it is included only because the requested right limit is the kerb (if the pipeline wants motor lanes only, the right edge is x~455). Left of the target there are two opposing lanes (x~216-330, faint dashed divider ~278), a double line at x~188/216 and parked cars near x~150-190. The dashed network centre line (x~425) runs through the middle of the target lanes, not on the painted centre line."
+  },
+  "metadata": {}
+}

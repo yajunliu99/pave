@@ -1,0 +1,21 @@
+# credentials
+/.env
+
+# run folders, exported results and the built dashboard (they hold imagery)
+/runs/
+/results/
+/experiments/
+/cache/
+/data/
+dashboard/intersection_explorer.html
+
+# model weights and tool settings
+*.pt
+/Ultralytics/
+
+# Python and OS
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store

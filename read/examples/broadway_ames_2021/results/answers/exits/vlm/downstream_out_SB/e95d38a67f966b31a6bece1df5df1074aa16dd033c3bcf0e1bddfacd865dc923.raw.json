@@ -1,0 +1,113 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Satellite (spring 2021, after the target window; geometry only): r1's left edge follows the bright centre line, with the opposing approach's turn arrows beyond it. Its left ~3.5 m is unmarked asphalt with nothing in it. Its right ~2 m holds three cars parked end to end along the kerb, beyond which are sidewalk/plaza and buildings. Street views, all 2020-11 and inside the target window: (1) 29.7 m, away and toward headings of one panorama. The camera is on the SB side (double yellow line on its left when facing away from the junction). It shows one SB travel lane, then a solid white edge line, then cars parked at the right kerb (a Mini and a van), then the sidewalk. (2) 59.5 m, one panorama. Facing away, the single SB lane runs straight to the granite kerb and brick sidewalk, with no parking line. Facing toward the junction, a white parking edge line begins just ahead of the camera, with a car parked beyond it near the junction. So the parking strip in r1 starts between about 60 m and the junction. (3) 113.4 m: despite the metadata, this camera is on the opposing NB carriageway. The double yellow line is on its right facing away, oncoming cars are in its lane, and NB bike-lane/buffer markings are on its right facing toward. Across the centre line it shows a single SB lane with an oncoming sedan, so it supports one SB lane but not r1's exact extent. Conclusion: r1 is real roadway carrying one SB motor lane. However, its right ~2 m (about 36% of its 5.5 m width) is a kerbside parking lane, not travel pavement; a split there would give one motor lane plus shoulder_or_parking. No arrows are visible on the receiving lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_SB",
+            "bbox_xyxy": [
+              0.354,
+              0.352,
+              0.52,
+              0.578
+            ],
+            "finding": "centre line along r1's left edge"
+          },
+          {
+            "source_id": "scene_out_SB",
+            "bbox_xyxy": [
+              0.46,
+              0.296,
+              0.706,
+              0.623
+            ],
+            "finding": "row of parked cars in the right ~2 m of r1 along the kerb"
+          },
+          {
+            "source_id": "gsv_out_SB_025_away",
+            "bbox_xyxy": [
+              0.24,
+              0.42,
+              0.53,
+              1.0
+            ],
+            "finding": "double yellow centre line on the camera's left (camera on SB side)"
+          },
+          {
+            "source_id": "gsv_out_SB_025_away",
+            "bbox_xyxy": [
+              0.37,
+              0.45,
+              0.9,
+              1.0
+            ],
+            "finding": "single SB travel lane between the centre line and the white edge line"
+          },
+          {
+            "source_id": "gsv_out_SB_025_away",
+            "bbox_xyxy": [
+              0.62,
+              0.44,
+              1.0,
+              0.85
+            ],
+            "finding": "white parking edge line with cars parked at the right kerb"
+          },
+          {
+            "source_id": "gsv_out_SB_050_toward",
+            "bbox_xyxy": [
+              0.28,
+              0.45,
+              0.49,
+              0.62
+            ],
+            "finding": "parking edge line beginning just ahead of the 59.5 m camera"
+          },
+          {
+            "source_id": "gsv_out_SB_050_toward",
+            "bbox_xyxy": [
+              0.44,
+              0.41,
+              0.49,
+              0.46
+            ],
+            "finding": "car parked at the kerb beyond the edge line, toward the junction"
+          },
+          {
+            "source_id": "gsv_out_SB_050_away",
+            "bbox_xyxy": [
+              0.45,
+              0.42,
+              1.0,
+              1.0
+            ],
+            "finding": "single SB lane running directly to the granite kerb downstream, no parking line"
+          },
+          {
+            "source_id": "gsv_out_SB_100_toward",
+            "bbox_xyxy": [
+              0.0,
+              0.41,
+              0.4,
+              0.95
+            ],
+            "finding": "across the double yellow line from the opposing-side camera: one SB lane with an oncoming car"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "Temporal basis: all six street views are 2020-11, inside the target window, and give the direct confirmation: one SB travel lane, with kerbside parking near the junction. The spring-2021 satellite is later context; it shows the same arrangement (cars parked in r1's right part), so no change between the dates is evident.",
+      "The two headings at each street-view location come from one panorama, so there are three original street-view sources at 29.7 m, 59.5 m and 113.4 m. The 113.4 m panorama is on the opposing carriageway, contrary to its 'nominal outgoing side' metadata, and supports the target only across the centre line.",
+      "r1's width (5.5 m) covers the travel lane plus the parking strip; only the left ~3.5 m is motor travel pavement."
+    ]
+  },
+  "metadata": {}
+}

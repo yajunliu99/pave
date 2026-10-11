@@ -1,0 +1,89 @@
+{
+  "response": {
+    "boundaries": [
+      {
+        "xs": [
+          127,
+          131,
+          138,
+          143,
+          150
+        ],
+        "kind": "centre_or_median_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S2",
+          "S5"
+        ],
+        "evidence": "Faint, continuous light longitudinal line (much weaker than the white lines; colour unreliable in the stretched shadow). It lines up with the right end of the opposing-direction stop bar (bar spans x~80-148 at y~1155 px), and the opposing lanes with their arrows (x~50 and x~110 near S4) lie to its left, so it is taken as the left limit of the target carriageway. Very weak at S2; at S5 it is lost in a lighter mottled patch and is placed from the stop-bar end."
+      },
+      {
+        "xs": [
+          173,
+          176,
+          184,
+          190,
+          196
+        ],
+        "kind": "unknown",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S5"
+        ],
+        "evidence": "A second faint continuous light streak, parallel to the centre-line candidate and about 45 crop units to its right, visible as a weak but consistent brightness ridge from S1 to S4. Could be a worn lane line or a wheel-track wear streak; at S5 it disappears into the lighter patch, value extrapolated."
+      },
+      {
+        "xs": [
+          238,
+          244,
+          250,
+          256,
+          268
+        ],
+        "kind": "lane_line",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Clear solid white line running the full crop height to the crosswalk; left line of a pair of parallel lines about 25-32 crop units apart."
+      },
+      {
+        "xs": [
+          264,
+          271,
+          278,
+          285,
+          298
+        ],
+        "kind": "lane_line",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Clear solid white line, right line of the parallel pair; the narrow strip between this pair (roughly 1.5-1.9 m judging by car and crosswalk size) could be a bicycle lane or buffer. A car sits just right of it at S1 but does not hide it."
+      },
+      {
+        "xs": [
+          370,
+          378,
+          384,
+          390,
+          336
+        ],
+        "kind": "kerb_or_pavement_edge",
+        "visibility": "partial",
+        "interpolated_stations": [],
+        "evidence": "Soft dark-to-light transition from the dark road surface to a lighter paved band (sidewalk) from S1 to S4; no crisp kerb line. Near the junction (below about y~1170 px) the lighter surface steps in to x~335, where the crosswalk bars also stop (last bar ends near x~328), suggesting a kerb extension; the S5 value follows that edge."
+      }
+    ],
+    "partial_strips": [
+      "An unmarked darker strip about 40-50 crop units wide (roughly x~335-390) runs along the right kerb from the top of the crop down to about y~1170 px (between S4 and S5), where the lighter kerb-extension/sidewalk surface replaces it; no painted line separates it from the surface to its left, so it is contained inside the strip between the right line of the pair and the kerb at S1-S4.",
+      "Left of the centre-line candidate are opposing-direction lanes (lines at x~0-15 and x~60-80, a stop bar and arrows), excluded."
+    ],
+    "cannot_determine": [
+      "Whether the faint line at x~127-150 is really the centre line; it is very weak in the shadow and its colour cannot be judged, the main support is that the opposing stop bar ends there.",
+      "Whether the faint streak at x~173-196 is a worn lane line or only wear on the road surface; if it is not a line, the strip from the centre line to x~238-268 is about 110 crop units (~6 m) wide with no other visible line.",
+      "The function of the narrow strip between the paired lines at x~238-298 (bicycle lane, buffer or painted median) cannot be read from the image.",
+      "The strip from x~264-298 to the kerb is about 100 crop units (~5.5-6 m) wide with no visible internal line at S1-S4; it may combine a travel lane and an unmarked parking/loading strip.",
+      "The kerb edge is a soft tonal edge, not a visible kerb line; position uncertain by about 5-8 crop units. The kerb-extension reading at S5 is inferred from the lighter surface and the end of the crosswalk.",
+      "Right of the kerb, large white elongated objects lie at an angle to the road (possibly large vehicles or rooftop features of a leaning building); they are outside the carriageway and do not affect the traced boundaries."
+    ]
+  },
+  "metadata": {}
+}

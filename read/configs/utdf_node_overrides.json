@@ -1,0 +1,42 @@
+{
+  "about": "Decisions on UTDF intersections whose node match in net2cell_utdf/build/movements/movement_utdf.csv was flagged by scripts/pipeline/audit_utdf_matches.py (results/reviews/utdf_node_audit.json) and checked on the satellite image, 2026-10-03. node_id replaces the matched node; null means the intersection has no node of its own in the network. note is shown beside the intersection. Only the ASU-area intersections have been checked so far.",
+  "overrides": {
+    "5278": {
+      "node_id": 973,
+      "note": "Matched by net2cell_utdf to node 5314, a residential street 82 m away. The UTDF position is 11 m from node 973, where Apache Boulevard, 13th Street and the connector between them meet."
+    },
+    "134": {
+      "node_id": null,
+      "merged_into": 5278,
+      "note": "UTDF draws the Apache Boulevard / 13th Street merge with three nodes (5278, 5293, 134); the network has two (973 and 7687). 134 has no node of its own; its approaches meet at node 973, analysed as UTDF 5278."
+    },
+    "7004": {
+      "node_id": null,
+      "note": "All three UTDF approaches are Mill Avenue: a bend or split node, not an intersection. The network has no junction within 120 m; it was matched to a plain road node."
+    },
+    "62": {
+      "keep": true,
+      "note": "Terrace Road is visible on the image but not connected to this node in the network, so only the McAllister Avenue approaches are traced."
+    },
+    "63": {
+      "keep": true,
+      "note": "Terrace Road is not connected to this node in the network, so only the Rural Road approaches are traced."
+    },
+    "519": {
+      "keep": true,
+      "note": "Mid-block point on Terrace Road; the driveway and pedestrian legs in UTDF are not in the network."
+    },
+    "73": {
+      "keep": true,
+      "note": "UTDF joins two offset T-junctions into one node: Forest Avenue (north) meets Apache Boulevard at node 7746, analysed here; the leg from the south meets it at node 7833, 11 m from the UTDF position."
+    },
+    "65": {
+      "keep": true,
+      "note": "Mid-block pedestrian crossing: two road arms."
+    },
+    "514": {
+      "keep": true,
+      "note": "Mid-block pedestrian crossing: two road arms."
+    }
+  }
+}

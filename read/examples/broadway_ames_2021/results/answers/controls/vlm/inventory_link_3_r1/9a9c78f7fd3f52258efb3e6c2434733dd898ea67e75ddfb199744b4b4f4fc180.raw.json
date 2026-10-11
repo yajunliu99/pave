@@ -1,0 +1,54 @@
+{
+  "response": {
+    "observations": [
+      "Clearest front-facing view is gsv_control_link_3_73051d258c (2020-10, station +1.0 m): a far-side mast arm extends leftward from a far-right corner pole and carries four heads facing the camera plus a small white sign, all heads showing a lit red top lens at this moment. Head A at the free left end (approx native x 0.453-0.481, y 0.462-0.518), head B (approx x 0.598-0.630, y 0.462-0.521), head C (approx x 0.743-0.786, y 0.465-0.524) whose red lamp appears to be a right-pointing arrow, the white sign right of C (approx x 0.782-0.813, y 0.477-0.506) with three lines of small text (middle line resembles 'TURN'; not legible enough to transcribe), and head D nearest the pole (approx x 0.823-0.871, y 0.465-0.524) with a red top lamp whose symbol is unresolved.",
+      "A pole-mounted head below the arm on the far-right pole in 73051d258c (approx x 0.894-0.930, y 0.580-0.612, YOLO proposal) shows a lit red lamp; its face orientation and symbol are not resolvable.",
+      "An edge-on panel on a vertical stalk above the arm (approx x 0.510-0.577, y 0.430-0.441) and a camera on a pole above head A are not readable controls; a pink banner on a pole below the arm is not a control.",
+      "gsv_control_link_3_1c684f5e7f (2020-11, station -3.8 m) shows the same arm smaller and at a different moment: heads A and B show lit green lower lenses with an upward-arrow-like shape, head C shows red, the white sign is unreadable, and head D shows a green lower lens of unresolved shape.",
+      "No stop signs facing this approach; no readable pavement-arrow or lane-use sign evidence in these frames."
+    ],
+    "detail_requests": [
+      {
+        "source_id": "gsv_control_link_3_73051d258c",
+        "bbox_xyxy": [
+          0.447,
+          0.455,
+          0.487,
+          0.526
+        ],
+        "question": "Head A at the left end of the mast arm: is the lit red top lens a circular ball or an arrow, and what symbols are on the unlit yellow/green lenses (head B appears similar)?"
+      },
+      {
+        "source_id": "gsv_control_link_3_73051d258c",
+        "bbox_xyxy": [
+          0.738,
+          0.458,
+          0.817,
+          0.53
+        ],
+        "question": "Head C and the adjacent white sign: confirm the red arrow direction and read the sign text."
+      },
+      {
+        "source_id": "gsv_control_link_3_73051d258c",
+        "bbox_xyxy": [
+          0.817,
+          0.458,
+          0.877,
+          0.53
+        ],
+        "question": "Head D nearest the pole: what symbol is on the lit red lens and the unlit lenses (vehicle ball/arrow or bicycle/other pictogram)?"
+      },
+      {
+        "source_id": "gsv_control_link_3_73051d258c",
+        "bbox_xyxy": [
+          0.888,
+          0.572,
+          0.936,
+          0.62
+        ],
+        "question": "Pole-mounted head below the arm: which way does it face, how many sections, and what symbol is on the lit red lamp?"
+      }
+    ]
+  },
+  "metadata": {}
+}

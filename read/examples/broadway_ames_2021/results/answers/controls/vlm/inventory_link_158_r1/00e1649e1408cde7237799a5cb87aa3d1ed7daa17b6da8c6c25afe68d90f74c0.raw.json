@@ -1,0 +1,55 @@
+{
+  "response": {
+    "observations": [
+      "gsv_control_link_158_a85b418687 (2019-10, station -3.6 m) is the closest front-facing view of the far-side mast arm that extends leftward from a far-right corner pole, but it is taken in low light with a pink cast and heavy noise. Lit lamps are visible: left head (approx native x 0.436-0.453, y 0.569-0.598) and middle head (approx x 0.495-0.512, y 0.569-0.627) each show a lit red upper lamp whose shape (ball vs arrow) is not resolvable; further right a lit green lamp (approx x 0.555-0.571, y 0.589-0.605) on a head whose body is lost against dark trees; a small white sign on the arm right of it (approx x 0.582-0.600, y 0.581-0.598) is unreadable.",
+      "gsv_control_link_158_ccf0dc5362 (2020-11, station -12.1 m, sunny) shows the same arm smaller but well lit: three heads (approx x 0.532-0.631, y 0.520-0.548), the left two appearing to show small lit green left-pointing arrows, the right one dark, a small white sign (approx x 0.637-0.652, y 0.526-0.540) and a street-name style blade (approx x 0.652-0.677); none readable at this size.",
+      "A far-left corner pole carries a diagonal mast arm with at least three heads (a85b418687 approx x 0.19-0.32, y 0.49-0.59; ccf0dc5362 approx x 0.434-0.464, y 0.485-0.540). In a85b418687 lit green and red lamps are visible on them, but the heads are oblique, so facing and symbols are unresolved; they likely serve a crossing road.",
+      "In a85b418687 a red elongated diamond-like sign on a post on the far sidewalk (approx x 0.381-0.397, y 0.663-0.703) is unresolved (shape, text and facing unclear), and a small red light low on the far-right pole area (approx x 0.676-0.693, y 0.628-0.643) is unresolved.",
+      "In ccf0dc5362 a two-panel sign on a post at the left curb near the crosswalk (approx x 0.147-0.169, y 0.565-0.616) is unreadable.",
+      "No near-side controls for the northbound approach are identifiable; no readable lane-use or turn-restriction text at this resolution."
+    ],
+    "detail_requests": [
+      {
+        "source_id": "gsv_control_link_158_a85b418687",
+        "bbox_xyxy": [
+          0.43,
+          0.562,
+          0.458,
+          0.605
+        ],
+        "question": "Left head on the far-right mast arm: is the lit red lamp a circular ball or an arrow (direction)? The middle head appears similar."
+      },
+      {
+        "source_id": "gsv_control_link_158_a85b418687",
+        "bbox_xyxy": [
+          0.548,
+          0.568,
+          0.58,
+          0.625
+        ],
+        "question": "Head with the lit green lamp right of the middle head: is the green indication a ball or an arrow (direction), and how many sections does the head have?"
+      },
+      {
+        "source_id": "gsv_control_link_158_a85b418687",
+        "bbox_xyxy": [
+          0.577,
+          0.574,
+          0.605,
+          0.603
+        ],
+        "question": "Small white sign on the mast arm: read its text or symbol."
+      },
+      {
+        "source_id": "gsv_control_link_158_a85b418687",
+        "bbox_xyxy": [
+          0.376,
+          0.656,
+          0.402,
+          0.71
+        ],
+        "question": "Red sign on a post on the far sidewalk: what is its shape, text or symbol, and which way does it face?"
+      }
+    ]
+  },
+  "metadata": {}
+}

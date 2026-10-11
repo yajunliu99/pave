@@ -1,0 +1,140 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "left"
+        ],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Dark asphalt about 3.4 m wide. Its right edge is a solid white lane line (running from about (470,195) to (150,740) in the native image). r1 holds two curved pavement arrows whose heads bend to the driver's left, one near the stop bar and one about 400 px upstream. These read as left-turn arrows, though the low resolution and the building shadow over most of the strip limit certainty, and a U-turn shape cannot be fully excluded. The left edge of r1 has only a faint line. About 6 m of further pavement, with no visible arrows, lies between r1 and the double longitudinal line to its left; that is outside this region.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.532,
+              0.279,
+              0.577,
+              0.338
+            ],
+            "finding": "curved left-turn-shaped pavement arrow near the stop bar inside r1"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.224,
+              0.736,
+              0.269,
+              0.793
+            ],
+            "finding": "second curved left-turn-shaped arrow upstream inside r1"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.2,
+              0.23,
+              0.66,
+              0.88
+            ],
+            "finding": "solid white line separating r1 from r2"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Asphalt about 3.4 m wide between two solid white lines: the line shared with r1 and a second white line (from about (470,320) to (250,740)) that separates it from the kerbside strip. A straight arrow pointing in the direction of travel is painted near the stop bar and another upstream. A light car stands in this lane at the stop bar/crosswalk. The strip is mostly in building shadow, but both lines continue into the sunlit part downstream.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.613,
+              0.315,
+              0.647,
+              0.362
+            ],
+            "finding": "straight (through) arrow near the stop bar in r2"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.301,
+              0.77,
+              0.339,
+              0.822
+            ],
+            "finding": "straight (through) arrow upstream in r2"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.66,
+              0.16,
+              0.76,
+              0.26
+            ],
+            "finding": "light car at the stop bar in the through lane"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "uncertain",
+        "observed_arrows": [],
+        "visibility": "occluded",
+        "confidence": "low",
+        "evidence": "Paved strip between the right white line of r2 and the kerb. Brightness profiles across it put the kerb (where the sunlit or brighter sidewalk starts) about 30-40 px (about 1.6-2.1 m) beyond the line, so the strip is real roadway, not sidewalk. It is too narrow for a car lane (well under 2.7 m) and fits a marked bicycle lane or a narrow shoulder. The whole region lies in deep building shadow, so no bicycle symbol, green paint, arrow or parked car can be seen either way. Just downstream in sunlight, the same strip continues as plain grey pavement about 2 m wide to the kerb, with no visible marking in that short stretch. The bright blob near (545,295) lies on the sidewalk beyond the kerb, not in r3.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.375,
+              0.264,
+              0.773,
+              0.808
+            ],
+            "finding": "shadowed strip between the outer white line and the kerb"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.18,
+              0.855,
+              0.42,
+              1.0
+            ],
+            "finding": "sunlit downstream continuation: about 2 m grey pavement strip between the white line and the kerb, no visible marking"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.616,
+              0.475,
+              0.7,
+              0.558
+            ],
+            "finding": "sunlit sidewalk concrete beyond the kerb bounding the strip"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "A large building shadow covers most of the approach. Arrow shapes were read from brightened crops at low resolution.",
+      "Native-image bboxes assume the scene_in_WB panel as shown (714 x 842 px in the sheet).",
+      "Left of r1, roughly 6 m of pavement that no region covers lies between r1's faint left edge and a double longitudinal line further left. No arrow is visible there; this audit does not classify it.",
+      "r3 subtype (bicycle lane or shoulder) cannot be confirmed from this shadowed, leaf-off 2021 image."
+    ]
+  },
+  "metadata": {}
+}
