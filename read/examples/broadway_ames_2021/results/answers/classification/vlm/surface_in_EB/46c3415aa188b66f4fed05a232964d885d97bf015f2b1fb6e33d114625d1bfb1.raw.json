@@ -1,0 +1,139 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Asphalt strip between a dark longitudinal band (left polygon edge) and the thick solid white lane line on its right (right polygon edge). The stop bar runs continuously across it from the median-island kerb to the right kerb, so this is part of the stop-controlled carriageway. No bicycle symbol, green paint, parking stalls or parked cars are visible in the sunlit part near the stop bar. No arrow is visible in this strip, though r2 carries one at the same station. The dark band at the left edge is not a lane line: it runs straight on through the crosswalk beyond the stop bar, so it is likely a pavement seam or joint. Pavement continues about 1.3-1.5 m further left to the actual median-island kerb, so the lane is likely about 4 m kerb-to-line, wider than the 2.54 m polygon. The downstream ~60% of the polygon lies in deep building shadow; only the lane line on its right stays traceable there.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.584,
+              0.147,
+              0.785,
+              0.251
+            ],
+            "finding": "Stop bar spanning from the median-island kerb across r1, r2 and r3 to the right kerb"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.483,
+              0.184,
+              0.663,
+              0.423
+            ],
+            "finding": "Plain asphalt in r1 between the dark seam band and the thick solid lane line; no symbols"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.432,
+              0.159,
+              0.631,
+              0.402
+            ],
+            "finding": "Dark longitudinal band, with about 1.3-1.5 m of pavement to its left before the island kerb; the band continues through the crosswalk"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "right"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "About 3.1 m lane bounded by the thick solid white line on the left and a thinner solid white line on the right. Both lines stay detectable from the stop bar down into the building shadow. Just upstream of the stop bar, inside this lane, is a white pavement arrow whose stem bends to the right with the head pointing right/up-right, read as a right-turn arrow (shape somewhat blurred at this resolution; no through branch visible). The stop bar crosses the lane. The lower part of the polygon is in building shadow, where only the two bounding lines are faintly visible.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.651,
+              0.23,
+              0.71,
+              0.281
+            ],
+            "finding": "Right-turn-shaped pavement arrow inside r2 just behind the stop bar"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.497,
+              0.202,
+              0.677,
+              0.456
+            ],
+            "finding": "Thick solid white line forming the r1/r2 boundary"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.573,
+              0.237,
+              0.746,
+              0.48
+            ],
+            "finding": "Thinner solid white line forming the r2/r3 boundary"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Narrow strip, about 1.4 m, between the thin solid white line and the right kerb. The stop bar ends at its outer edge, and pedestrians/objects stand on the sidewalk corner just beyond. It contains a localized green-painted patch about 9-11 m upstream of the stop bar (green appears nowhere else along the shadow edge, so it is likely paint rather than a colour fringe). Short white dashes beyond the stop bar and crosswalk continue in line with this strip through the intersection, consistent with a dashed bike-lane extension. No bicycle symbol is readable: a tree shadow covers much of the strip near the stop bar, and building shadow covers the downstream part. Downstream the kerb position cannot be traced in the shadow. A car sits about 7 m right of the thin line further back, so the kerb/lay-by layout may widen there; this strip is only supported near the stop bar.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.576,
+              0.408,
+              0.646,
+              0.488
+            ],
+            "finding": "Green-painted patch inside the narrow strip right of the thin line"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.746,
+              0.184,
+              0.814,
+              0.214
+            ],
+            "finding": "Short white dashes beyond the stop bar aligned with the strip (possible bike-lane extension)"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.764,
+              0.211,
+              0.893,
+              0.304
+            ],
+            "finding": "Sidewalk corner with pedestrians just beyond the stop bar's right end, marking the kerb"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "The regions' downstream half to two-thirds lies in deep building shadow. Classification rests mainly on the sunlit 10-12 m behind the stop bar.",
+      "Arrow reading for r2 is from low-resolution imagery; right-turn is the best reading, through+right cannot be fully excluded.",
+      "The left polygon edge of r1 follows a dark seam that continues through the crosswalk, not the island kerb. About 1.3-1.5 m of pavement between that seam and the island kerb is not covered by any region.",
+      "A car about 7 m right of the r2/r3 line, next to the building at lower right, suggests the right-side layout changes downstream (lay-by or wider pavement). This cannot be resolved in the shadow.",
+      "Satellite capture spring 2021, leaf-off; tree shadow covers part of r3 and the right kerb near the stop bar."
+    ]
+  },
+  "metadata": {}
+}

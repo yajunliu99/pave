@@ -1,0 +1,103 @@
+{
+  "response": {
+    "boundaries": [
+      {
+        "xs": [
+          130,
+          129.5,
+          129.5,
+          125,
+          101
+        ],
+        "kind": "centre_or_median_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S5"
+        ],
+        "evidence": "Faint, broad (~12 units) longitudinal light band, dimmer than the white lines (consistent with yellow paint in shadow). Visible from the top down to S4 at ~u129-125, then bends left to ~u114 at y~1030 and ~u101-103 near S5 (very faint there). The left-lane stop bar (y~300) starts at it. Street view S shows a double yellow centre line immediately to the camera's right with the target lanes and their stop bars to the right of it, so this is the left limit. Left of it are an opposing lane and a parked-car column (u30-65)."
+      },
+      {
+        "xs": [
+          187.5,
+          187,
+          186,
+          181,
+          155
+        ],
+        "kind": "lane_line",
+        "visibility": "partial",
+        "interpolated_stations": [],
+        "evidence": "White lane line. Solid and clear from the top (where it meets the stop bar at u186-255, y~150) down to about S4 (u~181). Below S4 it continues as fainter dashes, shifting left to ~u172 (y~1012), ~u161 (y~1145) and ~u155 at S5. Left of it are left-turn arrows (u142-172, y~330 and y~745) and a stop bar at y~300 (u127-188). Right of it are right-turn arrows (u198-232). Street view shows this line as a diagonal running from the advance stop bar toward the camera."
+      },
+      {
+        "xs": [
+          242,
+          241.5,
+          240.5,
+          235,
+          212
+        ],
+        "kind": "buffer_or_rail_edge",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Left line of a white double-line buffer, with cross/zig-zag hatching between the two lines. Straight at ~u241 from the top to S3. Below S3 it diverges left (~u235 at S4, ~u218 at y~1150, ~u211-214 at S5), so the hatched area widens toward the bottom."
+      },
+      {
+        "xs": [
+          254.5,
+          253,
+          253,
+          251,
+          250.5
+        ],
+        "kind": "buffer_or_rail_edge",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Right line of the white double-line buffer. Continuous and nearly straight from the top bar (y~150) to the bottom edge. It is the strongest line in the crop."
+      },
+      {
+        "xs": [
+          284,
+          283,
+          281,
+          281,
+          280.5
+        ],
+        "kind": "lane_line",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S4"
+        ],
+        "evidence": "Solid white line, clear on the sunlit pavement from the top down to ~S2 (u283-284). A short bar u284-305 sits at its top (y~150). Faint in shadow at S3 (~u281). Not resolvable at S4 under the mottled tree shadows; a weak trace at ~u280-282 near S5. Between it and the buffer is a light symbol (u261-277, y~340-380), possibly a bicycle marking. Right of it is a straight-ahead arrow (u295-305, y~350-415)."
+      },
+      {
+        "xs": [
+          316,
+          316,
+          313,
+          311,
+          312
+        ],
+        "kind": "kerb_or_pavement_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S1",
+          "S3"
+        ],
+        "evidence": "Thin bright kerb-like line with a darker gutter band (~u304-310) on its inside. Visible at ~u315-317 between S1 and S2, where the pavement beyond it is warmer/tan (sidewalk-like). S1 is in a hard shadow edge. Below S3 a faint line persists at ~u310-313, with slightly different (warmer) surface outside it. Taken as the right limit."
+      }
+    ],
+    "partial_strips": [
+      "None of the traced strips begins or ends inside the crop. The whole left group of lines (centre line, lane line, buffer left line) shifts left by ~25 units between S4 and S5, and the hatched buffer between u~212 and u~250 narrows to ~12 units by S3. This looks like a lateral shift/taper with a widening hatched area, not a lane drop.",
+      "Stop bars are staggered: the left strip (u130-187) has its stop bar at y~300; the strip u187-254 has its stop bar at y~150; a short bar at u284-305 sits at y~150. The junction is beyond the top edge."
+    ],
+    "cannot_determine": [
+      "Centre line colour and exact position below S4 are uncertain. It is faint and in deep shadow; the S5 value (~101) is extrapolated from a very faint trace.",
+      "The kerb is uncertain. A line at u~311-316 with a warm/tan surface beyond it is taken as the kerb, but another edge at u~345-348 (start of lighter, textured sidewalk/tree area) could alternatively be the kerb, in which case u316-345 would be an extra strip.",
+      "A faint longitudinal trace at ~u268-272 appears between S4 and S5 in the tree-shadowed area and was not traced as a boundary; it may be a worn line or shadow.",
+      "Street view position (C at u~162) appears to be off by a few metres. The street view shows the double yellow line just to the camera's right, so the camera was probably in the opposing lane left of u~130. It covers only the centre line, the u187 lane line and the two stop bars; the strips right of u~254 are outside its view.",
+      "The large diagonal light band across the top right is a sunlit gap between shadows, not a different road. Lines u241-316 are traced on it and continue into the shadow below."
+    ]
+  },
+  "metadata": {}
+}

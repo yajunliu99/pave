@@ -1,0 +1,26 @@
+{
+  "response": {
+    "stop_line": {
+      "y": 838,
+      "kind": "crosswalk_edge",
+      "evidence": "Top (downstream) edge of the zebra crosswalk at y~838-892 that spans the road from x~277 to x~580 on the far side of the junction from the camera's bottom; the junction box (lane-extension dashes, magenta cross) lies below it, down to the second crosswalk at y~1412-1477. The white stop bar at y~787 (x~335-400) belongs to the opposing down-moving lanes and is not used."
+    },
+    "cross_sections": [
+      {
+        "y": 838,
+        "left_x": 401,
+        "right_x": 598,
+        "evidence": "Left: solid white line at x~400 that separates the down-moving approach lanes (x~278-400, with turn/through arrows and the stop bar ending at x~400) from the lanes leaving upward. Right: kerb of the corner just past the last crosswalk stripe (stripe ends x~580, sidewalk brightness starts x~599). Inside: a pair of parallel lines at x~512-518 and x~540-546."
+      },
+      {
+        "y": 385,
+        "left_x": 401,
+        "right_x": 644,
+        "evidence": "In building shadow, read after contrast stretch. Left: same solid white line x~400 (clearly white in the sunlit strip at the top of the crop). Right: kerb where the road surface gives way to the sidewalk/building edge at x~644-650. Inside: the paired lines at x~514 and x~542 continue; two vehicles in line at x~550-582 (y~180-360) sit just right of x~542; no other lane line is visible between 400 and 510 or between 546 and 644."
+      }
+    ],
+    "confidence": "medium",
+    "notes": "Almost the whole receiving road is in a building shadow; markings were read after contrast enhancement. The left limit is inferred from where the opposing stop bar ends (x~400) and from straight-through continuity with the approach lanes on the other side of the junction; no direction arrow is visible in the target lanes. The roles of the zone x~400-510 (6 m, no visible internal line) and of the paired lines at x~512/542 (about 1.5 m apart: buffer, bike lane or painted separator) cannot be confirmed. The road widens on the right from x~598 at the crosswalk (kerb extension) to x~644 upstream; the strip by the kerb may hold parking or a bike lane. Bright slanted shapes at x~650-726 are outside the kerb. The dashed network line (x~489) runs inside the target carriageway."
+  },
+  "metadata": {}
+}

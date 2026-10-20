@@ -1,0 +1,15 @@
+{
+  "state": "complete",
+  "stopped": null,
+  "missing": [],
+  "counts": {
+    "metadata_requests": 12,
+    "image_requests": 26,
+    "metadata_cache_hits": 6,
+    "image_cache_hits": 4,
+    "satellite_requests": 0,
+    "satellite_cache_hits": 1,
+    "tile_requests": 0
+  },
+  "finished_utc": "2026-10-11T14:13:45.393836+00:00"
+}

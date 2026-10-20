@@ -1,0 +1,26 @@
+{
+  "response": {
+    "stop_line": {
+      "y": 866,
+      "kind": "stop_bar",
+      "evidence": "White transverse stop bar at y~862-870 spanning x~325-395 across the right-turn lane, just upstream of the crosswalk (stripes at y~790-845); a short bar at x~425-447, y~866 closes the narrow kerb-side lane. The left-turn lane (x~271-328) has its own stop bar set back at y~935-945 (x~265-325), i.e. the stop bars are staggered."
+    },
+    "cross_sections": [
+      {
+        "y": 870,
+        "left_x": 268,
+        "right_x": 455,
+        "evidence": "Left limit: faint white line at x~268-272 separating the target lanes from the opposing (down-moving) side; left-turn arrows at x~275-310 and right-turn arrows at x~340-375 (y~960-1000) both point up. Right limit: kerb / brick sidewalk edge at x~452-458 (sunlit). Between the right-turn lane and the kerb: solid double white line x~383-395, a ~30 px strip x~395-425, solid white line x~425, and a ~28 px strip x~428-452 with a small straight-ahead arrow (likely a bicycle lane)."
+      },
+      {
+        "y": 1319,
+        "left_x": 271,
+        "right_x": 455,
+        "evidence": "Left limit: continuation of the faint white lane line at x~271 (visible y~1000-1300). Right limit: kerb in deep shadow, estimated at x~450-458 from the dark-asphalt / brown-texture boundary seen at y~1150-1250; repeat left/right turn arrows at y~1170-1200 confirm the same two-lane layout upstream."
+      }
+    ],
+    "confidence": "medium",
+    "notes": "Deep building shadow covers the whole approach; markings are read with contrast enhancement. Below y~1250 a bright lattice pattern (a structure or its light pattern) covers x~340-560 and hides the lane lines and kerb on the right, so the upstream right limit is extrapolated. Motor lanes appear to be a left-turn lane (x~271-328) and a right-turn lane (x~330-383); the strip x~395-452 to their right looks like a buffered bicycle lane and is included only because the requested right limit is the kerb. The dashed network centre line (x~333) runs on the lane line between the two target lanes, not on the true centre line, which lies near x~270."
+  },
+  "metadata": {}
+}

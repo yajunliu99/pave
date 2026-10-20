@@ -1,0 +1,33 @@
+{
+  "satellite": {
+    "source": "xyz_tiles",
+    "url": "https://tiles.arcgis.com/tiles/hGdibHYSPO59RG1h/arcgis/rest/services/orthos2021/MapServer/tile/{z}/{y}/{x}",
+    "level": 20,
+    "provider": "MassGIS 2021 statewide orthoimagery (15 cm)",
+    "capture_date": "2021",
+    "date_note": "spring 2021, leaf-off",
+    "attribution": "MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts"
+  },
+  "capture_before": "2023-01",
+  "max_metadata_requests": 4000,
+  "official_only": true,
+  "fallback_earliest": true,
+  "same_carriageway": true,
+  "pinned_panoramas": {
+    "in_EB/near": "hRVL8qhrNI-JfNB6FQeqGw",
+    "in_EB/mid": "kD7P5QIM1p11ulUllRiVMA",
+    "in_EB/far": "LjNle9ec1QCAD6L80QWp6Q",
+    "in_NB/near": "b8uhYxEbQFfYKJCTGCaozA",
+    "in_NB/mid": "pftZedWg5jk2t7Cj1rGcMA",
+    "in_NB/far": "RBEaUL-rnmXBTNCOeg0w9w",
+    "out_EB/near": "mbaxwXwsIHZPZlvfM6cUPA",
+    "out_EB/mid": "lqs36PRm-DOTQZ9Os0G6hQ",
+    "out_EB/far": "Pr7BL9ZT8rnYyIDRhSqBug",
+    "out_WB/near": "kKqITKdJDIzBoumBpSXqXg",
+    "out_WB/mid": "FUEZpZpwvW9Y-AtpgFFimw",
+    "out_WB/far": "CNTgApxg0nRLlnxGIJbj-g",
+    "out_SB/near": "b8uhYxEbQFfYKJCTGCaozA",
+    "out_SB/mid": "pftZedWg5jk2t7Cj1rGcMA",
+    "out_SB/far": "RBEaUL-rnmXBTNCOeg0w9w"
+  }
+}

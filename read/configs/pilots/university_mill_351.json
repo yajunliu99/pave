@@ -1,0 +1,2769 @@
+{
+  "schema_version": 1,
+  "pilot_id": "university_mill_351",
+  "node_id": 351,
+  "name": "University Dr x Mill Ave",
+  "legs": {
+    "NB": {
+      "in_link_id": 235,
+      "out_link_id": 144
+    },
+    "SB": {
+      "in_link_id": 255,
+      "out_link_id": 21
+    },
+    "EB": {
+      "in_link_id": 298,
+      "out_link_id": 416
+    },
+    "WB": {
+      "in_link_id": 284,
+      "out_link_id": 297
+    }
+  },
+  "network": {
+    "link_csv": "data/ASU/output/macronet/link.csv",
+    "movement_csv": "data/ASU/output/movement.csv"
+  },
+  "vlm": {
+    "preset": "default",
+    "max_tokens": 6144,
+    "temperature": 0.0
+  },
+  "yolo": {
+    "weights": "~/.cache/net2cell-vlm/weights/yolo26n.pt",
+    "expected_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "device": 0,
+    "imgsz": 1280,
+    "confidence": 0.25,
+    "high_bbox_coverage": 0.25,
+    "occluder_classes": [
+      "car",
+      "truck",
+      "bus",
+      "motorcycle",
+      "bicycle",
+      "person"
+    ]
+  },
+  "inference_mode": "visual_evidence",
+  "sources": {
+    "satellite": {
+      "kind": "image",
+      "path": "cache/mapbox_351/univ_mill_351_buf40.jpg",
+      "role": "satellite",
+      "capture_date": null,
+      "date_status": "not_retained"
+    },
+    "gsv_NB": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/NB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "NB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 53.24,
+      "pano_id": "3qWmQqBsrrxu1ebGvN9DZQ",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "actual_lat": 33.42146023951085,
+      "actual_lon": -111.9399131977365,
+      "selection_label": "NB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_NB_near_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\fU8IbP01GIH51JSiMDK1Mg_z4.jpg",
+      "role": "gsv",
+      "direction": "NB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 30.43,
+      "pano_id": "fU8IbP01GIH51JSiMDK1Mg",
+      "projection": {
+        "heading": 1.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42167001817289,
+      "actual_lon": -111.9399108324981,
+      "selection_label": "NB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_NB_far_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/NB_d100m_mid.jpg",
+      "role": "gsv",
+      "direction": "NB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 97.02,
+      "pano_id": "DxgqNPfW6kToTZWAikzZjg",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "actual_lat": 33.42106427436642,
+      "actual_lon": -111.9399039187242,
+      "selection_label": "NB_d100m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_SB": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\5nfbRThia-n9Sr4wm4MDmw_z4.jpg",
+      "role": "gsv",
+      "direction": "SB",
+      "capture_date": "2025-11",
+      "reverse_view": true,
+      "camera_role": "reverse_auxiliary",
+      "distance_to_center_m": 27.8,
+      "pano_id": "5nfbRThia-n9Sr4wm4MDmw",
+      "projection": {
+        "heading": 180.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_SB_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\5nfbRThia-n9Sr4wm4MDmw_z4.jpg",
+      "role": "gsv",
+      "direction": "SB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 27.8,
+      "pano_id": "5nfbRThia-n9Sr4wm4MDmw",
+      "projection": {
+        "heading": 0.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42217741266312,
+      "actual_lon": -111.9400703951181,
+      "selection_label": "SB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_SB_mid_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/SB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "SB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 46.45,
+      "pano_id": "jgXPybaQMr80In98G7nPgw",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "actual_lat": 33.42234889914832,
+      "actual_lon": -111.9400686666747,
+      "selection_label": "SB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_SB_far_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/SB_d100m_mid.jpg",
+      "role": "gsv",
+      "direction": "SB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 104.92,
+      "pano_id": "uK1X8bEv0tyRdx4SSvNPCQ",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "actual_lat": 33.42287816394518,
+      "actual_lon": -111.9400696673524,
+      "selection_label": "SB_d100m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_EB": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\IMtlaHpE7W2pfo7zxQg63w_z4.jpg",
+      "role": "gsv",
+      "direction": "EB",
+      "capture_date": "2025-10",
+      "reverse_view": true,
+      "camera_role": "reverse_auxiliary",
+      "distance_to_center_m": 26.9,
+      "pano_id": "IMtlaHpE7W2pfo7zxQg63w",
+      "projection": {
+        "heading": 181.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_EB_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\IMtlaHpE7W2pfo7zxQg63w_z4.jpg",
+      "role": "gsv",
+      "direction": "EB",
+      "capture_date": "2025-10",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 26.9,
+      "pano_id": "IMtlaHpE7W2pfo7zxQg63w",
+      "projection": {
+        "heading": 1.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42187406833995,
+      "actual_lon": -111.9402760798759,
+      "selection_label": "EB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_EB_mid_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/EB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "EB",
+      "capture_date": "2025-10",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 52.82,
+      "pano_id": "iAswl20VTGrmuheiH4YXUg",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "actual_lat": 33.4218749461645,
+      "actual_lon": -111.9405605452421,
+      "selection_label": "EB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_EB_far_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/EB_d100m_mid.jpg",
+      "role": "gsv",
+      "direction": "EB",
+      "capture_date": "2025-10",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 100.72,
+      "pano_id": "-66qTEg9S6KchYpkspyZ0g",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "actual_lat": 33.42187098902103,
+      "actual_lon": -111.9410794420328,
+      "selection_label": "EB_d100m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_WB": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\yB16tX1a7lGCjLy_PzRsgA_z4.jpg",
+      "role": "gsv",
+      "direction": "WB",
+      "capture_date": "2025-11",
+      "reverse_view": true,
+      "camera_role": "reverse_auxiliary",
+      "distance_to_center_m": 30.17,
+      "pano_id": "yB16tX1a7lGCjLy_PzRsgA",
+      "projection": {
+        "heading": 181.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_WB_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\yB16tX1a7lGCjLy_PzRsgA_z4.jpg",
+      "role": "gsv",
+      "direction": "WB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 30.17,
+      "pano_id": "yB16tX1a7lGCjLy_PzRsgA",
+      "projection": {
+        "heading": 1.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42200059698035,
+      "actual_lon": -111.9396789481532,
+      "selection_label": "WB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_WB_mid_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/WB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "WB",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 49.13,
+      "pano_id": "FS9a4EVOBtfWl9-ElIjGrA",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "actual_lat": 33.42199917882232,
+      "actual_lon": -111.9394703522977,
+      "selection_label": "WB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_WB_far_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/WB_d100m_mid.jpg",
+      "role": "gsv",
+      "direction": "WB",
+      "capture_date": "2024-06",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "distance_to_center_m": 100.49,
+      "pano_id": "qHMNttxi3mbBovxSduxHWA",
+      "sampling_position": "far",
+      "target_distance_m": 100,
+      "actual_lat": 33.42199998098642,
+      "actual_lon": -111.9389130656212,
+      "selection_label": "WB_d100m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "in_NB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "NB",
+      "rotation_ccw": 0,
+      "color": "#00d8ff",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1230,
+              1608
+            ],
+            [
+              1228,
+              1750
+            ],
+            [
+              1235,
+              1880
+            ],
+            [
+              1240,
+              1960
+            ],
+            [
+              1250,
+              2040
+            ],
+            [
+              1299,
+              2040
+            ],
+            [
+              1296,
+              1960
+            ],
+            [
+              1293,
+              1880
+            ],
+            [
+              1291,
+              1750
+            ],
+            [
+              1290,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1260.0,
+            1608.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1290,
+              1608
+            ],
+            [
+              1291,
+              1750
+            ],
+            [
+              1293,
+              1880
+            ],
+            [
+              1296,
+              1960
+            ],
+            [
+              1299,
+              2040
+            ],
+            [
+              1348,
+              2040
+            ],
+            [
+              1345,
+              1960
+            ],
+            [
+              1343,
+              1880
+            ],
+            [
+              1343,
+              1750
+            ],
+            [
+              1343,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1316.5,
+            1608.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1343,
+              1608
+            ],
+            [
+              1343,
+              1750
+            ],
+            [
+              1343,
+              1880
+            ],
+            [
+              1345,
+              1960
+            ],
+            [
+              1348,
+              2040
+            ],
+            [
+              1405,
+              2040
+            ],
+            [
+              1401,
+              1960
+            ],
+            [
+              1399,
+              1880
+            ],
+            [
+              1397,
+              1750
+            ],
+            [
+              1398,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1370.5,
+            1608.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1398,
+              1608
+            ],
+            [
+              1397,
+              1750
+            ],
+            [
+              1399,
+              1880
+            ],
+            [
+              1401,
+              1960
+            ],
+            [
+              1405,
+              2040
+            ],
+            [
+              1435,
+              2040
+            ],
+            [
+              1432,
+              1960
+            ],
+            [
+              1430,
+              1880
+            ],
+            [
+              1429,
+              1750
+            ],
+            [
+              1428,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1413.0,
+            1608.0
+          ]
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              1428,
+              1608
+            ],
+            [
+              1429,
+              1750
+            ],
+            [
+              1430,
+              1880
+            ],
+            [
+              1432,
+              1960
+            ],
+            [
+              1435,
+              2040
+            ],
+            [
+              1477,
+              2040
+            ],
+            [
+              1474,
+              1960
+            ],
+            [
+              1474,
+              1880
+            ],
+            [
+              1474,
+              1750
+            ],
+            [
+              1472,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1450.0,
+            1608.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "in_SB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "SB",
+      "rotation_ccw": 180,
+      "color": "#00d8ff",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1307,
+              971
+            ],
+            [
+              1306,
+              799
+            ],
+            [
+              1304,
+              619
+            ],
+            [
+              1301,
+              429
+            ],
+            [
+              1251,
+              429
+            ],
+            [
+              1254,
+              619
+            ],
+            [
+              1254,
+              799
+            ],
+            [
+              1255,
+              971
+            ]
+          ],
+          "gate_point": [
+            1281.0,
+            971.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1255,
+              971
+            ],
+            [
+              1254,
+              799
+            ],
+            [
+              1254,
+              619
+            ],
+            [
+              1251,
+              429
+            ],
+            [
+              1202,
+              429
+            ],
+            [
+              1204,
+              619
+            ],
+            [
+              1206,
+              799
+            ],
+            [
+              1207,
+              971
+            ]
+          ],
+          "gate_point": [
+            1231.0,
+            971.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1207,
+              971
+            ],
+            [
+              1206,
+              799
+            ],
+            [
+              1204,
+              619
+            ],
+            [
+              1202,
+              429
+            ],
+            [
+              1151,
+              429
+            ],
+            [
+              1153,
+              619
+            ],
+            [
+              1155,
+              799
+            ],
+            [
+              1156,
+              971
+            ]
+          ],
+          "gate_point": [
+            1181.5,
+            971.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1156,
+              971
+            ],
+            [
+              1155,
+              799
+            ],
+            [
+              1153,
+              619
+            ],
+            [
+              1151,
+              429
+            ],
+            [
+              1101,
+              429
+            ],
+            [
+              1104,
+              619
+            ],
+            [
+              1106,
+              799
+            ],
+            [
+              1107,
+              971
+            ]
+          ],
+          "gate_point": [
+            1131.5,
+            971.0
+          ]
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              1107,
+              971
+            ],
+            [
+              1106,
+              799
+            ],
+            [
+              1104,
+              619
+            ],
+            [
+              1101,
+              429
+            ],
+            [
+              1074,
+              429
+            ],
+            [
+              1076,
+              619
+            ],
+            [
+              1078,
+              799
+            ],
+            [
+              1078,
+              971
+            ]
+          ],
+          "gate_point": [
+            1092.5,
+            971.0
+          ]
+        },
+        {
+          "id": "r6",
+          "polygon": [
+            [
+              1078,
+              971
+            ],
+            [
+              1078,
+              799
+            ],
+            [
+              1076,
+              619
+            ],
+            [
+              1074,
+              429
+            ],
+            [
+              1025,
+              429
+            ],
+            [
+              1029,
+              619
+            ],
+            [
+              1031,
+              799
+            ],
+            [
+              1031,
+              971
+            ]
+          ],
+          "gate_point": [
+            1054.5,
+            971.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "in_EB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "EB",
+      "rotation_ccw": 90,
+      "color": "#00d8ff",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              934,
+              1260.0
+            ],
+            [
+              799,
+              1260.27
+            ],
+            [
+              659,
+              1260.55
+            ],
+            [
+              484,
+              1260.9
+            ],
+            [
+              484,
+              1309
+            ],
+            [
+              659,
+              1305
+            ],
+            [
+              799,
+              1306
+            ],
+            [
+              934,
+              1306
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1283.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              934,
+              1306
+            ],
+            [
+              799,
+              1306
+            ],
+            [
+              659,
+              1305
+            ],
+            [
+              484,
+              1309
+            ],
+            [
+              484,
+              1364
+            ],
+            [
+              659,
+              1362
+            ],
+            [
+              799,
+              1362
+            ],
+            [
+              934,
+              1362
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1334.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              934,
+              1362
+            ],
+            [
+              799,
+              1362
+            ],
+            [
+              659,
+              1362
+            ],
+            [
+              484,
+              1364
+            ],
+            [
+              484,
+              1417
+            ],
+            [
+              659,
+              1415
+            ],
+            [
+              799,
+              1415
+            ],
+            [
+              934,
+              1414
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1388.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              934,
+              1414
+            ],
+            [
+              799,
+              1415
+            ],
+            [
+              659,
+              1415
+            ],
+            [
+              484,
+              1417
+            ],
+            [
+              484,
+              1446
+            ],
+            [
+              659,
+              1443
+            ],
+            [
+              799,
+              1441
+            ],
+            [
+              934,
+              1440
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1427.0
+          ]
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              934,
+              1440
+            ],
+            [
+              799,
+              1441
+            ],
+            [
+              659,
+              1443
+            ],
+            [
+              484,
+              1446
+            ],
+            [
+              484,
+              1518
+            ],
+            [
+              659,
+              1515
+            ],
+            [
+              799,
+              1514
+            ],
+            [
+              934,
+              1512
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1476.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "in_WB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "WB",
+      "rotation_ccw": 270,
+      "color": "#00d8ff",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1575,
+              1294
+            ],
+            [
+              1700,
+              1293
+            ],
+            [
+              1825,
+              1291
+            ],
+            [
+              1960,
+              1287
+            ],
+            [
+              1960,
+              1233
+            ],
+            [
+              1825,
+              1238
+            ],
+            [
+              1700,
+              1243
+            ],
+            [
+              1575,
+              1245
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1269.5
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1575,
+              1245
+            ],
+            [
+              1700,
+              1243
+            ],
+            [
+              1825,
+              1238
+            ],
+            [
+              1960,
+              1233
+            ],
+            [
+              1960,
+              1184
+            ],
+            [
+              1825,
+              1188
+            ],
+            [
+              1700,
+              1192
+            ],
+            [
+              1575,
+              1193
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1219.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1575,
+              1193
+            ],
+            [
+              1700,
+              1192
+            ],
+            [
+              1825,
+              1188
+            ],
+            [
+              1960,
+              1184
+            ],
+            [
+              1960,
+              1131
+            ],
+            [
+              1825,
+              1138
+            ],
+            [
+              1700,
+              1143
+            ],
+            [
+              1575,
+              1145
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1169.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1575,
+              1145
+            ],
+            [
+              1700,
+              1143
+            ],
+            [
+              1825,
+              1138
+            ],
+            [
+              1960,
+              1131
+            ],
+            [
+              1960,
+              1108
+            ],
+            [
+              1825,
+              1113
+            ],
+            [
+              1700,
+              1117
+            ],
+            [
+              1575,
+              1119
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1132.0
+          ]
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              1575,
+              1119
+            ],
+            [
+              1700,
+              1117
+            ],
+            [
+              1825,
+              1113
+            ],
+            [
+              1960,
+              1108
+            ],
+            [
+              1960,
+              1057
+            ],
+            [
+              1825,
+              1060
+            ],
+            [
+              1700,
+              1063
+            ],
+            [
+              1575,
+              1066
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1092.5
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "out_NB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "NB",
+      "rotation_ccw": 0,
+      "color": "#83e16a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1297,
+              500
+            ],
+            [
+              1297,
+              720
+            ],
+            [
+              1297,
+              945
+            ],
+            [
+              1363,
+              945
+            ],
+            [
+              1362,
+              720
+            ],
+            [
+              1362,
+              500
+            ]
+          ],
+          "gate_point": [
+            1330.0,
+            945.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1362,
+              500
+            ],
+            [
+              1362,
+              720
+            ],
+            [
+              1363,
+              945
+            ],
+            [
+              1396,
+              945
+            ],
+            [
+              1395,
+              720
+            ],
+            [
+              1395,
+              500
+            ]
+          ],
+          "gate_point": [
+            1379.5,
+            945.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1395,
+              500
+            ],
+            [
+              1395,
+              720
+            ],
+            [
+              1396,
+              945
+            ],
+            [
+              1433,
+              945
+            ],
+            [
+              1433,
+              720
+            ],
+            [
+              1433,
+              500
+            ]
+          ],
+          "gate_point": [
+            1414.5,
+            945.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "out_SB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "SB",
+      "rotation_ccw": 180,
+      "color": "#83e16a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1232,
+              2059
+            ],
+            [
+              1232,
+              1839
+            ],
+            [
+              1228,
+              1619
+            ],
+            [
+              1171,
+              1619
+            ],
+            [
+              1175,
+              1839
+            ],
+            [
+              1177,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1199.5,
+            1619.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1177,
+              2059
+            ],
+            [
+              1175,
+              1839
+            ],
+            [
+              1171,
+              1619
+            ],
+            [
+              1106,
+              1619
+            ],
+            [
+              1113,
+              1839
+            ],
+            [
+              1118,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1138.5,
+            1619.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1118,
+              2059
+            ],
+            [
+              1113,
+              1839
+            ],
+            [
+              1106,
+              1619
+            ],
+            [
+              1049,
+              1619
+            ],
+            [
+              1052,
+              1839
+            ],
+            [
+              1054,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1077.5,
+            1619.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1054,
+              2059
+            ],
+            [
+              1052,
+              1839
+            ],
+            [
+              1049,
+              1619
+            ],
+            [
+              1019,
+              1619
+            ],
+            [
+              1025,
+              1839
+            ],
+            [
+              1028,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1034.0,
+            1619.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "out_EB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "EB",
+      "rotation_ccw": 90,
+      "color": "#83e16a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              2039,
+              1302
+            ],
+            [
+              1879,
+              1303
+            ],
+            [
+              1719,
+              1304
+            ],
+            [
+              1719,
+              1358
+            ],
+            [
+              1879,
+              1357
+            ],
+            [
+              2039,
+              1356
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1331.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              2039,
+              1356
+            ],
+            [
+              1879,
+              1357
+            ],
+            [
+              1719,
+              1358
+            ],
+            [
+              1719,
+              1412
+            ],
+            [
+              1879,
+              1411
+            ],
+            [
+              2039,
+              1410
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1385.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              2039,
+              1410
+            ],
+            [
+              1879,
+              1411
+            ],
+            [
+              1719,
+              1412
+            ],
+            [
+              1719,
+              1438
+            ],
+            [
+              1879,
+              1437
+            ],
+            [
+              2039,
+              1436
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1425.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              2039,
+              1436
+            ],
+            [
+              1879,
+              1437
+            ],
+            [
+              1719,
+              1438
+            ],
+            [
+              1719,
+              1492
+            ],
+            [
+              1879,
+              1491
+            ],
+            [
+              2039,
+              1490
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1465.0
+          ]
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              2039,
+              1490
+            ],
+            [
+              1879,
+              1491
+            ],
+            [
+              1719,
+              1492
+            ],
+            [
+              1719,
+              1520
+            ],
+            [
+              1879,
+              1519
+            ],
+            [
+              2039,
+              1518
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1506.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "out_WB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "WB",
+      "rotation_ccw": 270,
+      "color": "#83e16a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              520,
+              1240
+            ],
+            [
+              700,
+              1239
+            ],
+            [
+              910,
+              1238
+            ],
+            [
+              910,
+              1192
+            ],
+            [
+              700,
+              1193
+            ],
+            [
+              520,
+              1194
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1215.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              520,
+              1194
+            ],
+            [
+              700,
+              1193
+            ],
+            [
+              910,
+              1192
+            ],
+            [
+              910,
+              1137
+            ],
+            [
+              700,
+              1138
+            ],
+            [
+              520,
+              1139
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1164.5
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              520,
+              1139
+            ],
+            [
+              700,
+              1138
+            ],
+            [
+              910,
+              1137
+            ],
+            [
+              910,
+              1111
+            ],
+            [
+              700,
+              1112
+            ],
+            [
+              520,
+              1113
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1124.0
+          ]
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              520,
+              1113
+            ],
+            [
+              700,
+              1112
+            ],
+            [
+              910,
+              1111
+            ],
+            [
+              910,
+              1083
+            ],
+            [
+              700,
+              1084
+            ],
+            [
+              520,
+              1085
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1097.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    }
+  ],
+  "gsv_views": [
+    {
+      "id": "gsv_NB",
+      "source_id": "gsv_NB",
+      "kind": "gsv_partial",
+      "direction": "NB",
+      "rotation_ccw": 0,
+      "color": "#ffd76a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              565,
+              716
+            ],
+            [
+              547,
+              752
+            ],
+            [
+              506,
+              825
+            ],
+            [
+              450,
+              912
+            ],
+            [
+              381,
+              1010
+            ],
+            [
+              307,
+              1107
+            ],
+            [
+              257,
+              1190
+            ],
+            [
+              219,
+              1260
+            ],
+            [
+              631,
+              1260
+            ],
+            [
+              612,
+              1190
+            ],
+            [
+              596,
+              1107
+            ],
+            [
+              598,
+              1010
+            ],
+            [
+              608,
+              912
+            ],
+            [
+              615,
+              825
+            ],
+            [
+              618,
+              752
+            ],
+            [
+              620,
+              716
+            ]
+          ],
+          "gate_point": [
+            592.5,
+            716.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              620,
+              716
+            ],
+            [
+              618,
+              752
+            ],
+            [
+              615,
+              825
+            ],
+            [
+              608,
+              912
+            ],
+            [
+              598,
+              1010
+            ],
+            [
+              596,
+              1107
+            ],
+            [
+              612,
+              1190
+            ],
+            [
+              631,
+              1260
+            ],
+            [
+              1277,
+              1192
+            ],
+            [
+              1210,
+              1140
+            ],
+            [
+              1098,
+              1050
+            ],
+            [
+              995,
+              970
+            ],
+            [
+              901,
+              893
+            ],
+            [
+              812,
+              820
+            ],
+            [
+              752,
+              764
+            ]
+          ],
+          "gate_point": [
+            686.0,
+            740.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "gsv_SB",
+      "source_id": "gsv_SB",
+      "kind": "gsv_partial",
+      "direction": "SB",
+      "rotation_ccw": 0,
+      "color": "#ffd76a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              761,
+              388
+            ],
+            [
+              737,
+              430
+            ],
+            [
+              685,
+              520
+            ],
+            [
+              618,
+              630
+            ],
+            [
+              540,
+              760
+            ],
+            [
+              450,
+              905
+            ],
+            [
+              1092,
+              905
+            ],
+            [
+              1015,
+              760
+            ],
+            [
+              947,
+              630
+            ],
+            [
+              891,
+              520
+            ],
+            [
+              842,
+              430
+            ],
+            [
+              817,
+              388
+            ]
+          ],
+          "gate_point": [
+            789.0,
+            388.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              674,
+              388
+            ],
+            [
+              620,
+              430
+            ],
+            [
+              460,
+              520
+            ],
+            [
+              260,
+              630
+            ],
+            [
+              30,
+              760
+            ],
+            [
+              0,
+              778
+            ],
+            [
+              0,
+              905
+            ],
+            [
+              450,
+              905
+            ],
+            [
+              540,
+              760
+            ],
+            [
+              618,
+              630
+            ],
+            [
+              685,
+              520
+            ],
+            [
+              737,
+              430
+            ],
+            [
+              761,
+              388
+            ]
+          ],
+          "gate_point": [
+            717.5,
+            388.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "gsv_EB",
+      "source_id": "gsv_EB",
+      "kind": "gsv_partial",
+      "direction": "EB",
+      "rotation_ccw": 0,
+      "color": "#ffd76a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              744,
+              430
+            ],
+            [
+              692,
+              500
+            ],
+            [
+              574,
+              650
+            ],
+            [
+              454,
+              800
+            ],
+            [
+              347,
+              935
+            ],
+            [
+              1172,
+              935
+            ],
+            [
+              1089,
+              800
+            ],
+            [
+              996,
+              650
+            ],
+            [
+              905,
+              500
+            ],
+            [
+              861,
+              430
+            ]
+          ],
+          "gate_point": [
+            802.5,
+            430.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              685,
+              430
+            ],
+            [
+              599,
+              500
+            ],
+            [
+              416,
+              650
+            ],
+            [
+              235,
+              800
+            ],
+            [
+              70,
+              935
+            ],
+            [
+              347,
+              935
+            ],
+            [
+              454,
+              800
+            ],
+            [
+              574,
+              650
+            ],
+            [
+              692,
+              500
+            ],
+            [
+              744,
+              430
+            ]
+          ],
+          "gate_point": [
+            714.5,
+            430.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              575,
+              430
+            ],
+            [
+              360,
+              500
+            ],
+            [
+              3,
+              645
+            ],
+            [
+              0,
+              800
+            ],
+            [
+              0,
+              935
+            ],
+            [
+              70,
+              935
+            ],
+            [
+              235,
+              800
+            ],
+            [
+              416,
+              650
+            ],
+            [
+              599,
+              500
+            ],
+            [
+              685,
+              430
+            ]
+          ],
+          "gate_point": [
+            630.0,
+            430.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    },
+    {
+      "id": "gsv_WB",
+      "source_id": "gsv_WB",
+      "kind": "gsv_partial",
+      "direction": "WB",
+      "rotation_ccw": 0,
+      "color": "#ffd76a",
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              752,
+              415
+            ],
+            [
+              714,
+              485
+            ],
+            [
+              650,
+              590
+            ],
+            [
+              575,
+              725
+            ],
+            [
+              478,
+              895
+            ],
+            [
+              992,
+              895
+            ],
+            [
+              951,
+              760
+            ],
+            [
+              903,
+              610
+            ],
+            [
+              866,
+              500
+            ],
+            [
+              837,
+              415
+            ]
+          ],
+          "gate_point": [
+            794.5,
+            415.0
+          ]
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              689,
+              409
+            ],
+            [
+              626,
+              444
+            ],
+            [
+              443,
+              548
+            ],
+            [
+              280,
+              627
+            ],
+            [
+              16,
+              773
+            ],
+            [
+              0,
+              783
+            ],
+            [
+              0,
+              895
+            ],
+            [
+              478,
+              895
+            ],
+            [
+              575,
+              725
+            ],
+            [
+              650,
+              590
+            ],
+            [
+              714,
+              485
+            ],
+            [
+              752,
+              415
+            ]
+          ],
+          "gate_point": [
+            720.5,
+            412.0
+          ]
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              603,
+              409
+            ],
+            [
+              499,
+              449
+            ],
+            [
+              350,
+              506
+            ],
+            [
+              172,
+              575
+            ],
+            [
+              4,
+              639
+            ],
+            [
+              0,
+              645
+            ],
+            [
+              0,
+              895
+            ],
+            [
+              0,
+              895
+            ],
+            [
+              0,
+              783
+            ],
+            [
+              16,
+              773
+            ],
+            [
+              280,
+              627
+            ],
+            [
+              443,
+              548
+            ],
+            [
+              626,
+              444
+            ],
+            [
+              689,
+              409
+            ]
+          ],
+          "gate_point": [
+            646.0,
+            409.0
+          ]
+        }
+      ],
+      "coverage": "candidate_regions_only",
+      "geometry_source": "previously_drawn_candidate_geometry",
+      "notes": "Candidate regions are unvalidated hypotheses and may contain non-road pavement or multiple facilities."
+    }
+  ],
+  "context_views": [
+    {
+      "id": "gsv_context_NB_near",
+      "source_id": "gsv_NB_near_forward",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_NB_mid",
+      "source_id": "gsv_NB",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_NB_far",
+      "source_id": "gsv_NB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "far"
+    },
+    {
+      "id": "gsv_context_SB_near",
+      "source_id": "gsv_SB_forward",
+      "kind": "gsv_forward_context",
+      "direction": "SB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_SB_mid",
+      "source_id": "gsv_SB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "SB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_SB_far",
+      "source_id": "gsv_SB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "SB",
+      "sampling_position": "far"
+    },
+    {
+      "id": "gsv_context_EB_near",
+      "source_id": "gsv_EB_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_EB_mid",
+      "source_id": "gsv_EB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_EB_far",
+      "source_id": "gsv_EB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "far"
+    },
+    {
+      "id": "gsv_context_WB_near",
+      "source_id": "gsv_WB_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "near"
+    },
+    {
+      "id": "gsv_context_WB_mid",
+      "source_id": "gsv_WB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "mid"
+    },
+    {
+      "id": "gsv_context_WB_far",
+      "source_id": "gsv_WB_far_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "far"
+    }
+  ],
+  "gsv_sampling": {
+    "center_lat_lon": [
+      33.421935,
+      -111.939995
+    ],
+    "positions": {
+      "near": {
+        "target_m": 25,
+        "allowed_distance_m": [
+          15,
+          40
+        ]
+      },
+      "mid": {
+        "target_m": 50,
+        "allowed_distance_m": [
+          40,
+          65
+        ]
+      },
+      "far": {
+        "target_m": 100,
+        "allowed_distance_m": [
+          80,
+          120
+        ]
+      }
+    },
+    "minimum_position_separation_m": 10
+  },
+  "geometry_checks": {
+    "reference_regions": [
+      "in_NB:r1",
+      "in_NB:r2",
+      "in_SB:r1",
+      "in_SB:r2",
+      "in_SB:r3",
+      "in_SB:r4"
+    ],
+    "axes": {
+      "NB": [
+        0,
+        -1
+      ],
+      "EB": [
+        1,
+        0
+      ],
+      "SB": [
+        0,
+        1
+      ],
+      "WB": [
+        -1,
+        0
+      ]
+    },
+    "merged_width_ratio": 1.65,
+    "minimum_motor_width_ratio": 0.65,
+    "straight_review_lane_widths": 0.65,
+    "straight_hard_lane_widths": 1.5,
+    "straight_review_angle_deg": 8,
+    "straight_hard_lane_widths_by_direction": {
+      "EB": 0.9
+    }
+  },
+  "reference": {
+    "status": "withheld_from_inference",
+    "file": null
+  },
+  "far_upstream": {
+    "status": "context_views_only_not_full_lane_crosssections"
+  }
+}

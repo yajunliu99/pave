@@ -1,0 +1,99 @@
+{
+  "tagline": "a harness for vision-language models (VLMs) that read and edit networks",
+  "eyebrow": "PAVE · a harness for VLMs that read and edit networks",
+  "lead": "A vision-language model reads imagery of the real road and writes into a GMNS network. The harness around it renders what the model sees, ties every answer to network IDs and image coordinates, checks each answer and returns failures with the reason, and records every step so a run can be replayed. The model makes the judgements; the harness measures, checks and edits.",
+  "stages": [
+    {
+      "key": "P",
+      "name": "Perceive",
+      "short": "what the model sees",
+      "text": "Satellite crops with rulers, street views tied to the network by camera pose, ID-marked drawings of the network. The model can ask for closer views."
+    },
+    {
+      "key": "A",
+      "name": "Anchor",
+      "short": "answers tied to IDs",
+      "text": "Every answer points at something that can be checked: a stop bar, a lane boundary in crop pixels, a link or node ID."
+    },
+    {
+      "key": "V",
+      "name": "Verify",
+      "short": "checks, not rewards",
+      "text": "A real road gives no reward. Geometry checks, street-view lane counts, proposal gates and network and design checks stand in."
+    },
+    {
+      "key": "E",
+      "name": "Edit",
+      "short": "writes back to GMNS",
+      "text": "Lanes, lane use and movements written to GMNS, or a new design built from templates and exported as GMNS tables and a project card."
+    }
+  ],
+  "loop_back": "a failed check goes back to the model with the reason",
+  "read": {
+    "example": "read/examples/broadway_ames_2021",
+    "dashboard": "dashboard/build/read_example.html",
+    "image": "read/examples/broadway_ames_2021/results/annotated/labels/overview.jpg",
+    "kind": "Read · inventory",
+    "title": "Broadway & Ames Street, Cambridge MA",
+    "text": "Lanes, lane use, turning movements, and signal and sign readings for a signalised T-junction, traced on a 2021 orthophoto and checked against street views."
+  },
+  "edit": {
+    "build": {
+      "cwd": "edit",
+      "command": [
+        "tools/build_dashboard.py",
+        "--proposal",
+        "scenarios/sr347_i10_ddi/proposals/blind_mapbox_nonames.json",
+        "--proposer-input",
+        "scenarios/sr347_i10_ddi/proposals/blind_mapbox_nonames.input.png",
+        "--proposer-prompt",
+        "scenarios/sr347_i10_ddi/proposals/blind_mapbox_nonames.prompt.txt"
+      ]
+    },
+    "image": "edit/docs/before_after_ddi.png",
+    "kind": "Edit · scenario design",
+    "title": "SR 347 / I-10 interchange, Arizona",
+    "text": "The existing diamond is rebuilt as a diverging diamond, a single point urban interchange or roundabout ramp terminals. The model names the links involved, templates build each design, and checks verify it.",
+    "facts": [
+      [
+        "3",
+        "build alternatives"
+      ],
+      [
+        "32/32",
+        "network checks pass over 4 forms"
+      ],
+      [
+        "P0–P8",
+        "proposal gates passed by the first answer"
+      ]
+    ]
+  },
+  "principles": [
+    [
+      "Observations stay images",
+      "The model reads rendered imagery, not a text dump of the network. Every source image is kept and can be looked at again."
+    ],
+    [
+      "The harness measures, the model judges",
+      "Code computes positions, widths, headings and projections; open questions go to the model as choices among candidates."
+    ],
+    [
+      "Answers point at checkable things",
+      "Stop-bar positions, boundary coordinates, link and node IDs, each with the image region it relies on."
+    ],
+    [
+      "Checks replace an environment",
+      "Geometry, cross-view and network checks decide whether an answer stands; a failure returns with the reason for another try."
+    ],
+    [
+      "Every step can be replayed",
+      "Prompts, images and raw answers are kept, so a run can be repeated or extended without new model calls."
+    ],
+    [
+      "One harness, any model",
+      "The same interface has run with different vision-language models; the model is a parameter, not part of the design."
+    ]
+  ],
+  "footer": "Model output is a prediction, not reference data. Imagery: MassGIS (Commonwealth of Massachusetts), © Google, © Mapbox, © Maxar; network data © OpenStreetMap contributors (ODbL)."
+}

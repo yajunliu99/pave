@@ -1,0 +1,2085 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "lane/95/in_EB/r1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.0876608964223,
+              42.36405794795999
+            ],
+            [
+              -71.08773566299858,
+              42.364089607618254
+            ],
+            [
+              -71.08781042957489,
+              42.36412121771497
+            ],
+            [
+              -71.0878852632064,
+              42.36415287734132
+            ],
+            [
+              -71.08795976156179,
+              42.364184933316075
+            ],
+            [
+              -71.08797189855758,
+              42.364163430546554
+            ],
+            [
+              -71.0878971319813,
+              42.36413182047109
+            ],
+            [
+              -71.08782229834978,
+              42.36410021037974
+            ],
+            [
+              -71.08774753177347,
+              42.36406855072683
+            ],
+            [
+              -71.0876727651972,
+              42.36403694060362
+            ],
+            [
+              -71.0876608964223,
+              42.36405794795999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_EB",
+        "region_id": "r1",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "through_only",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_EB/r2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.0876727651972,
+              42.36403694060362
+            ],
+            [
+              -71.08774753177347,
+              42.36406855072683
+            ],
+            [
+              -71.08782229834978,
+              42.36410021037974
+            ],
+            [
+              -71.0878971319813,
+              42.36413182047109
+            ],
+            [
+              -71.08797189855758,
+              42.364163430546554
+            ],
+            [
+              -71.08798584604446,
+              42.36413875685267
+            ],
+            [
+              -71.08791154885473,
+              42.36410620539827
+            ],
+            [
+              -71.08783705049935,
+              42.3640740998377
+            ],
+            [
+              -71.08776201570217,
+              42.36404293562821
+            ],
+            [
+              -71.08768724912586,
+              42.36401132549211
+            ],
+            [
+              -71.0876727651972,
+              42.36403694060362
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_EB",
+        "region_id": "r2",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "right_only",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_EB/r3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08768724912586,
+              42.36401132549211
+            ],
+            [
+              -71.08776201570217,
+              42.36404293562821
+            ],
+            [
+              -71.08783705049935,
+              42.3640740998377
+            ],
+            [
+              -71.08791154885473,
+              42.36410620539827
+            ],
+            [
+              -71.08798584604446,
+              42.36413875685267
+            ],
+            [
+              -71.08799328917446,
+              42.364125478635856
+            ],
+            [
+              -71.08791778499071,
+              42.3640952558185
+            ],
+            [
+              -71.08784348780098,
+              42.364062704341585
+            ],
+            [
+              -71.0877687212247,
+              42.364031044669794
+            ],
+            [
+              -71.0876939546484,
+              42.363999434527706
+            ],
+            [
+              -71.08768724912586,
+              42.36401132549211
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_EB",
+        "region_id": "r3",
+        "model_surface_type": "bicycle_strip",
+        "model_existence": "supported",
+        "model_use": "not_applicable",
+        "graph_role": "non_motor_facility",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_NB/r1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08759283536854,
+              42.36384039266245
+            ],
+            [
+              -71.08763494605009,
+              42.363785446329466
+            ],
+            [
+              -71.08767678851072,
+              42.36373035131074
+            ],
+            [
+              -71.08772131318037,
+              42.36367634625444
+            ],
+            [
+              -71.08777717018309,
+              42.363627097566315
+            ],
+            [
+              -71.08774558717194,
+              42.36361396787935
+            ],
+            [
+              -71.08768859023037,
+              42.363662770664185
+            ],
+            [
+              -71.08764379733982,
+              42.36371662709439
+            ],
+            [
+              -71.08760135138218,
+              42.36377147439585
+            ],
+            [
+              -71.0875591736454,
+              42.36382642074105
+            ],
+            [
+              -71.08759283536854,
+              42.36384039266245
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_NB",
+        "region_id": "r1",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "left_only",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_NB/r2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.0875591736454,
+              42.36382642074105
+            ],
+            [
+              -71.08760135138218,
+              42.36377147439585
+            ],
+            [
+              -71.08764379733982,
+              42.36371662709439
+            ],
+            [
+              -71.08768859023037,
+              42.363662770664185
+            ],
+            [
+              -71.08774558717194,
+              42.36361396787935
+            ],
+            [
+              -71.08771226072493,
+              42.3636001445456
+            ],
+            [
+              -71.08765700721922,
+              42.36364969053064
+            ],
+            [
+              -71.08761194610778,
+              42.363703398334295
+            ],
+            [
+              -71.08756950015012,
+              42.363758245647276
+            ],
+            [
+              -71.08752732241337,
+              42.36381324154992
+            ],
+            [
+              -71.0875591736454,
+              42.36382642074105
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_NB",
+        "region_id": "r2",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "right_only",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_NB/r3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08752732241337,
+              42.36381324154992
+            ],
+            [
+              -71.08756950015012,
+              42.363758245647276
+            ],
+            [
+              -71.08761194610778,
+              42.363703398334295
+            ],
+            [
+              -71.08765700721922,
+              42.36364969053064
+            ],
+            [
+              -71.08771226072493,
+              42.3636001445456
+            ],
+            [
+              -71.08768979722443,
+              42.36359082989603
+            ],
+            [
+              -71.08764761948767,
+              42.363645776399245
+            ],
+            [
+              -71.0876046370882,
+              42.36370037603292
+            ],
+            [
+              -71.08756272757236,
+              42.36375547107796
+            ],
+            [
+              -71.0875200133938,
+              42.363810169707975
+            ],
+            [
+              -71.08752732241337,
+              42.36381324154992
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_NB",
+        "region_id": "r3",
+        "model_surface_type": "median_or_buffer",
+        "model_existence": "rejected",
+        "model_use": "not_applicable",
+        "graph_role": "rejected_region",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_NB/r4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.0875200133938,
+              42.363810169707975
+            ],
+            [
+              -71.08756272757236,
+              42.36375547107796
+            ],
+            [
+              -71.0876046370882,
+              42.36370037603292
+            ],
+            [
+              -71.08764761948767,
+              42.363645776399245
+            ],
+            [
+              -71.08768979722443,
+              42.36359082989603
+            ],
+            [
+              -71.0876722287554,
+              42.363583546631865
+            ],
+            [
+              -71.08763011807386,
+              42.36363849314144
+            ],
+            [
+              -71.087588208558,
+              42.36369358824075
+            ],
+            [
+              -71.08754522615854,
+              42.36374818783287
+            ],
+            [
+              -71.08750278020086,
+              42.36380303510677
+            ],
+            [
+              -71.0875200133938,
+              42.363810169707975
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_NB",
+        "region_id": "r4",
+        "model_surface_type": "bicycle_strip",
+        "model_existence": "uncertain",
+        "model_use": "not_applicable",
+        "graph_role": "unresolved_candidate",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_NB/r5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08750278020086,
+              42.36380303510677
+            ],
+            [
+              -71.08754522615854,
+              42.36374818783287
+            ],
+            [
+              -71.087588208558,
+              42.36369358824075
+            ],
+            [
+              -71.08763011807386,
+              42.36363849314144
+            ],
+            [
+              -71.0876722287554,
+              42.363583546631865
+            ],
+            [
+              -71.08765385562363,
+              42.36357591654469
+            ],
+            [
+              -71.0876125496048,
+              42.36363120988278
+            ],
+            [
+              -71.08756950015012,
+              42.3636858095291
+            ],
+            [
+              -71.08752591425363,
+              42.36374016139854
+            ],
+            [
+              -71.08748407179299,
+              42.36379525640869
+            ],
+            [
+              -71.08750278020086,
+              42.36380303510677
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_NB",
+        "region_id": "r5",
+        "model_surface_type": "bicycle_strip",
+        "model_existence": "supported",
+        "model_use": "not_applicable",
+        "graph_role": "non_motor_facility",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_WB/r1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08717280143681,
+              42.363886916165654
+            ],
+            [
+              -71.08709883952322,
+              42.36385525640524
+            ],
+            [
+              -71.08702514583054,
+              42.36382320026227
+            ],
+            [
+              -71.08695017808857,
+              42.363792828661964
+            ],
+            [
+              -71.08687681967201,
+              42.36376032657421
+            ],
+            [
+              -71.08685549611035,
+              42.36378757680135
+            ],
+            [
+              -71.08692945802395,
+              42.36381923659584
+            ],
+            [
+              -71.08700348699276,
+              42.363850846828605
+            ],
+            [
+              -71.087077650072,
+              42.36388230840807
+            ],
+            [
+              -71.08715167904082,
+              42.363913918609086
+            ],
+            [
+              -71.08717280143681,
+              42.363886916165654
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_WB",
+        "region_id": "r1",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "left_only",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_WB/r2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08715167904082,
+              42.363913918609086
+            ],
+            [
+              -71.087077650072,
+              42.36388230840807
+            ],
+            [
+              -71.08700348699276,
+              42.363850846828605
+            ],
+            [
+              -71.08692945802395,
+              42.36381923659584
+            ],
+            [
+              -71.08685549611035,
+              42.36378757680135
+            ],
+            [
+              -71.08683517837707,
+              42.36381353882494
+            ],
+            [
+              -71.08690880501453,
+              42.36384559497285
+            ],
+            [
+              -71.08698283398334,
+              42.36387725473811
+            ],
+            [
+              -71.08705713117304,
+              42.363908419029805
+            ],
+            [
+              -71.08713116014185,
+              42.3639400787634
+            ],
+            [
+              -71.08715167904082,
+              42.363913918609086
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_WB",
+        "region_id": "r2",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "through_only",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/in_WB/r3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08713116014185,
+              42.3639400787634
+            ],
+            [
+              -71.08705713117304,
+              42.363908419029805
+            ],
+            [
+              -71.08698283398334,
+              42.36387725473811
+            ],
+            [
+              -71.08690880501453,
+              42.36384559497285
+            ],
+            [
+              -71.08683517837707,
+              42.36381353882494
+            ],
+            [
+              -71.08682277316038,
+              42.363829393490555
+            ],
+            [
+              -71.08689673507395,
+              42.36386100371818
+            ],
+            [
+              -71.08697076404276,
+              42.363892663475696
+            ],
+            [
+              -71.08704472595636,
+              42.36392432321723
+            ],
+            [
+              -71.0871190902013,
+              42.36395553703129
+            ],
+            [
+              -71.08713116014185,
+              42.3639400787634
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "in_WB",
+        "region_id": "r3",
+        "model_surface_type": "bicycle_strip",
+        "model_existence": "supported",
+        "model_use": "not_applicable",
+        "graph_role": "non_motor_facility",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_EB/r1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08690263593378,
+              42.36377043393255
+            ],
+            [
+              -71.08697606140557,
+              42.36380288646922
+            ],
+            [
+              -71.08705049270573,
+              42.36383410034363
+            ],
+            [
+              -71.08712425345364,
+              42.36386615648106
+            ],
+            [
+              -71.08719875180904,
+              42.36389737032402
+            ],
+            [
+              -71.08721544856016,
+              42.36387819610804
+            ],
+            [
+              -71.08714128548088,
+              42.363846585889064
+            ],
+            [
+              -71.08706718945685,
+              42.36381492610834
+            ],
+            [
+              -71.08699235582534,
+              42.363784108591275
+            ],
+            [
+              -71.08691933268491,
+              42.36375125967785
+            ],
+            [
+              -71.08690263593378,
+              42.36377043393255
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_EB",
+        "region_id": "r1",
+        "model_surface_type": "median_or_buffer",
+        "model_existence": "rejected",
+        "model_use": "unknown",
+        "graph_role": "rejected_region",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_EB/r2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08691933268491,
+              42.36375125967785
+            ],
+            [
+              -71.08699235582534,
+              42.363784108591275
+            ],
+            [
+              -71.08706718945685,
+              42.36381492610834
+            ],
+            [
+              -71.08714128548088,
+              42.363846585889064
+            ],
+            [
+              -71.08721544856016,
+              42.36387819610804
+            ],
+            [
+              -71.08724153304283,
+              42.36384817135497
+            ],
+            [
+              -71.08716522419635,
+              42.36381903841252
+            ],
+            [
+              -71.08709112817232,
+              42.363787428163775
+            ],
+            [
+              -71.08701696509304,
+              42.36375576835326
+            ],
+            [
+              -71.086942869069,
+              42.36372415807268
+            ],
+            [
+              -71.08691933268491,
+              42.36375125967785
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_EB",
+        "region_id": "r2",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "unknown",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_EB/r3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.086942869069,
+              42.36372415807268
+            ],
+            [
+              -71.08701696509304,
+              42.36375576835326
+            ],
+            [
+              -71.08709112817232,
+              42.363787428163775
+            ],
+            [
+              -71.08716522419635,
+              42.36381903841252
+            ],
+            [
+              -71.08724153304283,
+              42.36384817135497
+            ],
+            [
+              -71.08725239598932,
+              42.36383568580986
+            ],
+            [
+              -71.08717575186674,
+              42.363806949228376
+            ],
+            [
+              -71.08710125351135,
+              42.363775735340475
+            ],
+            [
+              -71.08702675515596,
+              42.36374452143706
+            ],
+            [
+              -71.0869523238558,
+              42.36371330751815
+            ],
+            [
+              -71.086942869069,
+              42.36372415807268
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_EB",
+        "region_id": "r3",
+        "model_surface_type": "bicycle_strip",
+        "model_existence": "supported",
+        "model_use": "unknown",
+        "graph_role": "non_motor_facility",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_EB/r4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.0869523238558,
+              42.36371330751815
+            ],
+            [
+              -71.08702675515596,
+              42.36374452143706
+            ],
+            [
+              -71.08710125351135,
+              42.363775735340475
+            ],
+            [
+              -71.08717575186674,
+              42.363806949228376
+            ],
+            [
+              -71.08725239598932,
+              42.36383568580986
+            ],
+            [
+              -71.08726614231053,
+              42.36381983114583
+            ],
+            [
+              -71.08721377217951,
+              42.363763200235084
+            ],
+            [
+              -71.08713967615549,
+              42.36373154041235
+            ],
+            [
+              -71.08706558013145,
+              42.36369993011959
+            ],
+            [
+              -71.08699074649992,
+              42.363669112546134
+            ],
+            [
+              -71.0869523238558,
+              42.36371330751815
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_EB",
+        "region_id": "r4",
+        "model_surface_type": "shoulder_or_parking",
+        "model_existence": "rejected",
+        "model_use": "unknown",
+        "graph_role": "rejected_region",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_SB/r1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08775403613035,
+              42.36363547083693
+            ],
+            [
+              -71.0877103161234,
+              42.36368977320395
+            ],
+            [
+              -71.08766652906124,
+              42.363744025978164
+            ],
+            [
+              -71.08762394899311,
+              42.363798823709836
+            ],
+            [
+              -71.087581368925,
+              42.36385357184791
+            ],
+            [
+              -71.0876387011427,
+              42.36387834474539
+            ],
+            [
+              -71.0876812812108,
+              42.36382359662889
+            ],
+            [
+              -71.08772500121775,
+              42.36376929437754
+            ],
+            [
+              -71.0877681847829,
+              42.363714793895596
+            ],
+            [
+              -71.08781136834804,
+              42.36366024382041
+            ],
+            [
+              -71.08775403613035,
+              42.36363547083693
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_SB",
+        "region_id": "r1",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "unknown",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_WB/r1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08787131571951,
+              42.36420975562844
+            ],
+            [
+              -71.08779594564619,
+              42.36417968148826
+            ],
+            [
+              -71.0877219837326,
+              42.36414792278425
+            ],
+            [
+              -71.08765150869074,
+              42.36411200223385
+            ],
+            [
+              -71.08758358174745,
+              42.364073108925105
+            ],
+            [
+              -71.08754495793762,
+              42.36411888907201
+            ],
+            [
+              -71.08761891985121,
+              42.36415064779068
+            ],
+            [
+              -71.08769247943346,
+              42.364182802857684
+            ],
+            [
+              -71.0877661060709,
+              42.36421500745373
+            ],
+            [
+              -71.08784040326061,
+              42.364246320214384
+            ],
+            [
+              -71.08787131571951,
+              42.36420975562844
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_WB",
+        "region_id": "r1",
+        "model_surface_type": "motor_vehicle_lane",
+        "model_existence": "supported",
+        "model_use": "unknown",
+        "graph_role": "motor_lane_candidate",
+        "movement_endpoint_eligible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_WB/r2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08784040326061,
+              42.364246320214384
+            ],
+            [
+              -71.0877661060709,
+              42.36421500745373
+            ],
+            [
+              -71.08769247943346,
+              42.364182802857684
+            ],
+            [
+              -71.08761891985121,
+              42.36415064779068
+            ],
+            [
+              -71.08754495793762,
+              42.36411888907201
+            ],
+            [
+              -71.08753603959266,
+              42.36412944228297
+            ],
+            [
+              -71.08761040383759,
+              42.364160755086246
+            ],
+            [
+              -71.08768436575117,
+              42.36419251378377
+            ],
+            [
+              -71.0877586629409,
+              42.36422382655562
+            ],
+            [
+              -71.08783262485447,
+              42.364255585221265
+            ],
+            [
+              -71.08784040326061,
+              42.364246320214384
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_WB",
+        "region_id": "r2",
+        "model_surface_type": "median_or_buffer",
+        "model_existence": "rejected",
+        "model_use": "unknown",
+        "graph_role": "rejected_region",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lane/95/out_WB/r3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.08783262485447,
+              42.364255585221265
+            ],
+            [
+              -71.0877586629409,
+              42.36422382655562
+            ],
+            [
+              -71.08768436575117,
+              42.36419251378377
+            ],
+            [
+              -71.08761040383759,
+              42.364160755086246
+            ],
+            [
+              -71.08753603959266,
+              42.36412944228297
+            ],
+            [
+              -71.08752363437597,
+              42.364144157320624
+            ],
+            [
+              -71.08759866917316,
+              42.36417462784221
+            ],
+            [
+              -71.08767229581062,
+              42.36420678289694
+            ],
+            [
+              -71.08774518484059,
+              42.36423978020869
+            ],
+            [
+              -71.08781881147804,
+              42.364271984775556
+            ],
+            [
+              -71.08783262485447,
+              42.364255585221265
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "section_id": "out_WB",
+        "region_id": "r3",
+        "model_surface_type": "bicycle_strip",
+        "model_existence": "supported",
+        "model_use": "unknown",
+        "graph_role": "non_motor_facility",
+        "movement_endpoint_eligible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_EB_near_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08773296058679,
+          42.3640552327385
+        ]
+      },
+      "properties": {
+        "pano_id": "hRVL8qhrNI-JfNB6FQeqGw",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 120.243,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_EB_near_look_back",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08773296058679,
+          42.3640552327385
+        ]
+      },
+      "properties": {
+        "pano_id": "hRVL8qhrNI-JfNB6FQeqGw",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 300.243,
+        "camera_role": "reverse_auxiliary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_EB_mid_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08797034138243,
+          42.36415161759155
+        ]
+      },
+      "properties": {
+        "pano_id": "kD7P5QIM1p11ulUllRiVMA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 120.243,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_EB_far_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08852462227891,
+          42.36437665272493
+        ]
+      },
+      "properties": {
+        "pano_id": "LjNle9ec1QCAD6L80QWp6Q",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 126.175,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_NB_near_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08760828574351,
+          42.36378741658628
+        ]
+      },
+      "properties": {
+        "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 29.503,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_NB_near_look_back",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08760828574351,
+          42.36378741658628
+        ]
+      },
+      "properties": {
+        "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 209.503,
+        "camera_role": "reverse_auxiliary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_NB_mid_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08780658673079,
+          42.36356229722824
+        ]
+      },
+      "properties": {
+        "pano_id": "pftZedWg5jk2t7Cj1rGcMA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 29.385,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_NB_far_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08810408336612,
+          42.36312827802712
+        ]
+      },
+      "properties": {
+        "pano_id": "RBEaUL-rnmXBTNCOeg0w9w",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 26.826,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_WB_near_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08714222817173,
+          42.36390661675459
+        ]
+      },
+      "properties": {
+        "pano_id": "uhFChog3QwBpKqKx650Sug",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 300.314,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_WB_near_look_back",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08714222817173,
+          42.36390661675459
+        ]
+      },
+      "properties": {
+        "pano_id": "uhFChog3QwBpKqKx650Sug",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 120.314,
+        "camera_role": "reverse_auxiliary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_WB_mid_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08679875971961,
+          42.3637682820962
+        ]
+      },
+      "properties": {
+        "pano_id": "lzsK1P01E2cICP8hIN7rww",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 300.314,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_WB_far_forward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08628527928168,
+          42.36355541716062
+        ]
+      },
+      "properties": {
+        "pano_id": "o4yBx0whdlDVUd5WmnUFyg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 299.512,
+        "camera_role": "forward_primary",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_EB_025_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08723181282049,
+          42.36384012684365
+        ]
+      },
+      "properties": {
+        "pano_id": "mbaxwXwsIHZPZlvfM6cUPA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 119.874,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_EB_025_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08723181282049,
+          42.36384012684365
+        ]
+      },
+      "properties": {
+        "pano_id": "mbaxwXwsIHZPZlvfM6cUPA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 299.874,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_EB_050_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08691064994952,
+          42.3637118319081
+        ]
+      },
+      "properties": {
+        "pano_id": "lqs36PRm-DOTQZ9Os0G6hQ",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 119.802,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_EB_050_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08691064994952,
+          42.3637118319081
+        ]
+      },
+      "properties": {
+        "pano_id": "lqs36PRm-DOTQZ9Os0G6hQ",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 299.802,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_EB_100_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08637114653067,
+          42.36349061331015
+        ]
+      },
+      "properties": {
+        "pano_id": "Pr7BL9ZT8rnYyIDRhSqBug",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 119.802,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_EB_100_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08637114653067,
+          42.36349061331015
+        ]
+      },
+      "properties": {
+        "pano_id": "Pr7BL9ZT8rnYyIDRhSqBug",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 299.802,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_SB_025_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08760828574351,
+          42.36378741658628
+        ]
+      },
+      "properties": {
+        "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 209.503,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_SB_025_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08760828574351,
+          42.36378741658628
+        ]
+      },
+      "properties": {
+        "pano_id": "b8uhYxEbQFfYKJCTGCaozA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 29.503,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_SB_050_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08780658673079,
+          42.36356229722824
+        ]
+      },
+      "properties": {
+        "pano_id": "pftZedWg5jk2t7Cj1rGcMA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 209.385,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_SB_050_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08780658673079,
+          42.36356229722824
+        ]
+      },
+      "properties": {
+        "pano_id": "pftZedWg5jk2t7Cj1rGcMA",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 29.385,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_SB_100_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08810408336612,
+          42.36312827802712
+        ]
+      },
+      "properties": {
+        "pano_id": "RBEaUL-rnmXBTNCOeg0w9w",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 206.826,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_SB_100_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08810408336612,
+          42.36312827802712
+        ]
+      },
+      "properties": {
+        "pano_id": "RBEaUL-rnmXBTNCOeg0w9w",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 26.826,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_WB_025_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.0877599810205,
+          42.36416053440298
+        ]
+      },
+      "properties": {
+        "pano_id": "kKqITKdJDIzBoumBpSXqXg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 300.077,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_WB_025_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.0877599810205,
+          42.36416053440298
+        ]
+      },
+      "properties": {
+        "pano_id": "kKqITKdJDIzBoumBpSXqXg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 120.077,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_WB_050_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08796299690611,
+          42.36424982472968
+        ]
+      },
+      "properties": {
+        "pano_id": "FUEZpZpwvW9Y-AtpgFFimw",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 297.172,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_WB_050_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08796299690611,
+          42.36424982472968
+        ]
+      },
+      "properties": {
+        "pano_id": "FUEZpZpwvW9Y-AtpgFFimw",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 117.172,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_WB_100_away",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08849052944669,
+          42.36447189189537
+        ]
+      },
+      "properties": {
+        "pano_id": "CNTgApxg0nRLlnxGIJbj-g",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 288.899,
+        "camera_role": "outbound_primary_away",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_out_WB_100_toward",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08849052944669,
+          42.36447189189537
+        ]
+      },
+      "properties": {
+        "pano_id": "CNTgApxg0nRLlnxGIJbj-g",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 108.899,
+        "camera_role": "outbound_primary_toward",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_control_link_3_1c684f5e7f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08750219875577,
+          42.36396157124192
+        ]
+      },
+      "properties": {
+        "pano_id": "_3whLBv7hjtOb-Hj2ZsBvQ",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 120.24625361427657,
+        "camera_role": "control_context",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_control_link_3_73051d258c",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08744398690968,
+          42.36395011878343
+        ]
+      },
+      "properties": {
+        "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+        "capture_date": "2020-10",
+        "compass_heading_deg": 120.24625361427657,
+        "camera_role": "control_context",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_control_link_112_c28aca3e20",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08726681248558,
+          42.36395382181839
+        ]
+      },
+      "properties": {
+        "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 300.3830291562602,
+        "camera_role": "control_context",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_control_link_112_2313b6b71a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08738359891098,
+          42.36399694178242
+        ]
+      },
+      "properties": {
+        "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 300.34681034611236,
+        "camera_role": "control_context",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_control_link_158_ccf0dc5362",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08753157669362,
+          42.36386328022004
+        ]
+      },
+      "properties": {
+        "pano_id": "jeeFWfXPQq05atLjxvWcnw",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 29.949556427021463,
+        "camera_role": "control_context",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_control_link_158_a85b418687",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08746964727277,
+          42.36392448401435
+        ]
+      },
+      "properties": {
+        "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+        "capture_date": "2019-10",
+        "compass_heading_deg": 29.76289663431264,
+        "camera_role": "control_context",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_3_3b7d41a9e9f9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08744398690968,
+          42.36395011878343
+        ]
+      },
+      "properties": {
+        "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+        "capture_date": "2020-10",
+        "compass_heading_deg": 115.29,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_3_ba9d0dc9fb12",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08744398690968,
+          42.36395011878343
+        ]
+      },
+      "properties": {
+        "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+        "capture_date": "2020-10",
+        "compass_heading_deg": 156.245,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_3_67b3a47dbf0f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08744398690968,
+          42.36395011878343
+        ]
+      },
+      "properties": {
+        "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+        "capture_date": "2020-10",
+        "compass_heading_deg": 162.5,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_3_e6bc71b66067",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08744398690968,
+          42.36395011878343
+        ]
+      },
+      "properties": {
+        "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+        "capture_date": "2020-10",
+        "compass_heading_deg": 164.502,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_112_90f7e2a58066",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08738359891098,
+          42.36399694178242
+        ]
+      },
+      "properties": {
+        "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 286.529,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_112_6ecdc6838223",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08738359891098,
+          42.36399694178242
+        ]
+      },
+      "properties": {
+        "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 318.541,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_112_dd4b3ac2c519",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08738359891098,
+          42.36399694178242
+        ]
+      },
+      "properties": {
+        "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 308.189,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_112_62375a00e05c",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08738359891098,
+          42.36399694178242
+        ]
+      },
+      "properties": {
+        "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+        "capture_date": "2020-11",
+        "compass_heading_deg": 284.4,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_158_292d208efe9f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08746964727277,
+          42.36392448401435
+        ]
+      },
+      "properties": {
+        "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+        "capture_date": "2019-10",
+        "compass_heading_deg": 22.129,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_158_361d9938b53e",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08746964727277,
+          42.36392448401435
+        ]
+      },
+      "properties": {
+        "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+        "capture_date": "2019-10",
+        "compass_heading_deg": 38.365,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_158_47846d9cf256",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08746964727277,
+          42.36392448401435
+        ]
+      },
+      "properties": {
+        "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+        "capture_date": "2019-10",
+        "compass_heading_deg": 41.992,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gsv_detail_link_158_45a3210b0809",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.08746964727277,
+          42.36392448401435
+        ]
+      },
+      "properties": {
+        "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+        "capture_date": "2019-10",
+        "compass_heading_deg": 16.132,
+        "camera_role": "control_detail",
+        "camera_position_error_m": null
+      }
+    }
+  ]
+}

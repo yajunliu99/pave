@@ -1,0 +1,34 @@
+{
+  "response": {
+    "issue_responses": [
+      {
+        "issue": "sliver_region:r1:40bdcbe0",
+        "decision": "edit",
+        "reason": "r1 is the dark road-toned strip (about x 188-198 at S1) between the median edge e1 and e2. e2 does not sit on a painted line. Brightness profiles taken along the lane direction, in both the sunlit and the shaded rows, show only a tone change from the dark strip to lighter asphalt at e2. There is no line peak and no yellow tint there, while e3 and e4 show clear paint peaks. The light band left of e1 (about 162-186) has the warm tint of the median, not of the road. In the street view the left lane runs from the median kerb (only a narrow leaf-filled gutter and the yellow edge line) to the solid white separator, with no line inside it. That lane is about as wide at the stop bar as the right-turn lane. r2 alone is about half the width of r3, so r1 and r2 together form the through lane."
+      },
+      {
+        "issue": "possible_merged_lanes:r3:7f734821",
+        "decision": "dismiss",
+        "reason": "r3 is one right-turn lane. A single curved right-turn arrow sits centred in it (about x 239-273 near S1). The profile between e3 (painted line at about 232) and e4 (painted line at about 288) shows no further line at any station, sunlit or shaded. The street view shows the same lane, with the right-turn arrow, as one lane between two solid white lines. It looks wide only beside the narrow r1/r2 slivers and the narrow kerbside strip r4."
+      }
+    ],
+    "edits": [
+      {
+        "op": "merge_regions",
+        "regions": [
+          "r1",
+          "r2"
+        ],
+        "evidence": "No painted line at e2: the dark strip and the lighter asphalt are both road surface in one lane. The street view shows a single through lane from the median-side yellow edge line to the solid separator e3, with no line between them."
+      }
+    ],
+    "verdict": "revise",
+    "notes": [
+      "e3 (about 232 at S1) and e4 (about 288 at S1) are confirmed painted solid lines in both the sunlit and the shaded part. Both meet the stop bar at the top.",
+      "r4 (e4 to e5) matches the narrow strip the street view shows between the right-turn lane's right edge line and the kerb; the stop bar runs across it to the kerb. Kept as is. Brightness falls off gradually from x 314 to x 324 beyond e5, so the kerb edge may sit a few units right of e5, but no clear kerb line is visible.",
+      "The satellite stop bar's bright paint starts at about x 205, and the dark strip in r1 stays dark across the stop-bar rows. r1 may therefore partly be a gutter rather than travel lane. The street view, however, shows only a narrow gutter there, and the lane width points to r1 and r2 belonging together. The satellite and the street view may be from different dates.",
+      "In the street view the projected boundaries are offset to the left: e3 lands mid through lane and e4/e5 land in the right-turn lane. Boundaries were therefore matched by order and spacing, not by projected position."
+    ]
+  },
+  "metadata": {}
+}

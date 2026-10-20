@@ -1,0 +1,73 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r1's left edge follows a continuous bright longitudinal line, read as the centre line. On the other side of it are the opposing approach's lanes, whose turn arrows point toward the junction. The left ~3.5 m of r1 is uniform asphalt with no parked objects: a SB travel lane leaving the junction. About 64% of the way across, a faint longitudinal line separates it from the right ~2 m. That right part holds a row of three cars parked end to end along the kerb, so it is a parking lane, not travel pavement. Beyond the kerb are tree-shadowed sidewalk/plaza, brick paving and buildings. The reverse look-back street view shows the same arrangement on this side of the double yellow line: one travel lane, then a solid white edge line, then cars parked at the kerb, then the sidewalk with café seating. r1 is therefore supported as a travel facility, but it covers one motor-vehicle lane plus a parking strip; only about 3.5 m of its 5.5 m width is travel lane. Most of it lies in building shadow.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_SB",
+            "bbox_xyxy": [
+              0.354,
+              0.352,
+              0.52,
+              0.578
+            ],
+            "finding": "bright centre line along r1's left edge, with the opposing approach's turn arrows beyond it"
+          },
+          {
+            "source_id": "scene_out_SB",
+            "bbox_xyxy": [
+              0.46,
+              0.296,
+              0.706,
+              0.623
+            ],
+            "finding": "three cars parked end to end in the right ~2 m of r1, along the kerb"
+          },
+          {
+            "source_id": "gsv_NB_near_look_back",
+            "bbox_xyxy": [
+              0.25,
+              0.44,
+              0.5,
+              1.0
+            ],
+            "finding": "double yellow centre line bounding the SB side"
+          },
+          {
+            "source_id": "gsv_NB_near_look_back",
+            "bbox_xyxy": [
+              0.4,
+              0.47,
+              0.9,
+              1.0
+            ],
+            "finding": "single SB travel lane between the yellow line and the white edge line"
+          },
+          {
+            "source_id": "gsv_NB_near_look_back",
+            "bbox_xyxy": [
+              0.62,
+              0.44,
+              1.0,
+              0.82
+            ],
+            "finding": "white parking edge line with cars parked at the right kerb"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "r1 combines one SB travel lane (~3.5 m) with a ~2 m parking lane. If the region is split, the left part is the motor-vehicle lane and the right part, beside the parked cars, is shoulder_or_parking.",
+      "The street view is a reverse view from the opposing approach, so it is not independent of other views of the same panorama. It was used only for the physical layout on the far side of the double yellow line.",
+      "Capture dates: satellite spring 2021, street view 2020-11."
+    ]
+  },
+  "metadata": {}
+}

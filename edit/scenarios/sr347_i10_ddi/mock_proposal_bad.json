@@ -1,0 +1,115 @@
+{
+  "evidence": [
+    "Panel A: Queen Creek Rd / SR 347 crosses I-10 (Maricopa Fwy) on a bridge, with one signalised at-grade ramp terminal on each side of the freeway.",
+    "Four diagonal ramps, one off-ramp and one on-ramp per terminal, no loop ramps: a conventional diamond.",
+    "Panel B: arterial links 201-206 run along x; ramp links 301-304 join I-10 nodes 11-14 to the two terminals; freeway links 101-106 share no node with the arterial.",
+    "SW terminal ports 21-26 sit near x=-260; NE terminal ports 31-36 near x=+260.",
+    "(deliberately wrong cached answer: SW bridge links bound to the opposing carriageway)"
+  ],
+  "facility_class": "diamond",
+  "arterial_axis_nodes": [
+    1,
+    4
+  ],
+  "terminals": [
+    {
+      "name": "SW",
+      "anchor_cell": "D2",
+      "bindings": {
+        "approach_in": {
+          "link_id": 201,
+          "from_node_id": 1,
+          "to_node_id": 21
+        },
+        "departure_out": {
+          "link_id": 202,
+          "from_node_id": 22,
+          "to_node_id": 2
+        },
+        "bridge_in": {
+          "link_id": 205,
+          "from_node_id": 24,
+          "to_node_id": 33
+        },
+        "bridge_out": {
+          "link_id": 206,
+          "from_node_id": 34,
+          "to_node_id": 23
+        },
+        "offramp_in": {
+          "link_id": 301,
+          "from_node_id": 11,
+          "to_node_id": 25
+        },
+        "onramp_out": {
+          "link_id": 302,
+          "from_node_id": 26,
+          "to_node_id": 12
+        }
+      }
+    },
+    {
+      "name": "NE",
+      "anchor_cell": "C5",
+      "bindings": {
+        "approach_in": {
+          "link_id": 203,
+          "from_node_id": 3,
+          "to_node_id": 31
+        },
+        "departure_out": {
+          "link_id": 204,
+          "from_node_id": 32,
+          "to_node_id": 4
+        },
+        "bridge_in": {
+          "link_id": 205,
+          "from_node_id": 24,
+          "to_node_id": 33
+        },
+        "bridge_out": {
+          "link_id": 206,
+          "from_node_id": 34,
+          "to_node_id": 23
+        },
+        "offramp_in": {
+          "link_id": 303,
+          "from_node_id": 13,
+          "to_node_id": 35
+        },
+        "onramp_out": {
+          "link_id": 304,
+          "from_node_id": 36,
+          "to_node_id": 14
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "op": "replace_facility",
+      "from_class": "diamond",
+      "to_class": "ddi",
+      "terminals": [
+        "SW",
+        "NE"
+      ]
+    }
+  ],
+  "expected_facts": [
+    "all_external_od_preserved",
+    "freeway_links_unchanged",
+    "six_terminal_movements_per_terminal",
+    "through_movements_cross_over_at_each_terminal",
+    "left_side_running_between_terminals",
+    "no_collateral_changes"
+  ],
+  "not_established": [
+    "lane counts on the arterial, ramps and crossover approaches",
+    "signal phasing and timing at the two crossovers",
+    "turn-pocket lengths and storage",
+    "control of the off-ramp left turns (signal or yield)",
+    "pedestrian and bicycle crossing layout",
+    "travel demand and turning volumes"
+  ]
+}

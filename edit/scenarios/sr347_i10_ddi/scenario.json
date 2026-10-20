@@ -1,0 +1,32 @@
+{
+  "scenario_id": "sr347_i10_ddi",
+  "title": "SR 347 / I-10: Testing a Diverging Diamond Interchange",
+  "sentence": "SR 347 / I-10 (Queen Creek Rd interchange): convert the conventional diamond interchange to a diverging diamond interchange (DDI).",
+  "base_network": "base",
+  "local_cs_note": "Local schematic coordinates in metres: x increases toward the NE along SR 347 / Queen Creek Rd, y increases toward the NW along I-10. Panel A is rotated to the same axes: up is NW along I-10 and right is NE along Queen Creek Rd.",
+  "site": {
+    "lat": 33.255569,
+    "lon": -111.948255,
+    "atlas": "Phoenix Interchange Atlas facility phoenix_osm #29 (osm2gmns 1.0.1, OSM 2025-03-10)",
+    "freeway_bearing_deg": 147.1,
+    "crossroad_bearing_deg": 56.8,
+    "note": "compass bearings converted from the Atlas (counter-clockwise from east: freeway 122.9, crossroad 33.2)"
+  },
+  "aerial": {
+    "file": "satellite_mapbox_aligned.jpg",
+    "crop_frac": 0.8,
+    "caption": "satellite, before (Mapbox; rotated so up = NW along I-10)",
+    "north_up_file": "satellite_mapbox_northup.jpg",
+    "attribution": "Imagery © Mapbox © Maxar © OpenStreetMap contributors"
+  },
+  "legs": {
+    "1": "SR 347 (SW)",
+    "2": "SR 347 (SW)",
+    "3": "Queen Creek Rd (NE)",
+    "4": "Queen Creek Rd (NE)",
+    "5": "I-10 from Phoenix (NW)",
+    "6": "I-10 to Phoenix (NW)",
+    "7": "I-10 from Tucson (SE)",
+    "8": "I-10 to Tucson (SE)"
+  }
+}

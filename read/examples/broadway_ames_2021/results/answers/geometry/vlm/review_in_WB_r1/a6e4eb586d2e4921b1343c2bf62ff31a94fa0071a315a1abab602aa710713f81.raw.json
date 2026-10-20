@@ -1,0 +1,21 @@
+{
+  "response": {
+    "issue_responses": [
+      {
+        "issue": "narrow_region_check_facility:r3:5902a1d3",
+        "decision": "dismiss",
+        "reason": "r3 (x~250-287, about 2 m) is a bicycle lane, so it is legitimately narrow. On the satellite a thin white line at x~250 runs from S2 to S5 and the strip ends at the kerb, where the gutter darkens at x~282-286 and the sidewalk brightens from x~288. The street view shows the same strip: a white line with green-painted asphalt between it and the raised kerb, and no lane between the green strip and the kerb."
+      }
+    ],
+    "edits": [],
+    "verdict": "accept",
+    "notes": [
+      "Each region holds one strip: r1 has the left-turn arrows (near S1-S2, a faded one between S3 and S4, and another below S5); r2 has the straight-ahead arrows; r3 is the bicycle lane. No pavement is left between e4 and the kerb.",
+      "The stop bar just above S1 ends sharply at x~126, the same as e1. The strip left of e1 (x~12-126) has no stop bar or arrows and is not part of the target approach.",
+      "The projected e2 in the street view falls just right of the camera's centre, while the painted line it stands for is the white line at the bottom-left of the frame. The recorded camera position (x~183) therefore seems 1.5-2 m left of its true place in the lane x~189-250. This is a position error, not a boundary error.",
+      "e3 is not visible on the satellite between S1 and S2; the street view shows the bicycle-lane line continuing to the crosswalk, so extending it there is supported.",
+      "e4 may sit 1-2 crop units outside the kerb face where the sunlit sidewalk patches (S3, S4) blur the edge; that is within reading precision, so no move is made."
+    ]
+  },
+  "metadata": {}
+}

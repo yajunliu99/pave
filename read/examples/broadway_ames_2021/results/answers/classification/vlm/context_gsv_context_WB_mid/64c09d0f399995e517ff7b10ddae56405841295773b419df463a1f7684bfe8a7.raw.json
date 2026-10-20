@@ -1,0 +1,79 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "arrow",
+        "observed_arrows": [
+          "left"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "In the leftmost lane of the approach (beside the median), the word 'ONLY' is painted at about x 165-250, y 398-412, and a turn arrow lies further ahead at about x 240-272, y 365-371. The arrow is wide and flat in perspective (about twice the width of the straight arrow in the next lane), with its bent stem on the right and its tip toward the left, which reads as a left-turn arrow. It is small and blurred at this distance."
+      },
+      {
+        "id": "o2",
+        "kind": "arrow",
+        "observed_arrows": [
+          "through"
+        ],
+        "applies_to_incoming": "yes",
+        "evidence": "Compact straight-ahead arrow (head pointing forward) in the camera's lane near the stop line, at about x 312-326, y 366-371."
+      },
+      {
+        "id": "o3",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Solid white lane line from about (290,360) to (120,640) separating the 'ONLY' lane from the camera lane, solid along the whole visible length."
+      },
+      {
+        "id": "o4",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Solid white line on the right, from about (345,360) to (510,570), with a short break near (515-530, 565-610) beside a manhole before it resumes at the bottom edge. Between it and the granite curb is a strip about bicycle-lane width. No bicycle symbol or green paint is visible in this frame, so a bicycle lane is inferred from the layout."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Left edge of the approach: a raised granite curb of a grass median with street trees (from about (0,450) to (240,355)). The opposing carriageway lies beyond the median on the far left and does not apply."
+      },
+      {
+        "id": "o6",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right edge: granite curb at the bicycle-lane edge, then a brick strip and sidewalk (from about (380,360) to (640,540))."
+      },
+      {
+        "id": "o7",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Transverse white stop line across both motor lanes at about y 359 (x~236-348), with a crosswalk just beyond it (y~353-357). The bicycle-lane line continues past it toward the junction."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "Part of a white pavement marking under the camera at the bottom centre (x~305-395, y~615-640), in the camera lane. Too little is visible to tell whether it is an arrow or a word."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "No vehicles on the approach. Markings near the stop line are 50+ m away and small, so arrow shapes are low-resolution. A rectangular patch outline in the camera lane (x~295-435, y~575-610) is a pavement repair, not a marking."
+      }
+    ],
+    "notes": [
+      "Capture 2020-11: the layout may have changed since.",
+      "At this cross-section the approach shows a left lane marked with a turn arrow and 'ONLY', a through lane with a straight arrow, and a curbside strip that is probably a bicycle lane, between a raised median and the right curb. That describes this position only.",
+      "The left-turn reading of o1 rests on the arrow's perspective shape; its exact head direction is blurry."
+    ]
+  },
+  "metadata": {}
+}

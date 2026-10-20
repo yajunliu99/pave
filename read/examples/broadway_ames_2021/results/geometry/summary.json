@@ -1,0 +1,50 @@
+{
+  "state": "complete",
+  "version": "autoloop-geometry-6",
+  "site_id": "95",
+  "sections": 6,
+  "status_counts": {
+    "accepted": 4,
+    "accepted_after_revision": 1,
+    "unresolved": 1
+  },
+  "stop_reasons": {
+    "in_EB": "accepted",
+    "in_NB": "accepted",
+    "in_WB": "accepted",
+    "out_EB": "accepted",
+    "out_SB": "accepted",
+    "out_WB": "accepted"
+  },
+  "review_rounds": {
+    "in_EB": 2,
+    "in_NB": 1,
+    "in_WB": 1,
+    "out_EB": 1,
+    "out_SB": 1,
+    "out_WB": 1
+  },
+  "vlm_calls_this_run": 5,
+  "vlm_cache_hits_this_run": 14,
+  "budget": {
+    "sections": 6,
+    "anchoring_calls": 6,
+    "typical_calls": [
+      18,
+      30
+    ],
+    "stages_upper_bound": 36,
+    "with_one_repair_per_stage": 72,
+    "hard_cap": 42
+  },
+  "reference_used_in_inference": false,
+  "anchoring": {
+    "in_EB": "anchored",
+    "in_NB": "anchored",
+    "in_WB": "anchored",
+    "out_EB": "anchored",
+    "out_SB": "anchored",
+    "out_WB": "anchored"
+  },
+  "scope": "Loop termination and provenance only; not an accuracy score for the traced boundaries."
+}

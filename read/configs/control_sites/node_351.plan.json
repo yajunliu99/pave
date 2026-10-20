@@ -1,0 +1,604 @@
+{
+  "profile": {
+    "schema": "control-site-1",
+    "site_id": "351",
+    "name": "Network node 351",
+    "origin_lonlat": [
+      -111.9399948,
+      33.4219353
+    ],
+    "policy": {
+      "driving_side": "right",
+      "default_carriageway_width_m": 10.5,
+      "lane_width_prior_m": 3.2,
+      "context_pitch_deg": null,
+      "height_delta_prior_m": 3.5,
+      "context_fov_deg": 100.0,
+      "image_size": [
+        640,
+        640
+      ],
+      "near_reference_fraction": 0.25,
+      "upstream_reference_fraction": 0.7,
+      "interior_fraction": 0.4,
+      "tangent_trim_m": 8.0,
+      "tangent_lookback_m": 14.0,
+      "crosswalk_margin_m": 3.0,
+      "metadata_radius_m": 10,
+      "max_snap_distance_m": 14.0,
+      "max_station_error_m": 18.0,
+      "minimum_distinct_position_m": 3.0,
+      "max_metadata_requests": 64,
+      "max_image_requests": 64,
+      "max_context_views_per_approach": 5,
+      "max_rounds": 2,
+      "max_details_per_round": 4,
+      "max_adaptive_positions_per_round": 2,
+      "max_vlm_calls": 24,
+      "detail_min_fov_deg": 15.0,
+      "detail_max_fov_deg": 55.0,
+      "preferred_date_window": [
+        "2025-10",
+        "2025-11"
+      ]
+    },
+    "approaches": [
+      {
+        "id": "link_235",
+        "label": "NB",
+        "section_id": "in_NB",
+        "region_ids": [
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5"
+        ],
+        "centerline_lonlat": [
+          [
+            -111.9398957,
+            33.4212893
+          ],
+          [
+            -111.9398841,
+            33.4214786
+          ],
+          [
+            -111.9399051,
+            33.4217848
+          ],
+          [
+            -111.9399092,
+            33.4219358
+          ]
+        ],
+        "centerline_reference": "directed_carriageway",
+        "carriageway_width_m": 12.8,
+        "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+        "allow_interior": true,
+        "road_name": "South Mill Avenue",
+        "in_link_id": "235",
+        "centerline_local": [
+          [
+            9.207516952184315,
+            -71.91212352136853
+          ],
+          [
+            10.28528886609296,
+            -50.83947773230341
+          ],
+          [
+            8.334150057342097,
+            -16.753568843540876
+          ],
+          [
+            7.953213432384091,
+            0.05565974748779007
+          ]
+        ],
+        "forward_unit": [
+          -0.03543929754818032,
+          0.9993718307963716
+        ],
+        "heading_deg": 357.96905254422063,
+        "tangent_trim_m": 8.0,
+        "interior_limit_m": 12.8,
+        "reference_station_m": -15.806378654030727,
+        "reference_kind": "estimated_junction_envelope",
+        "reference_provenance": "crossing road width priors; NOT an observed stopline"
+      },
+      {
+        "id": "link_255",
+        "label": "SB",
+        "section_id": "in_SB",
+        "region_ids": [
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5",
+          "r6"
+        ],
+        "centerline_lonlat": [
+          [
+            -111.9400741,
+            33.4225274
+          ],
+          [
+            -111.9400778,
+            33.4220718
+          ],
+          [
+            -111.940079,
+            33.4219785
+          ],
+          [
+            -111.9400804,
+            33.4219347
+          ]
+        ],
+        "centerline_reference": "directed_carriageway",
+        "carriageway_width_m": 16.0,
+        "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+        "allow_interior": true,
+        "road_name": "South Mill Avenue",
+        "in_link_id": "255",
+        "centerline_local": [
+          [
+            -7.367871791468928,
+            65.91249525408685
+          ],
+          [
+            -7.711643867081774,
+            15.19512244019118
+          ],
+          [
+            -7.823137513562617,
+            4.809003200452138
+          ],
+          [
+            -7.953213433938724,
+            -0.06679169271010826
+          ]
+        ],
+        "forward_unit": [
+          -0.00883083415755029,
+          -0.9999610074238304
+        ],
+        "heading_deg": 180.50597610326193,
+        "tangent_trim_m": 8.0,
+        "interior_limit_m": 16.0,
+        "reference_station_m": -15.801662355428428,
+        "reference_kind": "estimated_junction_envelope",
+        "reference_provenance": "crossing road width priors; NOT an observed stopline"
+      },
+      {
+        "id": "link_284",
+        "label": "WB",
+        "section_id": "in_WB",
+        "region_ids": [
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5"
+        ],
+        "centerline_lonlat": [
+          [
+            -111.9390184,
+            33.4219833
+          ],
+          [
+            -111.9393277,
+            33.4219821
+          ],
+          [
+            -111.9393949,
+            33.4219819
+          ],
+          [
+            -111.9398577,
+            33.4219804
+          ],
+          [
+            -111.9399092,
+            33.4219358
+          ]
+        ],
+        "centerline_reference": "directed_carriageway",
+        "carriageway_width_m": 12.8,
+        "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+        "allow_interior": true,
+        "road_name": "East University Drive",
+        "in_link_id": "284",
+        "centerline_local": [
+          [
+            90.71866350261483,
+            5.343337037124551
+          ],
+          [
+            61.98117617969882,
+            5.209753575138676
+          ],
+          [
+            55.73753198920864,
+            5.187489665261132
+          ],
+          [
+            12.73814908400762,
+            5.02051033845894
+          ],
+          [
+            7.953213432384091,
+            0.05565974748779007
+          ]
+        ],
+        "forward_unit": [
+          -0.9999924600918011,
+          -0.0038832666078377916
+        ],
+        "heading_deg": 269.7775046534484,
+        "tangent_trim_m": 8.0,
+        "interior_limit_m": 12.8,
+        "reference_station_m": -19.001293299310838,
+        "reference_kind": "estimated_junction_envelope",
+        "reference_provenance": "crossing road width priors; NOT an observed stopline"
+      },
+      {
+        "id": "link_298",
+        "label": "EB",
+        "section_id": "in_EB",
+        "region_ids": [
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5"
+        ],
+        "centerline_lonlat": [
+          [
+            -111.9407478,
+            33.4219322
+          ],
+          [
+            -111.9407002,
+            33.4219284
+          ],
+          [
+            -111.940574,
+            33.4219291
+          ],
+          [
+            -111.9402869,
+            33.4219337
+          ],
+          [
+            -111.9401712,
+            33.4219341
+          ],
+          [
+            -111.9400804,
+            33.4219347
+          ]
+        ],
+        "centerline_reference": "shared_road_axis",
+        "carriageway_width_m": 12.8,
+        "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+        "allow_interior": true,
+        "road_name": "West University Drive",
+        "in_link_id": "298",
+        "centerline_local": [
+          [
+            -69.96226302525776,
+            -0.3450904134367575
+          ],
+          [
+            -65.53968172469696,
+            -0.7681044562554618
+          ],
+          [
+            -53.81426659363262,
+            -0.6901808171570608
+          ],
+          [
+            -27.139411725948314,
+            -0.17811118263313225
+          ],
+          [
+            -16.389566000036716,
+            -0.13358338814082368
+          ],
+          [
+            -7.953213433938724,
+            -0.06679169271010826
+          ]
+        ],
+        "forward_unit": [
+          0.9999734665124018,
+          0.007284659990037697
+        ],
+        "heading_deg": 89.58261603582575,
+        "tangent_trim_m": 8.0,
+        "interior_limit_m": 12.8,
+        "reference_station_m": -19.002077944285535,
+        "reference_kind": "estimated_junction_envelope",
+        "reference_provenance": "crossing road width priors; NOT an observed stopline"
+      }
+    ],
+    "geometry_provenance": {
+      "node_csv": "data/ASU/output/macronet/node.csv",
+      "link_csv": "data/ASU/output/macronet/link.csv",
+      "lane_attributes_role": "sampling_width_prior_only"
+    },
+    "lane_context": {
+      "baseline": "experiments/hybrid_pipeline_351_20260914_visual_evidence_fused",
+      "config_sha256": "ef4ff5cb41eb9673cfba483167eb861f118c447f0357b94e100ee687394b393e"
+    },
+    "models": {
+      "vlm": {
+        "preset": "default",
+        "max_tokens": 6144,
+        "temperature": 0.0
+      },
+      "yolo": {
+        "weights": "~/.cache/net2cell-vlm/weights/yolo26n.pt",
+        "expected_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+        "device": 0,
+        "imgsz": 1280,
+        "confidence": 0.25,
+        "high_bbox_coverage": 0.25,
+        "occluder_classes": [
+          "car",
+          "truck",
+          "bus",
+          "motorcycle",
+          "bicycle",
+          "person"
+        ]
+      }
+    },
+    "coordinate_note": "Stations are arc lengths relative to each incoming road endpoint, not distance to a traffic control or necessarily the node center."
+  },
+  "requests": [
+    {
+      "approach_id": "link_235",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "role": "upstream_context",
+      "requested_station_m": -24.766,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.93990020834302,
+        33.42171347507896
+      ],
+      "requested_local_xy": [
+        8.788640618116444,
+        -24.693405710029612
+      ],
+      "nominal_heading_deg": 356.72386150222314,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_235_e39456fe8b9b"
+    },
+    {
+      "approach_id": "link_235",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "role": "near_reference",
+      "requested_station_m": -12.606,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.93990612592168,
+        33.42182258396972
+      ],
+      "requested_local_xy": [
+        8.23883026578841,
+        -12.547482947621148
+      ],
+      "nominal_heading_deg": 358.7017651991978,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_235_4d41371c7f47"
+    },
+    {
+      "approach_id": "link_235",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "role": "junction_context",
+      "requested_station_m": 5.12,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.9399111529278,
+        33.421981764838264
+      ],
+      "requested_local_xy": [
+        7.771764228937408,
+        5.1724435211652136
+      ],
+      "nominal_heading_deg": 357.96905254422063,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_235_62d5e8dc76a4"
+    },
+    {
+      "approach_id": "link_255",
+      "direction": "SB",
+      "target_section": "in_SB",
+      "role": "upstream_context",
+      "requested_station_m": -27.002,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.94007694373646,
+        33.42217723634141
+      ],
+      "requested_local_xy": [
+        -7.632087245404593,
+        26.932267856154837
+      ],
+      "nominal_heading_deg": 180.3883558298692,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_255_07e832171e16"
+    },
+    {
+      "approach_id": "link_255",
+      "direction": "SB",
+      "target_section": "in_SB",
+      "role": "near_reference",
+      "requested_station_m": -11.802,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.94007820003995,
+        33.42204069690547
+      ],
+      "requested_local_xy": [
+        -7.748812127200962,
+        11.73273697055953
+      ],
+      "nominal_heading_deg": 180.59981131027314,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_255_b1435f26e3c6"
+    },
+    {
+      "approach_id": "link_255",
+      "direction": "SB",
+      "target_section": "in_SB",
+      "role": "junction_context",
+      "requested_station_m": 6.4,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.94008100829302,
+        33.42187721004416
+      ],
+      "requested_local_xy": [
+        -8.009730772547046,
+        -6.466542140222623
+      ],
+      "nominal_heading_deg": 180.50597610326193,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_255_efbf3c7f8b1f"
+    },
+    {
+      "approach_id": "link_284",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "role": "upstream_context",
+      "requested_station_m": -27.961,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.93963096972608,
+        33.42198113486476
+      ],
+      "requested_local_xy": [
+        33.80396987971248,
+        5.102315153722392
+      ],
+      "nominal_heading_deg": 269.7775046534484,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_284_abee0db50924"
+    },
+    {
+      "approach_id": "link_284",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "role": "near_reference",
+      "requested_station_m": -15.801,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.9397618461524,
+        33.42198071067581
+      ],
+      "requested_local_xy": [
+        21.644061564996186,
+        5.055094631771085
+      ],
+      "nominal_heading_deg": 269.7775046534484,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_284_84934a9af132"
+    },
+    {
+      "approach_id": "link_284",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "role": "junction_context",
+      "requested_station_m": 5.12,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -111.9399643058637,
+        33.42193562139405
+      ],
+      "requested_local_xy": [
+        2.833252036714068,
+        0.03577742245566057
+      ],
+      "nominal_heading_deg": 269.7775046534484,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_284_005befc1d5b7"
+    },
+    {
+      "approach_id": "link_298",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "role": "upstream_context",
+      "requested_station_m": -27.962,
+      "requested_lateral_m": 6.4,
+      "requested_lonlat": [
+        -111.94038001099383,
+        33.42187470535686
+      ],
+      "requested_local_xy": [
+        -35.79048190180659,
+        -6.745362462771745
+      ],
+      "nominal_heading_deg": 88.9002442254674,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_298_e780a032db96"
+    },
+    {
+      "approach_id": "link_298",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "role": "near_reference",
+      "requested_station_m": -15.802,
+      "requested_lateral_m": 6.4,
+      "requested_lonlat": [
+        -111.94025010827832,
+        33.42187633454412
+      ],
+      "requested_local_xy": [
+        -23.721042392642445,
+        -6.5640022945012015
+      ],
+      "nominal_heading_deg": 89.69631837501336,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_298_36569ec0f541"
+    },
+    {
+      "approach_id": "link_298",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "role": "junction_context",
+      "requested_station_m": 5.12,
+      "requested_lateral_m": 6.4,
+      "requested_lonlat": [
+        -111.94002479339483,
+        33.42187754437684
+      ],
+      "requested_local_xy": [
+        -2.7867274614589843,
+        -6.429324419240487
+      ],
+      "nominal_heading_deg": 89.58261603582575,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_298_071fc75eb8f1"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "autoloop-site-1",
+  "site_id": "351",
+  "node_id": 351,
+  "name": "University Dr x Mill Ave",
+  "satellite": {
+    "path": "cache/mapbox_351/univ_mill_351_buf40.jpg",
+    "georeference": {
+      "kind": "atlas_affine",
+      "file": "experiments/control_generic_351_v2/atlas/georeference.json"
+    }
+  },
+  "network": {
+    "node_csv": "data/ASU/output/macronet/node.csv",
+    "link_csv": "data/ASU/output/macronet/link.csv"
+  },
+  "models": {
+    "draft": {
+      "preset": "default",
+      "max_tokens": 6144,
+      "temperature": 0.0
+    },
+    "review": {
+      "preset": "default",
+      "max_tokens": 6144,
+      "temperature": 0.0
+    }
+  },
+  "policy": {
+    "max_rounds": 3,
+    "max_vlm_calls": 48
+  },
+  "reference": {
+    "status": "withheld_from_inference",
+    "file": null
+  },
+  "legacy_gsv_records": {
+    "manifest": "cache/gsv_univ_mill_351/_tile_v2/_manifest.json",
+    "pano_yaw": "cache/gsv_univ_mill_351/_pano_tiles/pano_yaw.json",
+    "note": "Street views of this site were cut from panoramas by the tile client and do not record their own pose; these are its pose records."
+  }
+}

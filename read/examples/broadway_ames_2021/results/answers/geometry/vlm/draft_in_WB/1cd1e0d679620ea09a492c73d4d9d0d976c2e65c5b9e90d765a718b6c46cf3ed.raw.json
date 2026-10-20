@@ -1,0 +1,78 @@
+{
+  "response": {
+    "boundaries": [
+      {
+        "xs": [
+          126,
+          126,
+          125,
+          128,
+          126
+        ],
+        "kind": "centre_or_median_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S1",
+          "S4"
+        ],
+        "evidence": "Faint but persistent longitudinal line at x~125-129 over the full length (weak because the whole carriageway is in building shadow; possibly yellow paint, which reads dark in shadow). The white stop bar just above S1 runs from x~126 to x~192 and stops sharply at x~126. The left-turn arrows (x~142-175, near S1-S2 and below S5) are centred on x~158, so their lane is about x~126-189. No stop bar, no arrows and no traffic in the strip x~12-126 to the left."
+      },
+      {
+        "xs": [
+          189,
+          189,
+          189.5,
+          189.5,
+          189.5
+        ],
+        "kind": "lane_line",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Solid white line, the brightest longitudinal marking in the crop, continuous from the stop bar to the bottom edge. It separates the lane with the left-turn arrows from the lane with the straight-ahead arrows (x~212-228). In the street view it is the white line just left of the camera."
+      },
+      {
+        "xs": [
+          250,
+          250,
+          251,
+          251,
+          250
+        ],
+        "kind": "bicycle_line",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S1"
+        ],
+        "evidence": "Thin white line at x~250-251, clearly visible from just above S2 to the bottom edge. It fades out between S1 and S2 on the satellite (worn paint or shadow), so S1 is extended from the line below. Street view (2020-11) shows a white line with a green-painted bicycle lane between it and the kerb, running up to the crosswalk."
+      },
+      {
+        "xs": [
+          286,
+          287,
+          287,
+          287,
+          287
+        ],
+        "kind": "kerb_or_pavement_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S3",
+          "S4"
+        ],
+        "evidence": "In the shaded rows a slight dark gutter at x~282-286 then a brightness rise into the sidewalk from x~288. In the sunlit patches (near S3 and S4) the light concrete reaches full brightness from x~290, with dimmer sunlit asphalt x~276-288 before it. The sunlit triangles' slanted left edges are shadow edges, not the kerb. Street view shows a raised kerb directly right of the green bike lane, with no extra lane between them."
+      }
+    ],
+    "partial_strips": [
+      "Stop bar just above S1 spans x~126-192; a light van stands on it at x~200-228 and hides the through-lane part.",
+      "Arrow pairs (left-turn at x~142-175, straight at x~212-228) appear between S1 and S2 and again below S5; a faded light patch at x~145-165 near S3 may be another left arrow.",
+      "Bicycle-lane line at x~250 is not visible on the satellite between about S1 and S2."
+    ],
+    "cannot_determine": [
+      "What the strip x~12-126 left of the left limit is: an opposing carriageway (a longitudinal line at x~12-13 runs the full length, and a very faint one around x~65-75 near S1-S2) or a flush median. It has no stop bar or arrows, so it is excluded. If it were in the target direction, the left limit would move to the x~12 line.",
+      "The centre line at x~126 is faint everywhere; its colour (yellow or white) cannot be read in the shadow.",
+      "Exact kerb position is ±3 crop units because of building shadow and the sunlit patches on the sidewalk.",
+      "The camera position (x~183, on the lane line) disagrees by about 1-2 m with the street view, which shows the camera in the lane between the line on its left and the bicycle-lane line."
+    ]
+  },
+  "metadata": {}
+}

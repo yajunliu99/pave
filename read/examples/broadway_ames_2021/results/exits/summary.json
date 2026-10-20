@@ -1,0 +1,41 @@
+{
+  "state": "complete",
+  "sections": 3,
+  "views": 18,
+  "api_calls": 3,
+  "cache_hits": 0,
+  "acquisition_mode": "official_location_query",
+  "reviewer_answers_used": false,
+  "counts": {
+    "out_EB": {
+      "model_motor_count": 1,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        1,
+        1
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    },
+    "out_SB": {
+      "model_motor_count": 1,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        1,
+        1
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    },
+    "out_WB": {
+      "model_motor_count": 1,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        1,
+        1
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  }
+}

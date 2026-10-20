@@ -1,0 +1,7 @@
+{
+  "runs_root": "runs",
+  "results_root": "results",
+  "note": "runs_root holds full run folders (large); results_root receives compact results exported after each site. Relative paths are resolved from the repository root. NET2CELL_RUNS_ROOT / NET2CELL_RESULTS_ROOT override. dashboard_root holds the dashboard's map library (vendor/) and the built page, dashboard_template is the page it is built from (NET2CELL_DASHBOARD_ROOT / NET2CELL_DASHBOARD_TEMPLATE override them).",
+  "dashboard_root": "../dashboard",
+  "dashboard_template": "../dashboard/pave_template.html"
+}

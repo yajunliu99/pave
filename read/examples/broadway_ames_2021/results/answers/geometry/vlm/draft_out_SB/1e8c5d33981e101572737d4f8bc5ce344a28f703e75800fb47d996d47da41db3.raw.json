@@ -1,0 +1,47 @@
+{
+  "response": {
+    "boundaries": [
+      {
+        "xs": [
+          127,
+          126,
+          125,
+          126,
+          127
+        ],
+        "kind": "centre_or_median_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S1"
+        ],
+        "evidence": "Faint longitudinal line at x~123-127, clearest from S3 to S5 and readable at S2, in deep shadow (possibly yellow paint, which reads dark in shadow). The opposing approach on its left (x~12-126, lane line at x~68) has down-pointing turn arrows near S2 and S4 and a white stop bar at about y 1030 (between S4 and S5) whose right end is at x~130, so this line separates down-moving traffic from the lanes leaving upward. Above S2 the line cannot be seen; S1 continues the straight line."
+      },
+      {
+        "xs": [
+          226,
+          226,
+          226,
+          225,
+          226
+        ],
+        "kind": "kerb_or_pavement_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S1",
+          "S4"
+        ],
+        "evidence": "In the sunlit band just above the crosswalk (near S5), sunlit asphalt (grey ~137) changes to bright concrete (~180+) at x~226-228. The crosswalk stripes end at x~213 with asphalt to x~225. Near S3 the surface colour changes at x~224-226, just right of the parked-car line. A row of four nose-to-tail vehicles (one dark car above S1, then three light cars between S1 and S4) sits at x~185-223 against this edge. Near S4, sunlit tree branches and shadow edges cross it and it is extended straight."
+      }
+    ],
+    "partial_strips": [
+      "A line of parked or stopped vehicles at x~185-223 runs from above S1 to just above S4 along the kerb, with gaps of about 1.5 m. There is probably an unmarked parking strip of about 2 m inside the kerb, ending before the crosswalk at S5; no painted edge separates it from the travel lane, so no boundary is drawn."
+    ],
+    "cannot_determine": [
+      "Whether x~185-226 is a parking lane or part of a single wide travel lane: no lane line is visible between e1 and the kerb.",
+      "The colour of the centre line, and its position at S1 and above S2, which are too dark to read.",
+      "Bright speckles and diagonal streaks at x~240-350 are sunlit branches of street trees over a shadowed sidewalk, not road markings. The ground there reads as sidewalk/tree area, but heavy shadow makes this a judgement call.",
+      "A thin bright diagonal line at the top-left (x~95 at the top to x~17 near S2) is a sunlit tree branch on the opposing side and was ignored."
+    ]
+  },
+  "metadata": {}
+}

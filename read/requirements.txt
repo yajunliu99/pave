@@ -1,0 +1,7 @@
+# Developed with Python 3.14 and the versions noted.
+Pillow>=11.3        # needs AVIF support (12.3 used)
+numpy>=2.0          # 2.5 used
+requests>=2.31      # 2.34 used
+opencv-python>=4.9
+torch>=2.4          # 2.14 used
+ultralytics>=8.3    # 8.4 used; AGPL-3.0

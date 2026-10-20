@@ -1,0 +1,16 @@
+# credentials
+.env
+.env.*
+!.env.example
+
+# Python and OS
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.DS_Store
+
+# pages built for dashboard/pave.html (the read example's, written by the read export), and the dashboard
+# read's pipeline builds for your own sites
+dashboard/build/
+dashboard/intersection_explorer.html

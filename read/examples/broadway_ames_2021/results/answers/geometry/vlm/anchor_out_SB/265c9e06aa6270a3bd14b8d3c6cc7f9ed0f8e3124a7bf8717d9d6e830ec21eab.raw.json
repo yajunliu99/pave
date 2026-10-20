@@ -1,0 +1,26 @@
+{
+  "response": {
+    "stop_line": {
+      "y": 798,
+      "kind": "crosswalk_edge",
+      "evidence": "Top (downstream, away from the junction) edge of the zebra crosswalk whose stripes run y~798-855 across x~300-545; the junction box with dashed guide lines lies below it (y~960-1300). The opposing (down-moving) lanes' stop bars at y~767 (x~330-398) and y~688 (x~405-452) are on the left and are not this line."
+    },
+    "cross_sections": [
+      {
+        "y": 798,
+        "left_x": 455,
+        "right_x": 550,
+        "evidence": "Left limit: lane line at x~453-456 that separates the receiving side from the opposing lanes (the opposing left-turn lane, with its set-back stop bar ending at x~452, lies just left of it). Right limit: kerb at about x~548-552, where the crosswalk stripes end (last stripe x~530-542) and the paved corner/sidewalk begins."
+      },
+      {
+        "y": 345,
+        "left_x": 460,
+        "right_x": 558,
+        "evidence": "Left limit: the same line, traced at x~454 for y~400-640 and x~460 at y~360. Right limit: kerb at x~556-562, where the surface colour changes to the warmer sidewalk; a row of parked cars (x~525-555, y~330-620) stands against it, so the strip x~515-558 is a parking lane beside one travel lane x~458-515."
+      }
+    ],
+    "confidence": "medium",
+    "notes": "The receiving side is in deep shadow north of the crosswalk; positions come from contrast-enhanced crops and brightness/colour profiles. The kerb line itself is not crisply visible in shadow. Above y~330 the left line appears to drift right (x~467 at y~320, ~475 at y~280), which may be a shadow/structure edge rather than paint; a light lattice pattern covers x~330-450 above y~420. The on-street parking lane is included because the requested right limit is the kerb; the travel lane alone would end near x~515. The dashed network centre line (x~392) lies on the opposing lanes, not on this carriageway."
+  },
+  "metadata": {}
+}

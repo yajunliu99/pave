@@ -1,0 +1,235 @@
+{
+  "schema": "control-site-1",
+  "site_id": "351",
+  "name": "Network node 351",
+  "origin_lonlat": [
+    -111.9399948,
+    33.4219353
+  ],
+  "policy": {
+    "driving_side": "right",
+    "default_carriageway_width_m": 10.5,
+    "lane_width_prior_m": 3.2,
+    "context_pitch_deg": null,
+    "height_delta_prior_m": 3.5,
+    "context_fov_deg": 100.0,
+    "image_size": [
+      640,
+      640
+    ],
+    "near_reference_fraction": 0.25,
+    "upstream_reference_fraction": 0.7,
+    "interior_fraction": 0.4,
+    "tangent_trim_m": 8.0,
+    "tangent_lookback_m": 14.0,
+    "crosswalk_margin_m": 3.0,
+    "metadata_radius_m": 10,
+    "max_snap_distance_m": 14.0,
+    "max_station_error_m": 18.0,
+    "minimum_distinct_position_m": 3.0,
+    "max_metadata_requests": 64,
+    "max_image_requests": 64,
+    "max_context_views_per_approach": 5,
+    "max_rounds": 2,
+    "max_details_per_round": 4,
+    "max_adaptive_positions_per_round": 2,
+    "max_vlm_calls": 24,
+    "detail_min_fov_deg": 15.0,
+    "detail_max_fov_deg": 55.0,
+    "preferred_date_window": [
+      "2025-10",
+      "2025-11"
+    ]
+  },
+  "approaches": [
+    {
+      "id": "link_235",
+      "label": "NB",
+      "section_id": "in_NB",
+      "region_ids": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "centerline_lonlat": [
+        [
+          -111.9398957,
+          33.4212893
+        ],
+        [
+          -111.9398841,
+          33.4214786
+        ],
+        [
+          -111.9399051,
+          33.4217848
+        ],
+        [
+          -111.9399092,
+          33.4219358
+        ]
+      ],
+      "centerline_reference": "directed_carriageway",
+      "carriageway_width_m": 12.8,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": true,
+      "road_name": "South Mill Avenue",
+      "in_link_id": "235"
+    },
+    {
+      "id": "link_255",
+      "label": "SB",
+      "section_id": "in_SB",
+      "region_ids": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "centerline_lonlat": [
+        [
+          -111.9400741,
+          33.4225274
+        ],
+        [
+          -111.9400778,
+          33.4220718
+        ],
+        [
+          -111.940079,
+          33.4219785
+        ],
+        [
+          -111.9400804,
+          33.4219347
+        ]
+      ],
+      "centerline_reference": "directed_carriageway",
+      "carriageway_width_m": 16.0,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": true,
+      "road_name": "South Mill Avenue",
+      "in_link_id": "255"
+    },
+    {
+      "id": "link_284",
+      "label": "WB",
+      "section_id": "in_WB",
+      "region_ids": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "centerline_lonlat": [
+        [
+          -111.9390184,
+          33.4219833
+        ],
+        [
+          -111.9393277,
+          33.4219821
+        ],
+        [
+          -111.9393949,
+          33.4219819
+        ],
+        [
+          -111.9398577,
+          33.4219804
+        ],
+        [
+          -111.9399092,
+          33.4219358
+        ]
+      ],
+      "centerline_reference": "directed_carriageway",
+      "carriageway_width_m": 12.8,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": true,
+      "road_name": "East University Drive",
+      "in_link_id": "284"
+    },
+    {
+      "id": "link_298",
+      "label": "EB",
+      "section_id": "in_EB",
+      "region_ids": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "centerline_lonlat": [
+        [
+          -111.9407478,
+          33.4219322
+        ],
+        [
+          -111.9407002,
+          33.4219284
+        ],
+        [
+          -111.940574,
+          33.4219291
+        ],
+        [
+          -111.9402869,
+          33.4219337
+        ],
+        [
+          -111.9401712,
+          33.4219341
+        ],
+        [
+          -111.9400804,
+          33.4219347
+        ]
+      ],
+      "centerline_reference": "shared_road_axis",
+      "carriageway_width_m": 12.8,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": true,
+      "road_name": "West University Drive",
+      "in_link_id": "298"
+    }
+  ],
+  "geometry_provenance": {
+    "node_csv": "data/ASU/output/macronet/node.csv",
+    "link_csv": "data/ASU/output/macronet/link.csv",
+    "lane_attributes_role": "sampling_width_prior_only"
+  },
+  "lane_context": {
+    "baseline": "experiments/hybrid_pipeline_351_20260914_visual_evidence_fused",
+    "config_sha256": "ef4ff5cb41eb9673cfba483167eb861f118c447f0357b94e100ee687394b393e"
+  },
+  "models": {
+    "vlm": {
+      "preset": "default",
+      "max_tokens": 6144,
+      "temperature": 0.0
+    },
+    "yolo": {
+      "weights": "~/.cache/net2cell-vlm/weights/yolo26n.pt",
+      "expected_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+      "device": 0,
+      "imgsz": 1280,
+      "confidence": 0.25,
+      "high_bbox_coverage": 0.25,
+      "occluder_classes": [
+        "car",
+        "truck",
+        "bus",
+        "motorcycle",
+        "bicycle",
+        "person"
+      ]
+    }
+  }
+}

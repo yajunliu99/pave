@@ -1,0 +1,33 @@
+{
+  "response": {
+    "issue_responses": [
+      {
+        "issue": "jagged_edge:e5:e3c8d70e",
+        "decision": "dismiss",
+        "reason": "The kerb really steps in near the junction. Down to about y~1150 px the dark road surface ends against the lighter sidewalk band at x~385-390. Below that a lighter surface reaches in to x~335 at S5, and the crosswalk bars stop at x~328, where they would continue if the road did. This is a kerb extension at the crosswalk. The S5 value of 336 matches it. The straight S4-S5 segment cuts the corner of a step that actually starts around y~1150-1170 px; stations cannot show that more exactly."
+      },
+      {
+        "issue": "narrow_region_check_facility:r3:091b2253",
+        "decision": "dismiss",
+        "reason": "e3 and e4 both lie on clear, solid, parallel white lines that run the full height down to the crosswalk, about 26-30 crop units (~1.5 m) apart. The narrow strip between them is real painted geometry (bicycle lane or buffer type), not a misplaced boundary."
+      },
+      {
+        "issue": "possible_merged_lanes:r4:047b6f8c",
+        "decision": "unresolved",
+        "reason": "No painted line is visible inside r4 at any station. Brightness profiles across it show only irregular texture, with no continuous ridge. At ~5.9 m it is wider than one lane. The kerb extension at S5 reaching to x~335 hints that a kerbside strip (possibly unmarked parking) occupies roughly x~335-390 at S1-S4, but no separator can be seen to split on."
+      },
+      {
+        "issue": "width_varies_along_section:r4:047b6f8c",
+        "decision": "dismiss",
+        "reason": "The width drop at S5 (106 to 38) comes from the kerb extension described for e5. The lighter non-road surface and the end of the crosswalk at x~330-335 show the carriageway really narrows there. e4 itself stays on its painted line at every station."
+      }
+    ],
+    "edits": [],
+    "verdict": "accept",
+    "notes": [
+      "e1 and e2 follow two faint, continuous, light streaks about 45 crop units apart. e1 meets the right end of the opposing stop bar (x~148 at y~1155 px), which supports it as the centre/left limit. Neither line's colour can be judged in the stretched shadow, and e2 could be a worn lane line or road wear.",
+      "Large white elongated objects right of e5 (S1-S4) lie at an angle to the road beyond the light sidewalk band. They are outside the carriageway."
+    ]
+  },
+  "metadata": {}
+}

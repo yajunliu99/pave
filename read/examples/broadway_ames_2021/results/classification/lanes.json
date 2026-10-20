@@ -1,0 +1,1568 @@
+[
+  {
+    "section_id": "in_EB",
+    "kind": "inbound_stopbar",
+    "direction": "EB",
+    "source_id": "satellite",
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Retained. In the satellite, r1 is asphalt between a dark longitudinal seam (its left polygon edge) and the thick solid white separator; the stop bar crosses it. The near and mid forward views show the matching lane: a wide unmarked left lane between the solid yellow median-edge line (about 0.5 m from the granite median kerb) and the solid white separator. The dark seam runs on straight through the crosswalk past the median nose, so it is not the median edge. The real lane continues about 1.3-1.5 m left of the polygon to the yellow line, so r1 under-covers this lane but is the same facility. In the mid view this lane looks at least as wide as the right lane, consistent with that extra width.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.584,
+              0.147,
+              0.785,
+              0.251
+            ],
+            "finding": "Stop bar spanning from the median-island kerb across r1, r2 and r3 to the right kerb"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.483,
+              0.184,
+              0.663,
+              0.423
+            ],
+            "finding": "Plain asphalt in r1 between the dark seam band and the thick solid lane line; no symbols"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.432,
+              0.159,
+              0.631,
+              0.402
+            ],
+            "finding": "Dark longitudinal band, with about 1.3-1.5 m of pavement to its left before the island kerb; the band continues through the crosswalk"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": true,
+        "motor_lane_index": 1,
+        "initial_surface_audit": {
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "evidence": "Asphalt strip between a dark longitudinal band (left polygon edge) and the thick solid white lane line on its right (right polygon edge). The stop bar runs continuously across it from the median-island kerb to the right kerb, so this is part of the stop-controlled carriageway. No bicycle symbol, green paint, parking stalls or parked cars are visible in the sunlit part near the stop bar. No arrow is visible in this strip, though r2 carries one at the same station. The dark band at the left edge is not a lane line: it runs straight on through the crosswalk beyond the stop bar, so it is likely a pavement seam or joint. Pavement continues about 1.3-1.5 m further left to the actual median-island kerb, so the lane is likely about 4 m kerb-to-line, wider than the 2.54 m polygon. The downstream ~60% of the polygon lies in deep building shadow; only the lane line on its right stays traceable there.",
+          "observed_arrows": [],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r1",
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "surface_reason": "Retained. In the satellite, r1 is asphalt between a dark longitudinal seam (its left polygon edge) and the thick solid white separator; the stop bar crosses it. The near and mid forward views show the matching lane: a wide unmarked left lane between the solid yellow median-edge line (about 0.5 m from the granite median kerb) and the solid white separator. The dark seam runs on straight through the crosswalk past the median nose, so it is not the median edge. The real lane continues about 1.3-1.5 m left of the polygon to the yellow line, so r1 under-covers this lane but is the same facility. In the mid view this lane looks at least as wide as the right lane, consistent with that extra width.",
+          "use": "through_only",
+          "allowed_turns": [
+            "through"
+          ],
+          "basis": "inferred",
+          "confidence": "low",
+          "binding": "No arrow or word marking is visible in this lane anywhere between the mid camera (about 50 m) and the stop bar in the near view (about 28 m), and none in the sunlit satellite part. The adjacent r2 is marked 'ONLY' with a right-turn arrow, and the road continues straight across the junction, so through movement must be carried by r1; through is therefore inferred, not read from a marking. Whether left turns are also permitted from r1 cannot be determined: no arrow, and no legible lane-use or turn-prohibition sign faces EB (the median-nose sign is seen from behind). The lane may in fact be a shared left/through lane. Upstream (far view, about 101 m) only one motor lane exists. The second lane is added between the far and mid positions, and r1 continues the original single lane.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_EB",
+              "bbox_xyxy": [
+                0.476,
+                0.214,
+                0.656,
+                0.453
+              ],
+              "finding": "unmarked asphalt in r1 between the dark seam and the thick solid separator, crossed by the stop bar"
+            },
+            {
+              "source_id": "gsv_EB_near_forward",
+              "bbox_xyxy": [
+                0.17,
+                0.587,
+                0.646,
+                1.0
+              ],
+              "finding": "camera lane between the yellow median-edge line and the solid white separator, with no pavement arrow up to the stop bar"
+            },
+            {
+              "source_id": "gsv_EB_mid_forward",
+              "bbox_xyxy": [
+                0.28,
+                0.578,
+                0.672,
+                1.0
+              ],
+              "finding": "wide left lane with no arrow or word marking; only faded old broken-line remnants along the separator"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "right"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Retained. In the satellite, r2 is about 3.1 m between the thick solid separator and a thinner solid line, with a pavement arrow just behind the stop bar. In both forward views the right motor lane sits between the same solid separator and the line bordering the bicycle lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.651,
+              0.23,
+              0.71,
+              0.281
+            ],
+            "finding": "Right-turn-shaped pavement arrow inside r2 just behind the stop bar"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.497,
+              0.202,
+              0.677,
+              0.456
+            ],
+            "finding": "Thick solid white line forming the r1/r2 boundary"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.573,
+              0.237,
+              0.746,
+              0.48
+            ],
+            "finding": "Thinner solid white line forming the r2/r3 boundary"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": true,
+        "motor_lane_index": 2,
+        "initial_surface_audit": {
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "evidence": "About 3.1 m lane bounded by the thick solid white line on the left and a thinner solid white line on the right. Both lines stay detectable from the stop bar down into the building shadow. Just upstream of the stop bar, inside this lane, is a white pavement arrow whose stem bends to the right with the head pointing right/up-right, read as a right-turn arrow (shape somewhat blurred at this resolution; no through branch visible). The stop bar crosses the lane. The lower part of the polygon is in building shadow, where only the two bounding lines are faintly visible.",
+          "observed_arrows": [
+            "right"
+          ],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r2",
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "surface_reason": "Retained. In the satellite, r2 is about 3.1 m between the thick solid separator and a thinner solid line, with a pavement arrow just behind the stop bar. In both forward views the right motor lane sits between the same solid separator and the line bordering the bicycle lane.",
+          "use": "right_only",
+          "allowed_turns": [
+            "right"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "binding": "Near view: a large right-turn arrow (curved stem turning right, no straight branch) lies in the lane right of the solid separator, a few metres before the stop bar. Mid view: the word 'ONLY' is painted in the same lane (between the solid separator and the bicycle-lane line), with an arrow-shaped mark beyond it near the stop line in the same lane position. Satellite: a right-turn-shaped arrow inside r2 just behind the stop bar. The three are bound by the same left boundary (the solid separator, which is the satellite's r1/r2 line) and the same right neighbour (the bicycle strip). The arrow plus 'ONLY' supports a dedicated right-turn lane. Imagery is 2020-11 GSV and spring 2021 satellite; the two dates agree.",
+          "visual_refs": [
+            {
+              "source_id": "gsv_EB_near_forward",
+              "bbox_xyxy": [
+                0.727,
+                0.633,
+                0.889,
+                0.825
+              ],
+              "finding": "right-turn-only arrow in the lane right of the solid separator"
+            },
+            {
+              "source_id": "gsv_EB_mid_forward",
+              "bbox_xyxy": [
+                0.604,
+                0.638,
+                0.744,
+                0.676
+              ],
+              "finding": "'ONLY' word marking in the same right motor lane"
+            },
+            {
+              "source_id": "scene_in_EB",
+              "bbox_xyxy": [
+                0.644,
+                0.241,
+                0.706,
+                0.278
+              ],
+              "finding": "right-turn-shaped arrow inside r2 just behind the stop bar"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Retained. r3 is about 1.4 m between the thin solid line and the right kerb. The satellite shows a green-painted patch inside it at the building-shadow edge. The mid forward view shows a green-painted bicycle lane immediately right of the 'ONLY' lane, separated by a solid white line. In the near view the narrow leaf-covered strip right of the right-turn lane runs to the kerb, and the stop bar extends across it. The strip is too narrow for a motor lane and carries no arrow.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.576,
+              0.408,
+              0.646,
+              0.488
+            ],
+            "finding": "Green-painted patch inside the narrow strip right of the thin line"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.746,
+              0.184,
+              0.814,
+              0.214
+            ],
+            "finding": "Short white dashes beyond the stop bar aligned with the strip (possible bike-lane extension)"
+          },
+          {
+            "source_id": "scene_in_EB",
+            "bbox_xyxy": [
+              0.764,
+              0.211,
+              0.893,
+              0.304
+            ],
+            "finding": "Sidewalk corner with pedestrians just beyond the stop bar's right end, marking the kerb"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null,
+        "initial_surface_audit": {
+          "surface_type": "bicycle_strip",
+          "existence": "supported",
+          "evidence": "Narrow strip, about 1.4 m, between the thin solid white line and the right kerb. The stop bar ends at its outer edge, and pedestrians/objects stand on the sidewalk corner just beyond. It contains a localized green-painted patch about 9-11 m upstream of the stop bar (green appears nowhere else along the shadow edge, so it is likely paint rather than a colour fringe). Short white dashes beyond the stop bar and crosswalk continue in line with this strip through the intersection, consistent with a dashed bike-lane extension. No bicycle symbol is readable: a tree shadow covers much of the strip near the stop bar, and building shadow covers the downstream part. Downstream the kerb position cannot be traced in the shadow. A car sits about 7 m right of the thin line further back, so the kerb/lay-by layout may widen there; this strip is only supported near the stop bar.",
+          "observed_arrows": [],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r3",
+          "surface_type": "bicycle_strip",
+          "existence": "supported",
+          "surface_reason": "Retained. r3 is about 1.4 m between the thin solid line and the right kerb. The satellite shows a green-painted patch inside it at the building-shadow edge. The mid forward view shows a green-painted bicycle lane immediately right of the 'ONLY' lane, separated by a solid white line. In the near view the narrow leaf-covered strip right of the right-turn lane runs to the kerb, and the stop bar extends across it. The strip is too narrow for a motor lane and carries no arrow.",
+          "use": "not_applicable",
+          "allowed_turns": [],
+          "basis": "observed",
+          "confidence": "medium",
+          "binding": "Bound by position: the strip directly right of the right-turn/ONLY lane's right line in all views, and r3 in the satellite. Green paint is observed in the mid view and in the satellite r3 strip. No bicycle symbol is readable near the stop bar (leaves in the near view, tree shadow on the satellite). Upstream (far view) the bicycle lane continues with green paint and a hatched buffer to its right. At the mid position an extra asphalt wedge lies between the green lane and the kerb; it is not a travel lane and has no region.",
+          "visual_refs": [
+            {
+              "source_id": "gsv_EB_mid_forward",
+              "bbox_xyxy": [
+                0.68,
+                0.595,
+                1.0,
+                0.757
+              ],
+              "finding": "green-painted bicycle lane right of the 'ONLY' lane, behind a solid white line"
+            },
+            {
+              "source_id": "scene_in_EB",
+              "bbox_xyxy": [
+                0.59,
+                0.4,
+                0.66,
+                0.47
+              ],
+              "finding": "green-painted patch inside the r3 strip at the shadow edge"
+            },
+            {
+              "source_id": "gsv_EB_near_forward",
+              "bbox_xyxy": [
+                0.88,
+                0.6,
+                1.0,
+                0.72
+              ],
+              "finding": "narrow strip right of the right-turn lane's right line, running to the kerb"
+            }
+          ]
+        }
+      }
+    ],
+    "notes": [
+      "The regions' downstream half to two-thirds lies in deep building shadow. Classification rests mainly on the sunlit 10-12 m behind the stop bar.",
+      "Arrow reading for r2 is from low-resolution imagery; right-turn is the best reading, through+right cannot be fully excluded.",
+      "The left polygon edge of r1 follows a dark seam that continues through the crosswalk, not the island kerb. About 1.3-1.5 m of pavement between that seam and the island kerb is not covered by any region.",
+      "A car about 7 m right of the r2/r3 line, next to the building at lower right, suggests the right-side layout changes downstream (lay-by or wider pavement). This cannot be resolved in the shadow.",
+      "Satellite capture spring 2021, leaf-off; tree shadow covers part of r3 and the right kerb near the stop bar."
+    ],
+    "count": {
+      "model_motor_count": 2,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        2,
+        2
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  },
+  {
+    "section_id": "in_NB",
+    "kind": "inbound_stopbar",
+    "direction": "NB",
+    "source_id": "satellite",
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "left"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Kept. In the satellite this is an asphalt lane about 3.1 m wide, the first lane right of the opposing side (with parked cars). It is bounded on the right by a white lane line and ends at its own set-back stop line. The mid street view shows the same lane as the first lane right of the double yellow centre line, which bends left near the junction as r1 does. The near view's camera stands just left of the double yellow at a transverse stop line right of it, consistent with r1's set-back stop line.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.526,
+              0.278,
+              0.559,
+              0.318
+            ],
+            "finding": "left-turn arrow near the stop line"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.394,
+              0.488,
+              0.428,
+              0.535
+            ],
+            "finding": "second left-turn arrow further upstream"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": true,
+        "motor_lane_index": 1,
+        "initial_surface_audit": {
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "evidence": "Asphalt lane about 3.1 m wide with two left-turn arrows along its length, one near the stop line and one about mid-way. Its right side is a white lane line and it ends at a stop line before the crosswalk at the top. The opposing side, with a row of parked cars, lies further left. Most of it is in building shadow; the lower end bends left with the shifting lane lines and is under tree shadows.",
+          "observed_arrows": [
+            "left"
+          ],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r1",
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "surface_reason": "Kept. In the satellite this is an asphalt lane about 3.1 m wide, the first lane right of the opposing side (with parked cars). It is bounded on the right by a white lane line and ends at its own set-back stop line. The mid street view shows the same lane as the first lane right of the double yellow centre line, which bends left near the junction as r1 does. The near view's camera stands just left of the double yellow at a transverse stop line right of it, consistent with r1's set-back stop line.",
+          "use": "left_only",
+          "allowed_turns": [
+            "left"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "binding": "Two left-curving arrows lie inside r1 in the satellite, one near the set-back stop line and one upstream; I re-checked the shapes on the satellite panel. In the mid street view (2020-11) the arrow in the first lane right of the double yellow has its head on the left and its stem hooking toward the camera, a left-turn arrow; this binds to r1 by its position next to the centre line. No arrow combining through and left is seen in either source. The near view shows a building frontage and plaza straight ahead across the cross street and no through roadway. Street views are from 2020-11 and the satellite from spring 2021; the arrows agree.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.525,
+                0.28,
+                0.565,
+                0.325
+              ],
+              "finding": "left-turn arrow near r1's stop line"
+            },
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.397,
+                0.489,
+                0.433,
+                0.536
+              ],
+              "finding": "second left-turn arrow upstream in r1"
+            },
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.543,
+                0.246,
+                0.596,
+                0.268
+              ],
+              "finding": "r1 stop line set back from r2's stop bar"
+            },
+            {
+              "source_id": "gsv_NB_mid_forward",
+              "bbox_xyxy": [
+                0.67,
+                0.608,
+                0.771,
+                0.625
+              ],
+              "finding": "left-turn arrow in the first lane right of the double yellow line"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "right"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Kept. In the satellite this is asphalt about 3.0 m wide between the r1 lane line and the double white line (r3). Its stop bar joins the line in an L just before the crosswalk. The mid street view shows the second lane from the centre line, bounded on the right by a white line with flexible delineator posts.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.586,
+              0.318,
+              0.639,
+              0.342
+            ],
+            "finding": "right-turn arrow near the stop bar"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.447,
+              0.529,
+              0.507,
+              0.564
+            ],
+            "finding": "second right-turn arrow upstream"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.65,
+              0.199,
+              0.73,
+              0.242
+            ],
+            "finding": "stop bar joined to the double white line"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": true,
+        "motor_lane_index": 2,
+        "initial_surface_audit": {
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "evidence": "Asphalt lane about 3.0 m wide between the white lane line and a white double-line buffer, with two right-turn arrows. A stop bar at its head joins the double line in an L shape just before the crosswalk. It is in shadow but the paint is readable.",
+          "observed_arrows": [
+            "right"
+          ],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r2",
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "surface_reason": "Kept. In the satellite this is asphalt about 3.0 m wide between the r1 lane line and the double white line (r3). Its stop bar joins the line in an L just before the crosswalk. The mid street view shows the second lane from the centre line, bounded on the right by a white line with flexible delineator posts.",
+          "use": "right_only",
+          "allowed_turns": [
+            "right"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "binding": "Two right-curving arrows lie inside r2 in the satellite. The native-pixel detail crop of the mid street view (detail_2) shows the second lane's arrow clearly: a stem hooking down toward the camera at its left end, and a widened arrowhead at its right end. That is a foreshortened right-turn arrow, with no through branch. It binds to r2 as the lane between the left-arrow lane and the post-lined line. The near view shows an L-shaped stop bar and line at upper right ahead of the camera, matching r2's head. Upstream, the far view (113 m) has one travel lane plus kerbside parking; by the mid view (59 m) there are two lanes, with the dividing line dashed nearer the camera. So r2 develops as a right-turn pocket.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.585,
+                0.315,
+                0.631,
+                0.347
+              ],
+              "finding": "right-turn arrow near r2's stop bar"
+            },
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.443,
+                0.53,
+                0.504,
+                0.562
+              ],
+              "finding": "second right-turn arrow upstream in r2"
+            },
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.649,
+                0.199,
+                0.727,
+                0.252
+              ],
+              "finding": "L-shaped stop bar at r2's head"
+            },
+            {
+              "source_id": "gsv_NB_mid_forward",
+              "bbox_xyxy": [
+                0.83,
+                0.606,
+                0.9,
+                0.624
+              ],
+              "finding": "right-turn arrow (head right, stem hooking toward camera) in the second lane"
+            },
+            {
+              "source_id": "gsv_NB_near_forward",
+              "bbox_xyxy": [
+                0.796,
+                0.573,
+                1.0,
+                0.711
+              ],
+              "finding": "L-shaped stop bar and line ahead at upper right"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "medium",
+        "evidence": "Kept as a separator. In the satellite and in detail_1 it is two closely spaced parallel solid white lines about 0.7 m apart. The mid street view, including detail_2, shows white flexible delineator posts (and an orange one further on) standing along the line right of the right-turn lane. This is a painted, post-lined buffer, not a travel lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.669,
+              0.238,
+              0.73,
+              0.34
+            ],
+            "finding": "double solid white lines on sunlit pavement near the stop bar"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null,
+        "initial_surface_audit": {
+          "surface_type": "median_or_buffer",
+          "existence": "rejected",
+          "evidence": "Narrow strip (~0.7 m) bounded by two parallel solid white lines. Toward the lower (upstream) end the lines diverge with diagonal cross-hatching between them. This is a painted buffer separating the motor lanes from the strips to the right, not a travel lane.",
+          "observed_arrows": [],
+          "visibility": "clear"
+        },
+        "lane_use_prediction": {
+          "region_id": "r3",
+          "surface_type": "median_or_buffer",
+          "existence": "rejected",
+          "surface_reason": "Kept as a separator. In the satellite and in detail_1 it is two closely spaced parallel solid white lines about 0.7 m apart. The mid street view, including detail_2, shows white flexible delineator posts (and an orange one further on) standing along the line right of the right-turn lane. This is a painted, post-lined buffer, not a travel lane.",
+          "use": "not_applicable",
+          "allowed_turns": [],
+          "basis": "observed",
+          "confidence": "high",
+          "binding": "Bound by position immediately right of the right-turn lane in both satellite and mid street view. Upstream, the far view shows the posts on a hatched buffer at the end of the parking lane.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.669,
+                0.24,
+                0.733,
+                0.334
+              ],
+              "finding": "double solid white lines (detail_1, upper left)"
+            },
+            {
+              "source_id": "gsv_NB_mid_forward",
+              "bbox_xyxy": [
+                0.766,
+                0.544,
+                0.966,
+                0.619
+              ],
+              "finding": "flexible delineator posts along the line right of the right-turn lane"
+            },
+            {
+              "source_id": "gsv_NB_far_forward",
+              "bbox_xyxy": [
+                0.63,
+                0.69,
+                1.0,
+                1.0
+              ],
+              "finding": "hatched buffer with posts at the end of the upstream parking lane"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r4",
+        "surface_type": "bicycle_strip",
+        "existence": "uncertain",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "low",
+        "evidence": "Paved strip about 1.65 m wide between the buffer's right line and a further single solid white line. The single line is clearly visible in detail_1, running from near the stop bar diagonally down-left. The irregular light marking inside the strip is still a blur in the native crop: two lobes with no recognisable wheel/rider outline. It cannot be confirmed as a bicycle symbol, and could equally be post bases or debris. In detail_2 the kerbside space beyond the posts reads as one pavement band. A second line cannot be resolved there, so the street view neither confirms nor rules out the r4/r5 split. Too narrow for a car lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.673,
+              0.34,
+              0.699,
+              0.371
+            ],
+            "finding": "blurred light symbol, possibly a bicycle marking"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.69,
+              0.266,
+              0.761,
+              0.389
+            ],
+            "finding": "solid white line forming the strip's right edge"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null,
+        "initial_surface_audit": {
+          "surface_type": "bicycle_strip",
+          "existence": "supported",
+          "evidence": "Paved strip about 1.65 m wide between the buffer's right line and a further solid white line. On the sunlit part near the stop bar it carries an irregular light marking that may be a bicycle symbol, but it is too blurred to confirm. Its width fits a bicycle lane, not a car lane. It is also possible that it is a second buffer.",
+          "observed_arrows": [],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r4",
+          "surface_type": "bicycle_strip",
+          "existence": "uncertain",
+          "surface_reason": "Paved strip about 1.65 m wide between the buffer's right line and a further single solid white line. The single line is clearly visible in detail_1, running from near the stop bar diagonally down-left. The irregular light marking inside the strip is still a blur in the native crop: two lobes with no recognisable wheel/rider outline. It cannot be confirmed as a bicycle symbol, and could equally be post bases or debris. In detail_2 the kerbside space beyond the posts reads as one pavement band. A second line cannot be resolved there, so the street view neither confirms nor rules out the r4/r5 split. Too narrow for a car lane.",
+          "use": "not_applicable",
+          "allowed_turns": [],
+          "basis": "inferred",
+          "confidence": "low",
+          "binding": "Satellite only. No marking in the street views can be bound to r4. It may be a separate bicycle lane, part of a wider bicycle facility shared with r5, or extra buffer width.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.673,
+                0.34,
+                0.697,
+                0.367
+              ],
+              "finding": "blurred two-lobed light marking, not resolvable as a bicycle symbol"
+            },
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.68,
+                0.266,
+                0.762,
+                0.393
+              ],
+              "finding": "single solid white line separating r4 from r5"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r5",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Kept. Paved strip about 1.8 m wide between the single solid white line and the right kerb, with the tan sidewalk directly beyond. Detail_1 shows an elongated light marking with a broader leading end pointing in the travel direction, a straight arrow, just upstream of the stop area. No bicycle symbol is visible near it. The mid and far street views show a post-separated kerbside bicycle facility (bike-share dock on the sidewalk beside it; hatched buffer with posts upstream). The near view shows green bicycle-crossing paint beyond the crosswalk on this side. Its width rules out a motor lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.695,
+              0.363,
+              0.722,
+              0.398
+            ],
+            "finding": "straight-ahead arrow"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.722,
+              0.351,
+              0.769,
+              0.527
+            ],
+            "finding": "kerb and tan/light sidewalk immediately right of the strip"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": false,
+        "motor_lane_index": null,
+        "initial_surface_audit": {
+          "surface_type": "bicycle_strip",
+          "existence": "supported",
+          "evidence": "Paved strip about 1.77 m wide between the solid white line and the right kerb, beyond which is the tan/light sidewalk. A clear straight-ahead arrow is painted in it just upstream of the stop line. At 1.77 m it is too narrow for a motor-vehicle lane; it has no parking stalls or parked cars. Most likely a bicycle lane, though no bicycle symbol is readable inside it. Upstream it is in shadow with tree-shadow texture near the kerb.",
+          "observed_arrows": [
+            "through"
+          ],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r5",
+          "surface_type": "bicycle_strip",
+          "existence": "supported",
+          "surface_reason": "Kept. Paved strip about 1.8 m wide between the single solid white line and the right kerb, with the tan sidewalk directly beyond. Detail_1 shows an elongated light marking with a broader leading end pointing in the travel direction, a straight arrow, just upstream of the stop area. No bicycle symbol is visible near it. The mid and far street views show a post-separated kerbside bicycle facility (bike-share dock on the sidewalk beside it; hatched buffer with posts upstream). The near view shows green bicycle-crossing paint beyond the crosswalk on this side. Its width rules out a motor lane.",
+          "use": "not_applicable",
+          "allowed_turns": [],
+          "basis": "inferred",
+          "confidence": "medium",
+          "binding": "Bound as the kerbside strip beyond the post-lined buffer, next to the sidewalk. The straight arrow is a bicycle-lane direction marking and does not set motor-vehicle turn permissions, so no motor movement is assigned. Whether r4 and r5 are one facility or two remains unresolved.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.695,
+                0.365,
+                0.722,
+                0.4
+              ],
+              "finding": "straight arrow in the kerbside strip (detail_1)"
+            },
+            {
+              "source_id": "scene_in_NB",
+              "bbox_xyxy": [
+                0.723,
+                0.357,
+                0.772,
+                0.45
+              ],
+              "finding": "tan sidewalk immediately right of the strip"
+            },
+            {
+              "source_id": "gsv_NB_mid_forward",
+              "bbox_xyxy": [
+                0.922,
+                0.544,
+                1.0,
+                0.58
+              ],
+              "finding": "bike-share dock on the sidewalk beside the kerbside strip"
+            },
+            {
+              "source_id": "gsv_NB_near_forward",
+              "bbox_xyxy": [
+                0.82,
+                0.477,
+                0.914,
+                0.503
+              ],
+              "finding": "green bicycle crossing paint beyond the crosswalk on the right"
+            }
+          ]
+        }
+      }
+    ],
+    "notes": [
+      "Most of the approach is in building shadow; markings are readable mainly on the sunlit band near the stop bar. The lower part of r4/r5 is under leaf-off tree shadows.",
+      "The exact use of r4 and r5 (one-way bicycle lane, buffer, or another arrangement) cannot be confirmed from this image. The solid line between them, the possible symbol in r4 and the straight arrow in r5 are the only cues.",
+      "Capture date given as spring 2021."
+    ],
+    "count": {
+      "model_motor_count": 2,
+      "unclassified_regions": 1,
+      "model_count_range": [
+        2,
+        3
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  },
+  {
+    "section_id": "in_WB",
+    "kind": "inbound_stopbar",
+    "direction": "WB",
+    "source_id": "satellite",
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "left"
+        ],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Retained. Uniform asphalt about 3.4 m wide between a faint left edge and the solid white line it shares with r2. It holds two curved pavement arrows and starts at the stop bar. Street view mid shows the same lane: between the raised median kerb and the solid white line, marked 'ONLY' with a turn arrow, running up to the stop line.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.532,
+              0.279,
+              0.577,
+              0.338
+            ],
+            "finding": "curved left-turn-shaped pavement arrow near the stop bar inside r1"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.224,
+              0.736,
+              0.269,
+              0.793
+            ],
+            "finding": "second curved left-turn-shaped arrow upstream inside r1"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.2,
+              0.23,
+              0.66,
+              0.88
+            ],
+            "finding": "solid white line separating r1 from r2"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": true,
+        "motor_lane_index": 1,
+        "initial_surface_audit": {
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "evidence": "Dark asphalt about 3.4 m wide. Its right edge is a solid white lane line (running from about (470,195) to (150,740) in the native image). r1 holds two curved pavement arrows whose heads bend to the driver's left, one near the stop bar and one about 400 px upstream. These read as left-turn arrows, though the low resolution and the building shadow over most of the strip limit certainty, and a U-turn shape cannot be fully excluded. The left edge of r1 has only a faint line. About 6 m of further pavement, with no visible arrows, lies between r1 and the double longitudinal line to its left; that is outside this region.",
+          "observed_arrows": [
+            "left"
+          ],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r1",
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "surface_reason": "Retained. Uniform asphalt about 3.4 m wide between a faint left edge and the solid white line it shares with r2. It holds two curved pavement arrows and starts at the stop bar. Street view mid shows the same lane: between the raised median kerb and the solid white line, marked 'ONLY' with a turn arrow, running up to the stop line.",
+          "use": "left_only",
+          "allowed_turns": [
+            "left"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "binding": "Satellite: both arrows in r1 have the stem at the lower right and the head bending to the upper left (driver's left), i.e. left-turn arrows, one near the stop bar and one about 25 m upstream; none has a U-turn hook. Street view mid (2020-11): the leftmost lane between the median kerb and the solid white line carries the word ONLY and, ahead, a wide flat turn arrow. Its perspective width is about twice that of the straight arrow in the next lane, consistent with a left-turn arrow. Same physical anchors in both: median/left limit, the solid line between lanes, the through-arrow lane to its right. The street-view arrow head direction alone is blurry; the satellite arrow shape settles it. The about 6 m unregioned strip left of r1 in the satellite is uniform, dark and shadowed. Street view mid shows the median kerb directly beside the ONLY lane up to the crosswalk, so that strip is most likely the median in shadow, not another lane.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_WB",
+              "bbox_xyxy": [
+                0.539,
+                0.279,
+                0.574,
+                0.338
+              ],
+              "finding": "left-turn arrow near the stop bar in r1"
+            },
+            {
+              "source_id": "scene_in_WB",
+              "bbox_xyxy": [
+                0.231,
+                0.736,
+                0.273,
+                0.79
+              ],
+              "finding": "second left-turn arrow upstream in the r1 lane"
+            },
+            {
+              "source_id": "gsv_WB_mid_forward",
+              "bbox_xyxy": [
+                0.258,
+                0.622,
+                0.391,
+                0.644
+              ],
+              "finding": "word ONLY in the leftmost lane beside the median"
+            },
+            {
+              "source_id": "gsv_WB_mid_forward",
+              "bbox_xyxy": [
+                0.37,
+                0.568,
+                0.43,
+                0.582
+              ],
+              "finding": "wide turn arrow ahead of ONLY in the same lane"
+            },
+            {
+              "source_id": "gsv_WB_mid_forward",
+              "bbox_xyxy": [
+                0.0,
+                0.555,
+                0.375,
+                0.703
+              ],
+              "finding": "raised grass median kerb bounding the ONLY lane on the left"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Retained. Asphalt about 3.4 m wide between two solid white lines, with straight arrows and a car stopped at the stop bar. Street view mid shows the camera's lane between the same two lines with a straight arrow near the stop line.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.613,
+              0.315,
+              0.647,
+              0.362
+            ],
+            "finding": "straight (through) arrow near the stop bar in r2"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.301,
+              0.77,
+              0.339,
+              0.822
+            ],
+            "finding": "straight (through) arrow upstream in r2"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.66,
+              0.16,
+              0.76,
+              0.26
+            ],
+            "finding": "light car at the stop bar in the through lane"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": true,
+        "motor_lane_index": 2,
+        "initial_surface_audit": {
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "evidence": "Asphalt about 3.4 m wide between two solid white lines: the line shared with r1 and a second white line (from about (470,320) to (250,740)) that separates it from the kerbside strip. A straight arrow pointing in the direction of travel is painted near the stop bar and another upstream. A light car stands in this lane at the stop bar/crosswalk. The strip is mostly in building shadow, but both lines continue into the sunlit part downstream.",
+          "observed_arrows": [
+            "through"
+          ],
+          "visibility": "partial"
+        },
+        "lane_use_prediction": {
+          "region_id": "r2",
+          "surface_type": "motor_vehicle_lane",
+          "existence": "supported",
+          "surface_reason": "Retained. Asphalt about 3.4 m wide between two solid white lines, with straight arrows and a car stopped at the stop bar. Street view mid shows the camera's lane between the same two lines with a straight arrow near the stop line.",
+          "use": "through_only",
+          "allowed_turns": [
+            "through"
+          ],
+          "basis": "observed",
+          "confidence": "medium",
+          "binding": "Satellite: a straight arrow (head forward) in r2 near the stop bar and another upstream; no turn shape is visible in this lane. Street view mid: compact straight arrow in the camera lane near the stop line, between the ONLY lane's solid line and the solid line beside the bicycle strip. No right-turn arrow or right-turn pocket is visible. The near view shows the right kerb and sidewalk running straight past the crosswalk, with no right-hand leg visible. A right turn from this lane is therefore not supported by any marking, but no sign forbidding it was read either. 'through_only' rests on the arrows alone.",
+          "visual_refs": [
+            {
+              "source_id": "scene_in_WB",
+              "bbox_xyxy": [
+                0.616,
+                0.318,
+                0.644,
+                0.362
+              ],
+              "finding": "straight arrow near the stop bar in r2"
+            },
+            {
+              "source_id": "scene_in_WB",
+              "bbox_xyxy": [
+                0.301,
+                0.772,
+                0.336,
+                0.819
+              ],
+              "finding": "straight arrow upstream in the r2 lane"
+            },
+            {
+              "source_id": "gsv_WB_mid_forward",
+              "bbox_xyxy": [
+                0.485,
+                0.57,
+                0.515,
+                0.582
+              ],
+              "finding": "straight arrow in the camera lane near the stop line"
+            }
+          ]
+        }
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "occluded",
+        "confidence": "low",
+        "evidence": "Revised from uncertain to supported. Satellite: a paved strip about 2 m wide between the outer solid white line and the kerb, too narrow for a car lane. Street view near: a green-painted strip along the right kerb up to the crosswalk, i.e. a marked bicycle lane, with a band of older grey asphalt between it and the new black travel-lane asphalt. Street view mid and far: a solid white line with a strip of bicycle-lane width between it and the granite kerb all along the approach.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.375,
+              0.264,
+              0.773,
+              0.808
+            ],
+            "finding": "shadowed strip between the outer white line and the kerb"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.18,
+              0.855,
+              0.42,
+              1.0
+            ],
+            "finding": "sunlit downstream continuation: about 2 m grey pavement strip between the white line and the kerb, no visible marking"
+          },
+          {
+            "source_id": "scene_in_WB",
+            "bbox_xyxy": [
+              0.616,
+              0.475,
+              0.7,
+              0.558
+            ],
+            "finding": "sunlit sidewalk concrete beyond the kerb bounding the strip"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null,
+        "initial_surface_audit": {
+          "surface_type": "bicycle_strip",
+          "existence": "uncertain",
+          "evidence": "Paved strip between the right white line of r2 and the kerb. Brightness profiles across it put the kerb (where the sunlit or brighter sidewalk starts) about 30-40 px (about 1.6-2.1 m) beyond the line, so the strip is real roadway, not sidewalk. It is too narrow for a car lane (well under 2.7 m) and fits a marked bicycle lane or a narrow shoulder. The whole region lies in deep building shadow, so no bicycle symbol, green paint, arrow or parked car can be seen either way. Just downstream in sunlight, the same strip continues as plain grey pavement about 2 m wide to the kerb, with no visible marking in that short stretch. The bright blob near (545,295) lies on the sidewalk beyond the kerb, not in r3.",
+          "observed_arrows": [],
+          "visibility": "occluded"
+        },
+        "lane_use_prediction": {
+          "region_id": "r3",
+          "surface_type": "bicycle_strip",
+          "existence": "supported",
+          "surface_reason": "Revised from uncertain to supported. Satellite: a paved strip about 2 m wide between the outer solid white line and the kerb, too narrow for a car lane. Street view near: a green-painted strip along the right kerb up to the crosswalk, i.e. a marked bicycle lane, with a band of older grey asphalt between it and the new black travel-lane asphalt. Street view mid and far: a solid white line with a strip of bicycle-lane width between it and the granite kerb all along the approach.",
+          "use": "not_applicable",
+          "allowed_turns": [],
+          "basis": "observed",
+          "confidence": "medium",
+          "binding": "Bound by order: kerb, then this strip, then the solid white line, then the through lane (r2) in all three street views and in the satellite. The green paint is seen only in the near view (2020-11), on freshly resurfaced pavement. No bicycle symbol is readable in any view. Exactly where the grey buffer band ends and the bicycle lane begins inside r3 is not resolvable.",
+          "visual_refs": [
+            {
+              "source_id": "gsv_WB_near_forward",
+              "bbox_xyxy": [
+                0.75,
+                0.65,
+                1.0,
+                0.85
+              ],
+              "finding": "green-painted bicycle strip along the right kerb"
+            },
+            {
+              "source_id": "gsv_WB_mid_forward",
+              "bbox_xyxy": [
+                0.54,
+                0.56,
+                1.0,
+                1.0
+              ],
+              "finding": "solid white line and narrow kerbside strip to the granite kerb"
+            },
+            {
+              "source_id": "scene_in_WB",
+              "bbox_xyxy": [
+                0.326,
+                0.843,
+                0.444,
+                1.0
+              ],
+              "finding": "sunlit continuation: about 2 m strip between the outer white line and the kerb"
+            }
+          ]
+        }
+      }
+    ],
+    "notes": [
+      "A large building shadow covers most of the approach. Arrow shapes were read from brightened crops at low resolution.",
+      "Native-image bboxes assume the scene_in_WB panel as shown (714 x 842 px in the sheet).",
+      "Left of r1, roughly 6 m of pavement that no region covers lies between r1's faint left edge and a double longitudinal line further left. No arrow is visible there; this audit does not classify it.",
+      "r3 subtype (bicycle lane or shoulder) cannot be confirmed from this shadowed, leaf-off 2021 image."
+    ],
+    "count": {
+      "model_motor_count": 2,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        2,
+        2
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  },
+  {
+    "section_id": "out_EB",
+    "kind": "outbound_receiving",
+    "direction": "EB",
+    "source_id": "satellite",
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r1 (about 2.5 m) is a slightly darker, smooth band between two faint longitudinal edges. Its left edge lines up with the end of the opposing (WB) stop bar and the right edge of the WB turn lane, which has down-pointing arrows. It has no lane paint and no vehicles. The look-back GSV from the WB approach shows a planted grass median with a kerb, a yellow edge line and a row of trees between the WB 'ONLY' turn lane and the EB carriageway. r1 is the only strip of median width in that position. The whole scene is in shadow, so tree trunks and the kerb are not individually resolvable on the satellite.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.381,
+              0.285,
+              0.52,
+              0.451
+            ],
+            "finding": "darker unmarked band of median width between the WB turn lane and the EB travel strip"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.19,
+              0.634,
+              0.243,
+              0.688
+            ],
+            "finding": "the WB stop bar ends at r1's left edge"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.536,
+              0.422,
+              1.0,
+              0.605
+            ],
+            "finding": "grass median with kerb and trees separating the WB lanes from the EB carriageway"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r2 (about 3.7 m) is uniform asphalt between the median band and a continuous solid white line on its right. It is wide enough for one motor lane, and the crosswalk at the junction end runs across it. In the GSV, beyond the median, one EB travel lane runs along the median before the pair of white lines and the parked vehicles. No arrows are readable on r2 in either image.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.434,
+              0.313,
+              0.586,
+              0.486
+            ],
+            "finding": "unmarked asphalt strip between the median band and the left white line of the pair"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.731,
+              0.451,
+              1.0,
+              0.528
+            ],
+            "finding": "EB travel lane adjacent to the median, across from the camera"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": true,
+        "motor_lane_index": 1
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "medium",
+        "evidence": "r3 (about 1.5 m) lies between two parallel solid white lines that run continuously from the crosswalk to the far end of the section. It sits between the travel strip r2 and the row of parked cars. In the GSV, two parallel white lines separate the EB travel lane from the parked vehicles. The narrow width and position fit a bicycle lane between the travel lane and parking, but no bicycle symbol is legible, so the subtype is not confirmed.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.496,
+              0.346,
+              0.631,
+              0.509
+            ],
+            "finding": "two continuous parallel white lines about 1.5 m apart"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.826,
+              0.475,
+              1.0,
+              0.515
+            ],
+            "finding": "pair of white lines between the EB travel lane and the parked cars"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null
+      },
+      {
+        "region_id": "r4",
+        "surface_type": "shoulder_or_parking",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r4 (about 5.9 m) holds a tight bumper-to-bumper row of stationary cars right of the white-line pair, which is a kerbside parking lane. Beyond the cars the crosswalk stops and a smooth, slightly warmer strip runs up to the building faces; this looks like sidewalk or tree lawn rather than carriageway. In the GSV, parked vehicles (a pickup and a Jeep) stand at the EB far kerb, with grass and sidewalk behind them. No travel-lane marking is visible in r4.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.657,
+              0.132,
+              0.826,
+              0.347
+            ],
+            "finding": "row of parked cars immediately right of the white-line pair"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.584,
+              0.391,
+              0.737,
+              0.565
+            ],
+            "finding": "unmarked strip beyond the parking line, up to the building edge, past the crosswalk end"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.702,
+              0.413,
+              0.975,
+              0.48
+            ],
+            "finding": "parked vehicles along the EB far kerb with sidewalk behind"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null
+      }
+    ],
+    "notes": [
+      "The satellite scene is entirely in shadow and slightly hazy. The median kerbs and the right kerb are inferred from faint brightness changes and the crosswalk extent, not seen as crisp edges.",
+      "The GSV is a reverse look-back from the opposing WB approach. The EB receiving carriageway appears across the planted median, so its lane positions were matched by physical sequence (median, travel lane, white-line pair, parking), not by lane ordinal.",
+      "The arrows visible on the left half of the scene point down (WB, toward the junction) and belong to the opposing carriageway, not to out_EB.",
+      "GSV capture 2020-11 versus satellite spring 2021; small layout differences between the dates cannot be excluded."
+    ],
+    "count": {
+      "model_motor_count": 1,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        1,
+        1
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  },
+  {
+    "section_id": "out_SB",
+    "kind": "outbound_receiving",
+    "direction": "SB",
+    "source_id": "satellite",
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r1's left edge follows a continuous bright longitudinal line, read as the centre line. On the other side of it are the opposing approach's lanes, whose turn arrows point toward the junction. The left ~3.5 m of r1 is uniform asphalt with no parked objects: a SB travel lane leaving the junction. About 64% of the way across, a faint longitudinal line separates it from the right ~2 m. That right part holds a row of three cars parked end to end along the kerb, so it is a parking lane, not travel pavement. Beyond the kerb are tree-shadowed sidewalk/plaza, brick paving and buildings. The reverse look-back street view shows the same arrangement on this side of the double yellow line: one travel lane, then a solid white edge line, then cars parked at the kerb, then the sidewalk with café seating. r1 is therefore supported as a travel facility, but it covers one motor-vehicle lane plus a parking strip; only about 3.5 m of its 5.5 m width is travel lane. Most of it lies in building shadow.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_SB",
+            "bbox_xyxy": [
+              0.354,
+              0.352,
+              0.52,
+              0.578
+            ],
+            "finding": "bright centre line along r1's left edge, with the opposing approach's turn arrows beyond it"
+          },
+          {
+            "source_id": "scene_out_SB",
+            "bbox_xyxy": [
+              0.46,
+              0.296,
+              0.706,
+              0.623
+            ],
+            "finding": "three cars parked end to end in the right ~2 m of r1, along the kerb"
+          },
+          {
+            "source_id": "gsv_NB_near_look_back",
+            "bbox_xyxy": [
+              0.25,
+              0.44,
+              0.5,
+              1.0
+            ],
+            "finding": "double yellow centre line bounding the SB side"
+          },
+          {
+            "source_id": "gsv_NB_near_look_back",
+            "bbox_xyxy": [
+              0.4,
+              0.47,
+              0.9,
+              1.0
+            ],
+            "finding": "single SB travel lane between the yellow line and the white edge line"
+          },
+          {
+            "source_id": "gsv_NB_near_look_back",
+            "bbox_xyxy": [
+              0.62,
+              0.44,
+              1.0,
+              0.82
+            ],
+            "finding": "white parking edge line with cars parked at the right kerb"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": true,
+        "motor_lane_index": 1
+      }
+    ],
+    "notes": [
+      "r1 combines one SB travel lane (~3.5 m) with a ~2 m parking lane. If the region is split, the left part is the motor-vehicle lane and the right part, beside the parked cars, is shoulder_or_parking.",
+      "The street view is a reverse view from the opposing approach, so it is not independent of other views of the same panorama. It was used only for the physical layout on the far side of the double yellow line.",
+      "Capture dates: satellite spring 2021, street view 2020-11."
+    ],
+    "count": {
+      "model_motor_count": 1,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        1,
+        1
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  },
+  {
+    "section_id": "out_WB",
+    "kind": "outbound_receiving",
+    "direction": "WB",
+    "source_id": "satellite",
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Continuous grey asphalt starting just beyond the crosswalk. Its left side is the kerb of a raised median island (with a shelter or bench structure and a planter at the island nose). Its right side is the left line of a painted buffer. Profiles across the strip show uniform pavement about 4.6-5 m wide with no lane line inside it, so it reads as one wide general-traffic lane, not two. The upper part lies in a building shadow, but the pavement continues. In the reverse GSV, the carriageway across the planted median also shows a single wide lane left of a two-line buffer.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.166,
+              0.298,
+              0.513,
+              0.691
+            ],
+            "finding": "raised median island with a kerb forming r1's left edge"
+          },
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.243,
+              0.238,
+              0.71,
+              0.715
+            ],
+            "finding": "uniform asphalt travel lane without an internal lane line"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.5,
+              0.42,
+              0.9,
+              0.55
+            ],
+            "finding": "across the median: one wide travel lane before the buffer lines"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": true,
+        "motor_lane_index": 1
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "high",
+        "evidence": "About 1.3 m between two parallel solid white lines, with diagonal hatch marks painted between them at regular intervals along the whole strip. This is a painted buffer separating the travel lane from the kerbside bicycle lane, not a travel facility. In the reverse GSV, the far-side carriageway shows the same two-line buffer with a white flexible delineator post.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.4,
+              0.24,
+              0.75,
+              0.715
+            ],
+            "finding": "two parallel white lines with diagonal hatch marks (painted buffer)"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.7,
+              0.43,
+              1.0,
+              0.5
+            ],
+            "finding": "double buffer lines on the far-side carriageway"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.84,
+              0.43,
+              0.87,
+              0.47
+            ],
+            "finding": "white flexible delineator post on the buffer"
+          }
+        ],
+        "basis": "inferred",
+        "endpoint_eligible": false,
+        "motor_lane_index": null
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "clear",
+        "confidence": "medium",
+        "evidence": "Paved strip about 1.9-2.0 m wide between the buffer's right line and the kerb. Beyond the kerb lies a light sidewalk with a row of round reddish planters at its edge, granite-edged tree pits and further sidewalk. Near the lower part of the strip there is a white arrow pointing in the direction of travel with a glyph behind it consistent with a bicycle-lane symbol, though too small to resolve fully. The arrow is a direction marking for the bike lane, not a turn arrow. The width, the buffer and the marking fit a buffered bicycle lane; it is too narrow for a car lane. The reverse GSV shows the same kerbside strip beyond the buffer on the far-side carriageway.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.455,
+              0.602,
+              0.53,
+              0.709
+            ],
+            "finding": "white direction arrow plus a bicycle-symbol-like glyph in the strip"
+          },
+          {
+            "source_id": "scene_out_WB",
+            "bbox_xyxy": [
+              0.49,
+              0.54,
+              0.62,
+              0.73
+            ],
+            "finding": "kerb with a row of planters bounding the strip on the right"
+          },
+          {
+            "source_id": "gsv_EB_near_look_back",
+            "bbox_xyxy": [
+              0.8,
+              0.43,
+              1.0,
+              0.52
+            ],
+            "finding": "kerbside strip between the buffer and the sidewalk on the far-side carriageway"
+          }
+        ],
+        "basis": "observed",
+        "endpoint_eligible": false,
+        "motor_lane_index": null
+      }
+    ],
+    "notes": [
+      "The GSV is a reverse view from the opposing (EB) approach, captured 2020-11. The out_WB carriageway appears only across the planted median at the right of that image and is small and distant, so it serves as layout support only. The satellite image is from spring 2021.",
+      "No lane line is visible inside r1. Its 4.6-5 m width reads as one wide lane, not two narrow ones.",
+      "Native bboxes assume the scene_out_WB panel as shown (about 721 x 839 px in the sheet) and the GSV panel as shown (about 1026 x 1026 px)."
+    ],
+    "count": {
+      "model_motor_count": 1,
+      "unclassified_regions": 0,
+      "model_count_range": [
+        1,
+        1
+      ],
+      "human_verified": false,
+      "coverage": "candidate_geometry_only"
+    }
+  }
+]

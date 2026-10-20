@@ -1,0 +1,219 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "unclear",
+        "confidence": "medium",
+        "evidence": "Satellite (spring 2021, outside the 2020-11 window): r1 is a ~2.5-2.8 m band whose left edge lines up with the end of the opposing WB stop bar. That stop bar stops at the left edge of r1, and the WB lanes with down-pointing arrows lie further left. r1 has no lane paint and no vehicles; the only line nearby is a faint dark line inside r2 for the first ~7 m. The whole scene is in deep building shadow, so a median kerb or tree trunks cannot be resolved directly, and the band's brightness is barely different from the pavement. Street views (2020-11, inside the window): at 22.7 m and 51.5 m the away views show a raised planted median with a kerb, grass, leaf litter and a row of trees between the WB carriageway and the EB travel lane, with a yellow edge line on the EB side. The 101.9 m toward view shows the same median on the right. Exactly one EB travel lane runs beside it. r1 is the only strip of median width between the WB stop bar end and the EB lane. If it were pavement, r1+r2 would form a ~7 m single lane, which the street views do not show. So r1 is read as the median. The exact kerb position is inferred, not seen.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.144,
+              0.618,
+              0.23,
+              0.673
+            ],
+            "finding": "WB stop bar ending at r1's left edge"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.227,
+              0.203,
+              0.57,
+              0.688
+            ],
+            "finding": "unmarked shadowed band with no vehicles"
+          },
+          {
+            "source_id": "gsv_out_EB_025_away",
+            "bbox_xyxy": [
+              0.0,
+              0.4,
+              0.47,
+              0.92
+            ],
+            "finding": "planted median with kerb, trees and yellow edge line left of the EB lane"
+          },
+          {
+            "source_id": "gsv_out_EB_050_away",
+            "bbox_xyxy": [
+              0.0,
+              0.38,
+              0.46,
+              0.85
+            ],
+            "finding": "same planted median with trees further downstream"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Satellite: uniform asphalt about 4 m wide between the median band (r1) and a continuous solid white line on its right. The line runs from the crosswalk to the far end of the section. The crosswalk at the junction end runs across r2. No arrows are readable, and no vehicles are present. Everything is in shadow. Street views (2020-11): at 22.7 m and 51.5 m the camera stands in a single EB travel lane between the median's yellow edge line and a solid white line. The 22.7 m and 51.5 m toward views and the 101.9 m toward view show the same single lane alongside the median. No pavement arrow appears in this lane near the camera. Correspondence is by physical sequence (median, travel lane, white-line pair, parking, kerb), not ordinal. The satellite date (2021) is later than the window; the GSV dates fall in it, and the two agree.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.325,
+              0.204,
+              0.719,
+              0.782
+            ],
+            "finding": "solid white line forming r2's right edge, continuous from the crosswalk"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.078,
+              0.666,
+              0.391,
+              0.85
+            ],
+            "finding": "crosswalk spanning r2 at the junction end"
+          },
+          {
+            "source_id": "gsv_out_EB_025_away",
+            "bbox_xyxy": [
+              0.13,
+              0.4,
+              0.85,
+              1.0
+            ],
+            "finding": "single EB travel lane between yellow edge line and solid white line"
+          },
+          {
+            "source_id": "gsv_out_EB_100_toward",
+            "bbox_xyxy": [
+              0.28,
+              0.4,
+              0.9,
+              1.0
+            ],
+            "finding": "single travel lane beside the median continuing downstream"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Satellite: a ~1.5-1.7 m strip between two parallel solid white lines that run continuously from the crosswalk past the parked cars. It lies between the travel lane r2 and the parking row. No symbol is legible in the shadowed satellite. Street views (2020-11): every away/toward pair shows a strip between two white lines separating the travel lane from the parking lane. At 22.7 m a worn white marking lies inside it, part of a bicycle symbol or arrow. At 101.9 m (toward view) the strip carries a clear bicycle glyph and a straight arrow pointing in the EB travel direction. It is a bicycle lane; the arrow is a bicycle direction marking, not a motor-vehicle turn arrow. The 101.9 m view is downstream of the satellite polygon, but line continuity links the two.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.48,
+              0.388,
+              0.603,
+              0.538
+            ],
+            "finding": "pair of parallel solid white lines bounding the strip"
+          },
+          {
+            "source_id": "gsv_out_EB_025_away",
+            "bbox_xyxy": [
+              0.85,
+              0.74,
+              1.0,
+              0.86
+            ],
+            "finding": "worn bicycle marking between the two white lines"
+          },
+          {
+            "source_id": "gsv_out_EB_100_toward",
+            "bbox_xyxy": [
+              0.42,
+              0.47,
+              0.455,
+              0.485
+            ],
+            "finding": "bicycle symbol in the strip"
+          },
+          {
+            "source_id": "gsv_out_EB_100_toward",
+            "bbox_xyxy": [
+              0.334,
+              0.57,
+              0.39,
+              0.626
+            ],
+            "finding": "straight arrow pointing in EB travel direction (toward camera)"
+          }
+        ]
+      },
+      {
+        "region_id": "r4",
+        "surface_type": "shoulder_or_parking",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Satellite: right of the white-line pair, a row of parked cars sits end to end at the upstream end of the section, within the left ~2.5 m of r4. This is a kerbside parking lane. The crosswalk ends about 2.5 m right of the line pair, marking the kerb. The rest of r4 (~3.5 m) lies beyond the kerb: a darker band and then the edge of a building roof, so r4 extends past the true kerb onto the grass strip and sidewalk. No cars are visible in r4 between the junction and the parked row. That part may be a no-parking zone near the crossing, but it shows no travel-lane paint. Street views (2020-11): at 22.7 m and 51.5 m, parked cars and a van stand at the right kerb beyond the bike lane, with a grass strip, benches and sidewalk behind them. At 101.9 m the toward view shows the same parking strip between the bike lane and the kerb. Not a travel lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.653,
+              0.127,
+              0.825,
+              0.351
+            ],
+            "finding": "row of parked cars right of the white-line pair"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.484,
+              0.371,
+              0.75,
+              0.717
+            ],
+            "finding": "band beyond the kerb (grass strip/sidewalk) inside r4's right part"
+          },
+          {
+            "source_id": "gsv_out_EB_025_away",
+            "bbox_xyxy": [
+              0.56,
+              0.4,
+              0.67,
+              0.46
+            ],
+            "finding": "parked van and cars at the right kerb beyond the bike lane"
+          },
+          {
+            "source_id": "gsv_out_EB_050_away",
+            "bbox_xyxy": [
+              0.89,
+              0.57,
+              1.0,
+              0.71
+            ],
+            "finding": "parked car at the kerb right of the bike lane"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "Satellite (spring 2021) lies outside the 2020-11 target window and is entirely in building shadow. Kerbs and the median edge are inferred from the stop-bar end, crosswalk extent and line positions rather than seen as crisp edges.",
+      "All six street views are 2020-11, inside the window. Each away/toward pair comes from one panorama, so there are three original sources (22.7, 51.5, 101.9 m). They show a consistent layout: planted median, one EB travel lane, a two-line bicycle lane, a kerbside parking lane, kerb.",
+      "The camera metadata ('nominal outgoing side') was checked against the imagery. The cameras are in the EB carriageway itself: median on the left looking away, kerb with parking on the right.",
+      "The 101.9 m away view shows dashed lines and a median end approaching the next intersection, beyond the regions. It does not bear on the region classes here."
+    ]
+  },
+  "metadata": {}
+}

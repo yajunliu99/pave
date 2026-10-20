@@ -1,0 +1,2740 @@
+{
+  "schema_version": 1,
+  "pilot_id": "university_mill_351",
+  "node_id": 351,
+  "name": "University Dr x Mill Ave",
+  "geometry_revision": 2,
+  "gsv_sampling_revision": 3,
+  "sources": {
+    "satellite": {
+      "kind": "image",
+      "path": "cache/mapbox_351/univ_mill_351_buf40.jpg",
+      "capture_date": null,
+      "date_status": "not_retained",
+      "role": "satellite"
+    },
+    "gsv_NB": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/NB_d050m_mid.jpg",
+      "capture_date": "2025-11",
+      "role": "gsv",
+      "reverse_view": false,
+      "distance_to_center_m": 53.24,
+      "pano_id": "3qWmQqBsrrxu1ebGvN9DZQ",
+      "direction": "NB",
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "actual_lat": 33.42146023951085,
+      "actual_lon": -111.9399131977365,
+      "selection_label": "NB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_NB_near_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\fU8IbP01GIH51JSiMDK1Mg_z4.jpg",
+      "projection": {
+        "heading": 1.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "role": "gsv",
+      "direction": "NB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "distance_to_center_m": 30.43,
+      "actual_lat": 33.42167001817289,
+      "actual_lon": -111.9399108324981,
+      "pano_id": "fU8IbP01GIH51JSiMDK1Mg",
+      "capture_date": "2025-11",
+      "selection_label": "NB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_SB": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\5nfbRThia-n9Sr4wm4MDmw_z4.jpg",
+      "role": "gsv",
+      "capture_date": "2025-11",
+      "reverse_view": true,
+      "distance_to_center_m": 27.8,
+      "pano_id": "5nfbRThia-n9Sr4wm4MDmw",
+      "projection": {
+        "heading": 180.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "direction": "SB",
+      "camera_role": "reverse_auxiliary"
+    },
+    "gsv_SB_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\5nfbRThia-n9Sr4wm4MDmw_z4.jpg",
+      "role": "gsv",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "distance_to_center_m": 27.8,
+      "pano_id": "5nfbRThia-n9Sr4wm4MDmw",
+      "projection": {
+        "heading": 0.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "direction": "SB",
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42217741266312,
+      "actual_lon": -111.9400703951181,
+      "selection_label": "SB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_SB_mid_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/SB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "SB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "distance_to_center_m": 46.45,
+      "actual_lat": 33.42234889914832,
+      "actual_lon": -111.9400686666747,
+      "pano_id": "jgXPybaQMr80In98G7nPgw",
+      "capture_date": "2025-11",
+      "selection_label": "SB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_EB": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\IMtlaHpE7W2pfo7zxQg63w_z4.jpg",
+      "role": "gsv",
+      "capture_date": "2025-10",
+      "reverse_view": true,
+      "distance_to_center_m": 26.9,
+      "pano_id": "IMtlaHpE7W2pfo7zxQg63w",
+      "projection": {
+        "heading": 181.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "direction": "EB",
+      "camera_role": "reverse_auxiliary"
+    },
+    "gsv_EB_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\IMtlaHpE7W2pfo7zxQg63w_z4.jpg",
+      "role": "gsv",
+      "capture_date": "2025-10",
+      "reverse_view": false,
+      "distance_to_center_m": 26.9,
+      "pano_id": "IMtlaHpE7W2pfo7zxQg63w",
+      "projection": {
+        "heading": 1.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "direction": "EB",
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42187406833995,
+      "actual_lon": -111.9402760798759,
+      "selection_label": "EB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_EB_mid_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/EB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "EB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "distance_to_center_m": 52.82,
+      "actual_lat": 33.4218749461645,
+      "actual_lon": -111.9405605452421,
+      "pano_id": "iAswl20VTGrmuheiH4YXUg",
+      "capture_date": "2025-10",
+      "selection_label": "EB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    },
+    "gsv_WB": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\yB16tX1a7lGCjLy_PzRsgA_z4.jpg",
+      "role": "gsv",
+      "capture_date": "2025-11",
+      "reverse_view": true,
+      "distance_to_center_m": 30.17,
+      "pano_id": "yB16tX1a7lGCjLy_PzRsgA",
+      "projection": {
+        "heading": 181.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "direction": "WB",
+      "camera_role": "reverse_auxiliary"
+    },
+    "gsv_WB_forward": {
+      "kind": "pano",
+      "pano_path": "cache\\gsv_univ_mill_351\\_pano_tiles\\panos\\yB16tX1a7lGCjLy_PzRsgA_z4.jpg",
+      "role": "gsv",
+      "capture_date": "2025-11",
+      "reverse_view": false,
+      "distance_to_center_m": 30.17,
+      "pano_id": "yB16tX1a7lGCjLy_PzRsgA",
+      "projection": {
+        "heading": 1.0,
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      },
+      "direction": "WB",
+      "camera_role": "forward_primary",
+      "sampling_position": "near",
+      "target_distance_m": 25,
+      "actual_lat": 33.42200059698035,
+      "actual_lon": -111.9396789481532,
+      "selection_label": "WB_d025m_stopbar",
+      "view_settings": {
+        "pitch": -12,
+        "fov": 95,
+        "size": [
+          1600,
+          1000
+        ]
+      }
+    },
+    "gsv_WB_mid_forward": {
+      "kind": "image",
+      "path": "cache/gsv_univ_mill_351/_tile_v2/WB_d050m_mid.jpg",
+      "role": "gsv",
+      "direction": "WB",
+      "reverse_view": false,
+      "camera_role": "forward_primary",
+      "sampling_position": "mid",
+      "target_distance_m": 50,
+      "distance_to_center_m": 49.13,
+      "actual_lat": 33.42199917882232,
+      "actual_lon": -111.9394703522977,
+      "pano_id": "FS9a4EVOBtfWl9-ElIjGrA",
+      "capture_date": "2025-11",
+      "selection_label": "WB_d050m_mid",
+      "view_settings": {
+        "pitch": 0,
+        "fov": 60,
+        "size": [
+          1280,
+          1280
+        ]
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "in_NB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "NB",
+      "rotation_ccw": 0,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1230,
+              1608
+            ],
+            [
+              1228,
+              1750
+            ],
+            [
+              1235,
+              1880
+            ],
+            [
+              1240,
+              1960
+            ],
+            [
+              1250,
+              2040
+            ],
+            [
+              1299,
+              2040
+            ],
+            [
+              1296,
+              1960
+            ],
+            [
+              1293,
+              1880
+            ],
+            [
+              1291,
+              1750
+            ],
+            [
+              1290,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1260.0,
+            1608.0
+          ],
+          "quality": "clear"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1290,
+              1608
+            ],
+            [
+              1291,
+              1750
+            ],
+            [
+              1293,
+              1880
+            ],
+            [
+              1296,
+              1960
+            ],
+            [
+              1299,
+              2040
+            ],
+            [
+              1348,
+              2040
+            ],
+            [
+              1345,
+              1960
+            ],
+            [
+              1343,
+              1880
+            ],
+            [
+              1343,
+              1750
+            ],
+            [
+              1343,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1316.5,
+            1608.0
+          ],
+          "quality": "clear"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1343,
+              1608
+            ],
+            [
+              1343,
+              1750
+            ],
+            [
+              1343,
+              1880
+            ],
+            [
+              1345,
+              1960
+            ],
+            [
+              1348,
+              2040
+            ],
+            [
+              1405,
+              2040
+            ],
+            [
+              1401,
+              1960
+            ],
+            [
+              1399,
+              1880
+            ],
+            [
+              1397,
+              1750
+            ],
+            [
+              1398,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1370.5,
+            1608.0
+          ],
+          "quality": "clear"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1398,
+              1608
+            ],
+            [
+              1397,
+              1750
+            ],
+            [
+              1399,
+              1880
+            ],
+            [
+              1401,
+              1960
+            ],
+            [
+              1405,
+              2040
+            ],
+            [
+              1435,
+              2040
+            ],
+            [
+              1432,
+              1960
+            ],
+            [
+              1430,
+              1880
+            ],
+            [
+              1429,
+              1750
+            ],
+            [
+              1428,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1413.0,
+            1608.0
+          ],
+          "quality": "clear"
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              1428,
+              1608
+            ],
+            [
+              1429,
+              1750
+            ],
+            [
+              1430,
+              1880
+            ],
+            [
+              1432,
+              1960
+            ],
+            [
+              1435,
+              2040
+            ],
+            [
+              1477,
+              2040
+            ],
+            [
+              1474,
+              1960
+            ],
+            [
+              1474,
+              1880
+            ],
+            [
+              1474,
+              1750
+            ],
+            [
+              1472,
+              1608
+            ]
+          ],
+          "gate_point": [
+            1450.0,
+            1608.0
+          ],
+          "quality": "clear"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Same manually traced near-stopbar regions as the preceding NB pilot.",
+      "color": "#00d8ff"
+    },
+    {
+      "id": "in_SB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "SB",
+      "rotation_ccw": 180,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1307,
+              971
+            ],
+            [
+              1306,
+              799
+            ],
+            [
+              1304,
+              619
+            ],
+            [
+              1301,
+              429
+            ],
+            [
+              1251,
+              429
+            ],
+            [
+              1254,
+              619
+            ],
+            [
+              1254,
+              799
+            ],
+            [
+              1255,
+              971
+            ]
+          ],
+          "gate_point": [
+            1281.0,
+            971.0
+          ],
+          "quality": "mostly_clear"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1255,
+              971
+            ],
+            [
+              1254,
+              799
+            ],
+            [
+              1254,
+              619
+            ],
+            [
+              1251,
+              429
+            ],
+            [
+              1202,
+              429
+            ],
+            [
+              1204,
+              619
+            ],
+            [
+              1206,
+              799
+            ],
+            [
+              1207,
+              971
+            ]
+          ],
+          "gate_point": [
+            1231.0,
+            971.0
+          ],
+          "quality": "mostly_clear"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1207,
+              971
+            ],
+            [
+              1206,
+              799
+            ],
+            [
+              1204,
+              619
+            ],
+            [
+              1202,
+              429
+            ],
+            [
+              1151,
+              429
+            ],
+            [
+              1153,
+              619
+            ],
+            [
+              1155,
+              799
+            ],
+            [
+              1156,
+              971
+            ]
+          ],
+          "gate_point": [
+            1181.5,
+            971.0
+          ],
+          "quality": "mostly_clear"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1156,
+              971
+            ],
+            [
+              1155,
+              799
+            ],
+            [
+              1153,
+              619
+            ],
+            [
+              1151,
+              429
+            ],
+            [
+              1101,
+              429
+            ],
+            [
+              1104,
+              619
+            ],
+            [
+              1106,
+              799
+            ],
+            [
+              1107,
+              971
+            ]
+          ],
+          "gate_point": [
+            1131.5,
+            971.0
+          ],
+          "quality": "mostly_clear"
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              1107,
+              971
+            ],
+            [
+              1106,
+              799
+            ],
+            [
+              1104,
+              619
+            ],
+            [
+              1101,
+              429
+            ],
+            [
+              1074,
+              429
+            ],
+            [
+              1076,
+              619
+            ],
+            [
+              1078,
+              799
+            ],
+            [
+              1078,
+              971
+            ]
+          ],
+          "gate_point": [
+            1092.5,
+            971.0
+          ],
+          "quality": "mostly_clear"
+        },
+        {
+          "id": "r6",
+          "polygon": [
+            [
+              1078,
+              971
+            ],
+            [
+              1078,
+              799
+            ],
+            [
+              1076,
+              619
+            ],
+            [
+              1074,
+              429
+            ],
+            [
+              1025,
+              429
+            ],
+            [
+              1029,
+              619
+            ],
+            [
+              1031,
+              799
+            ],
+            [
+              1031,
+              971
+            ]
+          ],
+          "gate_point": [
+            1054.5,
+            971.0
+          ],
+          "quality": "mostly_clear"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Internal dashed separator is interpreted as a continuous region boundary; roadside shadows obscure some surface pixels.",
+      "color": "#00d8ff"
+    },
+    {
+      "id": "in_EB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "EB",
+      "rotation_ccw": 90,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              934,
+              1260.0
+            ],
+            [
+              799,
+              1260.27
+            ],
+            [
+              659,
+              1260.55
+            ],
+            [
+              484,
+              1260.9
+            ],
+            [
+              484,
+              1309
+            ],
+            [
+              659,
+              1305
+            ],
+            [
+              799,
+              1306
+            ],
+            [
+              934,
+              1306
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1283.0
+          ],
+          "quality": "user_identified_left_bay_provisional_edges",
+          "review_annotation": {
+            "source": "user correction 2026-09-13",
+            "surface_type": "motor_vehicle_lane",
+            "intended_directions": [
+              "left"
+            ],
+            "image_arrow_verified": false,
+            "note": "User identifies a separate left-turn lane left of the previous first EB region. This is external review evidence, not a VLM-observed arrow."
+          }
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              934,
+              1306
+            ],
+            [
+              799,
+              1306
+            ],
+            [
+              659,
+              1305
+            ],
+            [
+              484,
+              1309
+            ],
+            [
+              484,
+              1364
+            ],
+            [
+              659,
+              1362
+            ],
+            [
+              799,
+              1362
+            ],
+            [
+              934,
+              1362
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1334.0
+          ],
+          "quality": "partly_occluded"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              934,
+              1362
+            ],
+            [
+              799,
+              1362
+            ],
+            [
+              659,
+              1362
+            ],
+            [
+              484,
+              1364
+            ],
+            [
+              484,
+              1417
+            ],
+            [
+              659,
+              1415
+            ],
+            [
+              799,
+              1415
+            ],
+            [
+              934,
+              1414
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1388.0
+          ],
+          "quality": "partly_occluded"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              934,
+              1414
+            ],
+            [
+              799,
+              1415
+            ],
+            [
+              659,
+              1415
+            ],
+            [
+              484,
+              1417
+            ],
+            [
+              484,
+              1446
+            ],
+            [
+              659,
+              1443
+            ],
+            [
+              799,
+              1441
+            ],
+            [
+              934,
+              1440
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1427.0
+          ],
+          "quality": "partly_occluded"
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              934,
+              1440
+            ],
+            [
+              799,
+              1441
+            ],
+            [
+              659,
+              1443
+            ],
+            [
+              484,
+              1446
+            ],
+            [
+              484,
+              1518
+            ],
+            [
+              659,
+              1515
+            ],
+            [
+              799,
+              1514
+            ],
+            [
+              934,
+              1512
+            ]
+          ],
+          "gate_point": [
+            934.0,
+            1476.0
+          ],
+          "quality": "partly_occluded"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Vehicles obscure markings; curbside boundary is approximate under shadow. Count and turn functions require review. Geometry revised from user review: added missing driver-left turn pocket; it was previously omitted.",
+      "color": "#00d8ff",
+      "carriageway_envelope": [
+        [
+          934,
+          1260.0
+        ],
+        [
+          799,
+          1260.27
+        ],
+        [
+          659,
+          1260.55
+        ],
+        [
+          484,
+          1260.9
+        ],
+        [
+          484,
+          1518
+        ],
+        [
+          659,
+          1515
+        ],
+        [
+          799,
+          1514
+        ],
+        [
+          934,
+          1512
+        ]
+      ]
+    },
+    {
+      "id": "in_WB",
+      "source_id": "satellite",
+      "kind": "inbound_stopbar",
+      "direction": "WB",
+      "rotation_ccw": 270,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1575,
+              1294
+            ],
+            [
+              1700,
+              1293
+            ],
+            [
+              1825,
+              1291
+            ],
+            [
+              1960,
+              1287
+            ],
+            [
+              1960,
+              1233
+            ],
+            [
+              1825,
+              1238
+            ],
+            [
+              1700,
+              1243
+            ],
+            [
+              1575,
+              1245
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1269.5
+          ],
+          "quality": "provisional_under_heavy_occlusion"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1575,
+              1245
+            ],
+            [
+              1700,
+              1243
+            ],
+            [
+              1825,
+              1238
+            ],
+            [
+              1960,
+              1233
+            ],
+            [
+              1960,
+              1184
+            ],
+            [
+              1825,
+              1188
+            ],
+            [
+              1700,
+              1192
+            ],
+            [
+              1575,
+              1193
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1219.0
+          ],
+          "quality": "provisional_under_heavy_occlusion"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1575,
+              1193
+            ],
+            [
+              1700,
+              1192
+            ],
+            [
+              1825,
+              1188
+            ],
+            [
+              1960,
+              1184
+            ],
+            [
+              1960,
+              1131
+            ],
+            [
+              1825,
+              1138
+            ],
+            [
+              1700,
+              1143
+            ],
+            [
+              1575,
+              1145
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1169.0
+          ],
+          "quality": "provisional_under_heavy_occlusion"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1575,
+              1145
+            ],
+            [
+              1700,
+              1143
+            ],
+            [
+              1825,
+              1138
+            ],
+            [
+              1960,
+              1131
+            ],
+            [
+              1960,
+              1108
+            ],
+            [
+              1825,
+              1113
+            ],
+            [
+              1700,
+              1117
+            ],
+            [
+              1575,
+              1119
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1132.0
+          ],
+          "quality": "provisional_under_heavy_occlusion"
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              1575,
+              1119
+            ],
+            [
+              1700,
+              1117
+            ],
+            [
+              1825,
+              1113
+            ],
+            [
+              1960,
+              1108
+            ],
+            [
+              1960,
+              1057
+            ],
+            [
+              1825,
+              1060
+            ],
+            [
+              1700,
+              1063
+            ],
+            [
+              1575,
+              1066
+            ]
+          ],
+          "gate_point": [
+            1575.0,
+            1092.5
+          ],
+          "quality": "provisional_under_heavy_occlusion"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Several separators are obscured by queued vehicles and shadows. Interior boundaries interpolate visible short segments; this is extra manual geometric supervision, not confirmed complete lane detection.",
+      "color": "#00d8ff"
+    },
+    {
+      "id": "out_NB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "NB",
+      "rotation_ccw": 0,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1297,
+              500
+            ],
+            [
+              1297,
+              720
+            ],
+            [
+              1297,
+              945
+            ],
+            [
+              1363,
+              945
+            ],
+            [
+              1362,
+              720
+            ],
+            [
+              1362,
+              500
+            ]
+          ],
+          "gate_point": [
+            1330.0,
+            945.0
+          ],
+          "quality": "mostly_visible"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1362,
+              500
+            ],
+            [
+              1362,
+              720
+            ],
+            [
+              1363,
+              945
+            ],
+            [
+              1396,
+              945
+            ],
+            [
+              1395,
+              720
+            ],
+            [
+              1395,
+              500
+            ]
+          ],
+          "gate_point": [
+            1379.5,
+            945.0
+          ],
+          "quality": "mostly_visible"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1395,
+              500
+            ],
+            [
+              1395,
+              720
+            ],
+            [
+              1396,
+              945
+            ],
+            [
+              1433,
+              945
+            ],
+            [
+              1433,
+              720
+            ],
+            [
+              1433,
+              500
+            ]
+          ],
+          "gate_point": [
+            1414.5,
+            945.0
+          ],
+          "quality": "mostly_visible"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Receiving corridor sampled beyond crossing; shadows may conceal separators. Regions include possible nonmotor/edge strips, not only motor lanes.",
+      "color": "#83e16a"
+    },
+    {
+      "id": "out_SB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "SB",
+      "rotation_ccw": 180,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              1232,
+              2059
+            ],
+            [
+              1232,
+              1839
+            ],
+            [
+              1228,
+              1619
+            ],
+            [
+              1171,
+              1619
+            ],
+            [
+              1175,
+              1839
+            ],
+            [
+              1177,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1199.5,
+            1619.0
+          ],
+          "quality": "provisional_under_tree_shadow"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              1177,
+              2059
+            ],
+            [
+              1175,
+              1839
+            ],
+            [
+              1171,
+              1619
+            ],
+            [
+              1106,
+              1619
+            ],
+            [
+              1113,
+              1839
+            ],
+            [
+              1118,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1138.5,
+            1619.0
+          ],
+          "quality": "provisional_under_tree_shadow"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              1118,
+              2059
+            ],
+            [
+              1113,
+              1839
+            ],
+            [
+              1106,
+              1619
+            ],
+            [
+              1049,
+              1619
+            ],
+            [
+              1052,
+              1839
+            ],
+            [
+              1054,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1077.5,
+            1619.0
+          ],
+          "quality": "provisional_under_tree_shadow"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              1054,
+              2059
+            ],
+            [
+              1052,
+              1839
+            ],
+            [
+              1049,
+              1619
+            ],
+            [
+              1019,
+              1619
+            ],
+            [
+              1025,
+              1839
+            ],
+            [
+              1028,
+              2059
+            ]
+          ],
+          "gate_point": [
+            1034.0,
+            1619.0
+          ],
+          "quality": "provisional_under_tree_shadow"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Receiving corridor sampled beyond crossing; shadows may conceal separators. Regions include possible nonmotor/edge strips, not only motor lanes.",
+      "color": "#83e16a"
+    },
+    {
+      "id": "out_EB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "EB",
+      "rotation_ccw": 90,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              2039,
+              1302
+            ],
+            [
+              1879,
+              1303
+            ],
+            [
+              1719,
+              1304
+            ],
+            [
+              1719,
+              1358
+            ],
+            [
+              1879,
+              1357
+            ],
+            [
+              2039,
+              1356
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1331.0
+          ],
+          "quality": "width_checked_user_revised_under_building_shadow"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              2039,
+              1356
+            ],
+            [
+              1879,
+              1357
+            ],
+            [
+              1719,
+              1358
+            ],
+            [
+              1719,
+              1412
+            ],
+            [
+              1879,
+              1411
+            ],
+            [
+              2039,
+              1410
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1385.0
+          ],
+          "quality": "width_checked_user_revised_under_building_shadow"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              2039,
+              1410
+            ],
+            [
+              1879,
+              1411
+            ],
+            [
+              1719,
+              1412
+            ],
+            [
+              1719,
+              1438
+            ],
+            [
+              1879,
+              1437
+            ],
+            [
+              2039,
+              1436
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1425.0
+          ],
+          "quality": "width_checked_user_revised_under_building_shadow"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              2039,
+              1436
+            ],
+            [
+              1879,
+              1437
+            ],
+            [
+              1719,
+              1438
+            ],
+            [
+              1719,
+              1492
+            ],
+            [
+              1879,
+              1491
+            ],
+            [
+              2039,
+              1490
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1465.0
+          ],
+          "quality": "width_checked_user_revised_under_building_shadow"
+        },
+        {
+          "id": "r5",
+          "polygon": [
+            [
+              2039,
+              1490
+            ],
+            [
+              1879,
+              1491
+            ],
+            [
+              1719,
+              1492
+            ],
+            [
+              1719,
+              1520
+            ],
+            [
+              1879,
+              1519
+            ],
+            [
+              2039,
+              1518
+            ]
+          ],
+          "gate_point": [
+            1719.0,
+            1506.0
+          ],
+          "quality": "width_checked_user_revised_under_building_shadow"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Receiving corridor sampled beyond crossing; shadows may conceal separators. Regions include possible nonmotor/edge strips, not only motor lanes.",
+      "color": "#83e16a"
+    },
+    {
+      "id": "out_WB",
+      "source_id": "satellite",
+      "kind": "outbound_receiving",
+      "direction": "WB",
+      "rotation_ccw": 270,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              520,
+              1240
+            ],
+            [
+              700,
+              1239
+            ],
+            [
+              910,
+              1238
+            ],
+            [
+              910,
+              1192
+            ],
+            [
+              700,
+              1193
+            ],
+            [
+              520,
+              1194
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1215.0
+          ],
+          "quality": "median_edge_rechecked_partly_visible"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              520,
+              1194
+            ],
+            [
+              700,
+              1193
+            ],
+            [
+              910,
+              1192
+            ],
+            [
+              910,
+              1137
+            ],
+            [
+              700,
+              1138
+            ],
+            [
+              520,
+              1139
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1164.5
+          ],
+          "quality": "median_edge_rechecked_partly_visible"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              520,
+              1139
+            ],
+            [
+              700,
+              1138
+            ],
+            [
+              910,
+              1137
+            ],
+            [
+              910,
+              1111
+            ],
+            [
+              700,
+              1112
+            ],
+            [
+              520,
+              1113
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1124.0
+          ],
+          "quality": "median_edge_rechecked_partly_visible"
+        },
+        {
+          "id": "r4",
+          "polygon": [
+            [
+              520,
+              1113
+            ],
+            [
+              700,
+              1112
+            ],
+            [
+              910,
+              1111
+            ],
+            [
+              910,
+              1083
+            ],
+            [
+              700,
+              1084
+            ],
+            [
+              520,
+              1085
+            ]
+          ],
+          "gate_point": [
+            910.0,
+            1097.0
+          ],
+          "quality": "median_edge_rechecked_partly_visible"
+        }
+      ],
+      "coverage": "candidate_full",
+      "geometry_source": "assistant_trace",
+      "notes": "Receiving corridor sampled beyond crossing; shadows may conceal separators. Regions include possible nonmotor/edge strips, not only motor lanes.",
+      "color": "#83e16a"
+    }
+  ],
+  "gsv_views": [
+    {
+      "id": "gsv_NB",
+      "source_id": "gsv_NB",
+      "kind": "gsv_partial",
+      "direction": "NB",
+      "rotation_ccw": 0,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              565,
+              716
+            ],
+            [
+              547,
+              752
+            ],
+            [
+              506,
+              825
+            ],
+            [
+              450,
+              912
+            ],
+            [
+              381,
+              1010
+            ],
+            [
+              307,
+              1107
+            ],
+            [
+              257,
+              1190
+            ],
+            [
+              219,
+              1260
+            ],
+            [
+              631,
+              1260
+            ],
+            [
+              612,
+              1190
+            ],
+            [
+              596,
+              1107
+            ],
+            [
+              598,
+              1010
+            ],
+            [
+              608,
+              912
+            ],
+            [
+              615,
+              825
+            ],
+            [
+              618,
+              752
+            ],
+            [
+              620,
+              716
+            ]
+          ],
+          "gate_point": [
+            592.5,
+            716.0
+          ],
+          "quality": "mostly_visible"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              620,
+              716
+            ],
+            [
+              618,
+              752
+            ],
+            [
+              615,
+              825
+            ],
+            [
+              608,
+              912
+            ],
+            [
+              598,
+              1010
+            ],
+            [
+              596,
+              1107
+            ],
+            [
+              612,
+              1190
+            ],
+            [
+              631,
+              1260
+            ],
+            [
+              1277,
+              1192
+            ],
+            [
+              1210,
+              1140
+            ],
+            [
+              1098,
+              1050
+            ],
+            [
+              995,
+              970
+            ],
+            [
+              901,
+              893
+            ],
+            [
+              812,
+              820
+            ],
+            [
+              752,
+              764
+            ]
+          ],
+          "gate_point": [
+            686.0,
+            740.0
+          ],
+          "quality": "mostly_visible"
+        }
+      ],
+      "coverage": "partial",
+      "geometry_source": "assistant_trace",
+      "notes": "Two outer visible strips only; rail-side and other incoming lanes are not covered.",
+      "color": "#ffd76a"
+    },
+    {
+      "id": "gsv_SB",
+      "source_id": "gsv_SB",
+      "kind": "gsv_partial",
+      "direction": "SB",
+      "rotation_ccw": 0,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              761,
+              388
+            ],
+            [
+              737,
+              430
+            ],
+            [
+              685,
+              520
+            ],
+            [
+              618,
+              630
+            ],
+            [
+              540,
+              760
+            ],
+            [
+              450,
+              905
+            ],
+            [
+              1092,
+              905
+            ],
+            [
+              1015,
+              760
+            ],
+            [
+              947,
+              630
+            ],
+            [
+              891,
+              520
+            ],
+            [
+              842,
+              430
+            ],
+            [
+              817,
+              388
+            ]
+          ],
+          "gate_point": [
+            789.0,
+            388.0
+          ],
+          "quality": "mostly_visible"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              674,
+              388
+            ],
+            [
+              620,
+              430
+            ],
+            [
+              460,
+              520
+            ],
+            [
+              260,
+              630
+            ],
+            [
+              30,
+              760
+            ],
+            [
+              0,
+              778
+            ],
+            [
+              0,
+              905
+            ],
+            [
+              450,
+              905
+            ],
+            [
+              540,
+              760
+            ],
+            [
+              618,
+              630
+            ],
+            [
+              685,
+              520
+            ],
+            [
+              737,
+              430
+            ],
+            [
+              761,
+              388
+            ]
+          ],
+          "gate_point": [
+            717.5,
+            388.0
+          ],
+          "quality": "visible_boundary_clipped_at_frame_edge"
+        }
+      ],
+      "coverage": "partial",
+      "geometry_source": "assistant_trace",
+      "notes": "Two adjacent surface strips; reverse camera. Outer parts of the approach and temporary-control zone are not represented.",
+      "color": "#ffd76a"
+    },
+    {
+      "id": "gsv_EB",
+      "source_id": "gsv_EB",
+      "kind": "gsv_partial",
+      "direction": "EB",
+      "rotation_ccw": 0,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              744,
+              430
+            ],
+            [
+              692,
+              500
+            ],
+            [
+              574,
+              650
+            ],
+            [
+              454,
+              800
+            ],
+            [
+              347,
+              935
+            ],
+            [
+              1172,
+              935
+            ],
+            [
+              1089,
+              800
+            ],
+            [
+              996,
+              650
+            ],
+            [
+              905,
+              500
+            ],
+            [
+              861,
+              430
+            ]
+          ],
+          "gate_point": [
+            802.5,
+            430.0
+          ],
+          "quality": "mostly_visible"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              685,
+              430
+            ],
+            [
+              599,
+              500
+            ],
+            [
+              416,
+              650
+            ],
+            [
+              235,
+              800
+            ],
+            [
+              70,
+              935
+            ],
+            [
+              347,
+              935
+            ],
+            [
+              454,
+              800
+            ],
+            [
+              574,
+              650
+            ],
+            [
+              692,
+              500
+            ],
+            [
+              744,
+              430
+            ]
+          ],
+          "gate_point": [
+            714.5,
+            430.0
+          ],
+          "quality": "mostly_visible"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              575,
+              430
+            ],
+            [
+              360,
+              500
+            ],
+            [
+              3,
+              645
+            ],
+            [
+              0,
+              800
+            ],
+            [
+              0,
+              935
+            ],
+            [
+              70,
+              935
+            ],
+            [
+              235,
+              800
+            ],
+            [
+              416,
+              650
+            ],
+            [
+              599,
+              500
+            ],
+            [
+              685,
+              430
+            ]
+          ],
+          "gate_point": [
+            630.0,
+            430.0
+          ],
+          "quality": "clipped_and_vehicle_occluded"
+        }
+      ],
+      "coverage": "partial",
+      "geometry_source": "assistant_trace",
+      "notes": "Three curb-side regions only. Farther driver-left rail-side pavement is not partitioned. Outermost region hits the frame boundary and contains occluding vehicles.",
+      "color": "#ffd76a"
+    },
+    {
+      "id": "gsv_WB",
+      "source_id": "gsv_WB",
+      "kind": "gsv_partial",
+      "direction": "WB",
+      "rotation_ccw": 0,
+      "regions": [
+        {
+          "id": "r1",
+          "polygon": [
+            [
+              752,
+              415
+            ],
+            [
+              714,
+              485
+            ],
+            [
+              650,
+              590
+            ],
+            [
+              575,
+              725
+            ],
+            [
+              478,
+              895
+            ],
+            [
+              992,
+              895
+            ],
+            [
+              951,
+              760
+            ],
+            [
+              903,
+              610
+            ],
+            [
+              866,
+              500
+            ],
+            [
+              837,
+              415
+            ]
+          ],
+          "gate_point": [
+            794.5,
+            415.0
+          ],
+          "quality": "visible_with_vehicle_occlusion"
+        },
+        {
+          "id": "r2",
+          "polygon": [
+            [
+              689,
+              409
+            ],
+            [
+              626,
+              444
+            ],
+            [
+              443,
+              548
+            ],
+            [
+              280,
+              627
+            ],
+            [
+              16,
+              773
+            ],
+            [
+              0,
+              783
+            ],
+            [
+              0,
+              895
+            ],
+            [
+              478,
+              895
+            ],
+            [
+              575,
+              725
+            ],
+            [
+              650,
+              590
+            ],
+            [
+              714,
+              485
+            ],
+            [
+              752,
+              415
+            ]
+          ],
+          "gate_point": [
+            720.5,
+            412.0
+          ],
+          "quality": "provisional_faded_separator"
+        },
+        {
+          "id": "r3",
+          "polygon": [
+            [
+              603,
+              409
+            ],
+            [
+              499,
+              449
+            ],
+            [
+              350,
+              506
+            ],
+            [
+              172,
+              575
+            ],
+            [
+              4,
+              639
+            ],
+            [
+              0,
+              645
+            ],
+            [
+              0,
+              895
+            ],
+            [
+              0,
+              895
+            ],
+            [
+              0,
+              783
+            ],
+            [
+              16,
+              773
+            ],
+            [
+              280,
+              627
+            ],
+            [
+              443,
+              548
+            ],
+            [
+              626,
+              444
+            ],
+            [
+              689,
+              409
+            ]
+          ],
+          "gate_point": [
+            646.0,
+            409.0
+          ],
+          "quality": "provisional_outer_boundary"
+        }
+      ],
+      "coverage": "partial",
+      "geometry_source": "assistant_trace",
+      "notes": "Three proposed surface strips only; two faded/partly hidden separators are provisional. The curbmost facility and full stopbar width are not covered.",
+      "color": "#ffd76a"
+    }
+  ],
+  "context_views": [
+    {
+      "id": "gsv_context_NB_near",
+      "source_id": "gsv_NB_near_forward",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "near",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_NB_mid",
+      "source_id": "gsv_NB",
+      "kind": "gsv_forward_context",
+      "direction": "NB",
+      "sampling_position": "mid",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_SB_near",
+      "source_id": "gsv_SB_forward",
+      "kind": "gsv_forward_context",
+      "direction": "SB",
+      "sampling_position": "near",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_SB_mid",
+      "source_id": "gsv_SB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "SB",
+      "sampling_position": "mid",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_EB_near",
+      "source_id": "gsv_EB_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "near",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_EB_mid",
+      "source_id": "gsv_EB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "EB",
+      "sampling_position": "mid",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_WB_near",
+      "source_id": "gsv_WB_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "near",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    },
+    {
+      "id": "gsv_context_WB_mid",
+      "source_id": "gsv_WB_mid_forward",
+      "kind": "gsv_forward_context",
+      "direction": "WB",
+      "sampling_position": "mid",
+      "notes": "Both near and mid positions must be inspected. Do not transfer upstream lane identity to the stopbar without visible continuity; lanes can split or change use. Reverse views of the same panorama are supplemental, not independent positions."
+    }
+  ],
+  "gsv_sampling": {
+    "center_lat_lon": [
+      33.421935,
+      -111.939995
+    ],
+    "positions": {
+      "near": {
+        "target_m": 25,
+        "allowed_distance_m": [
+          15,
+          40
+        ]
+      },
+      "mid": {
+        "target_m": 50,
+        "allowed_distance_m": [
+          40,
+          65
+        ]
+      }
+    },
+    "minimum_position_separation_m": 10,
+    "note": "Both roles required for every approach; ranges are pilot tolerances, not exact requested coordinates or distances to stopbar. Verify actual coordinates, not legacy cumulative_distance_m."
+  },
+  "geometry_checks": {
+    "reference_regions": [
+      "in_NB:r1",
+      "in_NB:r2",
+      "in_SB:r1",
+      "in_SB:r2",
+      "in_SB:r3",
+      "in_SB:r4"
+    ],
+    "merged_width_ratio": 1.65,
+    "minimum_motor_width_ratio": 0.65,
+    "straight_review_lane_widths": 0.65,
+    "straight_hard_lane_widths": 1.5,
+    "straight_review_angle_deg": 8,
+    "straight_hard_lane_widths_by_direction": {
+      "EB": 0.9
+    },
+    "axes": {
+      "NB": [
+        0,
+        -1
+      ],
+      "EB": [
+        1,
+        0
+      ],
+      "SB": [
+        0,
+        1
+      ],
+      "WB": [
+        -1,
+        0
+      ]
+    },
+    "calibration": "Relative pixel-width review heuristics within one satellite image, not meter-based standards."
+  },
+  "legs": {
+    "NB": {
+      "in_link_id": 235,
+      "out_link_id": 144
+    },
+    "SB": {
+      "in_link_id": 255,
+      "out_link_id": 21
+    },
+    "EB": {
+      "in_link_id": 298,
+      "out_link_id": 416
+    },
+    "WB": {
+      "in_link_id": 284,
+      "out_link_id": 297
+    }
+  },
+  "network": {
+    "link_csv": "data/ASU/output/macronet/link.csv",
+    "movement_csv": "data/ASU/output/movement.csv"
+  },
+  "vlm": {
+    "preset": "default",
+    "max_tokens": 6144,
+    "temperature": 0.0
+  },
+  "yolo": {
+    "weights": "~/.cache/net2cell-vlm/weights/yolo26n.pt",
+    "expected_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "device": 0,
+    "imgsz": 1280,
+    "confidence": 0.25,
+    "high_bbox_coverage": 0.25,
+    "occluder_classes": [
+      "car",
+      "truck",
+      "bus",
+      "motorcycle",
+      "bicycle",
+      "person"
+    ]
+  },
+  "reference": {
+    "status": "awaiting_human_review",
+    "file": null
+  },
+  "far_upstream": {
+    "status": "not_separately_annotated",
+    "note": "In this pilot, in_* means the stopbar approach. Far-upstream link cross-sections are separate and must not be equated to stopbar counts."
+  }
+}

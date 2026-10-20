@@ -1,0 +1,1713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAVE</title>
+<!-- One page for PAVE: the overview and the Read and Edit views. Each part is filled by its own builder and a page may
+     hold only some of them; the views a page has no data for are left out. -->
+<style id="leaflet-css">/*__LEAFLET_CSS__*/</style>
+<style>
+:root{
+  --bg:#f5f6f8;--bg2:#eceff4;--panel:#ffffff;--ink:#121620;--muted:#5b6474;--faint:#98a1b0;--line:#e1e5eb;
+  --glass:rgba(255,255,255,.8);--shadow:0 12px 32px rgba(18,22,32,.08);--chip:#f1f3f7;
+  --stage-p:#3b82f6;--stage-a:#10b3a3;--stage-v:#f2a516;--stage-e:#ef5350;
+  --pave-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  --pave-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --view-vh:calc((100vh - 56px) / 100);   /* 1% of a view's height (the window less the bar): the views size by it */
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a0c11;--bg2:#0f131a;--panel:#131821;--ink:#e9ecf2;--muted:#9aa3b2;--faint:#5f6878;--line:#222936;
+  --glass:rgba(13,16,22,.8);--shadow:0 12px 32px rgba(0,0,0,.4);--chip:#1a202b}}
+:root[data-theme="dark"]{
+  --bg:#0a0c11;--bg2:#0f131a;--panel:#131821;--ink:#e9ecf2;--muted:#9aa3b2;--faint:#5f6878;--line:#222936;
+  --glass:rgba(13,16,22,.8);--shadow:0 12px 32px rgba(0,0,0,.4);--chip:#1a202b}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--pave-font);-webkit-font-smoothing:antialiased;overflow:hidden}
+[hidden]{display:none!important}
+
+/* top bar */
+.bar a{color:inherit}
+.bar{position:fixed;inset:0 0 auto 0;height:56px;display:flex;align-items:center;gap:18px;padding:0 20px;background:var(--glass);
+  backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line);z-index:10}
+.mark{display:flex;align-items:baseline;gap:10px;text-decoration:none;flex:0 0 auto}
+.mark b{font-size:21px;letter-spacing:.06em;font-weight:800}
+.mark b span:nth-child(1){color:var(--stage-p)}.mark b span:nth-child(2){color:var(--stage-a)}.mark b span:nth-child(3){color:var(--stage-v)}.mark b span:nth-child(4){color:var(--stage-e)}
+.mark small{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.bar nav{display:flex;gap:4px;margin-left:auto;background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:3px}
+.bar nav a{padding:6px 14px;border-radius:9px;text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:600;white-space:nowrap}
+.bar nav a.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.bar .icon{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--muted);display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+
+/* views: below the bar, one shown at a time. Absolute, not fixed, so a view makes no stacking context of its own and
+   its overlays (full-screen map, lightbox) stack with the bar and the page */
+.view{position:absolute;inset:56px 0 0 0;outline:none}
+.view:not(.on){display:none!important}
+#edit{overflow:auto}
+#read{overflow:hidden}
+@media (max-width:780px){#read{overflow:auto}}
+
+/* overview */
+#overview{overflow:auto;background:radial-gradient(1200px 500px at 15% -10%,color-mix(in srgb,var(--stage-p) 10%,transparent),transparent 60%),
+  radial-gradient(900px 500px at 95% 0%,color-mix(in srgb,var(--stage-e) 8%,transparent),transparent 55%),var(--bg)}
+#overview .wrap{max-width:1140px;margin:0 auto;padding:44px 24px 64px}
+#overview .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+#overview h1{font-size:clamp(34px,5vw,54px);line-height:1.05;margin:10px 0 14px;letter-spacing:-.02em}
+#overview h1 .grad{background:linear-gradient(90deg,var(--stage-p),var(--stage-a) 35%,var(--stage-v) 65%,var(--stage-e));-webkit-background-clip:text;background-clip:text;color:transparent}
+#overview .lead{font-size:17px;color:var(--muted);max-width:760px;margin:0}
+
+/* harness loop */
+#overview .loop{margin:36px 0 10px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 22px 18px;box-shadow:var(--shadow)}
+#overview .loop svg{width:100%;height:auto;display:block}
+#overview .loop .stage rect{fill:var(--panel);stroke-width:2}
+#overview .loop text{font-family:inherit}
+#overview .flow{stroke-dasharray:6 8;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-28}}
+@media (prefers-reduced-motion:reduce){#overview .flow{animation:none}}
+#overview .stages{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px}
+#overview .stages div{font-size:13.5px;color:var(--muted)}
+#overview .stages b{display:block;color:var(--ink);font-size:14px;margin-bottom:2px}
+
+/* apps */
+#overview .apps{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+#overview .app{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .18s ease,box-shadow .18s ease}
+#overview .app:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(18,22,32,.12)}
+#overview .app .img{aspect-ratio:16/9;background:var(--bg2) center/cover no-repeat;border-bottom:1px solid var(--line)}
+#overview .app .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+#overview .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+#overview .tag i{width:8px;height:8px;border-radius:50%;display:inline-block}
+#overview .app h3{margin:0;font-size:20px;letter-spacing:-.01em}
+#overview .app p{margin:0;color:var(--muted);font-size:14px}
+#overview .chips{display:flex;flex-wrap:wrap;gap:8px}
+#overview .chips span{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12.5px;color:var(--muted)}
+#overview .chips b{color:var(--ink);font-variant-numeric:tabular-nums}
+#overview .open{margin-top:auto;align-self:flex-start;text-decoration:none;font-weight:700;font-size:14px;padding:9px 16px;border-radius:11px;color:#fff}
+
+/* principles */
+#overview h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:42px 0 12px}
+#overview .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+#overview .principles div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+#overview .principles b{display:block;margin-bottom:4px;font-size:14.5px}
+#overview .principles span{color:var(--muted);font-size:13.5px}
+#overview .foot{margin-top:40px;color:var(--faint);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:860px){#overview .apps,#overview .principles{grid-template-columns:1fr}#overview .stages{grid-template-columns:1fr 1fr}.mark small{display:none}}
+@media (max-width:520px){.bar{gap:10px;padding:0 12px}.bar nav a{padding:6px 10px}#overview .wrap{padding:28px 16px 48px}}
+
+/* the Read and Edit views' header: eyebrow, title, one line of context; the view's own figures or request on the
+   right; below, the four harness stages as the view uses them */
+:is(#read,#edit) .pave-brand{flex:1 1 420px;min-width:0}
+:is(#read,#edit) .pave-eyebrow{display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--eyebrow)}
+:is(#read,#edit) .pave-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+:is(#read,#edit) .pave-title{margin:3px 0 0;font-size:22px;font-weight:800;letter-spacing:-.015em;line-height:1.2;color:var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+:is(#read,#edit) .pave-chip{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+:is(#read,#edit) .pave-context{font-size:13px;line-height:1.5;color:var(--muted);margin-top:4px;max-width:700px}
+:is(#read,#edit) .pave-rail{order:9;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--panel2);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+:is(#read,#edit) .pave-stage{display:flex;align-items:center;gap:8px;padding:7px 12px;font-size:12.5px;line-height:1.35;color:var(--muted);min-width:0;border-left:1px solid var(--line)}
+:is(#read,#edit) .pave-stage:first-child{border-left:0}
+:is(#read,#edit) .pave-stage b{color:var(--ink);font-weight:700;flex:0 0 auto}
+:is(#read,#edit) .pave-stage span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:is(#read,#edit) .pave-stage i{font-style:normal;display:inline-grid;place-items:center;flex:0 0 18px;width:18px;height:18px;border-radius:6px;color:#fff;font:800 10.5px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
+@media (max-width:980px){:is(#read,#edit) .pave-rail{grid-template-columns:1fr 1fr}:is(#read,#edit) .pave-stage:nth-child(3){border-left:0}:is(#read,#edit) .pave-stage:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:640px){:is(#read,#edit) .pave-context{display:none}:is(#read,#edit) .pave-rail{grid-template-columns:1fr}:is(#read,#edit) .pave-stage{border-left:0}:is(#read,#edit) .pave-stage+.pave-stage{border-top:1px solid var(--line)}}
+#read{--eyebrow:var(--stage-p)}
+#edit{--eyebrow:var(--stage-e)}
+</style>
+<style>
+/* ---------- Read view (lanes and movements of the sites a read run analysed) ---------- */
+#read{
+  --bg:#f5f6f8;--panel:#ffffff;--panel2:#f7f8fa;--seg:#f1f3f7;--ink:#121620;--muted:#5b6474;--faint:#98a1b0;--line:#e1e5eb;--line2:#eef0f4;
+  --accent:#3b82f6;--accent-soft:#eaf2fe;--accent-ink:#1d5fd1;--sel:#eaf2fe;
+  --L:#e06d5b;--T:#4a78b5;--R:#3f9a7b;--U:#8d6cc4;--unk:#d5dae1;--bike:#5aae61;--rail:#d39532;
+  --ok:#3f9a7b;--warn:#d39532;--bad:#d0574a;--neutral:#98a2b3;
+  --radius:16px;--shadow:0 1px 2px rgba(18,22,32,.04),0 8px 24px rgba(18,22,32,.06);
+  --glass:color-mix(in srgb,var(--panel) 88%,transparent);--glass-line:var(--line);--on:#1d2330;--on-ink:#fff;
+  color-scheme:light;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #read{
+  --bg:#0a0c11;--panel:#131821;--panel2:#171d27;--seg:#1a202b;--ink:#e9ecf2;--muted:#9aa3b2;--faint:#5f6878;--line:#222936;--line2:#1b212b;
+  --accent:#6ea2f7;--accent-soft:#16233a;--accent-ink:#a9c6fb;--sel:#16233a;
+  --L:#ec8473;--T:#6f9ad3;--R:#5bb592;--U:#a68bd8;--unk:#353b45;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);--glass:color-mix(in srgb,var(--panel) 88%,transparent);--glass-line:var(--line);
+  --on:#e7e9ee;--on-ink:#14171c;color-scheme:dark}}
+:root[data-theme="dark"] #read{
+  --bg:#0a0c11;--panel:#131821;--panel2:#171d27;--seg:#1a202b;--ink:#e9ecf2;--muted:#9aa3b2;--faint:#5f6878;--line:#222936;--line2:#1b212b;
+  --accent:#6ea2f7;--accent-soft:#16233a;--accent-ink:#a9c6fb;--sel:#16233a;
+  --L:#ec8473;--T:#6f9ad3;--R:#5bb592;--U:#a68bd8;--unk:#353b45;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);--glass:color-mix(in srgb,var(--panel) 88%,transparent);--glass-line:var(--line);
+  --on:#e7e9ee;--on-ink:#14171c;color-scheme:dark}
+#read *{box-sizing:border-box}
+#read{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--pave-font);-webkit-font-smoothing:antialiased}
+#read .mono,#read .num,#read code{font-family:var(--pave-mono)}
+#read button,#read input{font:inherit;color:inherit}
+#read h1,#read h2,#read h3{margin:0;letter-spacing:-.015em}
+#read .muted{color:var(--muted)}
+#read .small{font-size:12px}
+
+/* header */
+#read .top{background:var(--panel);border-bottom:1px solid var(--line);padding:16px 24px 14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 28px;margin:0;position:relative}
+#read .metrics{margin-left:auto;display:flex;align-items:stretch}
+#read .metric{padding:2px 18px;border-left:1px solid var(--line);min-width:0}
+#read .metric:first-child{border-left:0}
+#read .metric b{display:block;font-size:20px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+#read .metric b small{font-size:12px;font-weight:600;color:var(--muted)}
+#read .metric span{font-size:11.5px;color:var(--muted);white-space:nowrap}
+#read .metric .bar{height:4px;border-radius:2px;background:var(--line2);margin-top:5px;overflow:hidden;width:110px}
+#read .metric .bar i{display:block;height:100%;background:var(--ok);border-radius:2px}
+#read .iconbtn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;display:grid;place-items:center}
+#read .iconbtn:hover{color:var(--ink);border-color:var(--faint)}
+
+/* layout: on wide screens the header takes its height and the map and list fill the rest */
+#read .app{display:grid;grid-template-columns:minmax(330px,410px) minmax(0,1fr);height:calc(100% - 70px)}
+@media (min-width:781px){#read{display:flex;flex-direction:column}
+#read .app{flex:1 1 auto;min-height:0;height:auto}}
+#read .side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:var(--panel)}
+#read .mapcard{position:relative;height:clamp(260px,calc(42 * var(--view-vh)),480px);margin:12px 12px 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:var(--seg);flex:none}
+#read #map{position:absolute;inset:0}
+#read .mapui{position:absolute;z-index:500;display:flex;gap:6px;pointer-events:none}
+#read .mapui>*{pointer-events:auto}
+#read .mapui.tl{top:10px;left:10px;flex-wrap:wrap;right:96px}
+#read .mapui.tr{top:10px;right:10px}
+#read .layers{position:absolute;z-index:700;top:48px;right:10px;width:210px;background:var(--glass);border:1px solid var(--glass-line);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+#read .layers[hidden]{display:none}
+#read .layers .lh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:4px 6px}
+#read .layers .opt,#read #basemaps button{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;text-align:left;padding:6px 8px;border-radius:8px;font-size:12.8px;cursor:pointer;color:var(--ink)}
+#read #basemaps button:hover,#read .layers .opt:hover{background:var(--accent-soft)}
+#read #basemaps button .sw{width:22px;height:16px;border-radius:4px;border:1px solid var(--line)}
+#read #basemaps button.on{font-weight:700;color:var(--accent-ink)}
+#read #basemaps button.on::after{content:"✓";margin-left:auto}
+#read .seg{display:flex;background:var(--glass);border:1px solid var(--glass-line);border-radius:10px;padding:3px;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+#read .seg button{border:0;background:none;padding:4px 9px;border-radius:7px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+#read .seg button.on{background:var(--on);color:var(--on-ink)}
+#read .glassbtn{border:1px solid var(--glass-line);background:var(--glass);border-radius:10px;height:32px;min-width:32px;padding:0 9px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+#read .glassbtn.on{color:var(--accent-ink);border-color:var(--accent)}
+#read .leaflet-container{font:inherit;background:var(--seg)}
+#read .leaflet-control-attribution{font-size:10px;background:var(--glass)!important;color:var(--muted)}
+#read .leaflet-control-attribution a{color:var(--muted)}
+#read .site-dot{fill:var(--accent);stroke:#fff}
+#read .pulse{animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{stroke-opacity:.9;stroke-width:2}100%{stroke-opacity:0;stroke-width:16}}
+body.mapfull #read .mapcard{position:fixed;inset:14px;margin:0;height:auto;z-index:1500;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+body.mapfull::before{content:"";position:fixed;inset:0;background:rgba(8,12,20,.55);z-index:1400;backdrop-filter:blur(2px)}
+#read #sitecard{position:absolute;z-index:600;left:12px;bottom:12px;width:min(360px,calc(100% - 24px));background:var(--glass);border:1px solid var(--glass-line);border-radius:14px;padding:12px 14px;backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,.18);display:none}
+body.mapfull #read #sitecard.show{display:block}
+#read #sitecard h3{font-size:15px}
+#read .tools{padding:12px 14px 8px;display:flex;flex-direction:column;gap:9px}
+#read .search{position:relative}
+#read .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--faint)}
+#read #search{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);outline:none;transition:border-color .15s,box-shadow .15s}
+#read #search:focus{border-color:var(--faint);box-shadow:0 0 0 3px var(--accent-soft)}
+#read .chips{display:flex;gap:6px;flex-wrap:wrap}
+#read .chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .12s}
+#read .chip:hover{border-color:var(--faint)}
+#read .chip.on{background:var(--on);border-color:var(--on);color:var(--on-ink)}
+#read .chip .n{opacity:.65;margin-left:3px}
+#read #list{list-style:none;margin:0;padding:2px 8px 16px;overflow:auto;flex:1;min-height:0}
+#read #list li{padding:9px 10px;border-radius:10px;cursor:pointer;display:grid;gap:1px;margin-bottom:2px;transition:background .12s}
+#read #list li:hover{background:var(--panel2)}
+#read #list li.sel{background:var(--sel)}
+#read #list li.sel .nm{color:var(--ink)}
+#read #list .nm{font-weight:600;font-size:13.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#read #list .meta{color:var(--muted);font-size:11.5px}
+
+/* main */
+#read .main{overflow:auto;padding:20px 26px 48px;min-width:0;scroll-behavior:smooth}
+#read .empty{color:var(--muted);padding:70px 20px;text-align:center}
+#read .site-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+#read .site-head h2{font-size:24px;font-weight:700}
+#read .eyebrow{font-size:11.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+#read .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+#read .tag{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:1px 8px}
+#read .tag.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 35%,var(--line))}
+#read .note{display:flex;gap:10px;align-items:flex-start;background:color-mix(in srgb,var(--warn) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--warn) 35%,var(--line));border-radius:12px;padding:10px 12px;font-size:12.8px;margin:6px 0 14px}
+#read .tabs{display:inline-flex;gap:2px;background:var(--seg);border-radius:11px;padding:3px;margin:8px 0 16px}
+#read .tabs button{border:0;background:none;padding:6px 14px;color:var(--muted);cursor:pointer;border-radius:9px;font-weight:600;font-size:13px}
+#read .tabs button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+#read .tabs button .n{font-weight:500;opacity:.7;margin-left:4px}
+#read .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
+#read .card h3{font-size:13.5px;margin-bottom:8px}
+#read .grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:16px;align-items:start}
+#read .sticky{position:sticky;top:0}
+#read .stack{display:flex;flex-direction:column;gap:12px}
+#read .mapbar{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+#read .mapbar label{display:flex;gap:5px;align-items:center;cursor:pointer}
+#read .mapframe{border-radius:10px;overflow:hidden;background:#1b1f26}
+#read #sat{width:100%;display:block;aspect-ratio:1/1}
+#read #sat polygon{cursor:pointer;transition:fill-opacity .12s}
+#read #sat polygon:hover{fill-opacity:.45}
+#read #sat .lbl{font-weight:700;paint-order:stroke;stroke:#0c1117;stroke-width:5px;stroke-linejoin:round;pointer-events:none;fill:#fff}
+#read .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
+#read .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+#read .appr{padding:12px 14px;cursor:pointer;transition:border-color .12s,transform .12s}
+#read .appr:hover{border-color:var(--faint)}
+#read .appr.on{border-color:var(--on);box-shadow:0 0 0 1px var(--on)}
+#read .appr-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+#read .appr-head b{font-size:16px}
+#read .badge{font-size:11.5px;font-weight:650;border-radius:999px;padding:1px 9px;color:#fff}
+#read .row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:8px;margin:4px 0}
+#read .row .src{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em}
+#read .row .n{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+#read .lanes{display:flex;gap:3px;flex-wrap:wrap}
+#read .lane{min-width:30px;height:26px;padding:0 6px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;position:relative}
+#read .lane.inf{background:var(--panel)!important;border:2px solid;font-weight:650}
+#read .lane.unk{background:var(--unk)!important;color:var(--muted)}
+#read .lane.rail::after{content:"";position:absolute;left:3px;right:3px;bottom:2px;height:3px;background:repeating-linear-gradient(90deg,var(--rail) 0 4px,transparent 4px 7px)}
+#read .lane.bike{background:var(--bike);min-width:14px;padding:0 3px;font-size:10px}
+#read .gsv{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px;border-radius:6px;font-size:12px;color:var(--muted);background:var(--panel2);border:1px solid var(--line)}
+#read .gsv b{color:var(--ink);font-size:13px}
+#read .gsv.off{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,var(--panel))}
+#read .gsv.unsure{border-style:dashed}
+#read .check{margin-top:9px;font-size:12.5px;border-left:3px solid var(--line);padding:2px 0 2px 10px}
+#read .check .what{font-weight:650}
+#read .linkish{color:var(--accent-ink);cursor:pointer;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;background:none;border:0;padding:0;font-size:12px}
+#read table{width:100%;border-collapse:collapse;font-size:12.8px}
+#read th{text-align:left;font-weight:650;color:var(--muted);font-size:11.5px;letter-spacing:.03em;padding:7px 8px;border-bottom:1px solid var(--line)}
+#read td{padding:7px 8px;border-bottom:1px solid var(--line2);vertical-align:top}
+#read tr.grp td{background:var(--panel2);font-weight:700;color:var(--ink)}
+#read .turn{display:inline-block;width:20px;height:20px;border-radius:6px;color:#fff;font-weight:700;font-size:11.5px;text-align:center;line-height:20px}
+#read .st{font-size:11.5px;font-weight:650;border-radius:6px;padding:1px 7px}
+#read .st.candidate{background:color-mix(in srgb,var(--ok) 15%,var(--panel));color:var(--ok)}
+#read .st.unresolved{background:color-mix(in srgb,var(--warn) 15%,var(--panel));color:var(--warn)}
+#read .st.not_proposed{background:var(--panel2);color:var(--muted)}
+#read .rule{font-size:11px;font-weight:650;color:var(--accent-ink);background:var(--accent-soft);border-radius:6px;padding:1px 6px;margin-left:4px}
+#read .reason{color:var(--muted);font-size:12px;max-width:540px}
+#read .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:10px}
+#read .thumb{background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden;cursor:pointer;position:relative;transition:transform .12s,box-shadow .12s}
+#read .thumb:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+#read .thumb img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--line2)}
+#read .thumb .cap{padding:6px 8px;font-size:11.5px;color:var(--muted);line-height:1.35}
+#read .thumb .cap b{color:var(--ink);font-weight:650}
+#read .hist{color:var(--warn);font-weight:650}
+#read .boxwrap{position:relative;display:inline-block;line-height:0}
+#read .boxwrap .bx{position:absolute;border:2px solid #ffd43b;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.5)}
+#read .boxwrap .bx.hi{border-color:#ff4d6d}
+#read .section-title{font-size:13px;font-weight:700;margin:20px 0 9px;color:var(--ink);display:flex;align-items:center;gap:8px}
+#read .section-title:first-child{margin-top:0}
+#read .ctl{display:grid;grid-template-columns:1fr 150px;gap:12px}
+#read .kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:12.8px}
+#read .kv span{color:var(--muted)}
+#read #lightbox{position:fixed;inset:0;background:rgba(6,10,16,.84);display:flex;align-items:center;justify-content:center;z-index:2000;padding:24px;backdrop-filter:blur(3px)}
+#read #lightbox[hidden]{display:none}
+#read .lb{background:var(--panel);border-radius:16px;max-width:1200px;width:100%;max-height:100%;display:grid;grid-template-columns:minmax(0,1fr) 330px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#read .lb .pic{background:#0a0e13;display:flex;align-items:center;justify-content:center;padding:12px}
+#read .lb .pic .boxwrap img{max-width:100%;max-height:calc(78 * var(--view-vh))}
+#read .lb .info{padding:16px;overflow:auto;max-height:calc(86 * var(--view-vh))}
+#read .lb .nav{display:flex;gap:6px;margin-top:12px}
+#read .btn{border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:5px 12px;cursor:pointer;font-weight:600;font-size:12.5px}
+#read .btn:hover{border-color:var(--faint)}
+#read .btn.primary{background:var(--on);border-color:var(--on);color:var(--on-ink)}
+#read .find{font-size:12.5px;margin:8px 0;padding-left:9px;border-left:3px solid #ffd43b}
+#read .find.hi{border-left-color:#ff4d6d}
+#read .fig img{width:100%;border-radius:10px;cursor:zoom-in;display:block}
+#read .fade{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (max-width:1150px){#read .grid2{grid-template-columns:1fr}
+#read .sticky{position:static}
+#read .lb{grid-template-columns:1fr}}
+@media (max-width:780px){#read .app{grid-template-columns:1fr;height:auto}
+#read .side{border-right:0}
+#read #list{max-height:calc(40 * var(--view-vh))}
+#read .main{padding:16px}
+#read .top{padding:14px 16px 12px}
+#read .metrics{margin-left:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 0;width:100%}
+#read .metric:nth-child(3){border-left:0}
+#read #theme{position:absolute;top:14px;right:16px}}
+
+/* stage letters: which harness stage each tab and check belongs to */
+#read .tabs button[data-t="views"]::before,#read .tabs button[data-t="signals"]::before,#read .tabs button[data-t="lanes"]::before,#read .tabs button[data-t="movements"]::before,#read .tabs button[data-t="figures"]::before,#read .check:not(.muted)::before{content:"";margin-right:7px;display:inline-grid;place-items:center;width:17px;height:17px;border-radius:5px;color:#fff;font:800 10px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
+#read .tabs button[data-t="views"]::before{content:"P";background:var(--stage-p)}
+#read .tabs button[data-t="signals"]::before{content:"A";background:var(--stage-a)}
+#read .tabs button[data-t="lanes"]::before{content:"A";background:var(--stage-a)}
+#read .tabs button[data-t="movements"]::before{content:"A";background:var(--stage-a)}
+#read .tabs button[data-t="figures"]::before{content:"E";background:var(--stage-e)}
+#read .check:not(.muted)::before{content:"V";background:var(--stage-v)}
+</style>
+<style>
+/* ---------- Edit view (one scenario edit, step by step) ---------- */
+/* Layout: the PAVE header with the harness stages, the alternative picker, the 7-step pipeline as a strip that stays
+   at the top while scrolling, the step detail, the network map (schematic axes or satellite basemap)
+   with its legend and link/node details over it, then the design-guidance table.
+   Palette and faces follow the PAVE dashboard. */
+#edit{
+  --bg:#f5f6f8; --panel:#ffffff; --panel2:#f7f8fa; --ink:#121620; --muted:#5b6474; --line:#e1e5eb;
+  --accent:#3b82f6; --accent-ink:#ffffff; --accent-soft:#eaf2fe; --focus:#3b82f6;
+  --good:#16784b; --good-soft:#dcefe4; --bad:#b0281e; --bad-soft:#f8dedb; --warn:#9a5a00; --warn-soft:#f6e7cf;
+  --info:#2d5e8a; --info-soft:#dde8f2; --mute-soft:#f1f3f7;
+  --fw:#5b6576; --art:#1f5fd6; --ramp:#0b8a6f; --conn:#e07b10; --xover:#c8283c; --route:#c2187a; --ghost:#9aa39c;
+  --halo:rgba(229,57,53,.22); --canvas:#ffffff; --grid:#eef0f4;
+  --shadow:0 1px 2px rgba(18,22,32,.04),0 8px 24px rgba(18,22,32,.06);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #edit{
+  --bg:#0a0c11; --panel:#131821; --panel2:#171d27; --ink:#e9ecf2; --muted:#9aa3b2; --line:#222936;
+  --accent:#6ea2f7; --accent-ink:#ffffff; --accent-soft:#16233a; --focus:#6ea2f7;
+  --good:#4fd18b; --good-soft:#143022; --bad:#ff7266; --bad-soft:#3a1714; --warn:#f0a64c; --warn-soft:#3a2a12;
+  --info:#7fb2e5; --info-soft:#152535; --mute-soft:#1a202b;
+  --fw:#9aa6b8; --art:#6b9bff; --ramp:#37c49f; --conn:#f29a3a; --xover:#ff6b7f; --route:#ff5fb4; --ghost:#5d675f;
+  --halo:rgba(255,107,127,.25); --canvas:#131821; --grid:#1b212b;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3); color-scheme:dark;
+}}
+:root[data-theme="dark"] #edit{
+  --bg:#0a0c11; --panel:#131821; --panel2:#171d27; --ink:#e9ecf2; --muted:#9aa3b2; --line:#222936;
+  --accent:#6ea2f7; --accent-ink:#ffffff; --accent-soft:#16233a; --focus:#6ea2f7;
+  --good:#4fd18b; --good-soft:#143022; --bad:#ff7266; --bad-soft:#3a1714; --warn:#f0a64c; --warn-soft:#3a2a12;
+  --info:#7fb2e5; --info-soft:#152535; --mute-soft:#1a202b;
+  --fw:#9aa6b8; --art:#6b9bff; --ramp:#37c49f; --conn:#f29a3a; --xover:#ff6b7f; --route:#ff5fb4; --ghost:#5d675f;
+  --halo:rgba(255,107,127,.25); --canvas:#131821; --grid:#1b212b;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3); color-scheme:dark;
+}
+#edit *{box-sizing:border-box}
+#edit{-webkit-text-size-adjust:100%}
+#edit{background:var(--bg);color:var(--ink);font:15px/1.5 var(--font);margin:0;-webkit-font-smoothing:antialiased}
+#edit .wrap{margin:0 auto;padding:0 0 40px;display:flex;flex-direction:column;gap:16px}
+#edit .wrap>*:not(.top){margin-inline:24px}
+#edit h1,#edit h2,#edit h3,#edit h4{line-height:1.2;margin:0;text-wrap:balance}
+#edit p{margin:0}
+#edit a{color:var(--accent)}
+#edit button,#edit select,#edit input{font:inherit;color:inherit}
+#edit button{cursor:pointer}
+#edit :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+#edit .mono,#edit .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#edit .muted{color:var(--muted)}
+#edit .small{font-size:13px}
+#edit .label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+#edit .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;min-width:0}
+#edit .card h2{font-size:17px;font-weight:800}
+
+/* header */
+#edit .top{background:var(--panel);border-bottom:1px solid var(--line);padding:16px 24px 14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 28px;margin:0}
+#edit .headmeta{display:flex;flex-direction:column;gap:4px;max-width:58ch;min-width:0;margin-left:auto}
+#edit .headmeta q{font-size:14.5px;font-weight:600}
+#edit .headmeta q::before,#edit .headmeta q::after{color:var(--muted)}
+
+/* facility picker */
+#edit .picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+#edit .pick{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;padding:10px 14px;box-shadow:var(--shadow)}
+#edit .pick b{font-size:15.5px}
+#edit .pick[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),var(--shadow);background:var(--accent-soft)}
+#edit .pick:hover{border-color:var(--accent)}
+
+/* pipeline strip: a real sequence, so it is numbered. It stays at the top of the window while
+   scrolling, so steps can be switched while the map is in view; narrow screens scroll it sideways. */
+#edit .steps{position:sticky;top:0;z-index:20;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;
+  background:var(--bg);padding:8px 0;margin:-8px 0}
+#edit .step{flex:1 0 136px;position:relative;display:flex;gap:9px;align-items:flex-start;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px 10px}
+#edit .step .n{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 12.5px var(--mono);background:var(--panel2);border:1px solid var(--line)}
+#edit .step .t{display:flex;flex-direction:column;min-width:0}
+#edit .step .t b{font-size:14px;line-height:1.25;display:block;padding-right:22px}
+#edit .step .t span{font-size:12px;color:var(--muted);line-height:1.3}
+#edit .step[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+#edit .step[aria-pressed="true"] .n{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+#edit .step.ai .n{border-style:dashed}
+
+/* phones: the pinned strip shrinks to one line of numbered titles; the status shows in the detail card */
+@media (max-width:720px){#edit .step{flex:0 0 auto;padding:6px 10px;align-items:center}
+#edit .step .t>span{display:none}
+#edit .step .t b{white-space:nowrap;font-size:13.5px}
+#edit .step .n{width:22px;height:22px}}
+#edit .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
+#edit .dot.ok{background:var(--good)}
+#edit .dot.no{background:var(--bad)}
+#edit .dot.na{background:var(--line)}
+
+/* main grid */
+#edit .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+#edit .toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+#edit .seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;background:var(--mute-soft);padding:3px;gap:2px}
+#edit .seg button{border:0;background:none;border-radius:9px;padding:4px 12px;font-weight:600;font-size:13.5px;color:var(--muted)}
+#edit .seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+#edit .seg button:disabled{opacity:.4;cursor:default}
+#edit .chk{display:inline-flex;gap:6px;align-items:center;font-size:13.5px}
+#edit .chk input{accent-color:var(--accent);width:15px;height:15px}
+#edit .zoomer{display:inline-flex;gap:4px}
+#edit .zoomer button,#edit .btn{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:3px 10px;font-size:13.5px;font-weight:600}
+#edit .zoomer button:hover,#edit .btn:hover{border-color:var(--accent)}
+#edit .mapbox{position:relative;width:100%;aspect-ratio:16/9;max-height:calc(78 * var(--view-vh));max-width:100%;background:var(--canvas);border:1px solid var(--line);border-radius:8px;overflow:hidden;touch-action:none}
+@media (max-width:720px){#edit .mapbox{aspect-ratio:1/1}}
+#edit .mapbox svg{display:block;width:100%;height:100%;cursor:grab;user-select:none}
+#edit .mapbox.active{outline:2px solid var(--accent);outline-offset:-2px}
+#edit .zoomer button{min-width:32px}
+#edit .mapbox svg.drag{cursor:grabbing}
+#edit .credit{position:absolute;right:6px;bottom:6px;font-size:10.5px;color:#fff;background:rgba(0,0,0,.5);padding:1px 6px;border-radius:4px;pointer-events:none}
+#edit .mapbox.sat .case{stroke:rgba(0,0,0,.45)}
+#edit .mapbox.sat .nd.boundary,#edit .mapbox.sat .nd.port,#edit .mapbox.sat .nd.merge_diverge{fill:#fff;stroke:#111}
+#edit .mapbox.sat .nid{fill:#fff;stroke:rgba(0,0,0,.75)}
+#edit .maphint{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* legend and link/node details float over the map on wide screens and sit below it on narrow ones */
+#edit .mapwrap{position:relative}
+#edit .legend{position:absolute;top:8px;left:8px;z-index:2;display:flex;flex-direction:column;gap:2px;max-width:45%;padding:7px 10px;
+  font-size:12px;color:var(--ink);background:color-mix(in srgb,var(--panel) 90%,transparent);border:1px solid var(--line);border-radius:8px;pointer-events:none}
+#edit .legend i{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:3px}
+#edit .legend i.c{width:9px;height:9px;border-radius:50%;vertical-align:0}
+#edit .readout{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+#edit .routepick{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+#edit .routepick select{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:4px 8px;max-width:100%;min-width:0}
+#edit .seq{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-family:var(--mono);font-size:12.5px}
+#edit .seq span{padding:1px 6px;border-radius:5px;background:var(--panel2);border:1px solid var(--line)}
+#edit .seq span.x{border-color:var(--xover);color:var(--xover);font-weight:600}
+#edit .seq em{color:var(--muted);font-style:normal}
+#edit .pinned{position:absolute;top:8px;right:8px;z-index:3;width:min(340px,60%);font-size:13.5px;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:8px 32px 8px 11px;box-shadow:var(--shadow)}
+#edit .pinned .x{position:absolute;top:4px;right:4px;border:0;background:none;width:26px;height:26px;border-radius:6px;font-size:16px;line-height:1;color:var(--muted)}
+#edit .pinned .x:hover{background:var(--panel2);color:var(--ink)}
+@media (max-width:720px){#edit .legend{position:static;flex-direction:row;flex-wrap:wrap;gap:4px 14px;max-width:none;padding:8px 0 0;background:none;border:0;color:var(--muted)}
+#edit .pinned{position:static;width:auto;margin-top:8px;box-shadow:none;background:var(--panel2)}}
+
+/* SVG network */
+#edit .lk{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#edit .lk.freeway{stroke:var(--fw)}
+#edit .lk.arterial{stroke:var(--art)}
+#edit .lk.ramp{stroke:var(--ramp)}
+#edit .lk.intersection_connector{stroke:var(--conn)}
+#edit .ar.freeway{fill:var(--fw)}
+#edit .ar.arterial{fill:var(--art)}
+#edit .ar.ramp{fill:var(--ramp)}
+#edit .ar.intersection_connector{fill:var(--conn)}
+#edit .case{fill:none;stroke:var(--canvas);stroke-linecap:round}
+#edit .halo{fill:none;stroke:var(--halo);stroke-linecap:round}
+#edit .ghost{fill:none;stroke:var(--ghost);stroke-dasharray:6 5;opacity:.8}
+#edit .rt{fill:none;stroke:var(--route);stroke-linecap:round;stroke-linejoin:round;opacity:.85;stroke-dasharray:14 9;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-23}}
+@media (prefers-reduced-motion:reduce){#edit .rt{animation:none;stroke-dasharray:none}}
+#edit .hit{fill:none;stroke:transparent;cursor:pointer}
+#edit .nd{fill:var(--canvas);stroke:var(--ink)}
+#edit .nd.crossover{fill:var(--xover);stroke:var(--xover)}
+#edit .nd.roundabout{fill:var(--conn);stroke:var(--conn)}
+#edit .nd.boundary{fill:var(--canvas)}
+#edit .nd.chg{stroke:var(--xover)}
+#edit .lid{font-family:var(--mono);font-weight:600;fill:#fff}
+#edit .lbg.freeway{fill:var(--fw)}
+#edit .lbg.arterial{fill:var(--art)}
+#edit .lbg.ramp{fill:var(--ramp)}
+#edit .lbg.intersection_connector{fill:var(--conn)}
+#edit .nid{font-family:var(--mono);fill:var(--ink);paint-order:stroke;stroke:var(--canvas);stroke-linejoin:round}
+#edit .nid.crossover{fill:var(--xover);font-weight:700}
+#edit .gridline{stroke:var(--grid)}
+#edit .hot .lk{stroke-width:inherit}
+
+/* detail panel */
+#edit .detail h2{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+#edit .detail h2 .label{font-size:11px}
+#edit .detail .sub{font-size:13px;color:var(--muted);margin-top:2px}
+#edit .detail .body{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+
+/* on wide screens long step content scrolls inside the card, so the map below stays close */
+@media (min-width:721px){#edit .detail .body{max-height:calc(42 * var(--view-vh));overflow:auto;padding-right:6px}}
+#edit .detail .body>*{flex-shrink:0}
+
+/* step 2 shows the model's input image whole: no inner scrolling, and the image is sized to fit the window */
+#edit .detail .body.full{max-height:none;overflow:visible}
+#edit .figure.fit img{width:auto;max-width:100%;max-height:calc(calc(100 * var(--view-vh)) - 220px);margin-inline:auto}
+#edit .figure.fit figcaption{text-align:center}
+#edit dl.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;margin:0;font-size:14px}
+#edit dl.kv dt{color:var(--muted)}
+#edit dl.kv dd{margin:0;min-width:0}
+#edit .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+#edit table{border-collapse:collapse;width:100%;font-size:13.5px}
+#edit th,#edit td{padding:6px 9px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+#edit th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--panel2);font-weight:700;white-space:nowrap}
+#edit tr:last-child td{border-bottom:0}
+#edit td.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+#edit th.n{text-align:right}
+#edit .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;border:1px solid transparent}
+#edit .pill.met,#edit .pill.pass{background:var(--good-soft);color:var(--good)}
+#edit .pill.not_met,#edit .pill.fail{background:var(--bad-soft);color:var(--bad)}
+#edit .pill.schematic{background:var(--info-soft);color:var(--info)}
+#edit .pill.measured{background:var(--good-soft);color:var(--good);border-color:var(--good)}
+#edit .pill.needs_data{background:var(--warn-soft);color:var(--warn)}
+#edit .pill.info,#edit .pill.skipped,#edit .pill.na{background:var(--mute-soft);color:var(--muted)}
+#edit ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+#edit .gate{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;padding:6px 0;border-bottom:1px solid var(--line)}
+#edit .gate:last-child{border-bottom:0}
+#edit .gate .why{grid-column:2;font-size:13px;color:var(--bad);font-family:var(--mono);overflow-wrap:anywhere}
+#edit .figure img{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+#edit .figure figcaption{font-size:12.5px;color:var(--muted);margin-top:5px}
+#edit details>summary{cursor:pointer;font-weight:700;font-size:14px}
+#edit pre.prompt{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.45 var(--mono);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px;max-height:340px;overflow:auto;margin:8px 0 0}
+#edit .log{font-family:var(--mono);font-size:12.5px;display:flex;flex-direction:column;gap:4px;margin:0;padding-left:18px}
+#edit .note{font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:10px}
+
+/* criteria */
+#edit .crithead{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;justify-content:space-between}
+#edit .tally{display:flex;flex-wrap:wrap;gap:6px}
+#edit .crit td:first-child{font-family:var(--mono);white-space:nowrap}
+#edit .crit td.src{font-size:12.5px;width:1%;white-space:nowrap}
+#edit .lvl{display:inline-block;margin:0 0 3px;padding:0 6px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+#edit .lvl.az{background:var(--accent-soft);color:var(--accent)}
+#edit .lvl.nat{background:var(--info-soft);color:var(--info)}
+#edit .lvl.oth{background:var(--warn-soft);color:var(--warn)}
+#edit .crit td.src a,#edit .crit td.src>span.s{display:block}
+#edit .statuskey{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-top:10px}
+#edit .srclist{margin-top:12px;font-size:12.5px;color:var(--muted)}
+#edit .srclist ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px}
+#edit .srclist li{display:flex;gap:8px;align-items:baseline}
+#edit .srclist .lvl{flex:none;min-width:9.5ch;text-align:center}
+
+/* narrow screens: one card per guidance item instead of a five-column table */
+@media (max-width:720px){#edit .crit thead{display:none}
+#edit .crit,#edit .crit tbody{display:block}
+#edit .crit tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+#edit .crit tr:last-child{border-bottom:0}
+#edit .crit td{display:block;padding:0;border:0;min-width:0}
+#edit .crit td.c-id{grid-row:1;grid-column:1}
+#edit .crit td.c-res{grid-row:1;grid-column:2;justify-self:end}
+#edit .crit td.c-crit{grid-row:2}
+#edit .crit td.c-det{grid-row:3}
+#edit .crit td.c-src{grid-row:4}
+#edit .crit td.c-crit,#edit .crit td.c-det,#edit .crit td.c-src{grid-column:1 / -1}
+#edit .crit td.c-crit{font-weight:600}
+#edit .crit td.c-det::before{content:"Network: ";color:var(--muted)}
+#edit .crit td.src{min-width:0;width:auto;white-space:normal}
+#edit .crit td.src .lvl{margin-right:6px}
+#edit .crit td.src a,#edit .crit td.src>span.s{display:inline}
+#edit table.checks thead{display:none}
+#edit table.checks,#edit table.checks tbody{display:block}
+#edit table.checks tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;padding:8px 10px;border-bottom:1px solid var(--line)}
+#edit table.checks tr:last-child{border-bottom:0}
+#edit table.checks td{display:block;padding:0;border:0;min-width:0}
+#edit table.checks td.k-name{grid-row:1;grid-column:1;font-weight:600}
+#edit table.checks td.k-res{grid-row:1;grid-column:2}
+#edit table.checks td.k-det{grid-row:2;grid-column:1 / -1}
+#edit table.checks td.k-ai{grid-row:3;grid-column:1 / -1;color:var(--muted)}
+#edit table.checks td.k-ai:empty{display:none}
+#edit table.checks td.k-ai::before{content:"Model expected it: "}}
+#edit footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+
+/* stage letters: which harness stage each step belongs to, in the step's corner */
+#edit .step[data-k="base"] .t b::before,#edit .step[data-k="inputs"] .t b::before,#edit .step[data-k="proposal"] .t b::before,#edit .step[data-k="gates"] .t b::before,#edit .step[data-k="template"] .t b::before,#edit .step[data-k="checks"] .t b::before,#edit .step[data-k="export"] .t b::before{content:"";margin-right:7px;display:inline-grid;place-items:center;width:17px;height:17px;border-radius:5px;color:#fff;font:800 10px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
+#edit .step[data-k="base"] .t b::before{content:"P";background:var(--stage-p)}
+#edit .step[data-k="inputs"] .t b::before{content:"P";background:var(--stage-p)}
+#edit .step[data-k="proposal"] .t b::before{content:"A";background:var(--stage-a)}
+#edit .step[data-k="gates"] .t b::before{content:"V";background:var(--stage-v)}
+#edit .step[data-k="template"] .t b::before{content:"E";background:var(--stage-e)}
+#edit .step[data-k="checks"] .t b::before{content:"V";background:var(--stage-v)}
+#edit .step[data-k="export"] .t b::before{content:"E";background:var(--stage-e)}
+#edit .step .t b::before{position:absolute;top:9px;right:9px;margin:0!important}
+#edit img{max-width:100%}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="#overview" id="home"><b><span>P</span><span>A</span><span>V</span><span>E</span></b><small id="tagline">a harness for vision-language models (VLMs) that read and edit networks</small></a>
+  <nav id="nav">
+    <a href="#overview" data-v="overview">Overview</a>
+    <a href="#read" data-v="read">Read</a>
+    <a href="#edit" data-v="edit">Edit</a>
+  </nav>
+  <button class="icon" id="theme" title="Light or dark"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+
+<section class="view" id="overview">
+  <div class="wrap">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1><span class="grad">Perceive · Anchor · Verify · Edit</span></h1>
+    <p class="lead" id="lead"></p>
+
+    <div class="loop">
+      <svg viewBox="0 0 1000 170" role="img" aria-label="The PAVE harness loop">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--faint)"/></marker>
+        </defs>
+        <g id="stage-boxes"></g>
+        <path class="flow" d="M869 108 C 869 160, 125 160, 125 108" fill="none" stroke="var(--faint)" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="500" y="164" text-anchor="middle" font-size="13" fill="var(--muted)" id="loop-back"></text>
+      </svg>
+      <div class="stages" id="stages"></div>
+    </div>
+
+    <div class="apps" id="apps"></div>
+
+    <h2 id="principles-title">Harness principles</h2>
+    <div class="principles" id="principles"></div>
+
+    <div class="foot" id="foot"></div>
+  </div>
+</section>
+<section class="view" id="read">
+<header class="top">
+  <div class="pave-brand">
+    <div class="pave-eyebrow">Read · inventory</div>
+    <h1 class="pave-title" id="title">Intersection Explorer</h1>
+    <div class="pave-context" id="subtitle"></div>
+  </div>
+  <div class="metrics" id="metrics"></div>
+  <div class="pave-rail" aria-label="Harness stages"><div class="pave-stage"><i style="background:var(--stage-p)">P</i><b>Perceive</b><span title="satellite crops, dated street views">satellite crops, dated street views</span></div><div class="pave-stage"><i style="background:var(--stage-a)">A</i><b>Anchor</b><span title="stop bars, lane boundaries">stop bars, lane boundaries</span></div><div class="pave-stage"><i style="background:var(--stage-v)">V</i><b>Verify</b><span title="lane review, street-view counts">lane review, street-view counts</span></div><div class="pave-stage"><i style="background:var(--stage-e)">E</i><b>Edit</b><span title="lanes, movements, signals">lanes, movements, signals</span></div></div>
+</header>
+<div class="app">
+  <aside class="side">
+    <section class="mapcard" id="mapcard">
+      <div id="map"></div>
+      <div class="mapui tr">
+        <button class="glassbtn" id="layersBtn" title="Base map and overlays"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg><span id="baseName">Streets</span></button>
+        <button class="glassbtn" id="expandBtn" title="Full-screen map"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </div>
+      <div class="layers" id="layers" hidden>
+        <div class="lh">Base map</div><div id="basemaps"></div>
+        <div class="lh">Overlay</div>
+        <label class="opt" title="Shown from street level (zoom 16 and closer)"><input type="checkbox" id="lanesBox"> Model-traced lanes</label>
+      </div>
+      <div id="sitecard"></div>
+    </section>
+    <div class="tools">
+      <div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" placeholder="Search intersection, UTDF ID or node" autocomplete="off"></div>
+      <div class="chips" id="filters"></div>
+    </div>
+    <ul id="list"></ul>
+  </aside>
+  <main class="main" id="main"><div class="empty">Select an intersection.</div></main>
+</div>
+<div id="lightbox" hidden></div>
+</section>
+<section class="view" id="edit">
+<div class="wrap">
+  <header class="top">
+    <div class="pave-brand">
+      <div class="pave-eyebrow">Edit · scenario design</div>
+      <h1 class="pave-title">SR 347 / I-10 interchange, Arizona <span class="pave-chip">SPR-768 #2</span></h1>
+      <div class="pave-context">The model names the existing links that make up the interchange. A template builds each alternative from them, and checks verify the result before it is written back as GMNS.</div>
+    </div>
+    <div class="headmeta">
+      <span class="label">Request given to the model</span>
+      <q id="sentence"></q>
+    </div>
+    <div class="pave-rail" aria-label="Harness stages"><div class="pave-stage"><i style="background:var(--stage-p)">P</i><b>Perceive</b><span title="satellite image, ID-marked network">satellite image, ID-marked network</span></div><div class="pave-stage"><i style="background:var(--stage-a)">A</i><b>Anchor</b><span title="link and node IDs">link and node IDs</span></div><div class="pave-stage"><i style="background:var(--stage-v)">V</i><b>Verify</b><span title="checks P0–P8 and C1–C6">checks P0–P8 and C1–C6</span></div><div class="pave-stage"><i style="background:var(--stage-e)">E</i><b>Edit</b><span title="template build, GMNS export">template build, GMNS export</span></div></div>
+  </header>
+
+  <section aria-label="Alternatives">
+    <div class="picker" id="picker"></div>
+  </section>
+
+  <nav class="steps" id="steps" aria-label="Steps"></nav>
+
+  <main class="grid">
+
+    <section class="card detail" id="detail-card" aria-live="polite">
+      <h2 id="detail-title"></h2>
+      <p class="sub" id="detail-sub"></p>
+      <div class="body" id="detail"></div>
+    </section>
+    <section class="card" aria-label="Network">
+      <div class="toolbar">
+        <div class="seg" id="mode" role="group" aria-label="Network state">
+          <button id="mode-before" type="button">Before</button><button id="mode-after" type="button">After</button>
+        </div>
+        <label class="chk"><input type="checkbox" id="opt-ids"> Link IDs</label>
+        <label class="chk"><input type="checkbox" id="opt-nodes"> Node IDs</label>
+        <label class="chk"><input type="checkbox" id="opt-changes"> Highlight changes</label>
+        <label class="chk"><input type="checkbox" id="opt-sat"> Satellite image</label>
+        <div class="zoomer" role="group" aria-label="Zoom">
+          <button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-reset">Reset</button>
+        </div>
+        <div class="zoomer" id="zoomer" aria-label="Views"></div>
+      </div>
+      <div class="mapwrap">
+        <div class="mapbox" id="mapbox" tabindex="0" aria-label="Network map. Plus and minus zoom, arrows pan, 0 resets.">
+          <svg id="svg" role="img" aria-label="Road network map"></svg>
+          <span class="credit" id="credit" hidden></span>
+        </div>
+        <div class="legend" id="legend" aria-label="Legend"></div>
+        <div class="pinned" id="pinned" hidden></div>
+      </div>
+      <p class="maphint">Click a link or node for details · drag to pan · click the map, then scroll to zoom · double-click to zoom in · pinch on touch<span id="lblnote"></span></p>
+      <p class="small muted" id="satnote" hidden style="margin-top:6px"></p>
+      <div class="readout">
+        <div class="routepick">
+          <span class="label">Follow a trip</span>
+          <select id="route-o" aria-label="Origin"></select>
+          <span class="muted">to</span>
+          <select id="route-d" aria-label="Destination"></select>
+          <button class="btn" id="route-clear" type="button">Clear</button>
+        </div>
+        <div class="seq" id="route-seq"></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="card" aria-label="Design guidance">
+    <div class="crithead">
+      <h2 id="crit-title"></h2>
+      <div class="tally" id="crit-tally"></div>
+    </div>
+    <p class="small muted" style="margin-top:4px;max-width:90ch">Each item from the design guides is checked as far as a planning network can show it. The network is a drawing, not a design file: it has no lane counts, signal timing or traffic volumes, so geometric guidance can only be indicative. Sources are Arizona (ADOT) first, then national (NCHRP, AASHTO, FHWA); another state's guide is used only where neither gives a figure.</p>
+    <div class="tablewrap" style="margin-top:10px"><table class="crit"><thead><tr><th>Ref.</th><th>Guidance</th><th>Result</th><th>What the network shows</th><th>Source</th></tr></thead><tbody id="crit-body"></tbody></table></div>
+    <div class="statuskey" id="statuskey"></div>
+    <div class="srclist" id="srclist"></div>
+  </section>
+
+
+  <footer id="footer"></footer>
+</div>
+</section>
+
+<script type="application/json" id="pave-data">/*__PAVE__*/</script>
+<script type="application/json" id="index">/*__INDEX__*/</script>
+<script type="application/json" id="edit-data">/*__EDIT__*/</script>
+<script id="leaflet-js">/*__LEAFLET_JS__*/</script>
+<script>
+const PAVE_VIEWS = {};   // view -> its start function
+</script>
+<script>
+/* ---------- Read view ---------- */
+PAVE_VIEWS.read = () => {
+'use strict';
+const IX = JSON.parse(document.getElementById('index').textContent);
+const SITES = IX.sites, byId = new Map(SITES.map(s => [s.id, s]));
+const hasRef = s => s.utdf != null;   // false for a run with no UTDF intersection (e.g. another city)
+const idLine = s => `${hasRef(s) ? 'UTDF ' + s.utdf + ' · ' : ''}node ${s.node}`;
+const anyRef = SITES.some(hasRef);
+const COL = {L:'var(--L)',T:'var(--T)',R:'var(--R)',U:'var(--U)'};
+const HEX = {L:'#e06d5b',T:'#4a78b5',R:'#3f9a7b',U:'#8d6cc4'};
+const VERDICT = {utdf:['Imagery agrees with UTDF','#d39532'], model:['Imagery agrees with the model','#4a78b5'],
+                 neither:['Neither matches the imagery','#d0574a'], unclear:['Imagery unclear','#98a2b3']};
+const STYLE = {motor:'#5bb8d4', exit:'#a9cbe8', bike:'#5aae61', rail:'#d39532', other:'#a3abb7', unsure:'#e9c46a', rejected:'#7d8590'};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = {get(k, d){ try { return localStorage.getItem(k) ?? d; } catch { return d; } }, set(k, v){ try { localStorage.setItem(k, v); } catch {} }};
+const data = {}, state = {id:null, tab:'lanes', filter:'all', query:'', region:null, approach:null, showExits:true, showOther:true, showCams:false};
+let lightboxList = [], lightboxAt = 0;
+const IMG = (d, name) => (d.img || {})[name] || '';
+
+/* ---------- header ---------- */
+$('title').textContent = IX.title || 'Intersection Explorer';
+$('subtitle').textContent = 'The model reads lanes, lane use, movements, signals and signs from satellite images and dated street views' + (anyRef ? ', beside UTDF and OSM' : '') + '. Model output is a prediction, not reference data.';
+const ac = IX.auto_checks || {}, rv = IX.reviews || {};
+const share = IX.approaches ? IX.agree / IX.approaches : 0;
+$('metrics').innerHTML = `
+  <div class="metric"><b>${SITES.length}</b><span>intersection${SITES.length === 1 ? '' : 's'}</span></div>` + (!IX.approaches ? '' : `
+  <div class="metric" title="approaches whose model lane count equals UTDF"><b>${IX.agree} <small>/ ${IX.approaches}</small></b><span>lane count = UTDF</span><div class="bar"><i style="width:${(share*100).toFixed(0)}%"></i></div></div>
+  <div class="metric" title="blind model reading of the approaches whose lane counts differ"><b>${ac.utdf||0} <small>·</small> ${ac.model||0}</b><span>model re-check: UTDF · model right</span></div>
+  <div class="metric" title="a second, manual reading of the same imagery"><b>${rv.utdf||0} <small>·</small> ${rv.model||0}</b><span>manual check: UTDF · model right</span></div>`);
+
+/* ---------- list ---------- */
+const differs = s => s.approaches.some(a => a.utdf.length && !a.agree);
+const FILTERS = [['all','All',() => true],['differ','Lane count differs',differs],
+  ['utdf','UTDF right',s => s.approaches.some(a => [a.auto, a.review].some(r => r && r.verdict === 'utdf'))],
+  ['model','Model right',s => s.approaches.some(a => [a.auto, a.review].some(r => r && r.verdict === 'model'))],
+  ['note','UTDF match note',s => !!s.match_note]];
+$('filters').innerHTML = FILTERS.filter(([k]) => anyRef || k === 'all').map(([k,l,f]) => `<button class="chip${k==='all'?' on':''}" data-f="${k}">${l}<span class="n">${SITES.filter(f).length}</span></button>`).join('');
+$('filters').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; state.filter = b.dataset.f;
+  [...$('filters').children].forEach(c => c.classList.toggle('on', c === b)); renderList(); };
+$('search').oninput = e => { state.query = e.target.value.toLowerCase(); renderList(); };
+function visible(s){
+  if (state.query && !(`${s.name} ${s.id} ${s.node}`.toLowerCase().includes(state.query))) return false;
+  return FILTERS.find(f => f[0] === state.filter)[2](s);
+}
+function renderList(){
+  $('list').innerHTML = SITES.filter(visible).map(s => `<li data-id="${s.id}" class="${s.id===state.id?'sel':''}">
+    <span class="nm" title="${esc(s.name)}">${esc(s.name)}</span>
+    <span class="meta">${idLine(s)} · ${s.legs||'?'} legs</span></li>`).join('')
+    || '<li class="muted small">No intersection matches.</li>';
+}
+$('list').onclick = e => { const li = e.target.closest('li[data-id]'); if (li) select(+li.dataset.id, {fly:true}); };
+
+/* ---------- map ---------- */
+const BASE = {
+  streets:['Streets','https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',18,'Tiles © Esri'],
+  satellite:['Satellite','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',19,'Imagery © Esri, Maxar, Earthstar Geographics'],
+  light:['Light','https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',16,'Tiles © Esri'],
+  dark:['Dark','https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',16,'Tiles © Esri'],
+  osm:['OSM','https://tile.openstreetmap.org/{z}/{x}/{y}.png',19,'© OpenStreetMap contributors']};
+let map = null, base = null, markers = {}, halo = null, laneLayer = null, showLanes = store.get('atlas-lanes', '1') === '1', touched = false;
+const LANES_FROM = 16;
+function setBase(key){
+  if (!BASE[key]) key = 'streets';
+  const [, url, nz, attr] = BASE[key];
+  if (base) map.removeLayer(base);
+  base = L.tileLayer(url, {maxNativeZoom:nz, maxZoom:21, attribution:attr}).addTo(map); base.bringToBack();
+  [...$('basemaps').children].forEach(b => b.classList.toggle('on', b.dataset.k === key)); store.set('atlas-base', key);
+  $('baseName').textContent = BASE[key][0];
+}
+function laneColor(label, style){
+  if (style === 'motor'){ const t = (label.match(/[LTRU]/i) || [''])[0].toUpperCase(); return HEX[t] || STYLE.motor; }
+  return STYLE[style] || STYLE.other;
+}
+function updateLanes(){
+  if (!map) return;
+  const on = showLanes && map.getZoom() >= LANES_FROM;
+  $('lanesBox').checked = showLanes;
+  if (on && !map.hasLayer(laneLayer)) laneLayer.addTo(map);
+  if (!on && map.hasLayer(laneLayer)) map.removeLayer(laneLayer);
+}
+if (window.L){
+  map = L.map('map', {zoomControl:false, scrollWheelZoom:true, zoomSnap:.5, preferCanvas:false, maxZoom:21});
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  const SWATCH = {streets:'linear-gradient(135deg,#f4efe6 50%,#f7d27a 50%)', satellite:'linear-gradient(135deg,#3d4a3a,#6d7a5e)', light:'#e9ebee', dark:'#2b2f36', osm:'linear-gradient(135deg,#f2efe9 50%,#aad3df 50%)'};
+  $('basemaps').innerHTML = Object.entries(BASE).map(([k,[l]]) => `<button data-k="${k}"><span class="sw" style="background:${SWATCH[k]}"></span>${l}</button>`).join('');
+  $('basemaps').onclick = e => { const b = e.target.closest('button'); if (b) setBase(b.dataset.k); };
+  $('layersBtn').onclick = e => { e.stopPropagation(); $('layers').hidden = !$('layers').hidden; };
+  $('layers').onclick = e => e.stopPropagation();
+  document.addEventListener('click', () => { $('layers').hidden = true; });
+  setBase(store.get('atlas-base', 'streets'));
+  laneLayer = L.layerGroup();
+  for (const s of SITES) for (const [section, label, style, ring] of ((IX.geo || {})[s.id] || [])){
+    const c = laneColor(label, style);
+    L.polygon(ring.map(([x, y]) => [y, x]), {color:c, weight:1, fillColor:c, fillOpacity:style === 'motor' ? .45 : .25, opacity:.9})
+      .bindTooltip(`${esc(s.name)} · ${esc(section)} · ${esc(label)}`, {sticky:true}).on('click', () => select(s.id)).addTo(laneLayer);
+  }
+  const pts = [];
+  for (const s of SITES){ if (s.lat == null) continue; pts.push([s.lat, s.lon]);
+    markers[s.id] = L.circleMarker([s.lat, s.lon], {radius:6.5, weight:2, fillOpacity:1, className:'site-dot'})
+      .addTo(map).bindTooltip(`<b>${esc(s.name)}</b><br>${idLine(s)}`, {direction:'top', offset:[0,-6]})
+      .on('click', () => select(s.id, {fly:true})); }
+  // Fit every site once the container has its real size (it can be 0 while the page is still laying out or
+  // the tab is hidden); refit on later resizes until the user moves the map themselves.
+  const fitAll = () => { if (pts.length && !touched) map.fitBounds(pts, {padding:[30,30], maxZoom:16}); };  // one site alone would zoom to the deepest level
+  ['pointerdown','wheel','touchstart'].forEach(ev => $('map').addEventListener(ev, () => { touched = true; }, {once:true, passive:true}));
+  fitAll();
+  if (window.ResizeObserver) new ResizeObserver(() => { map.invalidateSize(); fitAll(); }).observe($('map'));
+  map.on('zoomend', updateLanes); updateLanes();
+  $('lanesBox').onchange = () => { showLanes = $('lanesBox').checked; store.set('atlas-lanes', showLanes ? '1' : '0'); updateLanes();
+    if (showLanes && map.getZoom() < LANES_FROM && state.id) { const s = byId.get(state.id); map.flyTo([s.lat, s.lon], 18); } };
+  $('expandBtn').onclick = () => toggleFull();
+} else { $('mapcard').style.display = 'none'; }
+function toggleFull(on){
+  const full = on ?? !document.body.classList.contains('mapfull');
+  document.body.classList.toggle('mapfull', full);
+  setTimeout(() => map && map.invalidateSize(), 60);
+  siteCard();
+}
+function siteCard(){
+  const s = byId.get(state.id), card = $('sitecard');
+  if (!s) { card.classList.remove('show'); return; }
+  card.innerHTML = `<div class="eyebrow">${idLine(s)}</div><h3>${esc(s.name)}</h3>
+    <div class="small muted" style="margin:4px 0 10px">${s.legs||'?'} legs</div>
+    <div style="display:flex;gap:8px"><button class="btn primary" id="cardOpen">Open details</button><button class="btn" id="cardLanes">Zoom to lanes</button></div>`;
+  card.classList.add('show');
+  $('cardOpen').onclick = () => toggleFull(false);
+  $('cardLanes').onclick = () => { showLanes = true; updateLanes(); map.flyTo([s.lat, s.lon], 19); };
+}
+
+/* ---------- selection ---------- */
+function siteData(id){
+  if (data[id]) return data[id];
+  const el = document.getElementById('site-' + id);
+  if (!el) return null;
+  data[id] = JSON.parse(el.textContent);
+  return data[id];
+}
+function select(id, opts = {}){
+  if (!byId.has(id)) return;
+  const s = byId.get(id);
+  if (state.id !== id) { state.region = null; state.approach = null; }
+  state.id = id; history.replaceState(null, '', '#read/' + id);
+  renderList();
+  if (map) {
+    if (halo) map.removeLayer(halo);
+    halo = L.circleMarker([s.lat, s.lon], {radius:11, color:'#ffffff', weight:2, fill:false, className:'pulse', interactive:false}).addTo(map);
+    Object.values(markers).forEach(m => m.setRadius(6.5)); markers[id] && markers[id].setRadius(9).bringToFront();
+    if (opts.fly) { touched = true; map.flyTo([s.lat, s.lon], Math.max(map.getZoom(), 17), {duration:.8}); }
+  }
+  siteCard();
+  const d = siteData(id);
+  if (!d) {
+    $('main').innerHTML = '<div class="empty">Loading…</div>';
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => state.id === id && select(id), {once:true});
+    else $('main').innerHTML = '<div class="empty">The data for this intersection is missing from the file.</div>';
+    return;
+  }
+  render();
+}
+
+/* ---------- shared pieces ---------- */
+function laneBlocks(lanes, kind){
+  return lanes.map(l => {
+    const t = l.t || '', first = t[0];
+    if (!t) return `<span class="lane unk${l.rail?' rail':''}" title="lane ${l.n}: use not established">?</span>`;
+    const inf = kind === 'vlm' && l.basis === 'movement';
+    const style = inf ? `border-color:${COL[first]};color:${COL[first]}` : `background:${COL[first]}`;
+    const tip = `lane ${l.n}: ${t}${kind==='vlm' ? (inf ? ' (paired by the movement step)' : ' (read from pavement markings)') : ''}${l.rail?' · shared with rail':''}`;
+    return `<span class="lane${inf?' inf':''}${l.rail?' rail':''}" style="${style}" title="${tip}">${t}</span>`;
+  }).join('');
+}
+function gsvRow(a){
+  const g = (a.gsv || []).filter(x => x.lanes != null);
+  if (!g.length) return '';
+  // far views stand ~100 m out, where pockets have often not opened yet: only near and mid counts are held against the trace
+  const differs = x => x.settled && x.pos !== 'far' && x.lanes !== a.vlm.length;
+  const off = g.some(differs);
+  const chips = g.map(x => `<span class="gsv${differs(x) ? ' off' : ''}${x.settled ? '' : ' unsure'}"
+      title="${esc(`${x.pos} street view, ${x.dist} m from the centre, ${x.date || 'date unknown'}${x.other && x.other !== 'none' ? ' · also: ' + x.other : ''}${x.unmatched && x.unmatched !== 'none' ? ' · not matching the traced regions: ' + x.unmatched : ''}${x.settled ? '' : ' · count not settled'}`)}">${esc(x.pos || '?')} <b>${x.lanes}</b></span>`).join('');
+  return `<div class="row"><span class="src" title="motor lanes of this direction counted in the forward street views">GSV</span><span class="lanes">${chips}</span><span class="n">${off ? '<span style="color:var(--warn)" title="a street view shows a different number of lanes than were traced">≠</span>' : ''}</span></div>`;
+}
+function matchHtml(a){
+  const m = a.match;
+  if (m && m.by === 'name') return `<div class="check muted">UTDF ${esc(a.dir)} is matched by direction name only: UTDF's movement table does not tie it to this link, so the two may describe different legs. The automated check skips such approaches.</div>`;
+  if (m && m.also.length) return `<div class="check muted">This link also carries UTDF ${m.also.map(esc).join(', ')}; its rows are listed separately under Movements.</div>`;
+  return '';
+}
+function checksHtml(a){
+  if (!a.utdf.length) return `<div class="check muted">No UTDF lane layout ${a.match ? 'for this approach' : 'tied to this link'}.</div>`;
+  if (a.agree) return '';
+  if (!a.auto && !a.review) return '<div class="check muted">Lane counts differ; not checked against the imagery.</div>';
+  const line = (who, r, sheet) => { const [txt, c] = VERDICT[r.verdict] || [r.verdict, '#7a8796'];
+    return `<div class="check" style="border-left-color:${c}"><span class="small muted">${who}</span><br><span class="what" style="color:${c}">${txt}</span>
+      <span class="muted"> · seen: ${esc(r.layout_seen||'–')} · ${esc((r.cause||'').replaceAll('_',' '))} · ${esc(r.confidence||'')} confidence</span>
+      ${sheet?` · <button class="linkish" data-sheet="${esc(sheet)}">image checked</button>`:''}<div class="muted">${esc(r.note||'')}</div></div>`; };
+  return (a.auto ? line('Model re-check · blind reading of the imagery', a.auto, a.auto.sheet) : '')
+       + (a.review ? line('Manual check · second reading of the same imagery', a.review) : '');
+}
+function turnChip(t){ return `<span class="turn" style="background:${COL[t]||'#9aa5b2'}">${t}</span>`; }
+function thumb(view, d){
+  const i = d.views.indexOf(view), boxes = d.observations.filter(o => o.view === i);
+  return `<div class="thumb" data-view="${i}"><img loading="lazy" decoding="async" src="${IMG(d, view.src)}" alt="">
+    <div class="cap"><b>${esc(view.group)}</b> · ${esc(view.role)}${view.position?' · '+esc(view.position):''}<br>
+    ${view.dist} m · ${esc(view.date||'date unknown')}${view.relation==='historical'?' · <span class="hist">historical</span>':''}${boxes.length?` · ${boxes.length} obs.`:''}</div></div>`;
+}
+function wireThumbs(root, d, list){ root.querySelectorAll('.thumb').forEach(t => t.onclick = () => openViews(d, list, +t.dataset.view)); }
+
+/* ---------- render ---------- */
+function render(){
+  const s = byId.get(state.id), d = data[state.id]; if (!s || !d) return;
+  const dates = s.dates ? (s.dates[0] === s.dates[1] ? s.dates[0] : s.dates.join(' – ')) : 'unknown';
+  const views = d.views.filter(v => !v.group.startsWith('Signals')).length;
+  const TABS = [['lanes','Lanes',s.approaches.length],['movements','Movements',d.movements.length],['views','Street views',views],['signals','Signals & signs',d.controls.length],['figures','Figures','']];
+  $('main').innerHTML = `<div class="fade"><div class="site-head"><div><div class="eyebrow">${idLine(s)}</div><h2>${esc(s.name)}</h2><div class="tags">
+      <span class="tag">${s.legs||'?'} legs</span>
+      ${s.control?`<span class="tag">${esc(s.control)}${s.cycle?' · '+s.cycle+' s cycle':''}</span>`:''}
+      <span class="tag">street views ${esc(dates)}</span>
+      ${s.untraced.length?`<span class="tag warn">untraced: ${esc(s.untraced.join(', '))}</span>`:''}
+      ${s.missing_views.length?`<span class="tag warn">${s.missing_views.length} street views missing</span>`:''}</div></div>
+</div>
+    ${s.match_note?`<div class="note"><b>UTDF match</b><span>${esc(s.match_note)}</span></div>`:''}
+    <nav class="tabs">${TABS.map(([k,l,n]) => `<button data-t="${k}" class="${k===state.tab?'on':''}">${l}${n!==''?`<span class="n">${n}</span>`:''}</button>`).join('')}</nav>
+    <div id="tab"></div></div>`;
+  $('main').querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; state.tab = b.dataset.t; render(); };
+  const shownKey = state.id + '/' + state.tab;
+  if (render.last !== shownKey) { $('main').scrollTop = 0; render.last = shownKey; }
+  ({lanes:renderLanes, movements:renderMovements, views:renderViews, signals:renderSignals, figures:renderFigures})[state.tab](s, d);
+}
+
+/* Lanes */
+function renderLanes(s, d){
+  $('tab').innerHTML = `<div class="grid2"><div class="stack sticky">
+      <div class="card"><div class="mapbar"><b style="color:var(--ink)">Traced lanes</b>
+        <label><input type="checkbox" id="tgExits" ${state.showExits?'checked':''}>exits</label>
+        <label><input type="checkbox" id="tgOther" ${state.showOther?'checked':''}>bike, rail, buffer</label>
+        <label><input type="checkbox" id="tgCams" ${state.showCams?'checked':''}>cameras</label>
+        ${state.approach?`<button class="btn" id="clearAppr">all approaches</button>`:''}</div>
+        <div class="mapframe"><svg id="sat"></svg></div>
+        <div class="legend"><span><i style="background:${HEX.L}"></i>left</span><span><i style="background:${HEX.T}"></i>through</span><span><i style="background:${HEX.R}"></i>right</span>
+          <span><i style="background:${STYLE.motor}"></i>use unknown</span><span><i style="background:${STYLE.exit}"></i>exit lane</span>
+          <span><i style="background:${STYLE.bike}"></i>bike</span><span><i style="background:${STYLE.rail}"></i>rail</span><span><i style="background:${STYLE.other}"></i>buffer / parking</span><span><i style="background:${STYLE.unsure}"></i>unresolved</span></div>
+        <div class="small muted" style="margin-top:6px">L1 = left-turn lane, numbered from the driver's left; lower case = turn paired by the movement step; o2 = exit lane 2. Click a lane for details.</div></div>
+      <div class="card" id="laneInfo"></div></div>
+    <div class="stack" id="approaches"></div></div>`;
+  ['Exits','Other','Cams'].forEach(k => $('tg'+k).onchange = e => { state['show'+k] = e.target.checked; drawSat(d); });
+  if ($('clearAppr')) $('clearAppr').onclick = () => { state.approach = null; renderLanes(s, d); };
+  $('approaches').innerHTML = s.approaches.map(a => `<div class="card appr${state.approach===a.key?' on':''}" data-key="${a.key}">
+      <div class="appr-head"><b>${a.dir}</b>${a.dir!==a.key?`<span class="small muted">network ${esc(a.key)}</span>`:''}
+        ${!a.utdf.length?'':a.agree?'<span class="badge" style="background:var(--ok)">lane count = UTDF</span>':`<span class="badge" style="background:var(--bad)">${a.vlm.length} vs UTDF ${a.utdf.length}</span>`}</div>
+      <div class="row"><span class="src">Model</span><span class="lanes">${laneBlocks(a.vlm,'vlm')}${a.bike?'<span class="lane bike" title="bicycle lane">bike</span>'.repeat(a.bike):''}</span><span class="n">${a.vlm.length}</span></div>
+      ${!hasRef(s) ? '' : `<div class="row"><span class="src">UTDF</span><span class="lanes">${laneBlocks(a.utdf,'utdf')||'<span class="muted small">—</span>'}</span><span class="n">${a.utdf.length||''}</span></div>
+      <div class="row"><span class="src">OSM</span><span class="lanes">${laneBlocks(a.osm,'osm')||'<span class="muted small">—</span>'}</span><span class="n">${a.osm.length||''}</span></div>`}
+      ${gsvRow(a)}${hasRef(s) ? matchHtml(a) + checksHtml(a) : ''}</div>`).join('') || '<div class="card muted">No approach could be traced.</div>';
+  $('approaches').querySelectorAll('.appr').forEach(c => c.onclick = e => {
+    const link = e.target.closest('[data-sheet]');
+    if (link) { e.stopPropagation(); openImage(IMG(d, link.dataset.sheet), 'Image shown to the blind lane-count check (no answer was shown)'); return; }
+    state.approach = state.approach === c.dataset.key ? null : c.dataset.key; renderLanes(s, d); });
+  drawSat(d); renderLaneInfo(d);
+}
+function drawSat(d){
+  const svg = $('sat');
+  const shown = d.regions.filter(r => (state.showExits || r.inbound) && (state.showOther || ['motor','exit','unsure'].includes(r.style)) && r.style !== 'rejected'
+    && (!state.approach || r.section === 'in_' + state.approach || !r.inbound));
+  const pts = (shown.length ? shown : d.regions).flatMap(r => r.poly);
+  const [x1,y1,x2,y2] = [Math.min(...pts.map(p=>p[0])), Math.min(...pts.map(p=>p[1])), Math.max(...pts.map(p=>p[0])), Math.max(...pts.map(p=>p[1]))];
+  const pad = 60, w = Math.max(x2-x1, y2-y1) + 2*pad, cx = (x1+x2)/2, cy = (y1+y2)/2;
+  svg.setAttribute('viewBox', `${cx-w/2} ${cy-w/2} ${w} ${w}`);
+  // Label size follows the typical lane width, so neighbouring labels do not run into each other.
+  const widthOf = poly => { let a = 0, L = 0; poly.forEach((p, i) => { const q = poly[(i+1) % poly.length]; a += p[0]*q[1] - q[0]*p[1]; });
+    poly.forEach(p => poly.forEach(q => { L = Math.max(L, Math.hypot(p[0]-q[0], p[1]-q[1])); })); return Math.abs(a) / 2 / Math.max(L, 1); };
+  const motor = shown.filter(r => r.style === 'motor').map(r => widthOf(r.poly)).sort((a,b) => a-b);
+  const fs = Math.max(w / 55, Math.min(w / 44, (motor[Math.floor(motor.length/2)] || 30) * .62));
+  const NAMES = {bike:'bicycle lane', rail:'rail area', other:'buffer or parking', unsure:'unresolved region', exit:'exit lane', motor:'approach lane'};
+  let h = `<image href="${IMG(d, d.sat.src)}" width="${d.sat.size[0]}" height="${d.sat.size[1]}"/>`;
+  for (const r of shown){
+    const c = laneColor(r.label || '', r.style), sel = state.region === r.id;
+    h += `<polygon data-id="${r.id}" points="${r.poly.map(p=>p.join(',')).join(' ')}" fill="${c}" fill-opacity="${sel?.55:.24}" stroke="${sel?'#fff':c}" stroke-width="${sel?w/260:w/420}"><title>${esc(r.section+' · '+(r.style==='motor'?r.label:NAMES[r.style]||r.label))}</title></polygon>`;
+  }
+  for (const r of shown){
+    if (r.style !== 'motor' && r.style !== 'exit') continue;
+    const xs = r.poly.map(p=>p[0]), ys = r.poly.map(p=>p[1]);
+    const x = xs.reduce((a,b)=>a+b,0)/xs.length, y = ys.reduce((a,b)=>a+b,0)/ys.length;
+    const text = r.style === 'exit' ? r.label.replace('out','o') : r.label.replace(' rail','');
+    h += `<text class="lbl" x="${x}" y="${y}" font-size="${r.style==='exit'?fs*.8:fs}" ${r.style==='exit'?'opacity=".8"':''} text-anchor="middle" dominant-baseline="middle">${esc(text)}</text>`;
+  }
+  if (state.showCams) d.views.forEach((v, i) => { if (!v.xy) return; const a = v.heading*Math.PI/180, L = w/30;
+    h += `<g data-view="${i}" style="cursor:pointer"><line x1="${v.xy[0]}" y1="${v.xy[1]}" x2="${v.xy[0]+L*Math.sin(a)}" y2="${v.xy[1]-L*Math.cos(a)}" stroke="#fff" stroke-width="${w/320}"/>
+      <circle cx="${v.xy[0]}" cy="${v.xy[1]}" r="${w/150}" fill="${v.relation==='historical'?'#d39532':'#4a78b5'}" stroke="#fff" stroke-width="${w/600}"/><title>${esc(v.group+' · '+v.role+' · '+v.date)}</title></g>`; });
+  svg.innerHTML = h;
+  svg.querySelectorAll('polygon').forEach(p => p.onclick = () => { state.region = p.dataset.id; drawSat(d); renderLaneInfo(d); });
+  svg.querySelectorAll('g[data-view]').forEach(g => g.onclick = () => openViews(d, d.views.map((_,i)=>i), +g.dataset.view));
+}
+function renderLaneInfo(d){
+  const r = d.regions.find(x => x.id === state.region);
+  if (!r) { $('laneInfo').innerHTML = '<h3>Lane details</h3><div class="muted small">Click a lane on the image to see how the model classified it and the street views where it was seen.</div>'; return; }
+  const useTxt = r.turns.length ? r.turns.join(', ') + ' (read from markings)' : r.paired.length ? r.paired.join('') + ' (paired by the movement step)' : 'not established';
+  const viewIds = [...new Set(d.observations.filter(o => o.regions.includes(r.id)).map(o => o.view))];
+  $('laneInfo').innerHTML = `<h3>${esc(r.section)} · ${esc(r.label)}</h3>
+    <div class="kv"><span>facility</span><b>${esc(r.type.replaceAll('_',' '))}${r.existence!=='supported'?' · '+esc(r.existence):''}</b>
+      ${r.inbound?`<span>use</span><b>${esc(useTxt)}</b>`:''}<span>confidence</span><b>${esc(r.confidence||'–')}</b></div>
+    <p class="small" style="margin:10px 0 4px">${esc(r.evidence)}</p>${r.binding?`<p class="small muted" style="margin:4px 0">${esc(r.binding)}</p>`:''}
+    ${viewIds.length?`<div class="section-title">Seen in ${viewIds.length} street view${viewIds.length>1?'s':''}</div><div class="gal">${viewIds.map(i => thumb(d.views[i], d)).join('')}</div>`:''}`;
+  wireThumbs($('laneInfo'), d, viewIds);
+}
+
+/* Movements */
+function renderMovements(s, d){
+  const groups = {};
+  s.movements.forEach(m => { const g = m.group || m.code.slice(0,2); (groups[g] = groups[g] || []).push(m); });
+  const rng = r => r ? (r[0] === r[1] ? r[0] : r[0] + '–' + r[1]) : '–';
+  const src = e => e ? `${e.lanes ?? '–'} <span class="muted small">${e.in?'in '+rng(e.in):''}${e.out?' → '+rng(e.out):''}</span>` : '<span class="muted">–</span>';
+  let rows = '';
+  for (const dir of Object.keys(groups).sort()){
+    rows += `<tr class="grp"><td colspan="${hasRef(s) ? 5 : 3}">${esc(dir)}</td></tr>`;
+    for (const m of groups[dir]){
+      const v = m.vlm, t = m.code[2] === 'L' ? 'L' : m.code[2] === 'T' ? 'T' : m.code[2] === 'R' ? 'R' : 'U';
+      const rule = v && v.reason.includes('Default rule');
+      rows += `<tr><td>${turnChip(t)} <span class="small muted">${m.code}</span></td>${!hasRef(s) ? '' : `<td>${src(m.utdf)}${m.vol?` <span class="small muted">· ${m.vol} veh/h</span>`:''}</td><td>${src(m.osm)}</td>`}
+        <td>${v ? `<span class="st ${v.status}">${v.status.replace('_',' ')}</span>${rule?'<span class="rule" title="added by the traffic-law default for the kerbside lane">rule</span>':''} ${v.status==='candidate'?src(v):''}` : '<span class="muted">–</span>'}</td>
+        <td class="reason">${v ? esc(v.reason.length > 200 ? v.reason.slice(0,200) + '…' : v.reason) : ''}</td></tr>`;
+    }
+  }
+  $('tab').innerHTML = `<div class="card"><table><thead><tr><th>Movement</th>${hasRef(s) ? '<th>UTDF lanes</th><th>OSM lanes</th>' : ''}<th>Model</th><th>Model reasoning</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="small muted" style="margin:10px 0 0">Lanes are numbered from the driver's left; "in" is the approach lane range, "→" the receiving lanes. Model movements are hypotheses; "unresolved" means the imagery did not settle them. "rule": the rightmost lane may turn right unless a marking or sign prohibits it.</p></div>`;
+}
+
+/* Street views */
+function renderViews(s, d){
+  const groups = {};
+  d.views.forEach((v, i) => { if (!v.group.startsWith('Signals')) (groups[v.group] = groups[v.group] || []).push(i); });
+  const order = Object.keys(groups).sort((a,b) => (a.startsWith('Exit') - b.startsWith('Exit')) || a.localeCompare(b));
+  $('tab').innerHTML = order.map(g => `<div class="section-title">${esc(g)} <span class="muted small">${groups[g].length}</span></div><div class="gal" data-g="${esc(g)}">${groups[g].map(i => thumb(d.views[i], d)).join('')}</div>`).join('')
+    || '<div class="empty">No street views.</div>';
+  $('tab').querySelectorAll('.gal').forEach(g => wireThumbs(g, d, groups[g.dataset.g]));
+}
+
+/* Signals & signs */
+const CTL = {traffic_signal:'Vehicle signal',pedestrian_signal:'Pedestrian signal',lane_use_sign:'Lane-use sign',turn_restriction_sign:'Turn-restriction sign',regulatory_sign:'Regulatory sign',street_name_sign:'Street-name sign',other_sign:'Other sign'};
+function renderSignals(s, d){
+  if (!d.controls.length) { $('tab').innerHTML = '<div class="empty">No signals or signs were audited here.</div>'; return; }
+  const groups = {};
+  d.controls.forEach(c => (groups[c.dir || '–'] = groups[c.dir || '–'] || []).push(c));
+  $('tab').innerHTML = Object.keys(groups).sort().map(g => `<div class="section-title">Approach ${esc(g)}</div><div class="stack">${groups[g].map(c => {
+      const ref = c.refs[0];
+      return `<div class="card ctl"><div><b>${esc(CTL[c.kind]||c.kind)}</b>${c.symbol?` · ${esc(c.symbol)}`:''}${c.text?` · “${esc(c.text)}”`:''}
+        <span class="small muted"> · ${esc(c.confidence||'')} confidence · applies to ${esc((c.applies||'').replaceAll('_',' '))}</span>
+        <p class="small" style="margin:6px 0 0">${esc(c.description)}</p></div>
+        ${ref?`<div class="thumb" data-view="${ref.view}"><img loading="lazy" src="${IMG(d, d.views[ref.view].src)}" alt=""><div class="cap">${c.refs.length} view${c.refs.length>1?'s':''}</div></div>`:'<div></div>'}</div>`; }).join('')}</div>`).join('');
+  $('tab').querySelectorAll('.thumb').forEach(t => t.onclick = () => { const v = +t.dataset.view;
+    const c = d.controls.find(c => c.refs[0] && c.refs[0].view === v); openViews(d, c.refs.map(r => r.view), v, c); });
+}
+
+/* Figures */
+function renderFigures(s, d){
+  const f = d.figures;
+  $('tab').innerHTML = (f.overview || f.sections) ? `<div class="stack">
+      ${f.overview?`<div class="card fig"><h3>Labelled overview</h3><img src="${IMG(d, f.overview.src)}" data-src="${f.overview.src}" alt=""></div>`:''}
+      ${f.sections?`<div class="card fig"><h3>Sections: lane number, type and movements</h3><img src="${IMG(d, f.sections.src)}" data-src="${f.sections.src}" alt=""></div>`:''}</div>`
+    : '<div class="empty">No figures were exported for this intersection.</div>';
+  $('tab').querySelectorAll('.fig img').forEach(img => img.onclick = () => openImage(IMG(d, img.dataset.src), img.closest('.card').querySelector('h3').textContent));
+}
+
+/* ---------- lightbox ---------- */
+function openViews(d, list, at, control){ lightboxList = list; lightboxAt = Math.max(0, list.indexOf(at)); showView(d, control); }
+function showView(d, control){
+  const i = lightboxList[lightboxAt], v = d.views[i];
+  const obs = control ? control.refs.filter(r => r.view === i).map(r => ({box:r.box, finding:r.finding, regions:[]})) : d.observations.filter(o => o.view === i);
+  const [w, h] = v.size;
+  const boxes = obs.filter(o => o.box).map(o => { const [a,b,c,e] = o.box, hi = state.region && o.regions.includes(state.region);
+    return `<span class="bx${hi?' hi':''}" style="left:${a*100}%;top:${b*100}%;width:${(c-a)*100}%;height:${(e-b)*100}%"></span>`; }).join('');
+  $('lightbox').innerHTML = `<div class="lb"><div class="pic"><span class="boxwrap"><img src="${IMG(d, v.src)}" width="${w}" height="${h}" alt="">${boxes}</span></div>
+    <div class="info"><h3>${esc(v.group)} · ${esc(v.role)}</h3>
+      <div class="kv small" style="margin-top:8px"><span>position</span><b>${esc(v.position||'–')} · ${v.dist} m from centre</b><span>heading</span><b>${v.heading}°</b>
+        <span>captured</span><b>${esc(v.date||'unknown')}${v.relation==='historical'?' <span class="hist">historical</span>':''}</b></div>
+      ${obs.length?`<div class="section-title">What the model noted here</div>${obs.map(o => `<div class="find${state.region&&o.regions.includes(state.region)?' hi':''}">${esc(o.finding||'(no note)')}</div>`).join('')}`:'<p class="muted small">No located observations in this view.</p>'}
+      <div class="nav"><button class="btn" id="lbPrev" ${lightboxAt?'':'disabled'}>‹ Prev</button><span class="small muted" style="align-self:center">${lightboxAt+1} / ${lightboxList.length}</span>
+        <button class="btn" id="lbNext" ${lightboxAt<lightboxList.length-1?'':'disabled'}>Next ›</button><span style="flex:1"></span><button class="btn" id="lbClose">Close</button></div></div></div>`;
+  $('lightbox').hidden = false;
+  $('lbPrev').onclick = () => { lightboxAt--; showView(d, control); };
+  $('lbNext').onclick = () => { lightboxAt++; showView(d, control); };
+  $('lbClose').onclick = closeLightbox;
+}
+function openImage(src, title){
+  $('lightbox').innerHTML = `<div class="lb" style="grid-template-columns:1fr"><div class="pic"><img src="${src}" style="max-width:100%;max-height:82vh" alt=""></div>
+    <div class="info" style="display:flex;align-items:center"><b>${esc(title)}</b><span style="flex:1"></span><button class="btn" id="lbClose">Close</button></div></div>`;
+  $('lightbox').hidden = false; $('lbClose').onclick = closeLightbox;
+}
+function closeLightbox(){ $('lightbox').hidden = true; $('lightbox').innerHTML = ''; }
+$('lightbox').onclick = e => { if (e.target === $('lightbox')) closeLightbox(); };
+document.addEventListener('keydown', e => {
+  if ($('lightbox').hidden) { if (e.key === 'Escape' && document.body.classList.contains('mapfull')) toggleFull(false); return; }
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight' && $('lbNext') && !$('lbNext').disabled) $('lbNext').click();
+  if (e.key === 'ArrowLeft' && $('lbPrev') && !$('lbPrev').disabled) $('lbPrev').click(); });
+
+/* ---------- start ---------- */
+renderList();
+const hashId = () => +((location.hash.match(/^#read\/(\d+)$/) || [])[1]);   // #read/<id> names an intersection
+const first = hashId();
+select(byId.has(first) ? first : SITES[0]?.id);
+window.addEventListener('hashchange', () => { const id = hashId(); if (id && id !== state.id) select(id, {fly:true}); });
+};
+</script>
+<script>
+/* ---------- Edit view ---------- */
+PAVE_VIEWS.edit = function(){
+"use strict";
+const D = JSON.parse(document.getElementById("edit-data").textContent);
+const $ = id => document.getElementById(id);
+const SVGNS = "http://www.w3.org/2000/svg";
+function h(tag, attrs, ...kids){
+  const el = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs||{})){
+    if (v==null || v===false) continue;
+    if (k==="class") el.className = v; else if (k.startsWith("on")) el.addEventListener(k.slice(2), v); else el.setAttribute(k, v===true?"":v);
+  }
+  for (const k of kids.flat()){ if (k==null||k===false) continue; el.append(k.nodeType?k:document.createTextNode(String(k))); }
+  return el;
+}
+function put(el, ...kids){ el.append(...kids.flat(Infinity).filter(k=>k!=null && k!==false && k!=="")); return el; }
+function s(tag, attrs){ const el=document.createElementNS(SVGNS, tag); for (const [k,v] of Object.entries(attrs||{})) if (v!=null) el.setAttribute(k, v); return el; }
+const store = {get(k,d){try{const v=localStorage.getItem("sr347."+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},
+               set(k,v){try{localStorage.setItem("sr347."+k, JSON.stringify(v));}catch(e){}}};
+
+const TKEYS = Object.keys(D.targets);
+const S = {
+  target: TKEYS.includes(store.get("target","ddi")) ? store.get("target","ddi") : "ddi",
+  step: store.get("step", 2), mode: "after", ids: true, nodes: false, changes: true,
+  route: {o: 1, d: 4}, pin: null, vb: null, wrong: false, sat: store.get("sat", false)
+};
+const STEPS = [
+  {k:"base", n:"Existing network", d:"The road network as it is now"},
+  {k:"inputs", n:"What the model sees", d:"Satellite image, numbered network, link list"},
+  {k:"proposal", n:"Model proposal", d:"Interchange type, links involved, requested change", ai:true},
+  {k:"gates", n:"Proposal checks", d:"Reject wrong or invented IDs before any edit"},
+  {k:"template", n:"Building the design", d:"A design template draws the new interchange"},
+  {k:"checks", n:"Network checks", d:"Trips, turning movements, grade separation"},
+  {k:"export", n:"Export", d:"New network tables and list of changes"}
+];
+if (!(Number.isInteger(S.step) && S.step >= 0 && S.step < STEPS.length)) S.step = 2;
+const STATUS_TEXT = {met:"meets", not_met:"does not meet", schematic:"indicative", measured:"measured on real roads", needs_data:"needs design data", info:"background"};
+// wording for counts: "4 met", "1 needs design data", "5 need design data"
+const tallyText = (k, n) => `${n} ` + ({met:"met", not_met:"not met", needs_data: n===1 ? "needs design data" : "need design data"}[k] || STATUS_TEXT[k]);
+const STATUS_HELP = {met:"confirmed from how the network is connected and controlled", not_met:"the network contradicts this guidance",
+  schematic:"measured on the drawing; a real design could differ", measured:"measured on the real road layout (OpenStreetMap)",
+  needs_data:"needs lane-level design, signal timing or traffic volumes", info:"context only"};
+const FACIL = {diamond:"conventional diamond", ddi:"diverging diamond", spui:"single point urban interchange", roundabout_diamond:"diamond with roundabout ramp terminals"};
+const CHANGE_TEXT = {ddi:"Replace the diamond with a diverging diamond", spui:"Replace the diamond with a single point urban interchange", roundabout_diamond:"Replace the ramp terminal signals with roundabouts"};
+const ROLE_LABEL = {approach_in:"Arterial approach from the outer road", departure_out:"Arterial exit to the outer road",
+  bridge_in:"Arterial arriving over the freeway", bridge_out:"Arterial leaving over the freeway", offramp_in:"Off-ramp", onramp_out:"On-ramp"};
+const CHECK_LABEL = {"C1":"Network tables are consistent", "C2":"All trips between approach roads still possible",
+  "C3":"Required turns present, prohibited turns absent", "C4":"Arterial and freeway stay on separate levels",
+  "C5":"Freeway mainline unchanged", "C6":"No changes outside the interchange",
+  "DDI-1":"Through traffic crosses over at both ramp terminals", "DDI-2":"Left-side driving between the crossovers",
+  "DDI-3":"Each crossover keeps one node per direction", "SPUI-1":"One signal controls all movements",
+  "SPUI-2":"Each movement crosses the single intersection once"};
+const LEVEL_CLASS = {"Arizona":"az", "National":"nat", "Other state":"oth"};
+const GATE_TEXT = {pass:"pass", fail:"fail", skipped:"not reached"};
+const FT_LABEL = {freeway:"freeway", arterial:"arterial", ramp:"ramp", intersection_connector:"intersection connector"};
+const NODE_LABEL = {boundary:"edge of the study area", merge_diverge:"merge_diverge", port:"port", crossover:"crossover", roundabout:"roundabout"};
+const CTRL_LABEL = {signal_required_timing_unknown:"signal (timing not set)", control_to_verify:"control to be confirmed", yield_entry:"yield", circulating:"circulating", exit:"exit"};
+const termName = g => g==="SPUI" ? "single intersection" : `${g} ramp terminal`;
+const checkId = c => c.check.split(" ")[0];
+const T = () => D.targets[S.target];
+const isBefore = () => S.target==="diamond" || S.mode==="before";
+const curNet = () => isBefore() ? D.base : T().net;
+const curRoutes = () => isBefore() ? D.targets.diamond.routes : T().routes;
+const NX = n => S.sat ? n.X : n.x, NY = n => S.sat ? n.Y : n.y;
+const LG = l => S.sat ? l.d : l.geom;
+const legName = id => (D.scenario.legs||{})[String(id)] || ("node "+id);
+const checksPassed = t => t.checks.filter(c=>c.passed).length;
+
+/* ---------- header ---------- */
+$("sentence").textContent = D.scenario.sentence;
+
+/* ---------- facility picker ---------- */
+function renderPicker(){
+  const p = $("picker"); p.replaceChildren();
+  TKEYS.forEach((k,i)=>{
+    const t = D.targets[k], ok = checksPassed(t), all = t.checks.length;
+    const crit = t.standards.filter(c=>c.status==="met"||c.status==="measured").length;
+    p.append(h("button",{class:"pick", type:"button", "aria-pressed":String(S.target===k), onclick:()=>{setTarget(k);}},
+      h("span",{class:"label"}, k==="diamond" ? "Existing condition" : `Build alternative ${i}`),
+      h("b",null,t.label),
+      h("span",{class:"small"}, h("span",{class:"dot "+(ok===all?"ok":"no")}), k==="diamond" ? `${ok} of ${all} network checks pass` : `${ok} of ${all} network checks pass · ${crit} guidance items met`)));
+  });
+}
+function setTarget(k){
+  S.target = k; store.set("target", k); S.mode = "after"; S.vb = null; hidePin();
+  if (S.route && !curRoutes().some(r=>r.o===S.route.o && r.d===S.route.d)) S.route = null;
+  renderAll();
+}
+
+/* ---------- step strip ---------- */
+function stepState(k){
+  const t = T(), isBase = S.target==="diamond";
+  switch(k){
+    case "base": return ["ok", `${D.base.nodes.length} nodes · ${D.base.links.length} links`];
+    case "inputs": return ["ok", "road names hidden"];
+    case "proposal": return ["ok", `${D.proposer.proposal.facility_class} · 12 links`];
+    case "gates": { const n=D.proposer.gates.length; return ["ok", `${n} of ${n} checks pass`]; }
+    case "template": return isBase ? ["na","no change"] : ["ok", FACIL[S.target]];
+    case "checks": { const ok=checksPassed(t); return [ok===t.checks.length?"ok":"no", `${ok} of ${t.checks.length} pass`]; }
+    case "export": return isBase ? ["na","no change"] : ["ok", `${t.net.nodes.length} nodes · ${t.net.links.length} links`];
+  }
+}
+function renderSteps(){
+  const n = $("steps"); n.replaceChildren();
+  STEPS.forEach((st,i)=>{
+    const [state, sub] = stepState(st.k);
+    n.append(h("button",{class:"step"+(st.ai?" ai":""), type:"button", "data-k":st.k, title:st.d, "aria-pressed":String(S.step===i),
+        onclick:()=>{S.step=i; store.set("step",i); renderSteps(); renderDetail(); revealDetail();}},
+      h("span",{class:"n"}, i+1),
+      h("span",{class:"t"}, h("b",null,st.n), h("span",null, h("span",{class:"dot "+state}), sub))));
+  });
+  const cur = n.children[S.step];                         // keep the chosen step visible when the strip scrolls sideways
+  if (cur && n.scrollWidth > n.clientWidth) n.scrollLeft = Math.max(0, cur.offsetLeft - (n.clientWidth - cur.offsetWidth) / 2);
+}
+// a step picked from the pinned strip while the detail card is scrolled away brings the card back into view
+function revealDetail(){
+  const card = $("detail-card"), bar = $("steps").getBoundingClientRect().bottom;
+  if (card.getBoundingClientRect().top >= bar - 1) return;
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  $("edit").scrollBy({top: card.getBoundingClientRect().top - bar - 10, behavior: reduce ? "auto" : "smooth"});   // the Edit view scrolls, not the page
+}
+
+/* ---------- network view ---------- */
+const svg = $("svg");
+function extentOf(nodes, pad){
+  let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+  for (const n of nodes){ x0=Math.min(x0,NX(n)); x1=Math.max(x1,NX(n)); y0=Math.min(y0,NY(n)); y1=Math.max(y1,NY(n)); }
+  const cx=(x0+x1)/2, cy=(y0+y1)/2, half=Math.max(x1-x0,y1-y0)/2+pad;
+  return {x:cx-half, y:-(cy+half), w:2*half, h:2*half};
+}
+function homeVB(){
+  if (S.sat){ const h=D.basemap.half_m; return {x:-h, y:-h, w:2*h, h:2*h}; }
+  // fit the drawing tightly; Before and After share one frame so switching does not jump
+  const ns = D.base.nodes.concat(S.target!=="diamond" && T().net ? T().net.nodes : []);
+  let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+  for (const n of ns){ x0=Math.min(x0,n.x); x1=Math.max(x1,n.x); y0=Math.min(y0,n.y); y1=Math.max(y1,n.y); }
+  const pad = Math.max(30, 0.035*Math.max(x1-x0, y1-y0));
+  return {x:x0-pad, y:-(y1+pad), w:(x1-x0)+2*pad, h:(y1-y0)+2*pad};
+}
+function presets(){
+  const net = curNet(), out=[["Whole", homeVB()]];
+  const groups = [...new Set(net.nodes.map(n=>n.g).filter(Boolean))].sort();
+  if (S.sat) out.push(["Interchange", {x:-420, y:-260, w:840, h:840}]);
+  for (const g of groups){ const ns=net.nodes.filter(n=>n.g===g); if (ns.length>1) out.push([g==="SPUI"?"Single point":g+" terminal", extentOf(ns, S.sat?55:45)]); }
+  return out;
+}
+function renderZoomer(){
+  const z=$("zoomer"); z.replaceChildren();
+  for (const [name,vb] of presets()) z.append(h("button",{type:"button", onclick:()=>{S.vb={...vb}; drawNet();}}, name));
+}
+function pointsAlong(geom, f){
+  const segs=[]; let tot=0;
+  for (let i=1;i<geom.length;i++){ const L=Math.hypot(geom[i][0]-geom[i-1][0], geom[i][1]-geom[i-1][1]); segs.push(L); tot+=L; }
+  let tgt=tot*f, acc=0;
+  for (let i=1;i<geom.length;i++){ const L=segs[i-1]; if (acc+L>=tgt && L>0){ const t=(tgt-acc)/L; const a=geom[i-1], b=geom[i];
+      return {x:a[0]+t*(b[0]-a[0]), y:a[1]+t*(b[1]-a[1]), dx:(b[0]-a[0])/L, dy:(b[1]-a[1])/L}; } acc+=L; }
+  const a=geom[geom.length-2], b=geom[geom.length-1], L=Math.hypot(b[0]-a[0],b[1]-a[1])||1;
+  return {x:b[0], y:b[1], dx:(b[0]-a[0])/L, dy:(b[1]-a[1])/L};
+}
+const ptsAttr = g => g.map(p=>p[0]+","+(-p[1])).join(" ");
+function drawNet(){
+  const net = curNet(), t = T();
+  const after = !isBefore();
+  if (!S.vb) S.vb = homeVB();
+  $("mapbox").classList.toggle("sat", S.sat);
+  const W = svg.clientWidth || 600, H = svg.clientHeight || W, A = H / W;
+  { const v=S.vb, cx=v.x+v.w/2, cy=v.y+v.h/2; let w=v.w, hh=v.h;        // show the whole requested box at the map's aspect
+    if (hh / w > A) w = hh / A; else hh = w * A; S.vb = {x:cx-w/2, y:cy-hh/2, w, h:hh}; }
+  const vb = S.vb;
+  svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+  const px = W, k = px / vb.w;                            // screen px per network metre
+  const u = v => v / k;                                   // px -> network units
+  const zoomed = k > 1.05;
+  svg.replaceChildren();
+  const nodes = new Map(net.nodes.map(n=>[n.id,n]));
+  const routeLinks = new Set(S.route ? (curRoutes().find(r=>r.o===S.route.o && r.d===S.route.d)||{links:[]}).links : []);
+  const gLay = n => svg.appendChild(s("g",{class:n}));
+  if (S.sat){
+    const h=D.basemap.half_m; svg.append(s("image",{href:D.basemap.src, x:-h, y:-h, width:2*h, height:2*h, preserveAspectRatio:"none"}));
+    const dt=D.basemap.detail; if (dt) svg.append(s("image",{href:dt.src, x:-dt.half_m, y:-dt.half_m, width:2*dt.half_m, height:2*dt.half_m, preserveAspectRatio:"none"}));
+  }
+  const gGhost=gLay("ghosts"), gHalo=gLay("halos"), gCase=gLay("cases"), gLink=gLay("links"), gRoute=gLay("route"), gArrow=gLay("arrows"), gNode=gLay("nodes"), gLab=gLay("labels"), gHit=gLay("hits");
+  // deleted base links, shown as ghosts in the after view
+  if (after && S.changes && t.deleted){
+    const del = new Set(t.deleted.link);
+    for (const l of D.base.links) if (del.has(l.id)) gGhost.append(s("polyline",{class:"ghost", points:ptsAttr(LG(l)), "stroke-width":u(1.6)}));
+  }
+  const labels = [], placed = [];                         // label candidates; boxes already taken (SVG units)
+  const order = l => l.t==="freeway"?0:(l.t==="intersection_connector"?2:1);
+  const links = [...net.links].sort((a,b)=>order(a)-order(b));
+  for (const l of links){
+    const G = LG(l), P = ptsAttr(G), w = l.t==="freeway"?2.6:(l.t==="intersection_connector"?2:2.4);
+    if (after && S.changes && t.changed["link:"+l.id]) gHalo.append(s("polyline",{class:"halo", points:P, "stroke-width":u(11)}));
+    gCase.append(s("polyline",{class:"case", points:P, "stroke-width":u(w+3.5)}));
+    gLink.append(s("polyline",{class:"lk "+l.t, points:P, "stroke-width":u(w), "data-id":l.id}));
+    if (routeLinks.has(l.id)) gRoute.append(s("polyline",{class:"rt", points:P, "stroke-width":u(6)}));
+    const a = pointsAlong(G, l.t==="intersection_connector"?0.62:0.56), L=u(l.t==="freeway"?9:8), W=u(4);
+    const tip=[a.x+a.dx*L/2, a.y+a.dy*L/2], b1=[a.x-a.dx*L/2-a.dy*W, a.y-a.dy*L/2+a.dx*W], b2=[a.x-a.dx*L/2+a.dy*W, a.y-a.dy*L/2-a.dx*W];
+    gArrow.append(s("polygon",{class:"ar "+l.t, points:[tip,b1,b2].map(p=>p[0]+","+(-p[1])).join(" ")}));
+    gHit.append(s("polyline",{class:"hit", points:P, "stroke-width":u(12), "data-link":l.id}));
+    if (S.ids && (l.t!=="intersection_connector" || zoomed)) labels.push({link:l, G, pr:{freeway:1, arterial:2, ramp:3}[l.t]||4});
+  }
+  // nodes: co-located ones share one mark and one label
+  const spots = new Map();
+  for (const n of net.nodes){ const key=NX(n)+","+NY(n); if (!spots.has(key)) spots.set(key,[]); spots.get(key).push(n); }
+  for (const group of spots.values()){
+    const n = group[0], r = u(n.t==="crossover"?5:(n.t==="roundabout"?3.2:3.6)), nx=NX(n), ny=NY(n);
+    const chg = after && S.changes && group.some(m=>t.changed["node:"+m.id]);
+    gNode.append(s("circle",{class:"nd "+n.t+(chg?" chg":""), cx:nx, cy:-ny, r, "stroke-width":u(chg?2:1.2)}));
+    gHit.append(s("circle",{cx:nx, cy:-ny, r:u(9), fill:"transparent", "data-node":group.map(m=>m.id).join("/"), style:"cursor:pointer"}));
+    placed.push([nx-r, -ny-r, nx+r, -ny+r]);
+    if (S.nodes || zoomed || n.t==="crossover") labels.push({node:n, nx, ny, txt:group.map(m=>m.id).join("/"), pr:n.t==="crossover"?0:5});
+  }
+  renderLegend(after);
+  { // the floating legend is an obstacle too, so no label hides underneath it
+    const lg=$("legend"), lr=lg.getBoundingClientRect(), sr=svg.getBoundingClientRect();
+    if (getComputedStyle(lg).position==="absolute" && lr.width && sr.width){ const kk=sr.width/vb.w;
+      placed.push([vb.x+(lr.left-sr.left)/kk, vb.y+(lr.top-sr.top)/kk, vb.x+(lr.right-sr.left)/kk, vb.y+(lr.bottom-sr.top)/kk]); }
+  }
+  // labels: crossovers first, then freeway, arterial, ramp and connector IDs; a label that would cover another
+  // label or a node tries other spots along its link and is left out if none is free (zooming in brings it back)
+  const pad = u(1.5), free = b => !placed.some(p => b[0]<p[2]+pad && b[2]>p[0]-pad && b[1]<p[3]+pad && b[3]>p[1]-pad);
+  let hidden = 0;
+  for (const L of labels.sort((a,b)=>a.pr-b.pr)){
+    if (L.node){
+      const n=L.node, fs=u(n.t==="crossover"?11:10.5), w=fs*0.62*L.txt.length, o=u(6);
+      const spotsN = [[L.nx+o, -L.ny-o], [L.nx-o-w, -L.ny-o], [L.nx+o, -L.ny+o+fs*0.8], [L.nx-o-w, -L.ny+o+fs*0.8]];
+      const at = spotsN.find(([x,y])=>free([x, y-fs*0.85, x+w, y+fs*0.2])) || spotsN[0];   // asked-for node IDs are always drawn
+      placed.push([at[0], at[1]-fs*0.85, at[0]+w, at[1]+fs*0.2]);
+      const tx=s("text",{class:"nid "+n.t, x:at[0], y:at[1], "font-size":fs, "stroke-width":u(3)}); tx.textContent=L.txt; gLab.append(tx);
+      continue;
+    }
+    const l=L.link, fs=u(l.t==="intersection_connector"?10:11), txt=String(l.id), wbox=fs*0.68*txt.length+u(6), hbox=fs*1.25;
+    const f0 = l.t==="freeway" ? (S.sat?0.12:0.3) : 0.5;
+    let spot = null;
+    for (const f of [f0, 0.5, 0.38, 0.62, 0.27, 0.73, 0.18, 0.82]){
+      const m = pointsAlong(L.G, f), b = [m.x-wbox/2, -m.y-hbox/2, m.x+wbox/2, -m.y+hbox/2];
+      if (free(b)){ spot = {m, b}; break; }
+    }
+    if (!spot){ hidden++; continue; }
+    placed.push(spot.b);
+    const m = spot.m, g=s("g",{"pointer-events":"none"});
+    g.append(s("rect",{class:"lbg "+l.t, x:m.x-wbox/2, y:-m.y-hbox/2, width:wbox, height:hbox, rx:u(3)}));
+    const tx=s("text",{class:"lid", x:m.x, y:-m.y+fs*0.36, "font-size":fs, "text-anchor":"middle"}); tx.textContent=txt; g.append(tx);
+    gLab.append(g);
+  }
+  $("lblnote").textContent = hidden ? ` · ${hidden} link ID${hidden>1?"s":""} hidden to avoid overlap; zoom in to see ${hidden>1?"them":"it"}` : "";
+  $("credit").hidden = !S.sat; $("credit").textContent = D.basemap.attribution;
+  $("satnote").hidden = !S.sat;
+  $("satnote").textContent = "Satellite image from Mapbox, turned so that up points northwest along I-10. Existing roads are drawn where they were measured on this image (within about 10 m). New or moved parts are placed relative to each ramp terminal. This placement is for viewing only; the network files keep the drawing's coordinates.";
+}
+function renderLegend(after){
+  const L=$("legend"); L.replaceChildren();
+  const item=(cls,txt,circle)=>h("span",null,h("i",{class:circle?"c":"", style:`background:var(--${cls})`}),txt);
+  L.append(item("fw","freeway"), item("art","arterial"), item("ramp","ramp"), item("conn","intersection connector"), item("xover","crossover",true));
+  if (after && S.changes) L.append(h("span",null,h("i",{style:"background:var(--halo);height:8px"}),"changed"), h("span",null,h("i",{style:"background:repeating-linear-gradient(90deg,var(--ghost) 0 5px,transparent 5px 9px)"}),"removed"));
+  if (S.route) L.append(item("route","trip being followed"));
+}
+// pan and zoom: drag, wheel (Ctrl/pinch always; plain wheel once the map is clicked), double-click, touch pinch, keys
+const MINW = 40;
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+function setVB(){ svg.setAttribute("viewBox", `${S.vb.x} ${S.vb.y} ${S.vb.w} ${S.vb.h}`); }
+function zoomBy(f, fx=0.5, fy=0.5, redraw=true){
+  const vb=S.vb, w=clamp(vb.w*f, MINW, homeVB().w*2.4), hh=w*vb.h/vb.w;
+  S.vb={x:vb.x+fx*(vb.w-w), y:vb.y+fy*(vb.h-hh), w, h:hh};
+  redraw ? drawNet() : setVB();
+}
+function setActive(on){ S.active=on; $("mapbox").classList.toggle("active", on); }
+(function(){
+  const box=$("mapbox"), pts=new Map(); let drag=null, pinch=null, redrawT=null;
+  const later=()=>{ clearTimeout(redrawT); redrawT=setTimeout(drawNet, 140); };
+  svg.addEventListener("pointerdown",e=>{
+    if (e.pointerType==="mouse" && e.button!==0) return;
+    setActive(true); svg.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if (pts.size===1) drag={x:e.clientX, y:e.clientY, vb:{...S.vb}, moved:false};
+    else if (pts.size===2){ const [a,b]=[...pts.values()]; pinch={d:Math.hypot(a.x-b.x,a.y-b.y)||1, vb:{...S.vb}, mx:(a.x+b.x)/2, my:(a.y+b.y)/2}; drag=null; }
+  });
+  svg.addEventListener("pointermove",e=>{
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if (pinch && pts.size>=2){
+      const [a,b]=[...pts.values()], d=Math.hypot(a.x-b.x,a.y-b.y), r=svg.getBoundingClientRect();
+      const fx=(pinch.mx-r.left)/r.width, fy=(pinch.my-r.top)/r.height, v=pinch.vb;
+      const w=clamp(v.w*pinch.d/d, MINW, homeVB().w*2.4), hh=w*v.h/v.w;
+      S.vb={x:v.x+fx*(v.w-w), y:v.y+fy*(v.h-hh), w, h:hh}; setVB(); return;
+    }
+    if (!drag) return;
+    const k=(svg.clientWidth||600)/drag.vb.w, dx=(e.clientX-drag.x)/k, dy=(e.clientY-drag.y)/k;
+    if (Math.abs(dx)+Math.abs(dy) > 3/k){ drag.moved=true; svg.classList.add("drag"); S.vb={...drag.vb, x:drag.vb.x-dx, y:drag.vb.y-dy}; setVB(); }
+  });
+  const up=e=>{
+    pts.delete(e.pointerId);
+    if (pinch){ if (pts.size<2){ pinch=null; drag=null; drawNet(); } return; }
+    if (!drag) return;
+    const moved=drag.moved; drag=null; svg.classList.remove("drag");
+    if (moved) drawNet(); else pick(e);
+  };
+  svg.addEventListener("pointerup",up);
+  svg.addEventListener("pointercancel",e=>{ pts.delete(e.pointerId); drag=null; pinch=null; svg.classList.remove("drag"); });
+  box.addEventListener("pointerleave",()=>setActive(false));
+  svg.addEventListener("wheel",e=>{
+    if (!(e.ctrlKey || e.metaKey || S.active)) return;
+    e.preventDefault();
+    const r=svg.getBoundingClientRect(), rate=(e.ctrlKey||e.metaKey) ? 0.01 : 0.0022;
+    zoomBy(Math.exp(clamp(e.deltaY*rate, -0.6, 0.6)), (e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height, false); later();
+  }, {passive:false});
+  svg.addEventListener("dblclick",e=>{ const r=svg.getBoundingClientRect(); zoomBy(0.5, (e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height); });
+  box.addEventListener("keydown",e=>{
+    const step=S.vb.w*0.15, keys={ArrowLeft:[-step,0], ArrowRight:[step,0], ArrowUp:[0,-step], ArrowDown:[0,step]};
+    if (e.key==="+"||e.key==="=") zoomBy(1/1.5); else if (e.key==="-"||e.key==="_") zoomBy(1.5);
+    else if (e.key==="0"){ S.vb=homeVB(); drawNet(); }
+    else if (keys[e.key]){ S.vb={...S.vb, x:S.vb.x+keys[e.key][0], y:S.vb.y+keys[e.key][1]}; drawNet(); }
+    else return;
+    e.preventDefault();
+  });
+  $("zoom-in").addEventListener("click",()=>zoomBy(1/1.5));
+  $("zoom-out").addEventListener("click",()=>zoomBy(1.5));
+  $("zoom-reset").addEventListener("click",()=>{ S.vb = S.sat ? {x:-420,y:-260,w:840,h:840} : homeVB(); drawNet(); });
+})();
+function pick(e){
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  if (!el) return;
+  const net = curNet();
+  if (el.dataset && el.dataset.link){ const l=net.links.find(x=>x.id===+el.dataset.link); if (l) showPin("link", l); }
+  else if (el.dataset && el.dataset.node){ const ids=el.dataset.node.split("/").map(Number); showPin("node", ids.map(i=>net.nodes.find(n=>n.id===i))); }
+}
+function hidePin(){ S.pin = null; const P=$("pinned"); P.hidden = true; P.replaceChildren(); }
+function showPin(kind, obj){
+  const P=$("pinned"); P.replaceChildren(); P.hidden = false; S.pin = kind;
+  P.append(h("button",{class:"x", type:"button", "aria-label":"Close details", onclick:hidePin}, "×"));
+  const t=T(), after=!isBefore();
+  if (kind==="link"){
+    const ch = after ? t.changed["link:"+obj.id] : null;
+    put(P, h("b",null,"Link "+obj.id), " from node ", h("span",{class:"mono"}, obj.a), " to node ", h("span",{class:"mono"}, obj.b), " · ", FT_LABEL[obj.t]||obj.t,
+      obj.s ? ` · ${CTRL_LABEL[obj.s]||obj.s}` : null, obj.g ? ` · ${termName(obj.g)}` : null, ` · ${obj.len} m on the drawing`,
+      ch ? [" ", h("span",{class:"pill "+(ch==="added"?"schematic":"needs_data")}, ch==="modified"?"changed":ch)] : null);
+  } else {
+    put(P, obj.map((n,i)=>[i?h("br"):null, h("b",null,"Node "+n.id), " · ", NODE_LABEL[n.t]||n.t, n.c?` · ${n.c}`:"", n.g?` · ${termName(n.g)}`:"",
+      after && t.changed["node:"+n.id] ? [" ", h("span",{class:"pill schematic"}, t.changed["node:"+n.id]==="modified"?"moved":t.changed["node:"+n.id])] : null]));
+    if (obj.length>1) P.append(h("div",{class:"small muted"},"Two nodes at the same spot, one for each travel direction. They are kept separate so traffic cannot turn from one direction to the other here."));
+  }
+}
+
+/* ---------- route tracer ---------- */
+function renderRoutePicker(){
+  const routes=curRoutes(), oSel=$("route-o"), dSel=$("route-d");
+  const origins=[...new Set(routes.map(r=>r.o))];
+  oSel.replaceChildren(h("option",{value:""},"from…"), ...origins.map(o=>h("option",{value:o, selected:S.route&&S.route.o===o}, legName(o))));
+  const ds = S.route ? routes.filter(r=>r.o===S.route.o) : [];
+  dSel.replaceChildren(h("option",{value:""},"to…"), ...ds.map(r=>h("option",{value:r.d, selected:S.route&&S.route.d===r.d}, legName(r.d))));
+  dSel.disabled = !S.route;
+  const seq=$("route-seq"); seq.replaceChildren();
+  if (S.route && S.route.d){
+    const r=routes.find(x=>x.o===S.route.o && x.d===S.route.d);
+    if (r){
+      const nodes=new Map(curNet().nodes.map(n=>[n.id,n]));
+      const xs=r.nodes.filter(n=>nodes.get(n) && nodes.get(n).t==="crossover");
+      seq.append(h("em",null,"via links"));
+      r.links.forEach((l,i)=>{ if(i) seq.append(h("em",null,"→")); seq.append(h("span",null,l)); });
+      seq.append(h("em",null," · nodes"));
+      if (xs.length) seq.append(h("em",null,` (crossovers in red)`));
+      r.nodes.forEach((n,i)=>{ if(i) seq.append(h("em",null,"→")); seq.append(h("span",{class:xs.includes(n)?"x":""},n)); });
+    }
+  }
+}
+$("route-o").addEventListener("change",e=>{ const o=+e.target.value; if(!o){S.route=null;} else { const first=curRoutes().find(r=>r.o===o); S.route={o, d:first?first.d:null}; } renderRoutePicker(); drawNet(); });
+$("route-d").addEventListener("change",e=>{ if(S.route){ S.route.d=+e.target.value||null; } renderRoutePicker(); drawNet(); });
+$("route-clear").addEventListener("click",()=>{ S.route=null; renderRoutePicker(); drawNet(); });
+
+/* ---------- toolbar ---------- */
+function renderToolbar(){
+  const isBase = S.target==="diamond";
+  $("mode-before").setAttribute("aria-pressed", String(isBase || S.mode==="before"));
+  $("mode-after").setAttribute("aria-pressed", String(!isBase && S.mode==="after"));
+  $("mode-after").disabled = isBase;
+  $("opt-ids").checked=S.ids; $("opt-nodes").checked=S.nodes; $("opt-changes").checked=S.changes; $("opt-changes").disabled=isBase; $("opt-sat").checked=S.sat;
+}
+$("mode-before").addEventListener("click",()=>{ S.mode="before"; hidePin(); renderToolbar(); renderZoomer(); drawNet(); renderRoutePicker(); });
+$("mode-after").addEventListener("click",()=>{ S.mode="after"; hidePin(); renderToolbar(); renderZoomer(); drawNet(); renderRoutePicker(); });
+$("opt-ids").addEventListener("change",e=>{S.ids=e.target.checked; drawNet();});
+$("opt-nodes").addEventListener("change",e=>{S.nodes=e.target.checked; drawNet();});
+$("opt-changes").addEventListener("change",e=>{S.changes=e.target.checked; drawNet();});
+$("opt-sat").addEventListener("change",e=>{S.sat=e.target.checked; store.set("sat",S.sat); S.vb=S.sat?{x:-420,y:-260,w:840,h:840}:null; renderZoomer(); drawNet();});
+
+/* ---------- step detail ---------- */
+const pill = (cls, txt) => h("span",{class:"pill "+cls}, txt);
+const kv = rows => h("dl",{class:"kv"}, ...rows.filter(Boolean).map(([k,v])=>[h("dt",null,k), h("dd",null,v)]).flat());
+function table(head, rows, cls){
+  const num = head.map((_,i)=>rows.length>0 && rows.every(r=>r.children[i] && r.children[i].classList.contains("n")));
+  return h("div",{class:"tablewrap"}, h("table",{class:cls||null}, h("thead",null,h("tr",null,...head.map((x,i)=>h("th",num[i]?{class:"n"}:null,x)))), h("tbody",null,...rows)));
+}
+function detailText(d){ return Array.isArray(d) ? d.join("; ") : String(d); }
+function renderDetail(){
+  const st=STEPS[S.step], t=T(), body=$("detail"), title=$("detail-title");
+  title.replaceChildren(); put(title, h("span",{class:"label"},`Step ${S.step+1} of ${STEPS.length}`), " ", st.n);
+  $("detail-sub").textContent = st.d;
+  body.replaceChildren(); body.scrollTop = 0; body.classList.toggle("full", st.k==="inputs");
+  const P = D.proposer.proposal;
+  if (st.k==="base"){
+    const site=D.scenario.site;
+    body.append(kv([["Nodes", h("span",{class:"num"}, D.base.nodes.length)], ["Links (one per direction)", h("span",{class:"num"}, D.base.links.length)],
+      ["Turning movements", h("span",{class:"num"}, D.base.movements)], ["Interchange type in the network", pill("pass", D.table_signature)],
+      ["Location", h("span",{class:"mono"}, `${site.lat}, ${site.lon}`)], ["Matched to", site.atlas],
+      ["Road directions", `I-10 runs ${site.freeway_bearing_deg}° and Queen Creek Rd ${site.crossroad_bearing_deg}° (compass)`]]),
+      h("p",{class:"note"},"This is the SR 347 / I-10 network package in GMNS format, drawn to approximate scale but not tied to real coordinates. Lane counts, speeds and capacities are blank because they are unknown, not zero."));
+  }
+  if (st.k==="inputs"){
+    body.append(h("figure",{class:"figure fit",style:"margin:0"}, h("img",{src:D.proposer.image.src, width:D.proposer.image.w, height:D.proposer.image.h, alt:"What the model sees: a satellite image and the numbered network"}),
+      h("figcaption",null,"This is the only image the model saw. Left: the satellite image, turned to match the network drawing. Right: the existing network with link numbers in boxes, node numbers at the circles, and a 6 × 6 grid for describing locations.")),
+      h("details",null, h("summary",null,"Prompt text (road names hidden)"), h("pre",{class:"prompt"}, D.proposer.prompt)));
+  }
+  if (st.k==="proposal"){
+    const terms=P.terminals;
+    const rows=D.roles.map(r=>h("tr",null, h("td",null,ROLE_LABEL[r]||r), ...terms.map(tm=>{ const b=tm.bindings[r]; return h("td",{class:"mono"}, h("b",null,"link "+b.link_id), h("span",{class:"muted"},` (node ${b.from_node_id} → ${b.to_node_id})`)); })));
+    body.append(h("p",{class:"small"}, `${D.proposer.label ? `Written by ${D.proposer.label}. ` : ''}The proposer saw only the image and the prompt in step 2.`),
+      kv([["Existing interchange type", pill("pass", P.facility_class)], ["Requested change", P.operations.map(o=>CHANGE_TEXT[o.to_class]||`${o.op} ${o.from_class} → ${o.to_class}`).join("; ")],
+          ["Ramp terminals found", terms.map(tm=>`${tm.name} (grid square ${tm.anchor_cell})`).join(", ")]]),
+      h("p",{class:"small",style:"margin:0"},"The links the model identified for each part of the two ramp terminals:"),
+      table(["Part of the ramp terminal", ...terms.map(tm=>tm.name)], rows),
+      h("details",null, h("summary",null,`What the model observed (${P.evidence.length})`), h("ul",{class:"plain small",style:"margin-top:6px"}, ...P.evidence.map(x=>h("li",null,x)))),
+      h("details",null, h("summary",null,`What the model could not determine (${P.not_established.length})`), h("ul",{class:"plain small",style:"margin-top:6px"}, ...P.not_established.map(x=>h("li",null,x)))));
+    if (S.target!=="diamond" && S.target!==P.operations[0].to_class)
+      body.append(h("p",{class:"note"}, `The model was asked for a ${FACIL[P.operations[0].to_class]}. You picked the ${FACIL[S.target]}, so the tool reuses the links the model identified and builds that design instead.`));
+  }
+  if (st.k==="gates"){
+    const src = S.wrong && D.wrong ? D.wrong : D.proposer;
+    body.append(h("div",{class:"seg",role:"group","aria-label":"Which answer"},
+      h("button",{type:"button","aria-pressed":String(!S.wrong), onclick:()=>{S.wrong=false; renderDetail();}},"The model's answer"),
+      D.wrong ? h("button",{type:"button","aria-pressed":String(S.wrong), onclick:()=>{S.wrong=true; renderDetail();}},"Example of a rejected answer") : null),
+      h("p",{class:"small"}, S.wrong && D.wrong ? `${D.wrong.what}. The checks stop it before anything in the network changes.`
+        : "Before anything in the network changes, the model's answer has to pass every check below. A failed check sends the specific problem back to the model once for a corrected answer."));
+    body.append(h("div",null, ...src.gates.map(g=>h("div",{class:"gate"}, pill(g.status, GATE_TEXT[g.status]||g.status), h("span",null, g.text, " ", h("span",{class:"mono small muted"}, g.gate.split(" ")[0])),
+      ...g.defects.map(x=>h("span",{class:"why"}, x))))));
+  }
+  if (st.k==="template"){
+    if (S.target==="diamond"){ body.append(h("p",null,"The existing interchange is not changed. Pick a build alternative above to see the new design.")); }
+    else {
+      body.append(h("p",{class:"small",style:"margin:0"},`What the ${FACIL[S.target]} template did:`), h("ol",{class:"log"}, ...t.log.map(x=>h("li",null,x))),
+        kv(Object.entries(t.groups).map(([g,v])=>[termName(g).replace(/^./,c=>c.toUpperCase()), `${v.required} turning movements required, ${v.forbidden} prohibited`])),
+        h("p",{class:"note"},"The design template places every node and link and decides every turning movement. The model only said which existing links play which part."));
+    }
+  }
+  if (st.k==="checks"){
+    body.append(table(["Check","Result","Model expected it","Details"], t.checks.map(c=>h("tr",null,
+      h("td",{class:"k-name"}, CHECK_LABEL[checkId(c)]||c.check, " ", h("span",{class:"mono small muted"}, checkId(c))), h("td",{class:"k-res"},pill(c.passed?"pass":"fail", c.passed?"pass":"fail")),
+      h("td",{class:"small k-ai"}, c.asserted_by_proposal==null?"":(c.asserted_by_proposal?"yes":"no")), h("td",{class:"small k-det"}, detailText(c.detail)))), "checks"),
+      h("p",{class:"note"}, S.target==="diamond" ? "The same checks are run on the existing network for comparison." : "“Model expected it” marks the conditions the model said must hold after the change."));
+  }
+  if (st.k==="export"){
+    if (!t.changes){ body.append(h("p",null,"No files are written for the existing network.")); }
+    else {
+      const OBJ = {node:"Nodes", link:"Links", movement:"Turning movements"};
+      body.append(table(["","Unchanged","Changed","Added","Removed"], Object.entries(t.changes).map(([o,c])=>h("tr",null,
+        h("td",null,OBJ[o]||o), h("td",{class:"n"},c.unchanged), h("td",{class:"n"},c.modified), h("td",{class:"n"},c.added), h("td",{class:"n"},c.deleted)))),
+        kv([["New network", `${t.net.nodes.length} nodes, ${t.net.links.length} links, ${t.net.movements} turning movements`],
+            ["Files written", h("span",{class:"mono small"},"node.csv · link.csv · movement.csv · config.csv · route_checks.csv · change_table.csv · edit_summary.json · report.md")]]),
+        h("p",{class:"note"},"The network files follow the GMNS format."));
+    }
+  }
+}
+
+/* ---------- design guidance ---------- */
+function renderCriteria(){
+  const t=T();
+  $("crit-title").textContent = "Design guidance check · " + t.label;
+  const tally={}; t.standards.forEach(c=>tally[c.status]=(tally[c.status]||0)+1);
+  $("crit-tally").replaceChildren(...["met","measured","schematic","needs_data","not_met","info"].filter(k=>tally[k]).map(k=>pill(k, tallyText(k, tally[k]))));
+  const lvl = c => h("span",{class:"lvl "+(LEVEL_CLASS[c.level]||"oth")}, c.level||"other");
+  $("crit-body").replaceChildren(...t.standards.map(c=>h("tr",null, h("td",{class:"c-id"},c.id), h("td",{class:"c-crit"},c.criterion),
+    h("td",{class:"c-res"},pill(c.status, STATUS_TEXT[c.status])), h("td",{class:"small c-det"}, c.detail),
+    h("td",{class:"src c-src"}, lvl(c), c.url ? h("a",{href:c.url, target:"_blank", rel:"noopener", title:c.source}, c.short||c.source) : h("span",{class:"s", title:c.source}, c.short||c.source)))));
+  $("statuskey").replaceChildren(...Object.keys(STATUS_TEXT).map(k=>h("span",null,pill(k,STATUS_TEXT[k])," ",STATUS_HELP[k])));
+  // each document once, in the order Arizona, national, other state
+  const docs = new Map();
+  for (const c of t.standards) if (!docs.has(c.doc||c.source)) docs.set(c.doc||c.source, c);
+  const rank = {"Arizona":0, "National":1};
+  $("srclist").replaceChildren(h("span",{class:"label"},"Sources"), h("ul",null, ...[...docs.values()].sort((a,b)=>(rank[a.level]??2)-(rank[b.level]??2)).map(c=>h("li",null, lvl(c),
+    h("span",null, h("b",null,c.doc_short||""), ": ", c.doc_url ? h("a",{href:c.doc_url, target:"_blank", rel:"noopener"}, c.doc) : (c.doc||c.source))))));
+}
+
+function renderAll(){ renderPicker(); renderSteps(); renderToolbar(); renderZoomer(); drawNet(); renderRoutePicker(); renderDetail(); renderCriteria(); }
+$("footer").append(h("span",null,`Imagery © Mapbox © Maxar © OpenStreetMap contributors (satellite-v9, fetched ${D.basemap.fetched_utc.replace("T"," ").replace("Z"," UTC")}, centre ${D.scenario.site.lat}, ${D.scenario.site.lon}). Network: SR 347 / I-10 GMNS package (drawn to approximate scale). Location match: Phoenix Interchange Atlas (OpenStreetMap data of 2025-03-10).`),
+  h("span",null,"Self-contained page generated by pave_edit (tools/build_dashboard.py). Design guidance was read from the linked documents: ADOT RDG and NCHRP 959 on 2026-10-07, the others on 2026-10-05."));
+renderAll();
+let rz; window.addEventListener("resize",()=>{ clearTimeout(rz); rz=setTimeout(drawNet,120); });
+};
+</script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+// Each part is filled by its own builder; a page may hold only some of them (the read pipeline fills Read, edit's
+// tools/build_dashboard.py fills Edit, dashboard/build_pave.py fills all three).
+const filled = id => { const t = $(id).textContent.trim(); return t !== '' && !t.startsWith('/*__'); };
+const VIEWS = ['overview', 'read', 'edit'].filter(v => filled({overview: 'pave-data', read: 'index', edit: 'edit-data'}[v]));
+const D = filled('pave-data') ? JSON.parse($('pave-data').textContent) : null;
+document.querySelectorAll('#nav a').forEach(a => { if (!VIEWS.includes(a.dataset.v)) a.remove(); });
+$('nav').hidden = VIEWS.length < 2;
+$('home').href = '#' + VIEWS[0];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const COLORS = {P:'var(--stage-p)', A:'var(--stage-a)', V:'var(--stage-v)', E:'var(--stage-e)'};
+
+/* theme, for the whole page */
+const store = {get(k, d){ try { return localStorage.getItem(k) ?? d; } catch { return d; } }, set(k, v){ try { localStorage.setItem(k, v); } catch {} }};
+const dark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+function applyTheme(t){ if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme; }
+applyTheme(store.get('pave-theme', ''));
+$('theme').onclick = () => { const t = dark() ? 'light' : 'dark'; applyTheme(t); store.set('pave-theme', t); };
+
+/* overview */
+if (D) {
+  $('tagline').textContent = D.tagline;
+  $('eyebrow').textContent = D.eyebrow;
+  $('lead').textContent = D.lead;
+  const boxes = D.stages.map((s, i) => {
+    const x = 14 + i * 248, c = COLORS[s.key];
+    return `<g class="stage"><rect x="${x}" y="22" width="222" height="86" rx="18" stroke="${c}"/>
+      <text x="${x + 22}" y="62" font-size="30" font-weight="800" fill="${c}">${s.key}</text>
+      <text x="${x + 58}" y="58" font-size="17" font-weight="700" fill="var(--ink)">${esc(s.name)}</text>
+      <text x="${x + 58}" y="80" font-size="12.5" fill="var(--muted)">${esc(s.short)}</text></g>` +
+      (i < 3 ? `<path class="flow" d="M${x + 226} 65 H${x + 244}" stroke="var(--faint)" stroke-width="2" marker-end="url(#ar)"/>` : '');
+  }).join('');
+  $('stage-boxes').innerHTML = boxes;
+  $('loop-back').textContent = D.loop_back;
+  $('stages').innerHTML = D.stages.map(s => `<div><b style="color:${COLORS[s.key]}">${esc(s.name)}</b>${esc(s.text)}</div>`).join('');
+  $('apps').innerHTML = D.apps.map(a => `<article class="app">
+      <div class="img" style="background-image:url('${a.image}')"></div>
+      <div class="body">
+        <div class="tag" style="color:${COLORS[a.color]}"><i style="background:${COLORS[a.color]}"></i>${esc(a.kind)}</div>
+        <h3>${esc(a.title)}</h3>
+        <p>${esc(a.text)}</p>
+        <div class="chips">${a.facts.map(([n, l]) => `<span><b>${esc(n)}</b> ${esc(l)}</span>`).join('')}</div>
+        <a class="open" href="#${a.view}" style="background:${COLORS[a.color]}">Open the ${esc(a.view)} example →</a>
+      </div></article>`).join('');
+  $('principles').innerHTML = D.principles.map(([t, s]) => `<div><b>${esc(t)}</b><span>${esc(s)}</span></div>`).join('');
+  $('foot').innerHTML = D.footer;
+}
+
+/* views: a view's code starts the first time it is shown, so its map and drawing get their real size */
+const started = {};
+function show(){
+  const want = location.hash.slice(1).split('/')[0];
+  const view = VIEWS.includes(want) ? want : VIEWS[0];
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.id === view));
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.v === view));
+  if (!started[view] && PAVE_VIEWS[view]) { started[view] = true; PAVE_VIEWS[view](); }
+}
+window.addEventListener('hashchange', show);
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show); else show();
+})();
+</script>
+<!--sites-->
+<!--__SITES__-->
+<!--/sites-->
+</body>
+</html>

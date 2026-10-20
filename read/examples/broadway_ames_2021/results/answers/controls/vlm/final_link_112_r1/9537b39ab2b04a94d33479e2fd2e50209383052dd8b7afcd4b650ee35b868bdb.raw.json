@@ -1,0 +1,343 @@
+{
+  "response": {
+    "controls": [
+      {
+        "id": "c1",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "red left arrow (top section lit); middle and bottom sections unlit, their symbols not visible",
+        "description": "Leftmost of three heads on the far-side mast arm facing WB traffic. Three-section vertical head with backplate; top lamp shows a lit red left-pointing arrow. Unlit middle/bottom lenses cannot be identified (could be yellow/green arrows or other) - not inferred. Seen clearly in detail view and small in both context views (same lit state).",
+        "face_status": "front",
+        "readability": "not_applicable",
+        "confidence": "high",
+        "applies_to": "lane_candidates",
+        "lane_candidates": [
+          "r1"
+        ],
+        "binding_status": "candidate",
+        "binding_reason": "Head faces the camera on the far-side arm over the WB lanes, left end of the arm; left-arrow display plus the LEFT TURN SIGNAL plaque (c5) suggest a left-turn signal; satellite shows a left-arrow marking in candidate r1 (hypothesis, not verified). Exact lane binding not proven by position alone.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_112_90f7e2a58066",
+            "bbox_xyxy": [
+              0.41,
+              0.317,
+              0.592,
+              0.709
+            ],
+            "finding": "three-section head with backplate, top lamp lit red left arrow"
+          },
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.39,
+              0.499,
+              0.415,
+              0.548
+            ],
+            "finding": "left head on far-side mast arm, red top lamp"
+          },
+          {
+            "source_id": "gsv_control_link_112_c28aca3e20",
+            "bbox_xyxy": [
+              0.438,
+              0.501,
+              0.452,
+              0.529
+            ],
+            "finding": "same head from 9 m back, red top lamp"
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "green up (through) arrow, bottom section lit; upper sections unlit",
+        "description": "Middle head on the far-side mast arm, front face with light-bordered backplate. Bottom lamp appears as a green upward arrow; only seen in context views at small size, so arrow shape reading is medium confidence.",
+        "face_status": "front",
+        "readability": "not_applicable",
+        "confidence": "medium",
+        "applies_to": "lane_candidates",
+        "lane_candidates": [
+          "r2",
+          "r3"
+        ],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces WB traffic over the through lanes; through-arrow display implies through movement but which lanes it governs is not proven by position; r3 may not be a general traffic lane.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.501,
+              0.504,
+              0.528,
+              0.552
+            ],
+            "finding": "middle head, bottom lamp green upward arrow"
+          },
+          {
+            "source_id": "gsv_control_link_112_c28aca3e20",
+            "bbox_xyxy": [
+              0.494,
+              0.503,
+              0.51,
+              0.53
+            ],
+            "finding": "same head from 9 m back, green bottom lamp"
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "green up (through) arrow, bottom section lit; top and middle unlit",
+        "description": "Rightmost head on the far-side mast arm (nearest the arm pole on the right). Three-section head with backplate; bottom lamp clearly a lit green upward arrow in the detail view.",
+        "face_status": "front",
+        "readability": "not_applicable",
+        "confidence": "high",
+        "applies_to": "lane_candidates",
+        "lane_candidates": [
+          "r2",
+          "r3"
+        ],
+        "binding_status": "unresolved",
+        "binding_reason": "Faces WB traffic; through-arrow display; position over the right part of the roadway does not by itself bind it to a lane; r3 may be a bike/curb strip rather than a motor lane.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_112_6ecdc6838223",
+            "bbox_xyxy": [
+              0.361,
+              0.314,
+              0.545,
+              0.719
+            ],
+            "finding": "three-section head, bottom lamp lit green up arrow"
+          },
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.612,
+              0.508,
+              0.639,
+              0.558
+            ],
+            "finding": "right head on far-side mast arm, green bottom lamp"
+          },
+          {
+            "source_id": "gsv_control_link_112_c28aca3e20",
+            "bbox_xyxy": [
+              0.552,
+              0.507,
+              0.567,
+              0.534
+            ],
+            "finding": "same head from 9 m back"
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "kind": "traffic_signal",
+        "observed_text": "",
+        "symbol": "unknown (back faces)",
+        "description": "Mast arm from a pole on the near-right corner crossing the road with three arm-mounted heads plus one pole-mounted head; all appear dark with no lit lens while the far-arm heads are visibly lit, consistent with back faces of heads serving the opposing (EB) direction. Front symbols cannot be read.",
+        "face_status": "back",
+        "readability": "not_applicable",
+        "confidence": "medium",
+        "applies_to": "other_approach",
+        "lane_candidates": [],
+        "binding_status": "not_applicable",
+        "binding_reason": "Heads hang from an arm crossing this road and show no lit faces toward WB traffic, so they likely face the opposite direction; not governing this approach.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_112_c28aca3e20",
+            "bbox_xyxy": [
+              0.634,
+              0.42,
+              0.95,
+              0.526
+            ],
+            "finding": "near-side mast arm heads, dark/unlit housings"
+          },
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.85,
+              0.364,
+              0.917,
+              0.453
+            ],
+            "finding": "one head of the same arm seen nearly overhead, dark housing, only a small reddish edge visible (side/back view)"
+          }
+        ]
+      },
+      {
+        "id": "c5",
+        "kind": "regulatory_sign",
+        "observed_text": "LEFT TURN SIGNAL",
+        "symbol": "text only",
+        "description": "White rectangular sign with black text on a post in the far-side median nose, facing WB traffic; upper of two signs on the same post.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "lane_candidates",
+        "lane_candidates": [
+          "r1"
+        ],
+        "binding_status": "candidate",
+        "binding_reason": "Text refers to the left-turn signal (c1); left turns would come from the leftmost lane candidate, but lane binding is not proven by the sign itself. Placement on the median rather than next to the head noted.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_112_62375a00e05c",
+            "bbox_xyxy": [
+              0.444,
+              0.383,
+              0.547,
+              0.518
+            ],
+            "finding": "LEFT TURN SIGNAL text readable"
+          },
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.361,
+              0.663,
+              0.377,
+              0.683
+            ],
+            "finding": "same sign small on median beyond far crosswalk"
+          }
+        ]
+      },
+      {
+        "id": "c6",
+        "kind": "regulatory_sign",
+        "observed_text": "",
+        "symbol": "keep right symbol (median island with arrow curving to its right)",
+        "description": "White sign with black keep-right symbol below the LEFT TURN SIGNAL sign on the same median-nose post, facing WB traffic.",
+        "face_status": "front",
+        "readability": "readable",
+        "confidence": "high",
+        "applies_to": "approach",
+        "lane_candidates": [],
+        "binding_status": "not_applicable",
+        "binding_reason": "Median-nose keep-right sign faces approaching WB traffic and concerns passing the median on the far side; not lane-specific.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_112_62375a00e05c",
+            "bbox_xyxy": [
+              0.444,
+              0.522,
+              0.548,
+              0.663
+            ],
+            "finding": "keep right symbol clearly visible"
+          },
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.36,
+              0.682,
+              0.377,
+              0.701
+            ],
+            "finding": "lower sign on same median post"
+          }
+        ]
+      },
+      {
+        "id": "c7",
+        "kind": "other_sign",
+        "observed_text": "",
+        "symbol": "orange diamond warning sign with two wavy/shifting lines (likely lane-shift or reverse-curve type), exact symbol partly blurred",
+        "description": "Orange (temporary/work-zone style) diamond warning sign on a stand on the right sidewalk/buffer next to the separated bike lane, roughly 40-50 m beyond the camera, i.e. downstream of the junction. Face toward camera.",
+        "face_status": "front",
+        "readability": "partial",
+        "confidence": "medium",
+        "applies_to": "unknown",
+        "lane_candidates": [],
+        "binding_status": "unresolved",
+        "binding_reason": "Located downstream of the junction on the departure side near the bike lane; may apply to the departure leg or bike lane rather than to the stop-line approach. Temporary sign, status outside the 2020-11 capture unknown.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_detail_link_112_dd4b3ac2c519",
+            "bbox_xyxy": [
+              0.453,
+              0.453,
+              0.558,
+              0.548
+            ],
+            "finding": "orange diamond with two curved black lines"
+          },
+          {
+            "source_id": "gsv_control_link_112_2313b6b71a",
+            "bbox_xyxy": [
+              0.554,
+              0.675,
+              0.573,
+              0.697
+            ],
+            "finding": "same orange sign small at far right"
+          }
+        ]
+      },
+      {
+        "id": "c8",
+        "kind": "pedestrian_signal",
+        "observed_text": "",
+        "symbol": "lit orange/red indication, shape not resolvable (possibly hand)",
+        "description": "Small pedestrian signal head on a pole at the near-right corner, facing roughly toward the camera, showing an orange-red lit indication. Too small to confirm the symbol.",
+        "face_status": "front",
+        "readability": "not_applicable",
+        "confidence": "low",
+        "applies_to": "pedestrians",
+        "lane_candidates": [],
+        "binding_status": "not_applicable",
+        "binding_reason": "Pedestrian head on the right sidewalk corner facing east-southeast, likely for the crosswalk across the cross street; not a vehicle control.",
+        "visual_refs": [
+          {
+            "source_id": "gsv_control_link_112_c28aca3e20",
+            "bbox_xyxy": [
+              0.709,
+              0.567,
+              0.733,
+              0.585
+            ],
+            "finding": "ped head with orange-red lit lens"
+          }
+        ]
+      }
+    ],
+    "unresolved": [
+      "Unlit sections of the left-turn head (c1) cannot be identified; whether a protected-only or permissive left display exists is unknown.",
+      "Middle head (c2) arrow shape only seen at small scale in context views.",
+      "Lane binding of the through heads (c2, c3) unresolved; r3 may be a curb/bike strip rather than a motor lane.",
+      "Near-side arm heads (c4) show back/side faces; their front symbols cannot be read.",
+      "A flat T-mounted panel above the left end of the far-side mast arm is seen only from below/edge-on; unclear whether it is a sign (e.g. street name) or a fixture; unreadable.",
+      "A white sign partly visible at the right edge of gsv_control_link_112_c28aca3e20 on the near-arm pole is cut off and unreadable.",
+      "No time-of-day qualifiers or exceptions visible on any sign; no turn-prohibition signs observed.",
+      "Satellite date unknown; all street views are 2020-11 within the preferred window. Orange temporary sign may not reflect permanent conditions."
+    ],
+    "notes": [
+      "Boxes are 0-1 fractions of each named source image (measured on the collage panels with the panel offset removed).",
+      "Lamp states describe the instantaneous 2020-11 appearance only (left arrow red while through arrows green); no phase sequence or permanent permission is implied.",
+      "Far-side arm heads read the same in both context panoramas (-9.3 m and +1.4 m), so they are grouped as one object each."
+    ],
+    "resampling_requests": [
+      {
+        "source_id": "gsv_control_link_112_2313b6b71a",
+        "bbox_xyxy": [
+          0.501,
+          0.504,
+          0.528,
+          0.552
+        ],
+        "problem": "small_target",
+        "reason": "Middle head on the far-side arm has no detail view; a close view would confirm its arrow symbol and section count."
+      }
+    ]
+  },
+  "metadata": {}
+}

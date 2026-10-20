@@ -1,0 +1,62 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A double yellow centre line runs from the bottom-left (about x 0-60, y 540-600) into the distance (about x 210-280, y 355-385). It is the left limit of the NB carriageway. Left of it is one opposing lane with an oncoming dark car (about x 96-186, y 350-402)."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right of the camera's lane are two white lines close together: a dashed line (about x 340-370, y 377-440) and, a short distance to its right, a solid line (about x 358-395, y 357-475). Between the double yellow and these lines, one motor-lane-width strip is visible at this position, and the camera is in it."
+      },
+      {
+        "id": "o3",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Right of the solid white line is a kerbside parking lane with parked vehicles: a silver sedan (about x 392-516, y 368-457), a white van (about x 367-455, y 329-402) and further vans/trucks beyond."
+      },
+      {
+        "id": "o4",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "At the near end of the parking lane (bottom right, about x 400-640, y 490-640) is a white-outlined hatched buffer. Along its right side a row of white flexible delineator posts (about x 510-600, y 415-510) and an orange post (about x 518-527, y 380-432) separate a strip next to the right kerb. This is consistent with a parking-protected bicycle lane, but no bicycle symbol or green paint is legible here. Short white dashes lie inside that kerbside strip (about x 557-573, y 407-412 and x 617-637, y 433-440)."
+      },
+      {
+        "id": "o5",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The right kerb and a sidewalk with brick and concrete paving run along the right side (about x 460-640, y 355-410) beyond the post-separated strip."
+      },
+      {
+        "id": "o6",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A box truck with its rear door open and cargo visible (YOLO labels it 'bus', about x 288-354, y 286-375) stands in the travel lane just right of the double yellow and appears stopped for loading. It and the parked vans hide the downstream pavement of the NB approach, including any markings closer to the junction."
+      },
+      {
+        "id": "o7",
+        "kind": "sign",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "A blue 'P' parking sign (about x 183-198, y 262-276) is mounted on the left (opposite-side) sidewalk. It refers to the opposite side, not to the NB lanes."
+      }
+    ],
+    "notes": [
+      "No pavement arrows are visible in this view. The near pavement shows only lines, hatching and posts, and the far pavement is hidden by the stopped box truck.",
+      "This is the upstream cross-section about 113 m from the junction centre. Lane additions or turn pockets nearer the stop bar cannot be seen here.",
+      "The purpose of the narrow strip between the dashed and solid white lines right of the travel lane (buffer or door zone) is not marked legibly.",
+      "Capture date 2020-11 (as supplied). The layout may differ in newer imagery."
+    ]
+  },
+  "metadata": {}
+}

@@ -1,0 +1,173 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "left"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Asphalt lane about 3.1 m wide with two left-turn arrows along its length, one near the stop line and one about mid-way. Its right side is a white lane line and it ends at a stop line before the crosswalk at the top. The opposing side, with a row of parked cars, lies further left. Most of it is in building shadow; the lower end bends left with the shifting lane lines and is under tree shadows.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.526,
+              0.278,
+              0.559,
+              0.318
+            ],
+            "finding": "left-turn arrow near the stop line"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.394,
+              0.488,
+              0.428,
+              0.535
+            ],
+            "finding": "second left-turn arrow further upstream"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [
+          "right"
+        ],
+        "visibility": "partial",
+        "confidence": "high",
+        "evidence": "Asphalt lane about 3.0 m wide between the white lane line and a white double-line buffer, with two right-turn arrows. A stop bar at its head joins the double line in an L shape just before the crosswalk. It is in shadow but the paint is readable.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.586,
+              0.318,
+              0.639,
+              0.342
+            ],
+            "finding": "right-turn arrow near the stop bar"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.447,
+              0.529,
+              0.507,
+              0.564
+            ],
+            "finding": "second right-turn arrow upstream"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.65,
+              0.199,
+              0.73,
+              0.242
+            ],
+            "finding": "stop bar joined to the double white line"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "medium",
+        "evidence": "Narrow strip (~0.7 m) bounded by two parallel solid white lines. Toward the lower (upstream) end the lines diverge with diagonal cross-hatching between them. This is a painted buffer separating the motor lanes from the strips to the right, not a travel lane.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.669,
+              0.238,
+              0.73,
+              0.34
+            ],
+            "finding": "double solid white lines on sunlit pavement near the stop bar"
+          }
+        ]
+      },
+      {
+        "region_id": "r4",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "low",
+        "evidence": "Paved strip about 1.65 m wide between the buffer's right line and a further solid white line. On the sunlit part near the stop bar it carries an irregular light marking that may be a bicycle symbol, but it is too blurred to confirm. Its width fits a bicycle lane, not a car lane. It is also possible that it is a second buffer.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.673,
+              0.34,
+              0.699,
+              0.371
+            ],
+            "finding": "blurred light symbol, possibly a bicycle marking"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.69,
+              0.266,
+              0.761,
+              0.389
+            ],
+            "finding": "solid white line forming the strip's right edge"
+          }
+        ]
+      },
+      {
+        "region_id": "r5",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [
+          "through"
+        ],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "Paved strip about 1.77 m wide between the solid white line and the right kerb, beyond which is the tan/light sidewalk. A clear straight-ahead arrow is painted in it just upstream of the stop line. At 1.77 m it is too narrow for a motor-vehicle lane; it has no parking stalls or parked cars. Most likely a bicycle lane, though no bicycle symbol is readable inside it. Upstream it is in shadow with tree-shadow texture near the kerb.",
+        "visual_refs": [
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.695,
+              0.363,
+              0.722,
+              0.398
+            ],
+            "finding": "straight-ahead arrow"
+          },
+          {
+            "source_id": "scene_in_NB",
+            "bbox_xyxy": [
+              0.722,
+              0.351,
+              0.769,
+              0.527
+            ],
+            "finding": "kerb and tan/light sidewalk immediately right of the strip"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "Most of the approach is in building shadow; markings are readable mainly on the sunlit band near the stop bar. The lower part of r4/r5 is under leaf-off tree shadows.",
+      "The exact use of r4 and r5 (one-way bicycle lane, buffer, or another arrangement) cannot be confirmed from this image. The solid line between them, the possible symbol in r4 and the straight arrow in r5 are the only cues.",
+      "Capture date given as spring 2021."
+    ]
+  },
+  "metadata": {}
+}

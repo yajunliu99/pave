@@ -1,0 +1,93 @@
+{
+  "response": {
+    "boundaries": [
+      {
+        "xs": [
+          186,
+          170,
+          154,
+          138,
+          121
+        ],
+        "kind": "centre_or_median_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S4",
+          "S5"
+        ],
+        "evidence": "Right edge of the planted median island: a light kerb/edge band (peak about x=170 at S1, 155 at S2, 139 at S3) with a narrow dark band (gutter / kerb face, about 0.7 m) directly to its right. The stop bar does not cross this dark band. Street view shows the same layout: raised median kerb, a leaf-filled gutter, then the yellow edge line. Below the building shadow (S4, S5) only the light kerb band is faintly visible; the x values there follow the line's straight run."
+      },
+      {
+        "xs": [
+          204,
+          187,
+          171,
+          158,
+          141
+        ],
+        "kind": "lane_line",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S5"
+        ],
+        "evidence": "A thin light line just right of the dark gutter band, clear in the sunlit part (S1 to S3). The stop bar begins at this line. This is the yellow edge line beside the median kerb seen in street view. It is faint in the shaded part at S4 and not resolvable at S5."
+      },
+      {
+        "xs": [
+          232,
+          216,
+          200,
+          184,
+          168
+        ],
+        "kind": "lane_line",
+        "visibility": "clear",
+        "interpolated_stations": [
+          "S3"
+        ],
+        "evidence": "A solid white line runs from the stop bar through the whole crop and is clear in the sunlit and lightened shaded parts. A right-turn arrow sits just to its right near S1. At S3 the shadow edge crosses the line; the value there is taken from its straight continuation. In street view this is the solid line between the camera's lane and the right-turn-arrow lane."
+      },
+      {
+        "xs": [
+          288,
+          272,
+          257,
+          240,
+          222
+        ],
+        "kind": "lane_line",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "A second solid white line on the right side of the right-turn-arrow lane, visible from the stop bar to the bottom edge (faint but continuous in the lightened panel). In street view it is the right edge line of the right-turn lane, with a narrow strip between it and the kerb."
+      },
+      {
+        "xs": [
+          314,
+          298,
+          282,
+          264,
+          251
+        ],
+        "kind": "kerb_or_pavement_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S2",
+          "S3"
+        ],
+        "evidence": "Right kerb: the stop bar ends about x=312 just above S1, and brightness drops there into the brownish sidewalk/tree-canopy texture. In the shaded part a weak longitudinal light edge shows at about x=264 (S4) and 251 (S5). Between S1 and S3 the edge is hidden by canopy/brown texture, so those values are interpolated. Street view shows a kerb with leaves about 1.3–1.5 m to the right of the right-turn lane's right edge line."
+      }
+    ],
+    "partial_strips": [
+      "Stop bar near the top edge (y above S1) runs from the yellow edge line (about x=204) to about x=312, spanning both lanes and the narrow strip at the kerb.",
+      "Between S3 and S4 a vehicle stands at about x=360-395, right of the traced right kerb, beside a line of bollards at about x=417-425 in front of the building on the right. The surface between the traced kerb and the bollards (about x=285-425 at S3) may be a lay-by, driveway or plaza. It is not traced as carriageway because no kerb or marking separating it from the sidewalk is visible.",
+      "A second marking (probably another turn arrow) is visible in the right-turn-arrow lane near x=204 at about y=1100 px (between S4 and S5). It is a marking, not a strip."
+    ],
+    "cannot_determine": [
+      "Width mismatch between sources. On the satellite the strip between the yellow edge line and the first solid white line is only about 28-30 crop units, roughly half the right-turn-arrow lane (about 55 units). In street view (2020-11) the camera's lane and the right-turn lane look about equally wide at the stop bar. The satellite and street view may show different restripings, or the dark band at the median may not be a gutter. The traced lines follow the satellite paint.",
+      "The camera marker C (x about 232 at y=382 px) falls just right of the first solid white line on the satellite, but street view shows the camera left of that line. The camera position is probably off by about 1-2 m.",
+      "The exact position of the right kerb between S1 and S3 is hidden by tree canopy / brown sidewalk texture, and it is only faint in the building shadow at S4-S5.",
+      "The narrow strip between the right-turn lane's right line and the kerb (about 1.4 m) has no visible bicycle symbol on either image. Its use (bicycle lane or shoulder) is not visible."
+    ]
+  },
+  "metadata": {}
+}

@@ -1,0 +1,73 @@
+{
+  "response": {
+    "boundaries": [
+      {
+        "xs": [
+          137,
+          145,
+          149,
+          143,
+          130
+        ],
+        "kind": "centre_or_median_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S1",
+          "S5"
+        ],
+        "evidence": "From about y~330 px down to S2 a thin white line runs at x~143-146 and continues as the bright white edge of a raised median island (island spans x~70-135 from y~590 px to a rounded nose at y~1170 px). The edge bulges to x~149-150 near S3 and curves back to x~128 at the nose. The opposing approach, with its stop bar at x~0-60, y~1095 px, lies left of the island. At S1 the line sits in a dark shaded/occluded patch where only a faint streak near x~134 shows, so S1 is estimated. S5 lies just past the island nose with no marking and is extrapolated from the nose."
+      },
+      {
+        "xs": [
+          224,
+          229,
+          232,
+          235,
+          239
+        ],
+        "kind": "buffer_or_rail_edge",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Clear solid white line, left edge of a hatched buffer (two parallel solid lines about 20 crop units apart joined by diagonal white hatch bars), running the full height to the crosswalk."
+      },
+      {
+        "xs": [
+          246,
+          250,
+          255,
+          259,
+          264
+        ],
+        "kind": "bicycle_line",
+        "visibility": "clear",
+        "interpolated_stations": [],
+        "evidence": "Clear solid white line, right edge of the hatched buffer. The strip to its right carries a white bicycle symbol near S4 (x~270-285)."
+      },
+      {
+        "xs": [
+          285,
+          288,
+          289,
+          292,
+          299
+        ],
+        "kind": "kerb_or_pavement_edge",
+        "visibility": "partial",
+        "interpolated_stations": [
+          "S4"
+        ],
+        "evidence": "Edge between the grey bicycle-lane surface and the lighter concrete sidewalk, which carries a row of tree pits (dark squares, x~293-320) and round street furniture right at the edge. It is a tonal edge rather than a line. At S4 the bicycle symbol and furniture blur it, so the value is interpolated."
+      }
+    ],
+    "partial_strips": [
+      "Left of the left limit, a raised median island (x~70-135) starts at y~590 px (between S2 and S3) and ends in a rounded nose at y~1170 px, just above S5. Below the nose the surface between the opposing lanes and the target lane is open and unmarked down to the crosswalk.",
+      "Opposing carriageway to the far left (x<~70), with a stop bar at x~0-60, y~1095 px; excluded."
+    ],
+    "cannot_determine": [
+      "The top-left of the crop is dark (shadow or a leaning structure) down a diagonal from about x~220 at the top edge to x~0 at y~560 px. The left limit at S1 cannot be seen clearly; a faint streak at x~134 there may or may not be the same line, which is at x~143 just below the dark area.",
+      "No line is visible inside the ~80-90 crop-unit (about 4.5-5 m) strip between the left limit and the hatched buffer; whether it is one wide lane cannot be confirmed from paint.",
+      "The kerb line is a soft tonal edge, with an uncertainty of about 3-5 crop units."
+    ]
+  },
+  "metadata": {}
+}

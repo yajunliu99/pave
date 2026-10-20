@@ -1,0 +1,84 @@
+{
+  "response": {
+    "movements": [
+      {
+        "turn": "through",
+        "to_direction": "EB",
+        "status": "candidate",
+        "lane_pairs": [
+          {
+            "in_region_id": "r1",
+            "out_region_id": "r2"
+          }
+        ],
+        "basis": "inferred",
+        "confidence": "medium",
+        "evidence_refs": [
+          "in_EB:r1",
+          "in_EB:r2",
+          "out_EB:r2",
+          "out_EB:r1",
+          "gsv_context_EB_near:o2",
+          "gsv_context_EB_near:o3",
+          "gsv_context_EB_near:o4",
+          "gsv_context_EB_mid:o3",
+          "gsv_context_EB_mid:o5"
+        ],
+        "assumptions": [
+          "Through travel is permitted from the unmarked left lane: no arrow or word is painted in it, and no prohibition sign facing EB could be read.",
+          "out_EB r2 is the only supported motor receiving lane on the far side. out_EB r1 is the planted median, r3 a bicycle strip and r4 kerbside parking."
+        ],
+        "reason": "in_EB has two supported motor lanes. r2 is marked as a dedicated right-turn lane (right-turn arrow in the near street view and on the satellite just behind the stop bar, plus 'ONLY' in the same lane in the mid view), so the straight-ahead movement must be carried by r1. r1 carries no arrow in any view; through is inferred, not read. In the overview the EB road continues straight across the junction. r1 runs along the median, and its continuation on the far side is out_EB r2, the single travel lane next to the planted median, ahead of the bicycle strip and parked cars. This agrees with the model's lane-use prediction (r1 through_only, low confidence). There is no north leg (NB has only an incoming link), so a left turn from r1 is not a candidate at this junction."
+      },
+      {
+        "turn": "right",
+        "to_direction": "SB",
+        "status": "candidate",
+        "lane_pairs": [
+          {
+            "in_region_id": "r2",
+            "out_region_id": "r1"
+          }
+        ],
+        "basis": "observed",
+        "confidence": "high",
+        "evidence_refs": [
+          "in_EB:r2",
+          "gsv_context_EB_near:o1",
+          "gsv_context_EB_near:o4",
+          "gsv_context_EB_near:o5",
+          "gsv_context_EB_mid:o3",
+          "gsv_context_EB_mid:o4",
+          "out_SB:r1"
+        ],
+        "assumptions": [
+          "The receiving lane is the left ~3.5 m travel part of out_SB r1; its right ~2 m holds parked cars and is not a travel lane."
+        ],
+        "reason": "Three views share the same anchors: the thick solid separator on the left and the bicycle strip on the right. Near street view: a right-turn-only arrow (curved stem, no straight branch) in the lane right of the solid separator. Mid street view: 'ONLY' in the same lane. Satellite: a right-turn-shaped arrow in r2 just behind the stop bar, plus a second curved arrow further upstream in r2 in the shadow. The overview shows the south leg leaving to the driver's right of the EB approach. Its only supported receiving motor lane is out_SB r1, a single SB travel lane beside the double-yellow centre line. r1 has no right-turn marking and would have to cross the dedicated right-turn lane, and the bicycle strip in_EB r3 is not a motor endpoint, so only r2→out_SB r1 is proposed. Agrees with the model's prediction (r2 right_only)."
+      },
+      {
+        "turn": "u_turn",
+        "to_direction": "WB",
+        "status": "unresolved",
+        "lane_pairs": [],
+        "basis": "inferred",
+        "confidence": "low",
+        "evidence_refs": [
+          "gsv_context_EB_near:o3",
+          "gsv_context_EB_near:o10",
+          "in_EB:r1",
+          "out_WB:r1"
+        ],
+        "assumptions": [],
+        "reason": "No U-turn arrow is painted in either EB lane, and no readable U-turn permission or prohibition sign faces EB. The sign on the median-nose post is seen from behind. A U-turn from r1 around the rounded median nose into out_WB r1 is physically conceivable, but nothing in the imagery establishes whether it is allowed, so it stays unresolved."
+      }
+    ],
+    "gsv_alignment_notes": [
+      "The EB near (28 m) and mid (50 m) forward views were matched to the satellite by physical sequence: median kerb, yellow edge line, left lane, thick solid separator, right-turn/ONLY lane, thin solid line, bicycle strip, kerb. The left lane's yellow edge line lies about 1.3-1.5 m left of r1's polygon edge (the satellite edge follows a pavement seam), but it is the same lane.",
+      "The far view (101 m) shows only one motor lane; the right-turn lane r2 opens between the far and mid positions. The mid view's arrow beyond 'ONLY' is unreadable, so the right-turn direction rests on the near view and the satellite.",
+      "Dotted guide lines inside the junction (near view o7 and the overview) were not used to assign movements to specific lanes.",
+      "Street views are dated 2020-11 and the satellite spring 2021; both show the same marking pattern for r2."
+    ]
+  },
+  "metadata": {}
+}

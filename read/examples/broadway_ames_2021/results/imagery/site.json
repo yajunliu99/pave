@@ -1,0 +1,49 @@
+{
+  "schema": "autoloop-site-1",
+  "site_id": "95",
+  "node_id": 95,
+  "name": "Ames Street x Broadway",
+  "satellite": {
+    "path": "cache/mapbox_sites/51bf8318f815bcef5dd825560827faebd3a1afdaf5e7d728fea5a7810cf0f8ee.jpg",
+    "georeference": {
+      "kind": "viewport",
+      "viewport": {
+        "width": 2560,
+        "height": 2560,
+        "mercator_bounds": [
+          -7913508.371012691,
+          5215566.73125426,
+          -7913317.278441979,
+          5215757.823824973
+        ],
+        "provenance": "mapbox_static_centre_zoom: zoom 19, 512 px tiles, @2x; imagery alignment itself unverified",
+        "absolute_error_m": null
+      },
+      "ground_mpp": 0.0551540061766233
+    }
+  },
+  "network": {
+    "node_csv": "data/cambridge_kendall_2021/node.csv",
+    "link_csv": "data/cambridge_kendall_2021/link.csv"
+  },
+  "models": {
+    "draft": {
+      "preset": "default",
+      "max_tokens": 6144,
+      "temperature": 0.0
+    },
+    "review": {
+      "preset": "default",
+      "max_tokens": 6144,
+      "temperature": 0.0
+    }
+  },
+  "policy": {
+    "max_rounds": 3,
+    "max_vlm_calls": 36
+  },
+  "reference": {
+    "status": "withheld_from_inference",
+    "file": null
+  }
+}

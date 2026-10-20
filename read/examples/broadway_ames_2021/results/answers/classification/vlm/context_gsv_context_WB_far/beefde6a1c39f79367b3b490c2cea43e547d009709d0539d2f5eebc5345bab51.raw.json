@@ -1,0 +1,75 @@
+{
+  "response": {
+    "observations": [
+      {
+        "id": "o1",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The left edge of the WB carriageway is a raised kerb of a wide grass median with trees, running from about (265,375) to the lower-left (about (0,500)). The opposing carriageway lies beyond the median, not beside the WB lanes."
+      },
+      {
+        "id": "o2",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A solid white longitudinal line on the right runs from about (340,338) to (530,640), separating the general traffic lane from a narrow strip along the right kerb."
+      },
+      {
+        "id": "o3",
+        "kind": "facility",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "A narrow strip (roughly a bicycle-lane width, leaves along the gutter) lies between the solid white line and the right kerb. It looks like a bicycle lane or shoulder; no bicycle symbol or sign is visible in this view to confirm it."
+      },
+      {
+        "id": "o4",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "The right kerb (granite kerb, then a brick band and concrete sidewalk with trees and lamp posts) runs from about (350,340) to (640,540)."
+      },
+      {
+        "id": "o5",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "At the camera position no lane line is visible between the median kerb and the solid white line, so this cross-section shows one wide general lane. Tree shadows across the near pavement could hide very faint paint."
+      },
+      {
+        "id": "o6",
+        "kind": "boundary",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Far ahead a new white lane line begins at about (297-312, 337-355), between the median side and the right line. This suggests the carriageway splits into two lanes nearer the junction (an added lane or turn pocket downstream of this position)."
+      },
+      {
+        "id": "o7",
+        "kind": "arrow",
+        "observed_arrows": [],
+        "applies_to_incoming": "uncertain",
+        "evidence": "A faint white pavement marking far ahead at about (262-292, 349-353), left of where the new lane line starts, is too distant to read (it could be an arrow or a word). No direction is assigned."
+      },
+      {
+        "id": "o8",
+        "kind": "other",
+        "observed_arrows": [],
+        "applies_to_incoming": "no",
+        "evidence": "Beyond the median on the left: the opposing carriageway with parked/moving cars (about 0-194, 329-352), its far sidewalk and buildings. It does not belong to the WB approach."
+      },
+      {
+        "id": "o9",
+        "kind": "occlusion",
+        "observed_arrows": [],
+        "applies_to_incoming": "yes",
+        "evidence": "Strong tree shadows cover the near pavement, and the distant section near the junction is small and partly hidden by vehicles (dark car about 289-305, 324-337), so markings near the stop bar cannot be read."
+      }
+    ],
+    "notes": [
+      "Image dated 2020-11 (autumn), about 104 m from the junction centre (far sampling position); it may not reflect later restriping.",
+      "At this cross-section the WB side is a median-divided carriageway with one wide general lane plus a narrow kerbside strip. A lane split begins further ahead, but where it starts and what movement it serves cannot be read here.",
+      "No arrows are legible; nothing is inferred from vehicles or signals."
+    ]
+  },
+  "metadata": {}
+}

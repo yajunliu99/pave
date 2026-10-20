@@ -1,0 +1,157 @@
+{
+  "response": {
+    "regions": [
+      {
+        "region_id": "r1",
+        "surface_type": "median_or_buffer",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r1 (about 2.5 m) is a slightly darker, smooth band between two faint longitudinal edges. Its left edge lines up with the end of the opposing (WB) stop bar and the right edge of the WB turn lane, which has down-pointing arrows. It has no lane paint and no vehicles. The look-back GSV from the WB approach shows a planted grass median with a kerb, a yellow edge line and a row of trees between the WB 'ONLY' turn lane and the EB carriageway. r1 is the only strip of median width in that position. The whole scene is in shadow, so tree trunks and the kerb are not individually resolvable on the satellite.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.381,
+              0.285,
+              0.52,
+              0.451
+            ],
+            "finding": "darker unmarked band of median width between the WB turn lane and the EB travel strip"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.19,
+              0.634,
+              0.243,
+              0.688
+            ],
+            "finding": "the WB stop bar ends at r1's left edge"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.536,
+              0.422,
+              1.0,
+              0.605
+            ],
+            "finding": "grass median with kerb and trees separating the WB lanes from the EB carriageway"
+          }
+        ]
+      },
+      {
+        "region_id": "r2",
+        "surface_type": "motor_vehicle_lane",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r2 (about 3.7 m) is uniform asphalt between the median band and a continuous solid white line on its right. It is wide enough for one motor lane, and the crosswalk at the junction end runs across it. In the GSV, beyond the median, one EB travel lane runs along the median before the pair of white lines and the parked vehicles. No arrows are readable on r2 in either image.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.434,
+              0.313,
+              0.586,
+              0.486
+            ],
+            "finding": "unmarked asphalt strip between the median band and the left white line of the pair"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.731,
+              0.451,
+              1.0,
+              0.528
+            ],
+            "finding": "EB travel lane adjacent to the median, across from the camera"
+          }
+        ]
+      },
+      {
+        "region_id": "r3",
+        "surface_type": "bicycle_strip",
+        "existence": "supported",
+        "observed_arrows": [],
+        "visibility": "clear",
+        "confidence": "medium",
+        "evidence": "r3 (about 1.5 m) lies between two parallel solid white lines that run continuously from the crosswalk to the far end of the section. It sits between the travel strip r2 and the row of parked cars. In the GSV, two parallel white lines separate the EB travel lane from the parked vehicles. The narrow width and position fit a bicycle lane between the travel lane and parking, but no bicycle symbol is legible, so the subtype is not confirmed.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.496,
+              0.346,
+              0.631,
+              0.509
+            ],
+            "finding": "two continuous parallel white lines about 1.5 m apart"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.826,
+              0.475,
+              1.0,
+              0.515
+            ],
+            "finding": "pair of white lines between the EB travel lane and the parked cars"
+          }
+        ]
+      },
+      {
+        "region_id": "r4",
+        "surface_type": "shoulder_or_parking",
+        "existence": "rejected",
+        "observed_arrows": [],
+        "visibility": "partial",
+        "confidence": "medium",
+        "evidence": "r4 (about 5.9 m) holds a tight bumper-to-bumper row of stationary cars right of the white-line pair, which is a kerbside parking lane. Beyond the cars the crosswalk stops and a smooth, slightly warmer strip runs up to the building faces; this looks like sidewalk or tree lawn rather than carriageway. In the GSV, parked vehicles (a pickup and a Jeep) stand at the EB far kerb, with grass and sidewalk behind them. No travel-lane marking is visible in r4.",
+        "visual_refs": [
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.657,
+              0.132,
+              0.826,
+              0.347
+            ],
+            "finding": "row of parked cars immediately right of the white-line pair"
+          },
+          {
+            "source_id": "scene_out_EB",
+            "bbox_xyxy": [
+              0.584,
+              0.391,
+              0.737,
+              0.565
+            ],
+            "finding": "unmarked strip beyond the parking line, up to the building edge, past the crosswalk end"
+          },
+          {
+            "source_id": "gsv_WB_near_look_back",
+            "bbox_xyxy": [
+              0.702,
+              0.413,
+              0.975,
+              0.48
+            ],
+            "finding": "parked vehicles along the EB far kerb with sidewalk behind"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "The satellite scene is entirely in shadow and slightly hazy. The median kerbs and the right kerb are inferred from faint brightness changes and the crosswalk extent, not seen as crisp edges.",
+      "The GSV is a reverse look-back from the opposing WB approach. The EB receiving carriageway appears across the planted median, so its lane positions were matched by physical sequence (median, travel lane, white-line pair, parking), not by lane ordinal.",
+      "The arrows visible on the left half of the scene point down (WB, toward the junction) and belong to the opposing carriageway, not to out_EB.",
+      "GSV capture 2020-11 versus satellite spring 2021; small layout differences between the dates cannot be excluded."
+    ]
+  },
+  "metadata": {}
+}
