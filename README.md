@@ -20,6 +20,8 @@ The repository holds two applications of the same harness:
 
 [`dashboard/pave.html`](dashboard/pave.html) is the dashboard for both worked examples: one self-contained file. Download it and open it in a browser; only the background map tiles need a connection.
 
+[`tutorial/PAVE_tutorial.html`](tutorial/PAVE_tutorial.html) goes through both worked examples step by step: for every model call, the image the model sees, the prompt as sent and the answer it gave. It also covers connecting a model and letting Codex subagents answer the requests when there is no API. It is one self-contained file of about 20 MB; download it and open it in a browser.
+
 Model output is a prediction, not reference data.
 
 ## The harness
@@ -175,6 +177,7 @@ edit/          Edit: scenario editing (Python package pave_edit)
   scenarios/   worked example with its network, imagery and saved model answers
 dashboard/     the PAVE dashboard (both worked examples), its one page template and its build script
   vendor/      Leaflet, the map library of the Read view
+tutorial/      step-by-step tutorial of both worked examples (one self-contained page)
 docs/          figures
 ```
 
