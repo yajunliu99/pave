@@ -1,0 +1,174 @@
+{
+  "stop_line": {
+    "y_centre": 372.0,
+    "y_curb": 372.0
+  },
+  "exit_start_y": 295.0,
+  "boundaries": [
+    {
+      "kind": "curb_or_pavement_edge",
+      "xs": [
+        390.0,
+        385.0,
+        385.0,
+        384.0,
+        384.0,
+        384.0,
+        385.0
+      ],
+      "interpolated": [],
+      "visibility": "clear"
+    },
+    {
+      "kind": "bicycle_line",
+      "xs": [
+        null,
+        421.0,
+        420.5,
+        420.0,
+        420.0,
+        419.0,
+        417.5
+      ],
+      "interpolated": [],
+      "visibility": "clear"
+    },
+    {
+      "kind": "buffer_or_parking_edge",
+      "xs": [
+        null,
+        447.0,
+        446.0,
+        443.5,
+        441.5,
+        441.0,
+        447.5
+      ],
+      "interpolated": [
+        "S6"
+      ],
+      "visibility": "clear"
+    },
+    {
+      "kind": "median_edge",
+      "xs": [
+        null,
+        null,
+        536.5,
+        525.0,
+        523.5,
+        526.0,
+        529.0
+      ],
+      "interpolated": [],
+      "visibility": "partial"
+    },
+    {
+      "kind": "median_edge",
+      "xs": [
+        null,
+        null,
+        624.5,
+        624.5,
+        625.5,
+        623.0,
+        619.5
+      ],
+      "interpolated": [],
+      "visibility": "partial"
+    },
+    {
+      "kind": "lane_line",
+      "xs": [
+        null,
+        null,
+        686.0,
+        685.5,
+        684.0,
+        684.0,
+        683.5
+      ],
+      "interpolated": [],
+      "visibility": "clear"
+    },
+    {
+      "kind": "bicycle_line",
+      "xs": [
+        null,
+        null,
+        740.5,
+        739.0,
+        739.0,
+        737.5,
+        737.0
+      ],
+      "interpolated": [
+        "S4",
+        "S7"
+      ],
+      "visibility": "partial"
+    },
+    {
+      "kind": "curb_or_pavement_edge",
+      "xs": [
+        null,
+        776.0,
+        770.0,
+        768.0,
+        766.0,
+        764.0,
+        761.0
+      ],
+      "interpolated": [
+        "S4",
+        "S7"
+      ],
+      "visibility": "partial"
+    }
+  ],
+  "strips": [
+    {
+      "carriageway": "outbound",
+      "surface_type": "bicycle_lane",
+      "confidence": "high",
+      "evidence": "Strip between the left curb (x~385) and the first white line (x~420) carries a painted bicycle symbol with arrow (around x~400, y~400) on the satellite; continues as dashed bike-lane lines through the junction."
+    },
+    {
+      "carriageway": "outbound",
+      "surface_type": "median_or_buffer",
+      "confidence": "high",
+      "evidence": "Two parallel solid white lines (x~420 and x~445) with diagonal hatching between them for the whole length: painted buffer separating the outbound bike lane from the outbound travel lane."
+    },
+    {
+      "carriageway": "outbound",
+      "surface_type": "motor_vehicle_lane",
+      "confidence": "medium",
+      "evidence": "Single wide asphalt lane (~4.4 m) between the hatched buffer and the median's left curb, starting at the downstream edge of the crosswalk (y~295); no dividing lane line visible in sun or in the lightened shadow."
+    },
+    {
+      "carriageway": "none",
+      "surface_type": "median_or_buffer",
+      "confidence": "high",
+      "evidence": "Raised curbed island with rounded nose at y~325 (planter boxes, soil), continuing as the planted tree median seen in C1 (on the photo's right) and C2 (on the left, with a yellow edge line beside its curb); its edges stay visible as faint lines in the lightened shadow down to S7."
+    },
+    {
+      "carriageway": "inbound",
+      "surface_type": "motor_vehicle_lane",
+      "confidence": "high",
+      "evidence": "Lane between the median curb (yellow edge line in C1/C2) and the solid white line at x~685; the stop bar crosses it at y~372. C1 and C2 show it as the through lane beside the median. A dark straight seam (utility trench patch, x~645) runs inside this lane and through the crosswalk; it is not a lane line."
+    },
+    {
+      "carriageway": "inbound",
+      "surface_type": "motor_vehicle_lane",
+      "confidence": "high",
+      "evidence": "Lane between the white lines at x~685 and x~739 holds a painted right-turn arrow just behind the stop bar (y~405); C1 and C2 show ONLY text and a right-turn arrow in this lane, between the through lane and the green bike lane. The x~685 line is solid with a dotted extension near C2."
+    },
+    {
+      "carriageway": "inbound",
+      "surface_type": "bicycle_lane",
+      "confidence": "medium",
+      "evidence": "Narrow strip (~1.5 m) right of the x~739 line; C1 (on the photo's left) and C2 (on the right) show it as a green-painted bicycle lane to the right of the right-turn-only lane, apparently separated by a curb or raised edge. Beyond it, at the stop bar, is the corner kerb; farther back, a separate hotel access lane or planter. The stop bar reaches x~764."
+    }
+  ],
+  "notes": "Both stop bar ends were measured on the satellite at y~372 (square bar from x~627 to x~764). The exit start comes from the downstream edge of the crosswalk over the outbound lane (y~291-297). From about S4 downstream, the building shadow covers the inbound side and the right half of the road: lines there were read from the lightened panel and are fainter, especially the x~739 line and the outer edge at S7. S1 lies inside the junction, so only the continuous left curb is given there. At S2 the median has not yet started (nose at y~325) and the inbound lane lines start only at the stop bar. The right-most boundary is the outer edge of the inbound bike lane. Beyond it, the street views show a separate hotel access/drop-off lane (a car stands on it near y~690, x~865), a planter and a tree lawn. That area is outside the Broadway carriageway and is not traced. Street-view camera positions appear about 2 m right of the lanes the photos show (C2 is in the through lane next to the median)."
+}

@@ -1,0 +1,53 @@
+{
+ "trace_SE": [
+  {
+   "image": "run/sheets/use_WB.jpg",
+   "caption": "What lane use sees of this trace: the inbound lanes r1 and r2 of approach WB outlined on the crop and projected into its street views; the exit lane out_EB:r1 is outlined on the junction overview."
+  }
+ ],
+ "trace_SW": [
+  {
+   "image": "run/sheets/use_NB.jpg",
+   "caption": "What lane use sees of this trace: the inbound lanes r1 and r2 of approach NB outlined on the crop and projected into its street views; the exit lane out_SB:r1 is outlined on the junction overview."
+  }
+ ],
+ "trace_NW": [
+  {
+   "image": "run/sheets/use_EB.jpg",
+   "caption": "What lane use sees of this trace: the inbound lanes r1 and r2 of approach EB outlined on the crop and projected into its street views; the exit lane out_WB:r1 is outlined on the junction overview."
+  }
+ ],
+ "read_EB": [
+  {
+   "text": "No picture: this answer goes on as text. Its lane count is compared with the trace (here both found two lanes, so the arm is not traced again); the lane-use prompt quotes it for arrows and signs; and a lane that lane use judges not to exist is dropped only if this count agrees (step 7)."
+  }
+ ],
+ "use_EB": [
+  {
+   "image": "run/result.jpg",
+   "caption": "The answers of all three approaches, as written to lanes.json and movements.json: each approach lane with its turns (L, T, R), each exit lane, and an arrow for each turn to the exit lane it reaches."
+  }
+ ],
+ "read_NB": [
+  {
+   "text": "No picture: this answer goes on as text. Its lane count is compared with the trace (here both found two lanes, so the arm is not traced again); the lane-use prompt quotes it for arrows and signs; and a lane that lane use judges not to exist is dropped only if this count agrees (step 7)."
+  }
+ ],
+ "use_NB": [
+  {
+   "image": "run/result.jpg",
+   "caption": "The answers of all three approaches, as written to lanes.json and movements.json: each approach lane with its turns (L, T, R), each exit lane, and an arrow for each turn to the exit lane it reaches."
+  }
+ ],
+ "read_WB": [
+  {
+   "text": "No picture: this answer goes on as text. Its lane count is compared with the trace (here both found two lanes, so the arm is not traced again); the lane-use prompt quotes it for arrows and signs; and a lane that lane use judges not to exist is dropped only if this count agrees (step 7)."
+  }
+ ],
+ "use_WB": [
+  {
+   "image": "run/result.jpg",
+   "caption": "The answers of all three approaches, as written to lanes.json and movements.json: each approach lane with its turns (L, T, R), each exit lane, and an arrow for each turn to the exit lane it reaches."
+  }
+ ]
+}

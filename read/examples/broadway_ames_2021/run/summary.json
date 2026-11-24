@@ -1,0 +1,85 @@
+{
+  "code_sha256": {
+    "scripts/pipeline/run_read.py": "e93983496dd3739b20869ed91fb2de79003b4b506405e7b81cf41f899799950d",
+    "pave_read/harness/geometry.py": "9c16cd82da7901632efa54f16b02ade42a93794675189748ec5e97e30312c2be",
+    "pave_read/harness/stages.py": "bed9b8b41fce03605d8833189923ca82cf201e105e14ec32e36e1819f9f30327",
+    "pave_read/harness/views.py": "211fbaab24c8d20f5a5a56f7dfdd231db5a707ee8f1ba9c0df224c60cf5d6028",
+    "pave_read/fusion/lane_check.py": "5d684b65c73da214e01b00fc2024f1ddb90b3e60292e3dc435b64c2cea0371ed",
+    "pave_read/autoloop/street_panel.py": "e0bec4828d718ac8edca7c2e7df77e59b33269e88d0b83b8f872aec53c34f632",
+    "pave_read/autoloop/render.py": "df1e39b787d8ebd56563267b2ca77ee2bd09fe6d9d38dcdd6a76bab1ddc9eae0",
+    "pave_read/autoloop/frames.py": "bf824893e6a1f6eb3872ec8bf79a599eb42d58e4a52e662987baf6b2fc8ee063",
+    "pave_read/autoloop/strips.py": "51073f9250fe5fb1682ff182258655fa40f26cd92de0a6fc43a21942bf3604e4",
+    "pave_read/hybrid/inference.py": "ccfbdf32398c992ee06d5cbb226f4ae00a3649018db58c95b569bb294ed9ce03",
+    "pave_read/hybrid/prompts.py": "2900e81c415d46ccf1ad4fc1a819f80f6a8ac71450c7da9eed210545c636cb42"
+  },
+  "site": "Ames Street x Broadway",
+  "node_id": 95,
+  "model": "claude_code_subagent/claude-opus-5-5",
+  "requests_this_run": 9,
+  "cache_hits": 0,
+  "answers_by_stage": {
+    "trace": 3,
+    "read": 3,
+    "use": 3
+  },
+  "checks": {
+    "WB": {
+      "traced": 2,
+      "seen": 2,
+      "settled": true,
+      "disagrees": false,
+      "reading_sees_more": false,
+      "issues": [],
+      "action": "agree"
+    },
+    "NB": {
+      "traced": 2,
+      "seen": 2,
+      "settled": true,
+      "disagrees": false,
+      "reading_sees_more": false,
+      "issues": [],
+      "action": "agree"
+    },
+    "EB": {
+      "traced": 2,
+      "seen": 2,
+      "settled": true,
+      "disagrees": false,
+      "reading_sees_more": false,
+      "issues": [],
+      "action": "agree"
+    }
+  },
+  "addlane": {},
+  "removals": {},
+  "leftlane": {},
+  "temporary_control": {
+    "WB": {
+      "seen": "no",
+      "lanes": [],
+      "effect": "none",
+      "evidence": "No cones, barrels or work-zone devices on the approach lanes in the satellite or in C1-C3."
+    },
+    "NB": {
+      "seen": "no",
+      "lanes": [],
+      "effect": "None affecting r1 or r2.",
+      "evidence": "Satellite and C1/C2 show only permanent paint and the bike-lane flex posts. In C3 (113 m upstream) one orange post stands among the white flex posts of the bicycle-lane buffer, outside the general motor lanes; it does not close a lane or ban a turn."
+    },
+    "EB": {
+      "seen": "no",
+      "lanes": [],
+      "effect": "none on this approach's lanes",
+      "evidence": "No cones, barrels or work-zone devices in r1 or r2 in C1/C2 or the satellite. An orange object lies on the median grass in C3 (101 m upstream), an orange diamond sign stands by the opposite carriageway in C1, and orange cones sit on the sidewalk by out_WB in the overview; none affects r1/r2."
+    }
+  },
+  "counts": {
+    "in_WB": 2,
+    "out_EB": 1,
+    "in_NB": 2,
+    "out_SB": 1,
+    "in_EB": 2,
+    "out_WB": 1
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "stop_line": {
+    "y_centre": 390.0,
+    "y_curb": 390.0
+  },
+  "exit_start_y": 341.0,
+  "boundaries": [
+    {
+      "kind": "curb_or_pavement_edge",
+      "xs": [
+        null,
+        374.0,
+        375.0,
+        376.0,
+        377.0,
+        378.0,
+        379.0
+      ],
+      "interpolated": [
+        "S4",
+        "S5",
+        "S6"
+      ],
+      "visibility": "partial"
+    },
+    {
+      "kind": "buffer_or_parking_edge",
+      "xs": [
+        null,
+        null,
+        418.0,
+        421.0,
+        422.0,
+        422.0,
+        422.5
+      ],
+      "interpolated": [],
+      "visibility": "clear"
+    },
+    {
+      "kind": "bicycle_line",
+      "xs": [
+        null,
+        null,
+        446.0,
+        449.5,
+        449.0,
+        450.0,
+        450.5
+      ],
+      "interpolated": [],
+      "visibility": "clear"
+    },
+    {
+      "kind": "median_edge",
+      "xs": [
+        null,
+        null,
+        511.0,
+        512.0,
+        515.0,
+        516.0,
+        517.0
+      ],
+      "interpolated": [
+        "S4",
+        "S6"
+      ],
+      "visibility": "partial"
+    },
+    {
+      "kind": "median_edge",
+      "xs": [
+        null,
+        null,
+        563.0,
+        562.5,
+        562.0,
+        562.5,
+        564.5
+      ],
+      "interpolated": [
+        "S3"
+      ],
+      "visibility": "partial"
+    },
+    {
+      "kind": "lane_line",
+      "xs": [
+        null,
+        null,
+        626.0,
+        625.5,
+        626.0,
+        625.5,
+        626.0
+      ],
+      "interpolated": [],
+      "visibility": "clear"
+    },
+    {
+      "kind": "bicycle_line",
+      "xs": [
+        null,
+        null,
+        686.0,
+        685.0,
+        687.0,
+        686.0,
+        687.0
+      ],
+      "interpolated": [
+        "S3"
+      ],
+      "visibility": "partial"
+    },
+    {
+      "kind": "curb_or_pavement_edge",
+      "xs": [
+        null,
+        710.0,
+        709.0,
+        708.0,
+        711.0,
+        710.0,
+        714.0
+      ],
+      "interpolated": [],
+      "visibility": "partial"
+    }
+  ],
+  "strips": [
+    {
+      "carriageway": "outbound",
+      "surface_type": "parking",
+      "confidence": "medium",
+      "evidence": "About 2.4 m strip between the outer curb and the solid parking-edge line; cars stand in it at y 820-1000 (x 380-413). Empty near the crosswalk. C1 shows vehicles parked along the far curb of the opposing carriageway."
+    },
+    {
+      "carriageway": "outbound",
+      "surface_type": "bicycle_lane",
+      "confidence": "medium",
+      "evidence": "About 1.5 m strip between two parallel solid lines, lying between the parking strip and the single outbound travel lane. C1 shows two lines bounding a narrow strip next to the parked vehicles on the opposing carriageway. No bike symbol was visible on the satellite."
+    },
+    {
+      "carriageway": "outbound",
+      "surface_type": "motor_vehicle_lane",
+      "confidence": "high",
+      "evidence": "Single outbound travel lane (about 3.5 m) between the bicycle line and the planted median. It leaves the junction downstream of the crosswalk. In C1 and C2 the opposing traffic is on the far side of the median."
+    },
+    {
+      "carriageway": "none",
+      "surface_type": "median_or_buffer",
+      "confidence": "medium",
+      "evidence": "Raised median with grass and a row of trees, about 2.7 m wide, seen in C1 and C2 directly left of the inbound left-turn lane. On the satellite its two edges appear as faint curb lines, and its interior is darker (grass, warm colour in sunlit part at bottom). It ends before the crosswalk, where the crosswalk stripes run across it."
+    },
+    {
+      "carriageway": "inbound",
+      "surface_type": "motor_vehicle_lane",
+      "confidence": "high",
+      "evidence": "Left-turn lane between the median curb and the lane line at 626. It has a left-turn arrow on the satellite (x 580-610, y ~490-520), and C1 and C2 show a left-turn arrow and ONLY. The stop bar begins at the median curb (x ~560). It is still a full lane at S7 (C2, 55 m)."
+    },
+    {
+      "carriageway": "inbound",
+      "surface_type": "motor_vehicle_lane",
+      "confidence": "high",
+      "evidence": "Through lane between lines 626 and 687, with a straight-ahead arrow on the satellite (x ~655) and in C1. The stop bar crosses it, partly hidden by a waiting car at x 630-665."
+    },
+    {
+      "carriageway": "inbound",
+      "surface_type": "bicycle_lane",
+      "confidence": "high",
+      "evidence": "Narrow strip (about 1.3-1.5 m) between the solid bicycle line and the right curb. C1 shows a bicycle symbol and an arrow in it, and C2 shows the same narrow strip along the brick-edged curb. The stop bar extends faintly across it to x ~707. No right-turn marking or motor traffic seen in it."
+    }
+  ],
+  "notes": "S1 lies inside the junction, so every boundary is null there. S2 lies on the crosswalk (y ~281-342, slightly skewed), so only the outer curbs are given there. The stop bar is painted at y ~390 from the median curb to about x 707, with a car hiding x 630-665. Most of the road is in a building shadow, so the lightened panel was used. The median edges and both outer curbs are faint in the shadow and were placed from weak edge profiles, from sunlit patches (bottom of the crop, right corner) and from lane-width ratios in C1 and C2. Expect +/-5 units on those boundaries. The left (outbound) curb is mainly inferred from the parked cars and the crosswalk end (x ~384). The inbound bicycle line is faint between the stop bar and y ~520, but C1 shows it continuous, so S3 is interpolated. The outbound lines drift slightly toward the left approaching the crosswalk. Camera markers are a few metres off: C1 is drawn at x ~617, but the photo shows the camera in the through lane."
+}

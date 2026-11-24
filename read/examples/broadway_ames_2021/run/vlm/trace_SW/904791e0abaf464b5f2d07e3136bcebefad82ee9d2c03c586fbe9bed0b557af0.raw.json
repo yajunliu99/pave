@@ -1,0 +1,200 @@
+{
+  "response": {
+    "stop_line": {
+      "y_centre": 487.0,
+      "y_curb": 412.0
+    },
+    "exit_start_y": 380.0,
+    "boundaries": [
+      {
+        "kind": "curb_or_pavement_edge",
+        "xs": [
+          null,
+          312.0,
+          310.0,
+          306.0,
+          305.0,
+          303.0,
+          300.0
+        ],
+        "interpolated": [
+          "S2",
+          "S5",
+          "S6",
+          "S7"
+        ],
+        "visibility": "partial"
+      },
+      {
+        "kind": "buffer_or_parking_edge",
+        "xs": [
+          null,
+          null,
+          358.0,
+          356.0,
+          350.0,
+          318.0,
+          null
+        ],
+        "interpolated": [
+          "S5"
+        ],
+        "visibility": "partial"
+      },
+      {
+        "kind": "centre_line",
+        "xs": [
+          null,
+          null,
+          409.0,
+          409.0,
+          408.0,
+          384.0,
+          357.0
+        ],
+        "interpolated": [],
+        "visibility": "partial"
+      },
+      {
+        "kind": "lane_line",
+        "xs": [
+          null,
+          null,
+          465.0,
+          465.0,
+          465.0,
+          443.0,
+          428.0
+        ],
+        "interpolated": [
+          "S7"
+        ],
+        "visibility": "partial"
+      },
+      {
+        "kind": "buffer_or_parking_edge",
+        "xs": [
+          null,
+          null,
+          521.0,
+          521.0,
+          520.0,
+          516.0,
+          514.0
+        ],
+        "interpolated": [
+          "S7"
+        ],
+        "visibility": "partial"
+      },
+      {
+        "kind": "buffer_or_parking_edge",
+        "xs": [
+          null,
+          null,
+          532.0,
+          532.0,
+          531.0,
+          531.0,
+          534.0
+        ],
+        "interpolated": [
+          "S7"
+        ],
+        "visibility": "partial"
+      },
+      {
+        "kind": "bicycle_line",
+        "xs": [
+          null,
+          null,
+          562.0,
+          562.0,
+          560.0,
+          555.0,
+          555.0
+        ],
+        "interpolated": [
+          "S5",
+          "S6",
+          "S7"
+        ],
+        "visibility": "partial"
+      },
+      {
+        "kind": "curb_or_pavement_edge",
+        "xs": [
+          null,
+          598.0,
+          596.0,
+          595.0,
+          591.0,
+          589.0,
+          586.0
+        ],
+        "interpolated": [
+          "S2"
+        ],
+        "visibility": "partial"
+      }
+    ],
+    "strips": [
+      {
+        "carriageway": "outbound",
+        "surface_type": "parking",
+        "confidence": "medium",
+        "evidence": "Strip between the left kerb and a solid white edge line on the outbound (left) side. Parked cars stand in it on the satellite (x~310-348, y~560-850). C1 look-back shows a parked van and car outside a solid white line on the outbound kerb side, and C2 shows parked cars and parking T-marks between the kerb and that line. The strip narrows upstream, and in C2 the line closes on the kerb near the camera, so it is taken as ending by S7."
+      },
+      {
+        "carriageway": "outbound",
+        "surface_type": "motor_vehicle_lane",
+        "confidence": "high",
+        "evidence": "Single outbound travel lane between the parking edge line and the double yellow centre line (C1 and C2 both show one lane left of the double yellow). It starts at the downstream edge of the crosswalk (y~380)."
+      },
+      {
+        "carriageway": "inbound",
+        "surface_type": "motor_vehicle_lane",
+        "confidence": "high",
+        "evidence": "Left-turn lane next to the centre line. The satellite shows left-turn arrows at y~525 and y~735, and C2 shows a left-turn arrow there. Its stop bar is set back at y~487, with a transverse bar spanning only this lane. A solid white line separates it from the next lane near the junction; upstream that line becomes dashed (C2) and shifts left with the centre line."
+      },
+      {
+        "carriageway": "inbound",
+        "surface_type": "motor_vehicle_lane",
+        "confidence": "high",
+        "evidence": "Right-turn lane: right-turn arrows at y~520 and y~735 on the satellite, and C1 shows a right-pointing arrow. A clear white stop bar crosses it at y~413. Upstream of about S6 the line on its left is dashed and the strip widens. C3, farther out, shows parking in this position, so this strip likely starts as parking or an entry area and becomes the turn lane."
+      },
+      {
+        "carriageway": "none",
+        "surface_type": "median_or_buffer",
+        "confidence": "medium",
+        "evidence": "Narrow buffer between two parallel white lines. C1 and C2 show flex posts standing between the two lines, separating the motor lanes from the bicycle facility. The stop bar's right end turns down along it."
+      },
+      {
+        "carriageway": "outbound",
+        "surface_type": "bicycle_lane",
+        "confidence": "low",
+        "evidence": "Inner half of a two-lane bicycle facility on the right side. It has a bicycle symbol near y~510 and a mark further downstream (y~610). No stop bar crosses it at the junction end, while the adjacent outer half has one. That suggests the down-bound (contraflow) half of a two-way cycle track. In C1 a faint line splits the bike area between the posts and the kerb. Direction is inferred, not confirmed by a clear arrow."
+      },
+      {
+        "carriageway": "inbound",
+        "surface_type": "bicycle_lane",
+        "confidence": "medium",
+        "evidence": "Kerb-side bicycle lane with a straight-ahead (up) arrow at x~579, y~510-540, and its own stop bar at y~410 (x~563-607). C1 and C2 show a bike lane behind flex posts along the inbound kerb, next to a sidewalk with a bike-share dock."
+      }
+    ],
+    "notes": "The stop bars are staggered. The right-turn lane, buffer and bike lane stop at y~410-413; the left-turn lane next to the centre line has a set-back bar at y~487 (a bright transverse band confined to that lane, in building shadow), so y_centre=487 and y_curb=412. The crosswalk spans y~320-380. A large building shadow covers most of the arm, and the lightened panel was needed. Below y~780 the sunlit area is crossed by tree and crane-like lattice shadows, so the lines at S6-S7 are partly interpolated, using C2 to support the positions. The centre line bends left upstream of y~760 (408 to ~357 at S7), and the left lane line, with its dashed upstream part, follows it. Upstream positions of the left kerb and parking edge are uncertain: the kerb is hidden by shadow and parked cars. The two-way reading of the bicycle facility, and the direction of its inner half, are inferred. Street-view camera markers appear 2-4 m off (C1 and C2 actually sit in the outbound lane). S1 lies inside the junction; at S2, the crosswalk's far edge, only the kerbs are given."
+  },
+  "metadata": {
+    "model_details": {
+      "inference_provider": "claude_code_subagent",
+      "inference_model": "claude-opus-5-5"
+    },
+    "bridge": {
+      "request_id": "20261124_120831_trace_SW_904791e0",
+      "worker": "c95_004",
+      "claimed_utc": "2026-11-24T18:47:16.177985+00:00",
+      "answered_utc": "2026-11-24T19:07:04.792446+00:00",
+      "waited_s": 2.0
+    }
+  }
+}

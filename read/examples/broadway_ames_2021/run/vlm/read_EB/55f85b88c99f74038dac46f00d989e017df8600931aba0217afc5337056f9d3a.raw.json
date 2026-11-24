@@ -1,0 +1,37 @@
+{
+  "response": {
+    "lanes": [
+      {
+        "lane": 1,
+        "turns": [],
+        "evidence": "Leftmost general lane between the curbed grass median (yellow edge line; its rounded nose with pedestrian refuge reaches the crosswalk in the satellite) and a solid white lane line. Stop bar spans it in the satellite. No pavement arrow legible in this lane in the satellite near the stop bar or in C1/C2; by inference it carries through traffic, but no arrow confirms it."
+      },
+      {
+        "lane": 2,
+        "turns": [
+          "right"
+        ],
+        "evidence": "Second lane, right of the solid white line: 'ONLY' legend in C1 and C2 with a right-turn arrow just before the stop bar (visible in C2 and as a curved right arrow in the satellite inside this lane right behind the stop bar); another right arrow is faintly visible upstream in the shaded satellite area and beyond 'ONLY' in C1."
+      }
+    ],
+    "bicycle_lanes": 1,
+    "rail_or_bus_only_lanes": 0,
+    "parking_lanes": 0,
+    "count_confidence": "high",
+    "count_settled": true,
+    "limitations": "Satellite upstream of the stop bar is in deep building shadow (enhanced crops only show faint lane lines and one arrow); a long dark straight line in the left lane of the satellite looks like a shadow/wire, not a marking. Green bicycle lane runs to the right of the right-turn lane to the stop bar (C1, C2) and is not counted; the opposing carriageway lies left of the median. Street views are from 2020-11; the satellite date is unknown. Lane 1's movement is not marked by an arrow, so its turns are left empty."
+  },
+  "metadata": {
+    "model_details": {
+      "inference_provider": "claude_code_subagent",
+      "inference_model": "claude-opus-5-5"
+    },
+    "bridge": {
+      "request_id": "20261124_120833_read_EB_55f85b88",
+      "worker": "c95_006",
+      "claimed_utc": "2026-11-24T18:49:32.468216+00:00",
+      "answered_utc": "2026-11-24T18:51:05.575493+00:00",
+      "waited_s": 2.0
+    }
+  }
+}

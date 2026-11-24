@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))
 from pave_read.fusion.control_acquisition import AcquisitionUnavailable, StreetViewClient
 from pave_read.fusion.lane_acquisition import acquire, plan_site, satellite_client, site_files
 from pave_read.hybrid.common import read_json, write_json

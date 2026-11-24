@@ -1,0 +1,103 @@
+{
+  "readings": {
+    "WB": {
+      "lanes": [
+        {
+          "lane": 1,
+          "turns": [
+            "left"
+          ],
+          "evidence": "Leftmost lane at the stop bar, next to the tree-lined median. Satellite shows a left-turn arrow in it about 6 m before the stop bar, and a second left arrow further upstream. A solid white line separates it from lane 2. C1 (look-back) shows the left-turn arrow and the word ONLY in this lane on the photo's right side (the driver's left), next to the grass median. C2 (forward) shows ONLY in the left lane."
+        },
+        {
+          "lane": 2,
+          "turns": [
+            "through"
+          ],
+          "evidence": "Lane right of the solid lane line. Satellite shows a straight-ahead arrow in it, with another one upstream, and a car standing at the stop bar in this lane. C1 shows a large through arrow in this lane, pointing toward the junction. A solid white line on its right separates it from the narrow curbside bicycle strip. No right-turn arrow is visible."
+        }
+      ],
+      "bicycle_lanes": 1,
+      "rail_or_bus_only_lanes": 0,
+      "parking_lanes": 0,
+      "count_confidence": "medium",
+      "count_settled": true,
+      "limitations": "Building shadow covers most of the satellite approach, so faint markings are hard to read. The curbside strip, between a solid white line and the curb with brick sidewalk, holds no parked cars. It carries a worn symbol in C1 and is read as a bicycle lane. In the satellite, the line between lane 2 and this strip is visible upstream but not in the last ~7 m before the stop bar (shadow, maybe dashed or ending). C1, however, shows it solid well past the arrows. So it is not certain whether right-turning motor vehicles enter the strip at the stop bar, and it is not counted as a lane. The opposing carriageway beyond the median on the left is excluded. The street views date from 2020-11 and the satellite date is unknown."
+    },
+    "NB": {
+      "lanes": [
+        {
+          "lane": 1,
+          "turns": [
+            "left"
+          ],
+          "evidence": "Satellite: leftmost approach lane, next to the centre line with the opposing carriageway (with kerbside parked cars) to its left; two left-turn arrows legible in it, one just behind its stop bar and one about 40 m upstream. C1 look-back confirms a lane beside the double yellow line with a turn arrow, separated from the next lane by a solid white line."
+        },
+        {
+          "lane": 2,
+          "turns": [
+            "right"
+          ],
+          "evidence": "Satellite: second lane, right of a solid white lane line, reaching the stop bar; two right-turn arrows legible (near the stop bar and upstream, paired with lane 1's arrows). C1 shows this lane with its own arrow, bounded on the driver's right by a double white buffer line and flex posts. C3 (113 m upstream) shows this strip as kerbside parking with only one travel lane there, so it opens into a right-turn lane near the junction."
+        }
+      ],
+      "bicycle_lanes": 1,
+      "rail_or_bus_only_lanes": 0,
+      "parking_lanes": 0,
+      "count_confidence": "high",
+      "count_settled": true,
+      "limitations": "Building shadow covers most of the approach in the satellite crop, but contrast-enhanced crops show the arrows clearly. The stop bar of lane 1 sits a little behind the lane 2 stop line. A buffered bicycle lane separated by flex posts, with a bicycle symbol and a through arrow, runs on the driver's right; it is not used by motor traffic, so it is not counted. Upstream (C3), the strip that becomes lane 2 is a parking lane, with no parking at the stop bar. C2 was taken from the opposing carriageway, so its view of the approach's arrows is oblique and was not used for the arrow reading. No through arrow was seen in either lane."
+    },
+    "EB": {
+      "lanes": [
+        {
+          "lane": 1,
+          "turns": [],
+          "evidence": "Leftmost general lane between the curbed grass median (yellow edge line; its rounded nose with pedestrian refuge reaches the crosswalk in the satellite) and a solid white lane line. Stop bar spans it in the satellite. No pavement arrow legible in this lane in the satellite near the stop bar or in C1/C2; by inference it carries through traffic, but no arrow confirms it."
+        },
+        {
+          "lane": 2,
+          "turns": [
+            "right"
+          ],
+          "evidence": "Second lane, right of the solid white line: 'ONLY' legend in C1 and C2 with a right-turn arrow just before the stop bar (visible in C2 and as a curved right arrow in the satellite inside this lane right behind the stop bar); another right arrow is faintly visible upstream in the shaded satellite area and beyond 'ONLY' in C1."
+        }
+      ],
+      "bicycle_lanes": 1,
+      "rail_or_bus_only_lanes": 0,
+      "parking_lanes": 0,
+      "count_confidence": "high",
+      "count_settled": true,
+      "limitations": "Satellite upstream of the stop bar is in deep building shadow (enhanced crops only show faint lane lines and one arrow); a long dark straight line in the left lane of the satellite looks like a shadow/wire, not a marking. Green bicycle lane runs to the right of the right-turn lane to the stop bar (C1, C2) and is not counted; the opposing carriageway lies left of the median. Street views are from 2020-11; the satellite date is unknown. Lane 1's movement is not marked by an arrow, so its turns are left empty."
+    }
+  },
+  "checks": {
+    "WB": {
+      "traced": 2,
+      "seen": 2,
+      "settled": true,
+      "disagrees": false,
+      "reading_sees_more": false,
+      "issues": [],
+      "action": "agree"
+    },
+    "NB": {
+      "traced": 2,
+      "seen": 2,
+      "settled": true,
+      "disagrees": false,
+      "reading_sees_more": false,
+      "issues": [],
+      "action": "agree"
+    },
+    "EB": {
+      "traced": 2,
+      "seen": 2,
+      "settled": true,
+      "disagrees": false,
+      "reading_sees_more": false,
+      "issues": [],
+      "action": "agree"
+    }
+  }
+}

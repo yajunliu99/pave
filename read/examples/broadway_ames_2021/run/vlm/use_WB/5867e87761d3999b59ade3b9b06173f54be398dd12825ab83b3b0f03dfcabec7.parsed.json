@@ -1,0 +1,73 @@
+{
+  "lanes": [
+    {
+      "region_id": "r1",
+      "exists": "yes",
+      "turns": [
+        "left"
+      ],
+      "basis": "observed",
+      "confidence": "high",
+      "evidence": "Satellite: two curved left-turn arrows inside the r1 outline (near the stop bar and about mid-panel). C1 look-back: a large left-turn arrow in the lane on the right of the photo (driver's left = r1) with the word ONLY just upstream of it; C2 forward also shows ONLY in the left lane r1. Lane lines and stop bar reach it; vehicles drive in it. Left-only lane next to the median."
+    },
+    {
+      "region_id": "r2",
+      "exists": "yes",
+      "turns": [
+        "through"
+      ],
+      "basis": "observed",
+      "confidence": "high",
+      "evidence": "Satellite: two straight-ahead arrows in the r2 outline aligned with the r1 left arrows. C1 look-back: a large straight arrow pointing toward the junction in the lane left of the photo centre (driver's right general lane = r2). r2 is the curbside general motor lane, but the junction has no exit on the driver's right (north-east side is a building and a park in the overview), so no right turn is available; the bicycle lane between r2 and the curb is not a motor lane."
+    }
+  ],
+  "movements": [
+    {
+      "turn": "left",
+      "to": "out_SB",
+      "status": "candidate",
+      "lane_pairs": [
+        [
+          "r1",
+          "r1"
+        ]
+      ],
+      "reason": "Left arrows and ONLY in r1; Ames Street leg to the south-west is the only left exit (out_SB, -91 deg)."
+    },
+    {
+      "turn": "through",
+      "to": "out_WB",
+      "status": "candidate",
+      "lane_pairs": [
+        [
+          "r2",
+          "r1"
+        ]
+      ],
+      "reason": "Straight arrows in r2; Broadway continues north-west as out_WB."
+    },
+    {
+      "turn": "right",
+      "to": "none",
+      "status": "not_proposed",
+      "lane_pairs": [],
+      "reason": "T-junction: no road leaves to the driver's right (north-east), the overview shows a building and park there and no right exit is listed."
+    },
+    {
+      "turn": "u_turn",
+      "to": "out_EB",
+      "status": "not_proposed",
+      "lane_pairs": [],
+      "reason": "No U-turn arrow or sign seen; r1 shows plain left-turn arrows only. A U-turn around the median into out_EB is not evidenced."
+    }
+  ],
+  "detail_requests": [],
+  "missing_lanes": [],
+  "temporary_control": {
+    "seen": "no",
+    "lanes": [],
+    "effect": "none",
+    "evidence": "No cones, barrels or work-zone devices on the approach lanes in the satellite or in C1-C3."
+  },
+  "notes": "Approach widens from one lane upstream (C3) to two lanes near the junction: r1 left-only, r2 through. The curbside strip right of r2 is a bicycle lane behind a solid white line (bicycle symbol visible in C1); it is not counted as a motor lane, and it does not matter for turns because no right exit exists. Satellite date unknown; street views 2020-11."
+}

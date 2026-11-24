@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pave-read"
+version = "0.1.0"
+description = "Lanes and turning movements of a junction, read by a vision-language model from satellite and street-level imagery and tied to a GMNS network"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{ name = "Yajun Liu" }]
+keywords = ["GMNS", "traffic network", "lane inventory", "turning movements", "vision-language model", "street view"]
+# Developed with Python 3.14, Pillow 12.3, NumPy 2.5 and Requests 2.34.
+dependencies = [
+  "pillow>=11.3",
+  "numpy>=2.0",
+  "requests>=2.31",
+  "opencv-python>=4.9",   # lightens shaded satellite crops
+]
+
+[project.urls]
+Repository = "https://github.com/yajunliu99/pave"
+
+[tool.setuptools.packages.find]
+include = ["pave_read*"]

@@ -7,7 +7,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))
 from pave_read.fusion.lane_check import (blind_sheet, check_prompt, disagreements, layout, reference_lanes, reference_name,
                                               validate_reading, verdict)
 from pave_read.hybrid.common import ValidationError

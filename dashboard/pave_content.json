@@ -19,23 +19,24 @@
       "key": "V",
       "name": "Verify",
       "short": "checks, not rewards",
-      "text": "A real road gives no reward. Geometry checks, street-view lane counts, proposal gates and network and design checks stand in."
+      "text": "A real road gives no reward. Measured lane widths, a blind street-view reading, proposal gates and network and design checks stand in."
     },
     {
       "key": "E",
       "name": "Edit",
       "short": "writes back to GMNS",
-      "text": "Lanes, lane use and movements written to GMNS, or a new design built from templates and exported as GMNS tables and a project card."
+      "text": "Lanes, lane use and movements tied to network links, or a new design built from templates and exported as GMNS tables and a project card."
     }
   ],
   "loop_back": "a failed check goes back to the model with the reason",
   "read": {
-    "example": "read/examples/broadway_ames_2021",
-    "dashboard": "dashboard/build/read_example.html",
-    "image": "read/examples/broadway_ames_2021/results/annotated/labels/overview.jpg",
-    "kind": "Read · inventory",
+    "example": "read/examples/broadway_ames_2021/run",
+    "imagery": "read/examples/broadway_ames_2021/imagery",
+    "image": "read/examples/broadway_ames_2021/run/result.jpg",
+    "kind": "Read · lanes and movements",
     "title": "Broadway & Ames Street, Cambridge MA",
-    "text": "Lanes, lane use, turning movements, and signal and sign readings for a signalised T-junction, traced on a 2021 orthophoto and checked against street views."
+    "text": "The lanes of a signalised T-junction, their turns and the exit lanes each turn reaches, read from a 2021 orthophoto and 2020 street views. A lane is added only when a second trace finds it, and dropped only when a blind reading agrees.",
+    "view_title": "Broadway & Ames Street, Cambridge MA (2021 imagery)"
   },
   "edit": {
     "build": {

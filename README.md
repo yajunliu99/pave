@@ -13,14 +13,14 @@ Every step is recorded so that a run can be replayed. The model makes the judgem
 
 The repository holds two applications of the same harness:
 
-- **[Read](read/):** the inventory of an intersection, read from satellite and street-level imagery. It covers lanes, lane use, turning movements, and signals and signs.
+- **[Read](read/):** the lanes of an intersection, read from satellite and street-level imagery: the lanes of each approach at the stop bar, the turns each lane allows and the exit lanes each turn reaches.
 - **[Edit](edit/):** scenario design on an existing network. Example: rebuilding a diamond interchange as a diverging diamond, a single point urban interchange or roundabout ramp terminals.
 
 ![The PAVE dashboard](docs/pave_dashboard.png)
 
-[`dashboard/pave.html`](dashboard/pave.html) is the dashboard for both worked examples: one self-contained file. Download it and open it in a browser; only the background map tiles need a connection.
+[`dashboard/pave.html`](dashboard/pave.html) is the dashboard for both worked examples: one self-contained file. Download it and open it in a browser; only the background map tiles need a connection. The Read worked example's files are in [`read/examples/broadway_ames_2021/`](read/examples/broadway_ames_2021/), with every image and prompt sent and every answer.
 
-[`tutorial/PAVE_tutorial.html`](tutorial/PAVE_tutorial.html) goes through both worked examples step by step: for every model call, the image the model sees, the prompt as sent and the answer it gave. It also covers connecting a model and letting Codex subagents answer the requests when there is no API. It is one self-contained file of about 20 MB; download it and open it in a browser.
+[`tutorial/PAVE_tutorial.html`](tutorial/PAVE_tutorial.html) goes through both worked examples step by step: for every model call, the image the model sees, the prompt as sent and the answer it gave. It also covers connecting a model and letting coding agents answer the requests when there is no API. It is one self-contained file of about 10 MB; download it and open it in a browser. `tutorial/build_tutorial.py` rebuilds it from `tutorial/src/` and the Read example.
 
 Model output is a prediction, not reference data.
 
@@ -44,10 +44,10 @@ flowchart LR
 
 | | Read: inventory | Edit: scenario design |
 |---|---|---|
-| **Perceive** | Satellite crops with rulers. Street views tied to the network by camera pose. The model can ask for closer views. | Satellite image and an ID-marked drawing of the network on a grid. |
-| **Anchor** | Stop bars, lane boundaries in crop pixels, regions and movements on network sections. | Existing link and node IDs for each part of the interchange. |
-| **Verify** | Geometry checks, a review loop, street-view lane counts held against the traced lanes, exit re-audit. | Proposal gates P0–P8 with one repair request. Network checks C1–C6, template checks, design guidance. |
-| **Edit** | Lanes, lane use, movements and signal readings written as GMNS-ready tables and GeoJSON. | New design built from templates; GMNS tables, change table, Network Wrangler project card. |
+| **Perceive** | Satellite crops of each arm with rulers and stations. Street views tied to the network by camera pose, with the traced lanes projected into them. The model can ask for closer views. | Satellite image and an ID-marked drawing of the network on a grid. |
+| **Anchor** | Stop lines and lane boundaries in crop pixels; lanes, turns and lane pairs on network sections. | Existing link and node IDs for each part of the interchange. |
+| **Verify** | Measured lane widths and answer checks send a trace back. A blind reading of the street views must agree before a lane is dropped; a second trace must find a lane before it is added. | Proposal gates P0–P8 with one repair request. Network checks C1–C6, template checks, design guidance. |
+| **Edit** | Lanes, lane use and movements with their lane pairs, tied to the network's links. | New design built from templates; GMNS tables, change table, Network Wrangler project card. |
 | **Example** | [Broadway & Ames Street, Cambridge MA](read/examples/broadway_ames_2021/) | [SR 347 / I-10 interchange, Arizona](edit/scenarios/sr347_i10_ddi/) |
 
 Each step of the two pipelines below carries the stage it belongs to, as on the dashboard: P Perceive, A Anchor, V Verify, E Edit.
@@ -58,33 +58,32 @@ Each step of the two pipelines below carries the stage it belongs to, as on the 
 flowchart TB
   subgraph R1["Acquire"]
     direction LR
-    r1["P · 1 Network node<br/>GMNS tables"] --> r2["P · 2 Imagery<br/>satellite crop, dated street views"] --> r3["A · 3 Anchor<br/>stop bar of each section"]
+    r1["P · 1 Network node<br/>GMNS tables"] --> r2["P · 2 Imagery<br/>satellite crop, dated street views"]
   end
-  subgraph R2["Trace and classify"]
+  subgraph R2["Independent first readings"]
     direction LR
-    r4["A · 4 Draft<br/>model traces lane boundaries"] --> r5{"V · 5 Review<br/>checks + model"}
-    r5 -- "issues: revise" --> r4
-    r5 -- accepted --> r6["A · 6 Classify<br/>lane types, lane use, movements"]
-    r6 --> r7{"V · 7 Street-view<br/>check"}
-    r7 -- "counts differ" --> r5
+    r3["A · 3 Trace each arm<br/>stop line, boundaries, strips"]
+    r4["A · 4 Read each approach blind<br/>lanes from the street views"]
   end
-  subgraph R3["Audit and write"]
+  subgraph R3["Lane use and checks"]
     direction LR
-    r8{"V · 8 Exit re-audit,<br/>lane-count check"} --> r9["E · 9 Atlas<br/>GeoJSON lanes"] --> r10["A · 10 Signals and signs<br/>YOLO + model"] --> r11["E · 11 Labels, export,<br/>dashboard"]
+    r5{"V · 5 Measured issues,<br/>reading sees more lanes"} -- "re-trace" --> r6["A · 6 Lane use<br/>lanes, turns, exits, lane pairs"]
+    r6 --> r7{"V · 7 Add, keep or drop a lane,<br/>left-turn lane"}
+    r7 -- "re-trace, ask again" --> r6
   end
-  R1 --> R2
-  R2 -- "counts agree" --> R3
+  R1 --> R2 --> R3
+  R3 -- "settled" --> r8["E · 8 Lanes and movements<br/>tied to network sections"]
   classDef P fill:#eaf2fe,stroke:#3b82f6,stroke-width:2px,color:#10203a
   classDef A fill:#e3f6f3,stroke:#10b3a3,stroke-width:2px,color:#0a3631
   classDef V fill:#fdf3dc,stroke:#f2a516,stroke-width:2px,color:#4a3200
   classDef E fill:#fde8e8,stroke:#ef5350,stroke-width:2px,color:#4d1212
   class r1,r2 P
-  class r3,r4,r6,r10 A
-  class r5,r7,r8 V
-  class r9,r11 E
+  class r3,r4,r6 A
+  class r5,r7 V
+  class r8 E
 ```
 
-[`read/README.md`](read/README.md#pipeline) gives the code and output files of each step.
+[`read/README.md`](read/README.md#how-it-works) gives the steps, their code and the output files.
 
 ### Edit pipeline
 
@@ -129,7 +128,7 @@ git clone https://github.com/yajunliu99/pave.git
 cd pave
 ```
 
-Both apps reach the vision-language model through one client, [`read/src/pave_read/vision_client.py`](read/src/pave_read/vision_client.py) (Edit keeps an identical copy), over any OpenAI-compatible Chat Completions API. One `.env` at the repository root serves both; copy [`.env.example`](.env.example) to `.env`:
+Both apps reach the vision-language model through one client, [`read/pave_read/vision_client.py`](read/pave_read/vision_client.py) (Edit keeps an identical copy), over any OpenAI-compatible Chat Completions API. One `.env` at the repository root serves both; copy [`.env.example`](.env.example) to `.env`:
 
 | Setting | Used for |
 |---|---|
@@ -143,11 +142,11 @@ Read (Python 3.12 or newer):
 
 ```bash
 cd read
-pip install -r requirements.txt
+pip install -e .
 python -m unittest discover -s tests
 ```
 
-[`read/README.md`](read/README.md) covers the full pipeline and its worked example.
+[`read/README.md`](read/README.md) covers the pipeline and its worked example. Without an API, coding agents can answer the requests: see [`read/docs/agent_queue.md`](read/docs/agent_queue.md).
 
 Edit (Python 3.10 or newer):
 
@@ -160,24 +159,24 @@ python -m unittest discover -s tests
 
 [`edit/README.md`](edit/README.md) covers the proposers, the dashboard, design guidance and Network Wrangler project cards.
 
-Rebuild the combined dashboard after either example changes:
+Rebuild the dashboard after either example changes:
 
 ```bash
 python dashboard/build_pave.py
 ```
 
-PAVE has one page template, `dashboard/pave_template.html`: the overview and the Read and Edit views, each with its own data. The read pipeline fills the Read view (the dashboard of your own sites), `edit/tools/build_dashboard.py` fills the Edit view, and `dashboard/build_pave.py` fills all three into `dashboard/pave.html`. A page shows only the views it has data for. The build makes the Edit data from `edit/` each time; the Read data come from the export of the read pipeline, which writes a Read page to `dashboard/build/`, or, without that file, from the `pave.html` already built.
+PAVE has one page template, `dashboard/pave_template.html`: the overview and the Read and Edit views, each with its own data. `dashboard/read_view.py` makes the Read data from the Read example's run and imagery, `edit/tools/build_dashboard.py` makes the Edit data from `edit/`, and `dashboard/build_pave.py` fills all three into `dashboard/pave.html`, making both each time. A page shows only the views it has data for.
 
 ## Repository layout
 
 ```
-read/          Read: lane and movement inventory (Python package pave_read)
-  examples/    worked example with imagery, results and model answers
+read/          Read: lanes and turning movements (Python package pave_read)
+  examples/    worked example with imagery, every request and model answer, and results
 edit/          Edit: scenario editing (Python package pave_edit)
   scenarios/   worked example with its network, imagery and saved model answers
-dashboard/     the PAVE dashboard (both worked examples), its one page template and its build script
+dashboard/     the PAVE dashboard (both worked examples), its one page template and its build scripts
   vendor/      Leaflet, the map library of the Read view
-tutorial/      step-by-step tutorial of both worked examples (one self-contained page)
+tutorial/      step-by-step tutorial of both worked examples (one self-contained page) and its build script
 docs/          figures
 ```
 

@@ -224,6 +224,8 @@ body.mapfull #read #sitecard.show{display:block}
 #read .tabs button{border:0;background:none;padding:6px 14px;color:var(--muted);cursor:pointer;border-radius:9px;font-weight:600;font-size:13px}
 #read .tabs button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(16,24,40,.12)}
 #read .tabs button .n{font-weight:500;opacity:.7;margin-left:4px}
+#read .tabs{max-width:100%;overflow-x:auto;scrollbar-width:none}
+#read .tabs button{white-space:nowrap;flex:none}
 #read .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
 #read .card h3{font-size:13.5px;margin-bottom:8px}
 #read .grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:16px;align-items:start}
@@ -314,9 +316,9 @@ body.mapfull #read #sitecard.show{display:block}
 #read #theme{position:absolute;top:14px;right:16px}}
 
 /* stage letters: which harness stage each tab and check belongs to */
-#read .tabs button[data-t="views"]::before,#read .tabs button[data-t="signals"]::before,#read .tabs button[data-t="lanes"]::before,#read .tabs button[data-t="movements"]::before,#read .tabs button[data-t="figures"]::before,#read .check:not(.muted)::before{content:"";margin-right:7px;display:inline-grid;place-items:center;width:17px;height:17px;border-radius:5px;color:#fff;font:800 10px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
+#read .tabs button[data-t="views"]::before,#read .tabs button[data-t="checks"]::before,#read .tabs button[data-t="lanes"]::before,#read .tabs button[data-t="movements"]::before,#read .tabs button[data-t="figures"]::before,#read .check:not(.muted)::before{content:"";margin-right:7px;display:inline-grid;place-items:center;width:17px;height:17px;border-radius:5px;color:#fff;font:800 10px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
 #read .tabs button[data-t="views"]::before{content:"P";background:var(--stage-p)}
-#read .tabs button[data-t="signals"]::before{content:"A";background:var(--stage-a)}
+#read .tabs button[data-t="checks"]::before{content:"V";background:var(--stage-v)}
 #read .tabs button[data-t="lanes"]::before{content:"A";background:var(--stage-a)}
 #read .tabs button[data-t="movements"]::before{content:"A";background:var(--stage-a)}
 #read .tabs button[data-t="figures"]::before{content:"E";background:var(--stage-e)}
@@ -628,12 +630,12 @@ body.mapfull #read #sitecard.show{display:block}
 <section class="view" id="read">
 <header class="top">
   <div class="pave-brand">
-    <div class="pave-eyebrow">Read · inventory</div>
+    <div class="pave-eyebrow">Read · lanes and movements</div>
     <h1 class="pave-title" id="title">Intersection Explorer</h1>
     <div class="pave-context" id="subtitle"></div>
   </div>
   <div class="metrics" id="metrics"></div>
-  <div class="pave-rail" aria-label="Harness stages"><div class="pave-stage"><i style="background:var(--stage-p)">P</i><b>Perceive</b><span title="satellite crops, dated street views">satellite crops, dated street views</span></div><div class="pave-stage"><i style="background:var(--stage-a)">A</i><b>Anchor</b><span title="stop bars, lane boundaries">stop bars, lane boundaries</span></div><div class="pave-stage"><i style="background:var(--stage-v)">V</i><b>Verify</b><span title="lane review, street-view counts">lane review, street-view counts</span></div><div class="pave-stage"><i style="background:var(--stage-e)">E</i><b>Edit</b><span title="lanes, movements, signals">lanes, movements, signals</span></div></div>
+  <div class="pave-rail" aria-label="Harness stages"><div class="pave-stage"><i style="background:var(--stage-p)">P</i><b>Perceive</b><span title="satellite crops, dated street views">satellite crops, dated street views</span></div><div class="pave-stage"><i style="background:var(--stage-a)">A</i><b>Anchor</b><span title="stop bars, lane boundaries">stop bars, lane boundaries</span></div><div class="pave-stage"><i style="background:var(--stage-v)">V</i><b>Verify</b><span title="measured lane widths, blind street-view reading">lane widths, blind reading</span></div><div class="pave-stage"><i style="background:var(--stage-e)">E</i><b>Edit</b><span title="lanes, lane use, movements">lanes, lane use, movements</span></div></div>
 </header>
 <div class="app">
   <aside class="side">
@@ -652,7 +654,7 @@ body.mapfull #read #sitecard.show{display:block}
     </section>
     <div class="tools">
       <div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="search" placeholder="Search intersection, UTDF ID or node" autocomplete="off"></div>
+        <input id="search" placeholder="Search intersection or node" autocomplete="off"></div>
       <div class="chips" id="filters"></div>
     </div>
     <ul id="list"></ul>
@@ -755,46 +757,29 @@ PAVE_VIEWS.read = () => {
 'use strict';
 const IX = JSON.parse(document.getElementById('index').textContent);
 const SITES = IX.sites, byId = new Map(SITES.map(s => [s.id, s]));
-const hasRef = s => s.utdf != null;   // false for a run with no UTDF intersection (e.g. another city)
-const idLine = s => `${hasRef(s) ? 'UTDF ' + s.utdf + ' · ' : ''}node ${s.node}`;
-const anyRef = SITES.some(hasRef);
+const idLine = s => `node ${s.node}`;
 const COL = {L:'var(--L)',T:'var(--T)',R:'var(--R)',U:'var(--U)'};
 const HEX = {L:'#e06d5b',T:'#4a78b5',R:'#3f9a7b',U:'#8d6cc4'};
-const VERDICT = {utdf:['Imagery agrees with UTDF','#d39532'], model:['Imagery agrees with the model','#4a78b5'],
-                 neither:['Neither matches the imagery','#d0574a'], unclear:['Imagery unclear','#98a2b3']};
-const STYLE = {motor:'#5bb8d4', exit:'#a9cbe8', bike:'#5aae61', rail:'#d39532', other:'#a3abb7', unsure:'#e9c46a', rejected:'#7d8590'};
+const STYLE = {motor:'#5bb8d4', exit:'#a9cbe8', bike:'#5aae61', other:'#a3abb7', unsure:'#e9c46a'};
+const TURN_NAME = {L:'left', T:'through', R:'right', U:'U-turn'};
+const NAMES = {bike:'bicycle lane', other:'buffer or parking', unsure:'unresolved region', exit:'exit lane', motor:'approach lane'};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const store = {get(k, d){ try { return localStorage.getItem(k) ?? d; } catch { return d; } }, set(k, v){ try { localStorage.setItem(k, v); } catch {} }};
-const data = {}, state = {id:null, tab:'lanes', filter:'all', query:'', region:null, approach:null, showExits:true, showOther:true, showCams:false};
+const data = {}, state = {id:null, tab:'lanes', query:'', region:null, approach:null, showExits:true, showOther:true, showCams:false};
 let lightboxList = [], lightboxAt = 0;
 const IMG = (d, name) => (d.img || {})[name] || '';
 
 /* ---------- header ---------- */
 $('title').textContent = IX.title || 'Intersection Explorer';
-$('subtitle').textContent = 'The model reads lanes, lane use, movements, signals and signs from satellite images and dated street views' + (anyRef ? ', beside UTDF and OSM' : '') + '. Model output is a prediction, not reference data.';
-const ac = IX.auto_checks || {}, rv = IX.reviews || {};
-const share = IX.approaches ? IX.agree / IX.approaches : 0;
-$('metrics').innerHTML = `
-  <div class="metric"><b>${SITES.length}</b><span>intersection${SITES.length === 1 ? '' : 's'}</span></div>` + (!IX.approaches ? '' : `
-  <div class="metric" title="approaches whose model lane count equals UTDF"><b>${IX.agree} <small>/ ${IX.approaches}</small></b><span>lane count = UTDF</span><div class="bar"><i style="width:${(share*100).toFixed(0)}%"></i></div></div>
-  <div class="metric" title="blind model reading of the approaches whose lane counts differ"><b>${ac.utdf||0} <small>·</small> ${ac.model||0}</b><span>model re-check: UTDF · model right</span></div>
-  <div class="metric" title="a second, manual reading of the same imagery"><b>${rv.utdf||0} <small>·</small> ${rv.model||0}</b><span>manual check: UTDF · model right</span></div>`);
+$('subtitle').textContent = 'The model traces the lanes of each approach on the satellite image, reads them again blind from the street views, and says which turns each lane allows and which exit lanes each turn reaches. Model output is a prediction, not reference data.';
+$('metrics').innerHTML = `<div class="metric"><b>${SITES.length}</b><span>intersection${SITES.length === 1 ? '' : 's'}</span></div>`
+  + (IX.metrics || []).map(([n, l]) => `<div class="metric"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join('');
 
 /* ---------- list ---------- */
-const differs = s => s.approaches.some(a => a.utdf.length && !a.agree);
-const FILTERS = [['all','All',() => true],['differ','Lane count differs',differs],
-  ['utdf','UTDF right',s => s.approaches.some(a => [a.auto, a.review].some(r => r && r.verdict === 'utdf'))],
-  ['model','Model right',s => s.approaches.some(a => [a.auto, a.review].some(r => r && r.verdict === 'model'))],
-  ['note','UTDF match note',s => !!s.match_note]];
-$('filters').innerHTML = FILTERS.filter(([k]) => anyRef || k === 'all').map(([k,l,f]) => `<button class="chip${k==='all'?' on':''}" data-f="${k}">${l}<span class="n">${SITES.filter(f).length}</span></button>`).join('');
-$('filters').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; state.filter = b.dataset.f;
-  [...$('filters').children].forEach(c => c.classList.toggle('on', c === b)); renderList(); };
+$('filters').innerHTML = `<button class="chip on">All<span class="n">${SITES.length}</span></button>`;
 $('search').oninput = e => { state.query = e.target.value.toLowerCase(); renderList(); };
-function visible(s){
-  if (state.query && !(`${s.name} ${s.id} ${s.node}`.toLowerCase().includes(state.query))) return false;
-  return FILTERS.find(f => f[0] === state.filter)[2](s);
-}
+const visible = s => !state.query || `${s.name} ${s.id} ${s.node}`.toLowerCase().includes(state.query);
 function renderList(){
   $('list').innerHTML = SITES.filter(visible).map(s => `<li data-id="${s.id}" class="${s.id===state.id?'sel':''}">
     <span class="nm" title="${esc(s.name)}">${esc(s.name)}</span>
@@ -845,7 +830,8 @@ if (window.L){
   for (const s of SITES) for (const [section, label, style, ring] of ((IX.geo || {})[s.id] || [])){
     const c = laneColor(label, style);
     L.polygon(ring.map(([x, y]) => [y, x]), {color:c, weight:1, fillColor:c, fillOpacity:style === 'motor' ? .45 : .25, opacity:.9})
-      .bindTooltip(`${esc(s.name)} · ${esc(section)} · ${esc(label)}`, {sticky:true}).on('click', () => select(s.id)).addTo(laneLayer);
+      .bindTooltip(`${esc(s.name)} · ${esc(section)} · ${esc(style === 'motor' || style === 'exit' ? label : NAMES[style] || label)}`, {sticky:true})
+      .on('click', () => select(s.id)).addTo(laneLayer);
   }
   const pts = [];
   for (const s of SITES){ if (s.lat == null) continue; pts.push([s.lat, s.lon]);
@@ -912,72 +898,45 @@ function select(id, opts = {}){
 }
 
 /* ---------- shared pieces ---------- */
+const turnWords = t => [...t].map(c => TURN_NAME[c] || c).join(', ');
 function laneBlocks(lanes, kind){
   return lanes.map(l => {
     const t = l.t || '', first = t[0];
-    if (!t) return `<span class="lane unk${l.rail?' rail':''}" title="lane ${l.n}: use not established">?</span>`;
-    const inf = kind === 'vlm' && l.basis === 'movement';
+    if (!t) return `<span class="lane unk" title="lane ${l.n}: turns not established">?</span>`;
+    const inf = kind === 'model' && l.basis !== 'observed';
     const style = inf ? `border-color:${COL[first]};color:${COL[first]}` : `background:${COL[first]}`;
-    const tip = `lane ${l.n}: ${t}${kind==='vlm' ? (inf ? ' (paired by the movement step)' : ' (read from pavement markings)') : ''}${l.rail?' · shared with rail':''}`;
-    return `<span class="lane${inf?' inf':''}${l.rail?' rail':''}" style="${style}" title="${tip}">${t}</span>`;
+    const tip = `lane ${l.n}: ${turnWords(t)}` + (kind === 'blind' ? ' (blind reading)' : inf ? ' (inferred from lane order, lane lines or the junction layout)' : ' (read from an arrow, ONLY word or sign)');
+    return `<span class="lane${inf?' inf':''}" style="${style}" title="${esc(tip)}">${t}</span>`;
   }).join('');
-}
-function gsvRow(a){
-  const g = (a.gsv || []).filter(x => x.lanes != null);
-  if (!g.length) return '';
-  // far views stand ~100 m out, where pockets have often not opened yet: only near and mid counts are held against the trace
-  const differs = x => x.settled && x.pos !== 'far' && x.lanes !== a.vlm.length;
-  const off = g.some(differs);
-  const chips = g.map(x => `<span class="gsv${differs(x) ? ' off' : ''}${x.settled ? '' : ' unsure'}"
-      title="${esc(`${x.pos} street view, ${x.dist} m from the centre, ${x.date || 'date unknown'}${x.other && x.other !== 'none' ? ' · also: ' + x.other : ''}${x.unmatched && x.unmatched !== 'none' ? ' · not matching the traced regions: ' + x.unmatched : ''}${x.settled ? '' : ' · count not settled'}`)}">${esc(x.pos || '?')} <b>${x.lanes}</b></span>`).join('');
-  return `<div class="row"><span class="src" title="motor lanes of this direction counted in the forward street views">GSV</span><span class="lanes">${chips}</span><span class="n">${off ? '<span style="color:var(--warn)" title="a street view shows a different number of lanes than were traced">≠</span>' : ''}</span></div>`;
-}
-function matchHtml(a){
-  const m = a.match;
-  if (m && m.by === 'name') return `<div class="check muted">UTDF ${esc(a.dir)} is matched by direction name only: UTDF's movement table does not tie it to this link, so the two may describe different legs. The automated check skips such approaches.</div>`;
-  if (m && m.also.length) return `<div class="check muted">This link also carries UTDF ${m.also.map(esc).join(', ')}; its rows are listed separately under Movements.</div>`;
-  return '';
-}
-function checksHtml(a){
-  if (!a.utdf.length) return `<div class="check muted">No UTDF lane layout ${a.match ? 'for this approach' : 'tied to this link'}.</div>`;
-  if (a.agree) return '';
-  if (!a.auto && !a.review) return '<div class="check muted">Lane counts differ; not checked against the imagery.</div>';
-  const line = (who, r, sheet) => { const [txt, c] = VERDICT[r.verdict] || [r.verdict, '#7a8796'];
-    return `<div class="check" style="border-left-color:${c}"><span class="small muted">${who}</span><br><span class="what" style="color:${c}">${txt}</span>
-      <span class="muted"> · seen: ${esc(r.layout_seen||'–')} · ${esc((r.cause||'').replaceAll('_',' '))} · ${esc(r.confidence||'')} confidence</span>
-      ${sheet?` · <button class="linkish" data-sheet="${esc(sheet)}">image checked</button>`:''}<div class="muted">${esc(r.note||'')}</div></div>`; };
-  return (a.auto ? line('Model re-check · blind reading of the imagery', a.auto, a.auto.sheet) : '')
-       + (a.review ? line('Manual check · second reading of the same imagery', a.review) : '');
 }
 function turnChip(t){ return `<span class="turn" style="background:${COL[t]||'#9aa5b2'}">${t}</span>`; }
 function thumb(view, d){
-  const i = d.views.indexOf(view), boxes = d.observations.filter(o => o.view === i);
+  const i = d.views.indexOf(view);
   return `<div class="thumb" data-view="${i}"><img loading="lazy" decoding="async" src="${IMG(d, view.src)}" alt="">
     <div class="cap"><b>${esc(view.group)}</b> · ${esc(view.role)}${view.position?' · '+esc(view.position):''}<br>
-    ${view.dist} m · ${esc(view.date||'date unknown')}${view.relation==='historical'?' · <span class="hist">historical</span>':''}${boxes.length?` · ${boxes.length} obs.`:''}</div></div>`;
+    ${view.dist} m · ${esc(view.date||'date unknown')}</div></div>`;
 }
-function wireThumbs(root, d, list){ root.querySelectorAll('.thumb').forEach(t => t.onclick = () => openViews(d, list, +t.dataset.view)); }
+function wireThumbs(root, d, list){ root.querySelectorAll('.thumb[data-view]').forEach(t => t.onclick = () => openViews(d, list, +t.dataset.view)); }
+const viewsOf = (d, dir) => d.views.map((v, i) => [v, i]).filter(([v]) => v.group === 'Approach ' + dir).map(([, i]) => i);
 
 /* ---------- render ---------- */
 function render(){
   const s = byId.get(state.id), d = data[state.id]; if (!s || !d) return;
   const dates = s.dates ? (s.dates[0] === s.dates[1] ? s.dates[0] : s.dates.join(' – ')) : 'unknown';
-  const views = d.views.filter(v => !v.group.startsWith('Signals')).length;
-  const TABS = [['lanes','Lanes',s.approaches.length],['movements','Movements',d.movements.length],['views','Street views',views],['signals','Signals & signs',d.controls.length],['figures','Figures','']];
+  const figures = d.figures.sheets.length + (d.figures.result ? 1 : 0);
+  const TABS = [['lanes','Lanes',s.approaches.length],['movements','Movements',s.movements.length],['views','Street views',d.views.length],
+                ['checks','Checks',s.approaches.length],['figures','Figures',figures]];
   $('main').innerHTML = `<div class="fade"><div class="site-head"><div><div class="eyebrow">${idLine(s)}</div><h2>${esc(s.name)}</h2><div class="tags">
       <span class="tag">${s.legs||'?'} legs</span>
-      ${s.control?`<span class="tag">${esc(s.control)}${s.cycle?' · '+s.cycle+' s cycle':''}</span>`:''}
-      <span class="tag">street views ${esc(dates)}</span>
-      ${s.untraced.length?`<span class="tag warn">untraced: ${esc(s.untraced.join(', '))}</span>`:''}
-      ${s.missing_views.length?`<span class="tag warn">${s.missing_views.length} street views missing</span>`:''}</div></div>
+      <span class="tag">imagery ${esc(dates)}</span>
+      ${s.satellite?`<span class="tag">satellite: ${esc(s.satellite)}</span>`:''}</div></div>
 </div>
-    ${s.match_note?`<div class="note"><b>UTDF match</b><span>${esc(s.match_note)}</span></div>`:''}
     <nav class="tabs">${TABS.map(([k,l,n]) => `<button data-t="${k}" class="${k===state.tab?'on':''}">${l}${n!==''?`<span class="n">${n}</span>`:''}</button>`).join('')}</nav>
     <div id="tab"></div></div>`;
   $('main').querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; state.tab = b.dataset.t; render(); };
   const shownKey = state.id + '/' + state.tab;
   if (render.last !== shownKey) { $('main').scrollTop = 0; render.last = shownKey; }
-  ({lanes:renderLanes, movements:renderMovements, views:renderViews, signals:renderSignals, figures:renderFigures})[state.tab](s, d);
+  ({lanes:renderLanes, movements:renderMovements, views:renderViews, checks:renderChecks, figures:renderFigures})[state.tab](s, d);
 }
 
 /* Lanes */
@@ -985,34 +944,34 @@ function renderLanes(s, d){
   $('tab').innerHTML = `<div class="grid2"><div class="stack sticky">
       <div class="card"><div class="mapbar"><b style="color:var(--ink)">Traced lanes</b>
         <label><input type="checkbox" id="tgExits" ${state.showExits?'checked':''}>exits</label>
-        <label><input type="checkbox" id="tgOther" ${state.showOther?'checked':''}>bike, rail, buffer</label>
+        <label><input type="checkbox" id="tgOther" ${state.showOther?'checked':''}>bike, buffer, parking</label>
         <label><input type="checkbox" id="tgCams" ${state.showCams?'checked':''}>cameras</label>
         ${state.approach?`<button class="btn" id="clearAppr">all approaches</button>`:''}</div>
         <div class="mapframe"><svg id="sat"></svg></div>
         <div class="legend"><span><i style="background:${HEX.L}"></i>left</span><span><i style="background:${HEX.T}"></i>through</span><span><i style="background:${HEX.R}"></i>right</span>
           <span><i style="background:${STYLE.motor}"></i>use unknown</span><span><i style="background:${STYLE.exit}"></i>exit lane</span>
-          <span><i style="background:${STYLE.bike}"></i>bike</span><span><i style="background:${STYLE.rail}"></i>rail</span><span><i style="background:${STYLE.other}"></i>buffer / parking</span><span><i style="background:${STYLE.unsure}"></i>unresolved</span></div>
-        <div class="small muted" style="margin-top:6px">L1 = left-turn lane, numbered from the driver's left; lower case = turn paired by the movement step; o2 = exit lane 2. Click a lane for details.</div></div>
+          <span><i style="background:${STYLE.bike}"></i>bike</span><span><i style="background:${STYLE.other}"></i>buffer / parking</span><span><i style="background:${STYLE.unsure}"></i>unresolved</span></div>
+        <div class="small muted" style="margin-top:6px">L1 = left-turn lane 1, numbered from the driver's left; capitals: read from an arrow, ONLY word or sign; lower case: inferred from lane order, lane lines or the junction layout; out1 = exit lane 1. Click a lane for details.</div></div>
       <div class="card" id="laneInfo"></div></div>
     <div class="stack" id="approaches"></div></div>`;
   ['Exits','Other','Cams'].forEach(k => $('tg'+k).onchange = e => { state['show'+k] = e.target.checked; drawSat(d); });
   if ($('clearAppr')) $('clearAppr').onclick = () => { state.approach = null; renderLanes(s, d); };
-  $('approaches').innerHTML = s.approaches.map(a => `<div class="card appr${state.approach===a.key?' on':''}" data-key="${a.key}">
-      <div class="appr-head"><b>${a.dir}</b>${a.dir!==a.key?`<span class="small muted">network ${esc(a.key)}</span>`:''}
-        ${!a.utdf.length?'':a.agree?'<span class="badge" style="background:var(--ok)">lane count = UTDF</span>':`<span class="badge" style="background:var(--bad)">${a.vlm.length} vs UTDF ${a.utdf.length}</span>`}</div>
-      <div class="row"><span class="src">Model</span><span class="lanes">${laneBlocks(a.vlm,'vlm')}${a.bike?'<span class="lane bike" title="bicycle lane">bike</span>'.repeat(a.bike):''}</span><span class="n">${a.vlm.length}</span></div>
-      ${!hasRef(s) ? '' : `<div class="row"><span class="src">UTDF</span><span class="lanes">${laneBlocks(a.utdf,'utdf')||'<span class="muted small">—</span>'}</span><span class="n">${a.utdf.length||''}</span></div>
-      <div class="row"><span class="src">OSM</span><span class="lanes">${laneBlocks(a.osm,'osm')||'<span class="muted small">—</span>'}</span><span class="n">${a.osm.length||''}</span></div>`}
-      ${gsvRow(a)}${hasRef(s) ? matchHtml(a) + checksHtml(a) : ''}</div>`).join('') || '<div class="card muted">No approach could be traced.</div>';
-  $('approaches').querySelectorAll('.appr').forEach(c => c.onclick = e => {
-    const link = e.target.closest('[data-sheet]');
-    if (link) { e.stopPropagation(); openImage(IMG(d, link.dataset.sheet), 'Image shown to the blind lane-count check (no answer was shown)'); return; }
+  $('approaches').innerHTML = s.approaches.map(a => {
+    const agree = a.blind.length === a.vlm.length;
+    return `<div class="card appr${state.approach===a.key?' on':''}" data-key="${a.key}">
+      <div class="appr-head"><b>${a.dir}</b><span class="small muted">${esc(a.road || '')}${a.link!=null?' · link '+a.link:''}</span>
+        ${!a.blind.length ? '' : agree ? '<span class="badge" style="background:var(--ok)">blind reading agrees</span>'
+          : `<span class="badge" style="background:var(--warn)">blind reading ${a.blind.length}</span>`}</div>
+      <div class="row"><span class="src" title="the traced lanes and the turns lane use gave them">Model</span><span class="lanes">${laneBlocks(a.vlm,'model')}${'<span class="lane bike" title="bicycle lane">bike</span>'.repeat(a.bike)}</span><span class="n">${a.vlm.length}</span></div>
+      <div class="row"><span class="src" title="the lanes read blind from the satellite crop and street views, without the trace">Blind</span><span class="lanes">${laneBlocks(a.blind,'blind')||'<span class="muted small">—</span>'}</span><span class="n">${a.blind.length||''}${a.blind_settled===false?' <span style="color:var(--warn)" title="count not settled">?</span>':''}</span></div>
+      </div>`; }).join('') || '<div class="card muted">No approach could be traced.</div>';
+  $('approaches').querySelectorAll('.appr').forEach(c => c.onclick = () => {
     state.approach = state.approach === c.dataset.key ? null : c.dataset.key; renderLanes(s, d); });
   drawSat(d); renderLaneInfo(d);
 }
 function drawSat(d){
   const svg = $('sat');
-  const shown = d.regions.filter(r => (state.showExits || r.inbound) && (state.showOther || ['motor','exit','unsure'].includes(r.style)) && r.style !== 'rejected'
+  const shown = d.regions.filter(r => (state.showExits || r.inbound) && (state.showOther || ['motor','exit','unsure'].includes(r.style))
     && (!state.approach || r.section === 'in_' + state.approach || !r.inbound));
   const pts = (shown.length ? shown : d.regions).flatMap(r => r.poly);
   const [x1,y1,x2,y2] = [Math.min(...pts.map(p=>p[0])), Math.min(...pts.map(p=>p[1])), Math.max(...pts.map(p=>p[0])), Math.max(...pts.map(p=>p[1]))];
@@ -1023,114 +982,118 @@ function drawSat(d){
     poly.forEach(p => poly.forEach(q => { L = Math.max(L, Math.hypot(p[0]-q[0], p[1]-q[1])); })); return Math.abs(a) / 2 / Math.max(L, 1); };
   const motor = shown.filter(r => r.style === 'motor').map(r => widthOf(r.poly)).sort((a,b) => a-b);
   const fs = Math.max(w / 55, Math.min(w / 44, (motor[Math.floor(motor.length/2)] || 30) * .62));
-  const NAMES = {bike:'bicycle lane', rail:'rail area', other:'buffer or parking', unsure:'unresolved region', exit:'exit lane', motor:'approach lane'};
   let h = `<image href="${IMG(d, d.sat.src)}" width="${d.sat.size[0]}" height="${d.sat.size[1]}"/>`;
   for (const r of shown){
     const c = laneColor(r.label || '', r.style), sel = state.region === r.id;
-    h += `<polygon data-id="${r.id}" points="${r.poly.map(p=>p.join(',')).join(' ')}" fill="${c}" fill-opacity="${sel?.55:.24}" stroke="${sel?'#fff':c}" stroke-width="${sel?w/260:w/420}"><title>${esc(r.section+' · '+(r.style==='motor'?r.label:NAMES[r.style]||r.label))}</title></polygon>`;
+    h += `<polygon data-id="${esc(r.id)}" points="${r.poly.map(p=>p.join(',')).join(' ')}" fill="${c}" fill-opacity="${sel?.55:.24}" stroke="${sel?'#fff':c}" stroke-width="${sel?w/260:w/420}"><title>${esc(r.section+' · '+(r.style==='motor'||r.style==='exit'?r.label:NAMES[r.style]||r.label))}</title></polygon>`;
   }
   for (const r of shown){
     if (r.style !== 'motor' && r.style !== 'exit') continue;
     const xs = r.poly.map(p=>p[0]), ys = r.poly.map(p=>p[1]);
     const x = xs.reduce((a,b)=>a+b,0)/xs.length, y = ys.reduce((a,b)=>a+b,0)/ys.length;
-    const text = r.style === 'exit' ? r.label.replace('out','o') : r.label.replace(' rail','');
+    const text = r.style === 'exit' ? r.label.replace('out','o') : r.label;
     h += `<text class="lbl" x="${x}" y="${y}" font-size="${r.style==='exit'?fs*.8:fs}" ${r.style==='exit'?'opacity=".8"':''} text-anchor="middle" dominant-baseline="middle">${esc(text)}</text>`;
   }
   if (state.showCams) d.views.forEach((v, i) => { if (!v.xy) return; const a = v.heading*Math.PI/180, L = w/30;
     h += `<g data-view="${i}" style="cursor:pointer"><line x1="${v.xy[0]}" y1="${v.xy[1]}" x2="${v.xy[0]+L*Math.sin(a)}" y2="${v.xy[1]-L*Math.cos(a)}" stroke="#fff" stroke-width="${w/320}"/>
-      <circle cx="${v.xy[0]}" cy="${v.xy[1]}" r="${w/150}" fill="${v.relation==='historical'?'#d39532':'#4a78b5'}" stroke="#fff" stroke-width="${w/600}"/><title>${esc(v.group+' · '+v.role+' · '+v.date)}</title></g>`; });
+      <circle cx="${v.xy[0]}" cy="${v.xy[1]}" r="${w/150}" fill="#4a78b5" stroke="#fff" stroke-width="${w/600}"/><title>${esc(v.group+' · '+v.role+' · '+v.date)}</title></g>`; });
   svg.innerHTML = h;
   svg.querySelectorAll('polygon').forEach(p => p.onclick = () => { state.region = p.dataset.id; drawSat(d); renderLaneInfo(d); });
   svg.querySelectorAll('g[data-view]').forEach(g => g.onclick = () => openViews(d, d.views.map((_,i)=>i), +g.dataset.view));
 }
 function renderLaneInfo(d){
   const r = d.regions.find(x => x.id === state.region);
-  if (!r) { $('laneInfo').innerHTML = '<h3>Lane details</h3><div class="muted small">Click a lane on the image to see how the model classified it and the street views where it was seen.</div>'; return; }
-  const useTxt = r.turns.length ? r.turns.join(', ') + ' (read from markings)' : r.paired.length ? r.paired.join('') + ' (paired by the movement step)' : 'not established';
-  const viewIds = [...new Set(d.observations.filter(o => o.regions.includes(r.id)).map(o => o.view))];
-  $('laneInfo').innerHTML = `<h3>${esc(r.section)} · ${esc(r.label)}</h3>
-    <div class="kv"><span>facility</span><b>${esc(r.type.replaceAll('_',' '))}${r.existence!=='supported'?' · '+esc(r.existence):''}</b>
-      ${r.inbound?`<span>use</span><b>${esc(useTxt)}</b>`:''}<span>confidence</span><b>${esc(r.confidence||'–')}</b></div>
-    <p class="small" style="margin:10px 0 4px">${esc(r.evidence)}</p>${r.binding?`<p class="small muted" style="margin:4px 0">${esc(r.binding)}</p>`:''}
-    ${viewIds.length?`<div class="section-title">Seen in ${viewIds.length} street view${viewIds.length>1?'s':''}</div><div class="gal">${viewIds.map(i => thumb(d.views[i], d)).join('')}</div>`:''}`;
+  if (!r) { $('laneInfo').innerHTML = '<h3>Lane details</h3><div class="muted small">Click a lane on the image to see how the model traced it, the turns it gave the lane and the street views of its approach.</div>'; return; }
+  const basis = {observed:' (read from an arrow, ONLY word or sign)', inferred:' (inferred from lane order, lane lines or the junction layout)'}[r.basis] || '';
+  const useTxt = r.turns.length ? r.turns.map(t => t.replace('_', '-')).join(', ') + basis : 'not established';
+  const conf = [r.trace_confidence ? 'trace ' + r.trace_confidence : '', r.use_confidence ? 'lane use ' + r.use_confidence : ''].filter(Boolean).join(' · ');
+  const viewIds = r.inbound ? viewsOf(d, r.section.replace(/^in_/, '')) : [];
+  $('laneInfo').innerHTML = `<h3>${esc(r.section)} · ${esc(r.style==='motor'||r.style==='exit' ? r.label : NAMES[r.style] || r.label)}</h3>
+    <div class="kv"><span>facility</span><b>${esc(r.type.replaceAll('_',' '))}</b>
+      ${r.width!=null?`<span>width</span><b>${r.width.toFixed(2)} m</b>`:''}
+      ${r.inbound && r.style==='motor'?`<span>turns</span><b>${esc(useTxt)}</b>`:''}
+      ${conf?`<span>confidence</span><b>${esc(conf)}</b>`:''}</div>
+    ${r.evidence?`<div class="section-title">Trace</div><p class="small" style="margin:0">${esc(r.evidence)}</p>`:''}
+    ${r.use_evidence?`<div class="section-title">Lane use</div><p class="small" style="margin:0">${esc(r.use_evidence)}</p>`:''}
+    ${viewIds.length?`<div class="section-title">Street views of this approach</div><div class="gal">${viewIds.map(i => thumb(d.views[i], d)).join('')}</div>`:''}`;
   wireThumbs($('laneInfo'), d, viewIds);
 }
 
 /* Movements */
 function renderMovements(s, d){
   const groups = {};
-  s.movements.forEach(m => { const g = m.group || m.code.slice(0,2); (groups[g] = groups[g] || []).push(m); });
+  s.movements.forEach(m => (groups[m.group] = groups[m.group] || []).push(m));
+  const roads = Object.fromEntries(s.approaches.map(a => [a.dir, a.road]));
   const rng = r => r ? (r[0] === r[1] ? r[0] : r[0] + '–' + r[1]) : '–';
-  const src = e => e ? `${e.lanes ?? '–'} <span class="muted small">${e.in?'in '+rng(e.in):''}${e.out?' → '+rng(e.out):''}</span>` : '<span class="muted">–</span>';
   let rows = '';
-  for (const dir of Object.keys(groups).sort()){
-    rows += `<tr class="grp"><td colspan="${hasRef(s) ? 5 : 3}">${esc(dir)}</td></tr>`;
+  for (const dir of Object.keys(groups)){
+    rows += `<tr class="grp"><td colspan="4">${esc(dir)}${roads[dir]?` <span class="small muted">${esc(roads[dir])}</span>`:''}</td></tr>`;
     for (const m of groups[dir]){
-      const v = m.vlm, t = m.code[2] === 'L' ? 'L' : m.code[2] === 'T' ? 'T' : m.code[2] === 'R' ? 'R' : 'U';
-      const rule = v && v.reason.includes('Default rule');
-      rows += `<tr><td>${turnChip(t)} <span class="small muted">${m.code}</span></td>${!hasRef(s) ? '' : `<td>${src(m.utdf)}${m.vol?` <span class="small muted">· ${m.vol} veh/h</span>`:''}</td><td>${src(m.osm)}</td>`}
-        <td>${v ? `<span class="st ${v.status}">${v.status.replace('_',' ')}</span>${rule?'<span class="rule" title="added by the traffic-law default for the kerbside lane">rule</span>':''} ${v.status==='candidate'?src(v):''}` : '<span class="muted">–</span>'}</td>
-        <td class="reason">${v ? esc(v.reason.length > 200 ? v.reason.slice(0,200) + '…' : v.reason) : ''}</td></tr>`;
+      const t = m.code.slice(-1);
+      rows += `<tr><td>${turnChip(t)} <span class="small muted">${esc(m.code)}</span></td><td>${m.to && m.status==='candidate' ? 'exit ' + esc(m.to) : '<span class="muted">–</span>'}</td>
+        <td><span class="st ${esc(m.status)}">${esc(m.status.replace('_',' '))}</span> ${m.status==='candidate'?`${m.lanes} <span class="muted small">in ${rng(m.in)} → ${rng(m.out)}</span>`:''}</td>
+        <td class="reason">${esc(m.reason)}</td></tr>`;
     }
   }
-  $('tab').innerHTML = `<div class="card"><table><thead><tr><th>Movement</th>${hasRef(s) ? '<th>UTDF lanes</th><th>OSM lanes</th>' : ''}<th>Model</th><th>Model reasoning</th></tr></thead><tbody>${rows}</tbody></table>
-    <p class="small muted" style="margin:10px 0 0">Lanes are numbered from the driver's left; "in" is the approach lane range, "→" the receiving lanes. Model movements are hypotheses; "unresolved" means the imagery did not settle them. "rule": the rightmost lane may turn right unless a marking or sign prohibits it.</p></div>`;
+  $('tab').innerHTML = `<div class="card"><table><thead><tr><th>Movement</th><th>Exit</th><th>Model</th><th>Model reasoning</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="small muted" style="margin:10px 0 0">Lanes are numbered from the driver's left; "in" is the approach lane range, "→" the exit lanes it reaches. Turns are the model's; "not proposed" means the model found no such turn: no exit that way, or no lane that allows it. The curbside lane may also turn right unless a marking or sign rules it out.</p></div>`;
 }
 
 /* Street views */
 function renderViews(s, d){
   const groups = {};
-  d.views.forEach((v, i) => { if (!v.group.startsWith('Signals')) (groups[v.group] = groups[v.group] || []).push(i); });
-  const order = Object.keys(groups).sort((a,b) => (a.startsWith('Exit') - b.startsWith('Exit')) || a.localeCompare(b));
+  d.views.forEach((v, i) => (groups[v.group] = groups[v.group] || []).push(i));
+  const order = Object.keys(groups).sort();
   $('tab').innerHTML = order.map(g => `<div class="section-title">${esc(g)} <span class="muted small">${groups[g].length}</span></div><div class="gal" data-g="${esc(g)}">${groups[g].map(i => thumb(d.views[i], d)).join('')}</div>`).join('')
     || '<div class="empty">No street views.</div>';
   $('tab').querySelectorAll('.gal').forEach(g => wireThumbs(g, d, groups[g.dataset.g]));
 }
 
-/* Signals & signs */
-const CTL = {traffic_signal:'Vehicle signal',pedestrian_signal:'Pedestrian signal',lane_use_sign:'Lane-use sign',turn_restriction_sign:'Turn-restriction sign',regulatory_sign:'Regulatory sign',street_name_sign:'Street-name sign',other_sign:'Other sign'};
-function renderSignals(s, d){
-  if (!d.controls.length) { $('tab').innerHTML = '<div class="empty">No signals or signs were audited here.</div>'; return; }
-  const groups = {};
-  d.controls.forEach(c => (groups[c.dir || '–'] = groups[c.dir || '–'] || []).push(c));
-  $('tab').innerHTML = Object.keys(groups).sort().map(g => `<div class="section-title">Approach ${esc(g)}</div><div class="stack">${groups[g].map(c => {
-      const ref = c.refs[0];
-      return `<div class="card ctl"><div><b>${esc(CTL[c.kind]||c.kind)}</b>${c.symbol?` · ${esc(c.symbol)}`:''}${c.text?` · “${esc(c.text)}”`:''}
-        <span class="small muted"> · ${esc(c.confidence||'')} confidence · applies to ${esc((c.applies||'').replaceAll('_',' '))}</span>
-        <p class="small" style="margin:6px 0 0">${esc(c.description)}</p></div>
-        ${ref?`<div class="thumb" data-view="${ref.view}"><img loading="lazy" src="${IMG(d, d.views[ref.view].src)}" alt=""><div class="cap">${c.refs.length} view${c.refs.length>1?'s':''}</div></div>`:'<div></div>'}</div>`; }).join('')}</div>`).join('');
-  $('tab').querySelectorAll('.thumb').forEach(t => t.onclick = () => { const v = +t.dataset.view;
-    const c = d.controls.find(c => c.refs[0] && c.refs[0].view === v); openViews(d, c.refs.map(r => r.view), v, c); });
+/* Checks */
+const ACTION = {agree:'agrees with the trace', no_issue:'not settled, so not held against the trace', kept_reading_fewer:'sees fewer lanes; the trace is kept',
+                retraced:'the arm was traced again'};
+function renderChecks(s, d){
+  const c = d.checks, req = Object.entries(c.requests || {});
+  const step = (x, none, text) => x ? `<b>${esc(text(x))}</b>` : `<b class="muted" style="font-weight:500">${none}</b>`;
+  $('tab').innerHTML = `<div class="card" style="margin-bottom:14px"><div class="kv"><span>model requests</span><b>${req.map(([k, n]) => `${esc(k)} ${n}`).join(' · ') || '–'}</b></div></div>`
+    + s.approaches.map(a => { const x = c.approaches[a.dir] || {}, r = x.reading || {}, issues = [...(r.issues || []), ...(r.issues_after || [])];
+      return `<div class="section-title">Approach ${esc(a.dir)} <span class="muted small">${esc(a.road || '')}</span></div>
+      <div class="card"><div class="kv">
+        <span>blind reading</span><b>${r.seen ?? '–'} motor lane${r.seen===1?'':'s'}, the trace ${r.traced ?? '–'}${r.settled?'':' (count not settled)'}: ${esc(ACTION[r.action] || r.action || '')}</b>
+        <span>lane widths</span><b>${(x.widths || []).map(([n, w]) => `lane ${n} ${w.toFixed(2)} m`).join(' · ') || '–'}</b>
+        <span>measured issues</span><b>${issues.length ? issues.map(esc).join('<br>') : '<span class="muted" style="font-weight:500">none</span>'}</b>
+        <span>add a lane</span>${step(x.addlane, 'not needed (lane use saw no lane without an outline)', v => `${v.missing.length} lane(s) seen without an outline; re-trace ${v.kept ? 'kept' : 'not kept'} (${v.lanes_before} → ${v.lanes_after_trace ?? '–'} lanes)`)}
+        <span>keep a lane</span>${step(x.removal, 'not needed (no lane judged not to exist)', v => v.map(e => `${e.rejected.map(q => q.region_id).join(', ')} judged not to exist; ${e.dropped ? 'dropped, the blind reading agrees' : 'kept, asked again'}`).join('; '))}
+        <span>left-turn lane</span>${step(x.leftlane, 'not needed (no left exit without a lane turning toward it)', v => `no lane turns toward ${v.left_exits.join(', ')}; re-trace ${v.kept ? 'kept' : 'not kept'} (${v.lanes_before} → ${v.lanes_after_trace ?? '–'} lanes)`)}
+        <span>temporary control</span><b>${x.temporary ? esc(x.temporary.seen === 'no' ? 'none seen' : (x.temporary.effect || x.temporary.seen)) : '–'}</b></div>
+        ${x.limitations?`<p class="small muted" style="margin:10px 0 0"><b>What limited the blind reading:</b> ${esc(x.limitations)}</p>`:''}</div>`; }).join('');
 }
 
 /* Figures */
 function renderFigures(s, d){
   const f = d.figures;
-  $('tab').innerHTML = (f.overview || f.sections) ? `<div class="stack">
-      ${f.overview?`<div class="card fig"><h3>Labelled overview</h3><img src="${IMG(d, f.overview.src)}" data-src="${f.overview.src}" alt=""></div>`:''}
-      ${f.sections?`<div class="card fig"><h3>Sections: lane number, type and movements</h3><img src="${IMG(d, f.sections.src)}" data-src="${f.sections.src}" alt=""></div>`:''}</div>`
-    : '<div class="empty">No figures were exported for this intersection.</div>';
+  $('tab').innerHTML = `<div class="stack">
+      ${f.result?`<div class="card fig"><h3>Result: every traced region, labelled, with an arrow for each turn</h3><img src="${IMG(d, f.result.src)}" data-src="${f.result.src}" alt=""></div>`:''}
+      ${f.sheets.length?`<div class="card"><h3>Every image sent to the model</h3><div class="gal" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr))">${f.sheets.map(x =>
+        `<div class="thumb" data-src="${x.src}"><img loading="lazy" decoding="async" src="${IMG(d, x.src)}" alt="" style="aspect-ratio:16/10"><div class="cap"><b>${esc(x.step)}</b> · ${esc(x.place)}</div></div>`).join('')}</div></div>`:''}</div>`;
   $('tab').querySelectorAll('.fig img').forEach(img => img.onclick = () => openImage(IMG(d, img.dataset.src), img.closest('.card').querySelector('h3').textContent));
+  $('tab').querySelectorAll('.thumb[data-src]').forEach(t => t.onclick = () => openImage(IMG(d, t.dataset.src), 'Sent to the model: ' + t.querySelector('.cap').textContent));
 }
 
 /* ---------- lightbox ---------- */
-function openViews(d, list, at, control){ lightboxList = list; lightboxAt = Math.max(0, list.indexOf(at)); showView(d, control); }
-function showView(d, control){
+function openViews(d, list, at){ lightboxList = list; lightboxAt = Math.max(0, list.indexOf(at)); showView(d); }
+function showView(d){
   const i = lightboxList[lightboxAt], v = d.views[i];
-  const obs = control ? control.refs.filter(r => r.view === i).map(r => ({box:r.box, finding:r.finding, regions:[]})) : d.observations.filter(o => o.view === i);
   const [w, h] = v.size;
-  const boxes = obs.filter(o => o.box).map(o => { const [a,b,c,e] = o.box, hi = state.region && o.regions.includes(state.region);
-    return `<span class="bx${hi?' hi':''}" style="left:${a*100}%;top:${b*100}%;width:${(c-a)*100}%;height:${(e-b)*100}%"></span>`; }).join('');
-  $('lightbox').innerHTML = `<div class="lb"><div class="pic"><span class="boxwrap"><img src="${IMG(d, v.src)}" width="${w}" height="${h}" alt="">${boxes}</span></div>
+  $('lightbox').innerHTML = `<div class="lb"><div class="pic"><span class="boxwrap"><img src="${IMG(d, v.src)}" width="${w}" height="${h}" alt=""></span></div>
     <div class="info"><h3>${esc(v.group)} · ${esc(v.role)}</h3>
       <div class="kv small" style="margin-top:8px"><span>position</span><b>${esc(v.position||'–')} · ${v.dist} m from centre</b><span>heading</span><b>${v.heading}°</b>
-        <span>captured</span><b>${esc(v.date||'unknown')}${v.relation==='historical'?' <span class="hist">historical</span>':''}</b></div>
-      ${obs.length?`<div class="section-title">What the model noted here</div>${obs.map(o => `<div class="find${state.region&&o.regions.includes(state.region)?' hi':''}">${esc(o.finding||'(no note)')}</div>`).join('')}`:'<p class="muted small">No located observations in this view.</p>'}
+        <span>captured</span><b>${esc(v.date||'unknown')}</b></div>
       <div class="nav"><button class="btn" id="lbPrev" ${lightboxAt?'':'disabled'}>‹ Prev</button><span class="small muted" style="align-self:center">${lightboxAt+1} / ${lightboxList.length}</span>
         <button class="btn" id="lbNext" ${lightboxAt<lightboxList.length-1?'':'disabled'}>Next ›</button><span style="flex:1"></span><button class="btn" id="lbClose">Close</button></div></div></div>`;
   $('lightbox').hidden = false;
-  $('lbPrev').onclick = () => { lightboxAt--; showView(d, control); };
-  $('lbNext').onclick = () => { lightboxAt++; showView(d, control); };
+  $('lbPrev').onclick = () => { lightboxAt--; showView(d); };
+  $('lbNext').onclick = () => { lightboxAt++; showView(d); };
   $('lbClose').onclick = closeLightbox;
 }
 function openImage(src, title){

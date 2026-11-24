@@ -1,116 +1,70 @@
 # Example: Broadway & Ames Street, Cambridge, Massachusetts
 
-This is the output of one complete pipeline run at a signalised T-junction in Kendall Square. Broadway runs east–west, with a tree-lined median near the junction and bicycle lanes in both directions. Ames Street joins from the south. The run used tracing `autoloop-geometry-6` and classification `hybrid-pilot-v8-street-view-counts`.
+This is one complete run of PAVE Read at a signalised T-junction in Kendall Square. Broadway runs east–west, with a median near the junction and bicycle lanes in both directions. Ames Street joins from the south.
 
 The junction has been rebuilt since about 2022–2023, so the run reads it from imagery taken before that work:
 
 - **Satellite:** MassGIS 2021 orthoimagery, spring 2021, leaf-off, 15 cm.
-- **Street views for the lanes:** Google's own panoramas from November 2020, at all 15 positions (near, mid and far on each approach and exit). Each panorama stands on the carriageway of its section.
-- **Street views for the signal and sign audit:** October 2019 to November 2020.
+- **Street views:** Google's own panoramas from November 2020, at four positions on each approach. The run uses three of them: a look-back near the stop bar, and forward views at about 50 m and 100 m.
 - **Network:** OpenStreetMap as of 1 May 2021, converted to GMNS. In that network the junction is node 95.
 
-The Street View metadata service returns only the latest panorama at a location. Here the November 2020 panoramas are hidden behind captures from 2024 and 2026, so they were looked up in Google Maps' time travel and named in the policies:
+The Street View metadata service returns only the latest panorama at a location. Here the November 2020 panoramas are hidden behind captures from 2024 and 2026, so they were looked up in Google Maps' time travel and named in `pinned_panoramas` of [`configs/acquisition/cambridge_pre_construction.json`](../../configs/acquisition/cambridge_pre_construction.json). The acquisition checks each named panorama's date, position and carriageway like any other.
 
-- `pinned_panoramas` in `configs/acquisition/cambridge_pre_construction.json` assigns one panorama to each lane-view position.
-- `known_panoramas` in `configs/control_policies/cambridge_pre_construction.json` lists candidate panoramas for the signal and sign audit.
+There is no reference lane data for this junction. Model output is a prediction, not reference data.
 
-The pipeline checks each named panorama's date, position and carriageway like any other.
+![Every traced lane on the satellite image, labelled, with an arrow for each turn](run/result.jpg)
 
-There is no reference lane data for this junction. The dashboard shows the model's reading and the street-view lane counts only.
-
-The answer files do not name the model that wrote them.
-
-![Lane labels on the satellite image](results/annotated/labels/overview.jpg)
-
-Model output is a prediction, not reference data.
-
-## Dashboard
-
-The Read view of the PAVE dashboard, [`dashboard/pave.html`](../../../dashboard/pave.html), is built for this intersection alone. The dashboard is a single file holding the data, the images and the map library. Download it and open it in a browser; only the background map tiles need a connection. The Read view shows four things:
-
-- The traced lanes on the satellite image.
-- Each approach's lanes and movements, with the street-view lane counts.
-- Every street view, with the model's observation boxes.
-- The signal and sign audit, and the labelled figures.
-
-![Intersection Explorer](screenshots/intersection_explorer.png)
-
-## Lane panels
-
-![Lane panels for each approach and exit](results/annotated/labels/sections.jpg)
+Each traced strip is outlined and tagged: approach lanes with their turns and number from the driver's left (L left, T through, R right; T1 is a through lane, the leftmost), exit lanes as OUT, bicycle lanes, buffers and parking by name. Each arrow runs from an approach lane to the exit lane its turn reaches: magenta left, white through, yellow right.
 
 ## What the model read
 
-Motor lanes on each approach, and the motor lanes counted in the street views at three distances:
+| Approach | Lanes from the driver's left | Turns and the exit lanes they reach |
+|---|---|---|
+| EB (Broadway from the west) | through, right only | through: lane 1 → exit EB lane 1; right: lane 2 → exit SB lane 1 |
+| WB (Broadway from the east) | left only, through | left: lane 1 → exit SB lane 1; through: lane 2 → exit WB lane 1 |
+| NB (Ames Street) | left only, right only | left: lane 1 → exit WB lane 1; right: lane 2 → exit EB lane 1 |
 
-| Approach | Lanes read | Near | Mid | Far |
-|---|---|---:|---:|---:|
-| EB (Broadway from the west) | through, right only | 2 | 2 | 1 |
-| WB (Broadway from the east) | left only, through | 0 | 2 | 1 |
-| NB (Ames Street) | left only, right only | 1 | 2 | 1 |
+Each approach also has a bicycle lane on its curb side, and each exit has one motor lane. No U-turn and no temporary traffic control were reported.
 
-Each approach also has a bicycle lane on its kerb side. Each exit has one motor lane. Leaving eastbound, the exit audit reads, from the median outwards: the median, the travel lane, a bicycle lane and kerbside parking.
+The run took 9 model requests:
 
-The model proposed six movements:
+- **Trace (3):** one per arm. The model traced the stop line and every lane boundary of both carriageways on the arm's crop, and said what lies between each pair of boundaries.
+- **Blind reading (3):** one per approach, from the satellite crop and the street views, without the trace. Each counted two motor lanes, the same as the trace, so no arm was traced again.
+- **Lane use (3):** one per approach, with the traced lanes projected into the street views. No answer asked for closer views, saw a lane without an outline, or judged a traced lane not to exist, so no further step ran.
 
-- EB through and right.
-- WB left and through.
-- NB left and right.
+![The lane-use sheet of the eastbound approach](run/sheets/use_EB.jpg)
 
-It proposed no U-turn on Ames Street. On Broadway it left U-turns unresolved: no marking or sign in the imagery settles them.
-
-The signal and sign audit made 26 readings on the three approaches. On Broadway westbound, the model read:
-
-- a red left-arrow head and the sign LEFT TURN SIGNAL, both proposed for the left-turn lane;
-- two green through-arrow heads;
-- a keep-right sign on the median.
+The lane-use sheet of the eastbound approach: the approach crop with the traced lanes r1 and r2, the same crop with shadows lightened, the junction with the exit lanes, and the three street views with the lanes projected into them.
 
 ## Files
 
 ```
-network/                     GMNS excerpt (nodes and links within 600 m of node 95), OpenStreetMap as of 2021-05-01
-screenshots/                 dashboard screenshot used in the READMEs
-figures/                     README figures: street views, projected boundaries, YOLO boxes, signals and signs, shade lift
-results/
-  imagery/                   site config, evidence config, exit views, acquisition record (capture dates, pinned panoramas)
-  geometry/                  traced sections (lane boundaries on the satellite image) and the loop summary
-  classification/            lanes, movements, lane-use audits, street-view contexts, CSV tables, report
-  exits/                     exit re-audit
-  controls/                  signal and sign audit
-  atlas/                     GeoJSON of the lanes and rejected regions, atlas data, georeference, report
-  images/                    satellite image and every street view, named by approach, position and direction
-  annotated/                 lane labels, candidate and accepted regions, tracing plan, movements per approach
-  answers/                   every raw model answer (56), laid out by stage
-  export.json                list of the exported files
+imagery/          site.json and base_config.json (as acquire_site_imagery.py writes them), the satellite image
+                  and the street views
+network/          the GMNS network excerpt (node.csv, link.csv)
+run/              the run
+  lanes.json        every section with its traced regions and, for approach lanes, the allowed turns
+  movements.json    each turn of each approach with its exit and lane pairs
+  traces.json, readings.json, uses.json
+                    every trace, blind reading and lane-use answer, with the checks applied
+  summary.json      the requests by step, the checks and the lane counts
+  result.jpg        the figure above
+  sheets/           every image sent to the model, and the trace prompts
+  vlm/<step>/       for each request: the prompt, the raw answer, the parsed and validated answer
 ```
 
-Paths inside the configs (for example `runs/imagery_cambridge2021b_95/...`) point into the run folders the results were exported from. Those folders are not included. The reports are in Chinese.
+The answers were given by `claude-opus-5-5` through the agent queue ([`docs/agent_queue.md`](../../docs/agent_queue.md)), one fresh agent per request. Each raw answer records the model, the agent and when it answered.
 
-## Run it
+## Replay
 
-The network excerpt is enough to list the sections and the request budget for this node, without any API key or network access:
+The run replays from its own answers with no model request. From the `read/` folder:
 
 ```bash
-python scripts/pipeline/run_site_pipeline.py --name example_95 --node-id 95 \
-  --node-csv examples/broadway_ames_2021/network/node.csv \
-  --link-csv examples/broadway_ames_2021/network/link.csv --plan-only
+PAVE_VLM_BACKEND=bridge PAVE_BRIDGE_MODEL=claude-opus-5-5 PAVE_BRIDGE_PROVIDER=claude_code_subagent \
+python scripts/pipeline/run_read.py --imagery examples/broadway_ames_2021/imagery --output runs/example_replay \
+  --reuse-cache-from examples/broadway_ames_2021/run --cache-only
 ```
 
-The full run used the dated acquisition policy and the matching signal-audit policy:
+The replay writes the same `lanes.json` and `movements.json`. To read the junction with your own model, drop the first line and `--reuse-cache-from … --cache-only`, and set the model in `.env` (see [`../../README.md`](../../README.md#requirements)).
 
-```bash
-python scripts/pipeline/run_site_pipeline.py --name cambridge2021b_95 --node-id 95 \
-  --node-csv examples/broadway_ames_2021/network/node.csv \
-  --link-csv examples/broadway_ames_2021/network/link.csv \
-  --acquisition-policy configs/acquisition/cambridge_pre_construction.json \
-  --control-policy configs/control_policies/cambridge_pre_construction.json \
-  --acquire --audit-controls
-```
-
-## Sources and attribution
-
-- Satellite imagery: MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts, 2021 orthoimagery.
-- Street-level imagery: © Google.
-- Network: derived from OpenStreetMap, © OpenStreetMap contributors, ODbL.
-
-The images are included here only to illustrate the method.
+Imagery: MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts; street views © Google. Network data © OpenStreetMap contributors (ODbL).

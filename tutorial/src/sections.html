@@ -1,0 +1,433 @@
+<!-- The table of contents and the chapters of tutorial/PAVE_tutorial.html. tutorial/build_tutorial.py builds the page:
+     a line <!--BASE:id--> stands for that section of the page already built (the Edit chapter). -->
+<nav class="toc" id="toc">
+  <div class="grp">START</div>
+  <a href="#intro">How to use this tutorial</a>
+  <a href="#prep">Setup</a>
+  <div class="grp">CONNECT A MODEL</div>
+  <a href="#api">API setup</a>
+  <a class="sub" href="#model">The model API</a>
+  <a href="#subagent">No API: agents answer</a>
+  <div class="grp">READ: LANES AND MOVEMENTS</div>
+  <a href="#read">Overview</a>
+  <a class="sub" href="#r1">1 Network node and arms</a>
+  <a class="sub" href="#r2">2 Satellite and street views</a>
+  <a class="sub" href="#r3">3 Trace each arm</a>
+  <a class="sub" href="#r4">4 Read each approach blind</a>
+  <a class="sub" href="#r5">5 Re-trace</a>
+  <a class="sub" href="#r6">6 Lane use and movements</a>
+  <a class="sub" href="#r7">7 Further checks</a>
+  <a class="sub" href="#r8">8 Result</a>
+  <div class="grp">EDIT: INTERCHANGE REDESIGN</div>
+  <a href="#edit">Overview</a>
+  <a class="sub" href="#e1">1 Existing network</a>
+  <a class="sub" href="#e2">2–3 Model input and proposal</a>
+  <a class="sub" href="#e4">4 Proposal checks and repair</a>
+  <a class="sub" href="#e5">5–7 Build, check, export</a>
+  <div class="grp">REFERENCE</div>
+  <a href="#faq">Troubleshooting</a>
+  <a href="#files">Files</a>
+</nav>
+<main>
+<section id="intro">
+  <h2>How to use this tutorial</h2>
+  <p>PAVE is a harness around a vision-language model. The model makes the judgements; the code measures, checks and writes the result into the road network. It has four parts:</p>
+  <table>
+    <tr><th style="width:160px">Part</th><th>What it does</th></tr>
+    <tr><td><span class="badge b-P">P</span>Perceive</td><td>Renders what the model looks at: rotated satellite crops with rulers and stations, street views with known camera poses, traced lanes projected into those views.</td></tr>
+    <tr><td><span class="badge b-A">A</span>Anchor</td><td>Ties every answer to something checkable: pixel coordinates on the image, lane IDs on a network section, network link and node IDs.</td></tr>
+    <tr><td><span class="badge b-V">V</span>Verify</td><td>Checks each answer. A failed check goes back to the model with the reason; a measured issue sends a trace back; a second, independent reading decides whether a lane may be dropped.</td></tr>
+    <tr><td><span class="badge b-E">E</span>Edit</td><td>Writes the answers that pass into lane and movement tables tied to the network, or into the redesigned network.</td></tr>
+  </table>
+  <p>The tutorial uses the two examples that ship with the repository:</p>
+  <ul>
+    <li><b>Read</b>: the signalised T-junction of Broadway &amp; Ames Street in Cambridge, Massachusetts (network node 95). One run calls the model <b>9</b> times, and every one of those calls is shown below.</li>
+    <li><b>Edit</b>: the SR 347 / I-10 interchange in Arizona, rebuilt from a conventional diamond into a diverging diamond (DDI). One model call, plus a deliberately wrong answer that shows the checks and the repair request.</li>
+  </ul>
+  <div class="note info"><b>These prompts and images are the real ones.</b> The Read calls are the run in <code>read/examples/broadway_ames_2021/run/</code>: for each call, the image and the prompt are the ones the run sent and saved, and the answer is the one it got. The example replays from these answers with no model request, and the replay sends the same prompts and images byte for byte. The Edit prompt was regenerated offline by the code and matches the prompt saved in the repository word for word.</div>
+  <p class="only-single"><b>This is the single-file edition.</b> The text, every prompt and output, the images and the tools are all inside this one HTML file, so it opens offline and can be passed on as it is. To keep it small, the images are reduced copies (model inputs at most 2000 px on the long edge); the prompts and outputs are complete. A call rerun from these images still works, because the prompts read positions from rulers drawn on the image or as 0–1 fractions, but its request signature will not match the original run.</p>
+  <h3>The call viewer</h3>
+  <p>Every step that calls the model has a viewer. The buttons at the top switch between the calls of that step (different arms or approaches). Below them are the <b>input image</b> (click it for full resolution), the <b>prompt sent to the model</b> (the grey part is the system prompt), the <b>model output</b>, and a command that reruns that one call. Buttons with a dashed border are repair calls: the previous answer failed a structural check, so the code appended the error to the prompt and asked again.</p>
+  <p>The model only ever answers in JSON. The pictures come from PAVE's code: below each answer, <b>What PAVE makes from this answer</b> shows what the code drew or built from it, which is usually the input of a later call (a trace becomes the lane outlines of the lane-use sheet). Some answers produce no picture and go on as text into a later prompt; the viewer says so.</p>
+  <p>Model output is a prediction, not reference data.</p>
+  <div class="only-folder">
+  <h3>What is in this folder</h3>
+  <ul>
+    <li><code>calls/read/&lt;stage&gt;/</code> and <code>calls/edit/…</code>: one folder per call, with the original image, <code>system.txt</code>, <code>prompt.txt</code>, the saved answer <code>answer.json</code> and <code>call.json</code>. That is everything needed to rerun any single step.</li>
+    <li><code>tools/</code>: a single-call tool, a local gateway and a file queue for agent workers, used in the API and agent sections below.</li>
+    <li><code>images/</code>: reduced copies of the images for this page.</li>
+  </ul>
+  </div>
+  <div class="only-single">
+  <h3>Files you can take from this page</h3>
+  <p>The commands in this tutorial use a <code>tools/</code> folder and the call folders under <code>calls/</code>. Both are built from this page when you click:</p>
+  <p><button class="dl" type="button" data-dl="tools">Download tools.zip</button><button class="dl" type="button" data-dl="calls">Download calls.zip (all 11 calls)</button></p>
+  <p>Unzip both into one new folder, for example <code>~/pave_tutorial</code>; that folder is <code>$TUT</code> below. Each call viewer also has a <b>Download this call</b> button that saves just that call as a zip with the same layout.</p>
+  </div>
+  <p>In the commands below, <code>$TUT</code> is the tutorial folder (the one holding <code>tools/</code> and <code>calls/</code>) and <code>$PAVE</code> is the pave code folder. Set them once for your own locations:</p>
+  <div class="code"><pre>export TUT="$HOME/pave_tutorial"
+export PAVE="$HOME/pave"</pre></div>
+  <p>Keep the quotes around <code>"$TUT"</code> and <code>"$PAVE"</code> in the commands; they protect paths that contain spaces.</p>
+</section>
+
+<section id="prep">
+  <h2>Setup</h2>
+  <p>To read the prompts and outputs you need nothing but this page. To call a model yourself or run a pipeline, set up the following.</p>
+  <h3>1. The pave code</h3>
+  <p>Skip this if you already have it locally. Otherwise:</p>
+  <div class="code"><pre>git clone https://github.com/yajunliu99/pave.git "$PAVE"</pre></div>
+  <h3>2. Python</h3>
+  <p>Read needs Python 3.12 or newer; Edit needs 3.10 or newer. One virtual environment can hold everything:</p>
+  <div class="code"><pre>python3 -m venv ~/.venvs/pave
+source ~/.venvs/pave/bin/activate
+pip install -r "$PAVE/read/requirements.txt"    # Pillow, NumPy, Requests, OpenCV
+pip install -e "$PAVE/edit"</pre></div>
+  <p>The tutorial's <code>tools/</code> use only the standard library, plus Pillow (already installed for Read) to read image sizes.</p>
+  <h3>3. Checks that cost nothing</h3>
+  <div class="code"><pre>cd "$PAVE/read" &amp;&amp; python -m unittest discover -s tests
+cd "$PAVE/edit" &amp;&amp; python -m pave_edit      # replays the saved answer and builds the DDI, no network access</pre></div>
+  <p>The Read example also replays from its saved answers, with no model request and no network access:</p>
+  <div class="code"><pre>cd "$PAVE/read"
+PAVE_VLM_BACKEND=bridge PAVE_BRIDGE_MODEL=claude-opus-5-5 PAVE_BRIDGE_PROVIDER=claude_code_subagent \
+python scripts/pipeline/run_read.py --imagery examples/broadway_ames_2021/imagery --output runs/example_replay \
+  --reuse-cache-from examples/broadway_ames_2021/run --cache-only</pre></div>
+  <p>The three variables name the model and the agent that answered the saved run, so that its answers are found in the cache; nothing is sent anywhere.</p>
+</section>
+
+<section id="api">
+  <h2>API setup</h2>
+  <p>The two pipelines use three kinds of service. For Edit alone, or for single-step practice with this tutorial's <code>calls/</code>, you only need a model.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Service</th><th>Setting (in <code>.env</code>)</th><th>Used by</th><th>Notes</th></tr>
+    <tr><td>Mapbox Static Images</td><td><code>MAPBOX_TOKEN</code></td><td>Read step 2 satellite image; Edit when fetching imagery for a new site</td><td>Not needed with key-free XYZ tiles, such as the MassGIS 2021 orthophoto in the example.</td></tr>
+    <tr><td>Google Street View Static API</td><td><code>GSV_API_KEY</code></td><td>Read step 2</td><td>Metadata requests are free; image requests are billed. Required to fetch imagery for a new site.</td></tr>
+    <tr class="ed-2"><td>Vision-language model</td><td><code>OPENAI_API_KEY</code>, <code>OPENAI_MODEL</code>, <code>OPENAI_BASE_URL</code></td><td>Read steps 3–7; Edit step 3</td><td>Any OpenAI-compatible Chat Completions API (<a href="#model">below</a>). With no API at all, coding agents can answer (<a href="#subagent">next section</a>).</td></tr>
+  </table></div>
+  <p>All of them go into one file: copy <code>.env.example</code> at the pave root to <code>.env</code> (<code>cp "$PAVE/.env.example" "$PAVE/.env"</code>). Read and Edit both read it; a variable set in the environment takes precedence over the file. <code>.env</code> is in <code>.gitignore</code>. Don't send it to anyone or paste it into a chat.</p>
+
+  <h3>Mapbox token</h3>
+  <ol>
+    <li>Sign up and log in at <a href="https://account.mapbox.com/" target="_blank" rel="noopener">account.mapbox.com</a>.</li>
+    <li>On the Tokens page, copy the default public token (it starts with <code>pk.</code>). It can call the Static Images API.</li>
+    <li>Put it in <code>.env</code>: <code>MAPBOX_TOKEN=pk.…</code></li>
+  </ol>
+  <p>For orthophotos of a particular period, set <code>satellite.source</code> to <code>xyz_tiles</code> with a tile URL in the acquisition policy, as the example does (see <code>read/configs/acquisition/cambridge_pre_construction.json</code>). Mapbox is then not needed.</p>
+
+  <h3>Google Street View key</h3>
+  <ol>
+    <li>In the <a href="https://console.cloud.google.com/" target="_blank" rel="noopener">Google Cloud Console</a>, create a project and turn on billing for it.</li>
+    <li>APIs &amp; Services → Library: search for <b>Street View Static API</b> and enable it.</li>
+    <li>APIs &amp; Services → Credentials → Create credentials → API key.</li>
+    <li>Edit the key: under API restrictions, allow only the Street View Static API. Add an IP restriction if your outgoing address is fixed.</li>
+    <li>Put it in <code>.env</code>: <code>GSV_API_KEY=…</code></li>
+  </ol>
+  <p>Use <code>--plan-only</code> first to see the request budget without any network access or cost (<a href="#r2">step 2</a>). For this example: 1 satellite image, about 18 metadata requests (at most 54), at most 30 street-view images.</p>
+  <div class="note">The Street View metadata service returns only the <b>latest</b> panorama at a location. The example needs the November 2020 panoramas, from before the junction was rebuilt, and newer 2024 and 2026 captures hide them. The acquisition policy therefore names one panorama ID per position in <code>pinned_panoramas</code>, looked up in Google Maps' historical Street View. You need the same for any other period.</div>
+
+  <h3 id="model">The model: any OpenAI-compatible API</h3>
+  <p>Read and Edit send every request through one client, <code>read/pave_read/vision_client.py</code> (Edit keeps an identical copy): one <code>POST &lt;base URL&gt;/chat/completions</code> with the system prompt, the prompt and one image as a base64 data URL at its original pixel size, asking for a JSON object. Any server that speaks this protocol works: OpenAI itself, a provider's OpenAI-compatible mode, OpenRouter, or a model you host with vLLM or Ollama.</p>
+  <h4>1. Fill in <code>.env</code></h4>
+  <div class="code"><pre>OPENAI_API_KEY=...
+OPENAI_MODEL=...         # a model that accepts images, as the API names it
+OPENAI_BASE_URL=...      # only for a server other than OpenAI's (default https://api.openai.com/v1)</pre></div>
+  <p>The model's name is recorded with every answer and is part of every cache key. A name like <code>vendor/model-name</code> (usual on gateways and OpenRouter) is recorded as model <code>model-name</code> from provider <code>vendor</code>; a plain name is recorded with the API's host as the provider. One model's answers are never reused for another, so different models can share a run folder.</p>
+  <p>What the model and the server must handle: image input; a JSON answer when asked with <code>response_format: json_object</code>; the parameters <code>max_completion_tokens</code> and <code>temperature: 0</code>, which Read sends on every request; and sheets of up to about 4,300 × 1,900 pixels (the trace sheets). Read allows up to 16,384 output tokens for lane use and 12,288 for a trace. If your server rejects one of these parameters, see <a href="#faq">Troubleshooting</a>.</p>
+  <h4>2. Test one call</h4>
+  <p>Before a whole junction, send one of the tutorial's saved calls with the same settings:</p>
+  <div class="code"><pre>cd "$TUT"
+PAVE_ENV_FILE="$PAVE/.env" python tools/call_vlm.py --call calls/read/read_EB --backend openai</pre></div>
+  <p><code>PAVE_ENV_FILE</code> lets the tool read pave's <code>.env</code>. The answer is saved as <code>calls/read/read_EB/my_answer.openai.json</code>, next to the saved <code>answer.json</code> for comparison. An HTTP error here (a wrong key, a model without image input, an unknown parameter) is cheaper to find on one call than in the middle of a junction.</p>
+  <h4>3. Run a junction</h4>
+  <p>Fetch the imagery once, then read the junction:</p>
+  <div class="code"><pre>cd "$PAVE/read"
+python scripts/pipeline/acquire_site_imagery.py --node-id 95 \
+  --node-csv examples/broadway_ames_2021/network/node.csv \
+  --link-csv examples/broadway_ames_2021/network/link.csv \
+  --policy configs/acquisition/cambridge_pre_construction.json \
+  --output runs/imagery_broadway_95
+python scripts/pipeline/run_read.py --imagery runs/imagery_broadway_95 --output runs/read_broadway_95</pre></div>
+  <p>The example's imagery is already in the repository, so to read it with your own model you can skip the first command and pass <code>--imagery examples/broadway_ames_2021/imagery</code>. Each answer is cached in the run folder as <code>vlm/&lt;step&gt;/&lt;signature&gt;.raw.json</code>. The signature covers the image, the prompt, the system prompt, the model and the protocol, so a rerun never pays twice for the same request. Run folders go under <code>runs/</code> in <code>read/</code>; <code>PAVE_RUNS_ROOT</code> moves them.</p>
+  <h4>4. Edit</h4>
+  <div class="code"><pre>cd "$PAVE/edit"
+python -m pave_edit --backend openai --hide-names</pre></div>
+  <p>Edit reads the same <code>.env</code> (in <code>edit/</code> or at the pave root); <code>--env-file</code> names another file and <code>--model</code> another model. Answers are cached in <code>edit/cache/openai/</code>.</p>
+
+  <h3>Know the cost before you start</h3>
+  <ul>
+    <li>Read makes about 12–20 model calls at a four-arm junction: a trace of each arm, a blind reading and a lane-use call for each approach, and further calls only where a check asks for them. The example, a T-junction, took 9.</li>
+    <li>Edit makes 1 call per run (plus at most 1 repair if the first answer fails).</li>
+    <li><code>--plan-only</code> shows the imagery budget; <code>--max-calls</code> caps a Read run's model calls (40 by default); <code>--cache-only</code> forbids any new request and only replays the cache.</li>
+  </ul>
+</section>
+
+<section id="subagent">
+  <h2>No API: let agents answer</h2>
+  <p>A coding agent such as Codex or Claude Code can open an image file on disk, crop and enlarge parts of it with Python, and write JSON, so it can answer these prompts in place of an API. Read has a file queue for this built in: each request waits in the queue until an agent answers it.</p>
+  <div class="note">It is slow and uses many tokens: expect several minutes and tens of thousands of tokens per request, because the agent crops many details to inspect them. In the example run the traces took about 10–20 minutes each and the other calls 1–7 minutes. Use it for learning, for spot checks and for second opinions; use an API for batches.</div>
+  <p>The examples below are written for Codex in the ChatGPT desktop app, where you type prompts and Codex runs the commands itself; any agent that can run commands and start subagents works the same way. In the app, create a local project for the tutorial folder, attach the pave folder to it (<b>Edit project → Add folder</b>), and switch the chat composer to <b>Work</b> so Codex can use files and run commands. Codex starts subagents only when you ask for them explicitly ("spawn …", "one agent per …"), and each subagent's thread is shown in the app.</p>
+
+  <h3>1. One step (simplest)</h3>
+  <p>In a chat in the project, send the following (change the call folder to the one you want to rerun):</p>
+  <div class="code"><pre>Spawn one subagent for this task and wait for it, then show me its final JSON as it is.
+Task for the subagent:
+Read calls/read/trace_SE/call.json, then read the system.txt and prompt.txt files it names
+and inspect the image file it names. Where a detail is hard to see (lane lines, arrows, sign text,
+ruler ticks), crop and enlarge that region with Python/PIL and inspect the crop. Give coordinates
+in the units the prompt asks for, and add the crop offset back to readings taken on a crop.
+Answer from the prompt and this image only: do not open answer.json or any other file.
+Write exactly one JSON object, as the prompt asks, to calls/read/trace_SE/my_answer.codex.json.</pre></div>
+  <p>"Do not open answer.json" matters: it is the saved answer, and an answer written after reading it is no longer an independent reading. Afterwards you can ask Codex to compare <code>my_answer.codex.json</code> with <code>answer.json</code> field by field.</p>
+
+  <h3>2. A whole junction (Read's queue)</h3>
+  <p>With <code>PAVE_VLM_BACKEND=bridge</code>, Read writes each request to a queue folder instead of calling an API, and waits for its answer. The agents answer through <code>read/scripts/pipeline/vlm_bridge.py</code>, following the worker instructions in <code>read/docs/agent_queue.md</code>. Start one fresh subagent per request: no subagent then sees more than one request, so no answer depends on an earlier one.</p>
+  <h4>Prompt 1: start the pipeline</h4>
+  <div class="code"><pre>Start one long-running background process and keep it running; tell me if it stops.
+In the pave folder, from pave/read, with these environment variables (for this run only):
+  PAVE_VLM_BACKEND=bridge
+  PAVE_VLM_BRIDGE_DIR=&lt;tutorial folder&gt;/queue
+  PAVE_BRIDGE_MODEL=&lt;the model your subagents run&gt;
+  PAVE_BRIDGE_PROVIDER=codex_subagent
+  PAVE_RUNS_ROOT=&lt;tutorial folder&gt;/runs
+  PAVE_PARALLEL_REQUESTS=3
+run:
+  python3 scripts/pipeline/run_read.py --imagery examples/broadway_ames_2021/imagery \
+    --output &lt;tutorial folder&gt;/runs/read_broadway_95</pre></div>
+  <p>The first two variables send Read's requests to the queue in the tutorial folder, where Codex may write. The next two are recorded with every answer, so these answers never mix with an API model's. <code>PAVE_PARALLEL_REQUESTS=3</code> lets a step keep three independent requests open at once (the three traces, the three readings, the three lane-use calls), so three subagents can work side by side.</p>
+  <h4>Prompt 2: answer what is waiting</h4>
+  <div class="code"><pre>Check the queue: PAVE_VLM_BRIDGE_DIR=&lt;tutorial folder&gt;/queue python3 scripts/pipeline/vlm_bridge.py status
+(from pave/read). For each pending request, spawn one subagent with this task, with its own NAME
+(w1_001, w1_002, ...) and QUEUE = &lt;tutorial folder&gt;/queue:
+  "You are a one-shot vision worker. NAME = &lt;name&gt;, QUEUE = &lt;queue&gt;. Read the section
+   'Worker instructions' in pave/read/docs/agent_queue.md and follow it exactly."
+Wait for them, then check the queue again and repeat while the pipeline is still running.
+Report the request ids that were answered and whether the pipeline finished.</pre></div>
+  <p>Most requests depend on earlier answers (lane use needs the traces), so new requests appear only after earlier ones are answered; that is why Prompt 2 checks again. If a subagent stops without answering, its request stays claimed: put it back with <code>vlm_bridge.py release --older-than-min 30</code>. If the pipeline stops (for example when the app is closed), send Prompt 1 again: answered requests are taken from the cache, and requests still in the queue are waited for, not asked again.</p>
+  <p>To try an agent on a single saved call without the pipeline, <code>python3 tools/call_vlm.py --call calls/read/read_EB --backend queue</code> puts it in the tutorial's own queue; <code>tools/SUBAGENT_WORKER.md</code> tells a subagent how to answer it.</p>
+
+  <h3>3. Edit (built into pave)</h3>
+  <p>Edit already supports a chat model as the proposer. Send this in a chat in the project:</p>
+  <div class="code"><pre>In the pave folder, from pave/edit:
+1. Run: python3 -m pave_edit --prepare-only --hide-names --out out/session
+   It writes out/session/ai_input.png and out/session/ai_prompt.txt.
+2. Spawn one subagent. It reads out/session/ai_prompt.txt in full, inspects out/session/ai_input.png
+   (cropping and enlarging where needed), and writes exactly the one JSON object the prompt asks for
+   to out/session/answer.json. It must not open anything under scenarios/ (saved answers are there).
+3. When it is done, run:
+   python3 -m pave_edit --backend session --proposal out/session/answer.json --hide-names</pre></div>
+  <p>If the checks reject the answer, pave writes <code>out/session/repair_prompt.txt</code> (the original prompt, the rejected answer and the defects). Ask Codex to give that file to a subagent as its new prompt, then run step 3 again with the corrected answer.</p>
+
+  <h3>Rules for agents</h3>
+  <ul>
+    <li><b>Independent:</b> only the prompt and the image (and its own crops of it). No run folders, caches, earlier answers, reference data, code or web.</li>
+    <li><b>No guessing:</b> what cannot be seen goes into the fields the prompt provides (confidence, limitations, notes).</li>
+    <li><b>Units:</b> the ruler units where the prompt asks for coordinates on the image. Where it asks for 0–1 boxes (such as <code>bbox_xyxy</code> of a detail request), give fractions of the named panel, not of the whole sheet.</li>
+    <li><b>One request each:</b> a subagent that read an approach blind should not also answer its lane use; with one fresh subagent per request this holds by itself.</li>
+  </ul>
+</section>
+
+<section id="read">
+  <h2>Read overview: Broadway &amp; Ames Street</h2>
+  <p>A signalised T-junction in Kendall Square, Cambridge. Broadway runs east–west with a median near the junction and bicycle lanes in both directions; Ames Street joins from the south. The junction was rebuilt around 2022–2023, so this run reads it from imagery taken before that work: the MassGIS spring 2021 orthophoto (15 cm, leaf-off) and Street View from November 2020. The network is OpenStreetMap as of 1 May 2021, converted to GMNS; the junction is node 95.</p>
+  <figure><img data-img="images/read/results/result.jpg" alt="Every traced lane on the satellite image, labelled, with an arrow for each turn"><figcaption>The end result. Each traced strip is outlined and tagged: approach lanes with their turns and number from the driver's left (L left, T through, R right; T1 is a through lane, the leftmost), exit lanes as OUT, bicycle lanes, buffers and parking by name. Each arrow runs from an approach lane to the exit lane its turn reaches: magenta left, white through, yellow right.</figcaption></figure>
+  <h3>8 steps, 9 model calls</h3>
+  <div class="flow" id="readFlow"></div>
+  <div class="tablewrap"><table>
+    <tr><th>Step</th><th>Part</th><th>Calls</th><th>What the model looks at</th><th>Output goes to</th></tr>
+    <tr><td>1 Network node and arms</td><td><span class="badge b-P">P</span></td><td>0</td><td>—</td><td>3 arms, each with an approach and an exit</td></tr>
+    <tr><td>2 Imagery</td><td><span class="badge b-P">P</span></td><td>0</td><td>—</td><td>Satellite image and street views with camera poses</td></tr>
+    <tr><td>3 Trace each arm</td><td><span class="badge b-A">A</span></td><td>3</td><td>Rotated satellite crop with rulers and stations, a lightened copy, three street views</td><td>Lanes r1, r2 … of each approach and exit, with widths</td></tr>
+    <tr><td>4 Read each approach blind</td><td><span class="badge b-A">A</span></td><td>3</td><td>The approach's satellite crop and street views, without the trace</td><td>An independent lane count with arrows</td></tr>
+    <tr><td>5 Re-trace</td><td><span class="badge b-V">V</span></td><td>0 (here)</td><td>The trace drawn back on the crop and projected into the street views, with the issues</td><td>A corrected trace</td></tr>
+    <tr><td>6 Lane use and movements</td><td><span class="badge b-A">A</span></td><td>3</td><td>The approach lanes outlined, a junction overview with the exit lanes, the street views with the lanes projected</td><td>Each lane's turns; each turn's exit and lane pairs</td></tr>
+    <tr><td>7 Further checks</td><td><span class="badge b-V">V</span></td><td>0 (here)</td><td>Detail crops; re-traces to add a lane or find a left-turn lane; lane use asked again</td><td>Lanes added, kept or dropped</td></tr>
+    <tr><td>8 Result</td><td><span class="badge b-E">E</span></td><td>0</td><td>—</td><td><code>lanes.json</code>, <code>movements.json</code>, the result figure</td></tr>
+  </table></div>
+  <div class="note info"><b>Two readings, kept apart.</b> The trace (step 3) and the blind reading (step 4) look at the same approach without seeing each other's answer. Lane use (step 6) sees both, but it can only ask: a lane is added only when a second trace finds it, and dropped only when the blind reading agrees. No lane count from the network and no reference data enter any prompt.</div>
+  <p>The command that runs this junction is under <a href="#model">API setup → The model</a>.</p>
+</section>
+
+<section id="r1">
+  <div class="step-head"><span class="badge b-P">P</span><h2>1 Network node and arms</h2><span class="calls-count">no model calls</span></div>
+  <div class="io"><div><b>INPUT</b>node 95 and the links that meet it (GMNS <code>node.csv</code>, <code>link.csv</code>)</div><div><b>THE CODE</b>groups the links into arms and cuts a window along each arm</div><div><b>OUTPUT</b>3 arms: SE (Broadway east), SW (Ames Street), NW (Broadway west)</div></div>
+  <p>The links that end at the node are the approaches; the links that start there are the exits. An approach and an exit that run along the same road form an arm. Here every arm has one of each: arm SE holds approach WB and exit EB, arm SW approach NB and exit SB, arm NW approach EB and exit WB.</p>
+  <p>For each arm the code cuts a window from the satellite image along the link's heading, rotated so that traffic entering the junction on that arm drives up and the junction lies at the top. The window's size and placement come from the link geometry only: no lane count from the network is used, so a wrong count in the network cannot steer the reading.</p>
+  <figure><img data-img="images/read/source/arm_SE_raw.jpg" alt="The window of arm SE"><figcaption>The window of arm SE, before the rulers and stations are drawn: Broadway east of the junction, approach WB on the right of the centre line, exit EB on the left.</figcaption></figure>
+</section>
+
+<section id="r2">
+  <div class="step-head"><span class="badge b-P">P</span><h2>2 Satellite and street views</h2><span class="calls-count">no model calls; street views are billed</span></div>
+  <div class="io"><div><b>INPUT</b>node position, the sections, the acquisition policy</div><div><b>SERVICES</b>satellite: MassGIS XYZ tiles (or Mapbox); street views: Street View Static API</div><div><b>OUTPUT</b>1 satellite image, street views with camera poses, <code>site.json</code> and <code>base_config.json</code></div></div>
+  <p>Street-view positions are computed from the section geometry. Each approach gets a view looking back from near the stop bar and views toward the junction at near, mid and far distance (about 25, 50 and 100 m); Read uses the look-back, mid and far views. The acquisition also fetches views along each exit, which Read does not use. Every view keeps its camera latitude/longitude, heading and capture date, which later place it on the satellite crop and let the code project traced lanes into it.</p>
+  <div class="code"><pre>cd "$PAVE/read"
+python scripts/pipeline/acquire_site_imagery.py --node-id 95 \
+  --node-csv examples/broadway_ames_2021/network/node.csv \
+  --link-csv examples/broadway_ames_2021/network/link.csv \
+  --policy configs/acquisition/cambridge_pre_construction.json \
+  --output runs/imagery_broadway_95 --plan-only</pre></div>
+  <p><code>--plan-only</code> contacts no service. Its plan, shortened to the sections and the budget:</p>
+  <div class="code"><pre id="planOnly"></pre></div>
+  <figure><img data-img="images/read/source/satellite.jpg" alt="MassGIS 2021 orthophoto"><figcaption>Satellite image: MassGIS 2021 orthophoto, spring, leaf-off, 15 cm. Every later satellite input is rotated and cropped from this image.</figcaption></figure>
+  <h4>The approach street views (November 2020)</h4>
+  <div class="gsv" id="gsvGrid"></div>
+  <p>The acquisition policy <code>cambridge_pre_construction.json</code> does three things: it takes only panoramas from before January 2023; on the divided road it uses only cameras on the section's own carriageway (<code>same_carriageway</code>); and it names the 2020-11 panoramas that newer captures hide, one per position (<code>pinned_panoramas</code>). The example's imagery is in <code>read/examples/broadway_ames_2021/imagery/</code>, so the steps below run without fetching anything.</p>
+</section>
+
+<section id="r3">
+  <div class="step-head"><span class="badge b-A">A</span><h2>3 Trace each arm</h2><span class="calls-count">3 calls</span></div>
+  <div class="io"><div><b>THE MODEL SEES</b>the arm's window with x rulers and stations S1–S7 (10–60 m from the junction centre), the same window with shadows lightened, and three street views of the approach, their cameras marked on the crop</div><div><b>IT IS ASKED</b>the stop line, the start of the exit, every longitudinal boundary across the whole road at each station, and what lies between each pair</div><div><b>THE CODE THEN</b>turns the strips into lanes r1, r2 … of the approach and the exit, measures their widths and checks them</div></div>
+  <p>One call covers both carriageways of an arm. The model lists every line from the outer curb on the left to the outer curb on the right (curbs, lane lines, the centre line, median edges, bicycle-lane lines, buffer and parking edges) with its x at every station, and then says for each strip between two neighbouring lines which carriageway it belongs to and what it is at the stop bar: motor lane, bicycle lane, parking, median and so on. Where paint is hidden, it interpolates and names those stations.</p>
+  <ul>
+    <li><b>Lightened copy</b>: paint in a building's shadow is hard to see, so the code adds a second panel with the lightness contrast enhanced. Its colours are not true; it is only for finding lines. Much of this junction lies in the shadow of the buildings beside it.</li>
+    <li><b>Street views</b>: the cameras C1–C3 are drawn on the crop with their field of view, so lines that cars, trees or shadow hide on the satellite image can be found in a photo of the same place.</li>
+    <li>The prompt gives <b>no lane count</b>. A strip is judged by what it is at the stop bar: a strip that is parking upstream and a turn lane at the stop line is a motor lane.</li>
+  </ul>
+  <p>Here each arm gets 8 boundaries and 7 strips: two motor lanes and a bicycle lane on every approach, one motor lane on every exit. On Ames Street (arm SW) the model found a staggered stop line: the bar across the left-turn lane lies further back than the bar across the right-turn lane.</p>
+  <div class="viewer" data-step="trace"></div>
+  <p>The code then measures each motor lane's width at its first station and checks it: a lane narrower than 2.5 m or wider than 5.0 m (<code>--lane-width-m</code>), a lane the model marked low-confidence, or a bicycle strip as wide as a lane between two lanes is a measured issue for step 5. Here the approach lanes measure 3.0–3.5 m, and none of these issues arose.</p>
+</section>
+
+<section id="r4">
+  <div class="step-head"><span class="badge b-A">A</span><h2>4 Read each approach blind</h2><span class="calls-count">3 calls</span></div>
+  <div class="io"><div><b>THE MODEL SEES</b>the approach's satellite crop and its three street views, without the trace</div><div><b>IT IS ASKED</b>the lanes open to general motor traffic at the stop bar, from the driver's left, with their arrows; bicycle, parking and rail lanes apart; whether the count is settled</div><div><b>THE CODE THEN</b>compares the count with the trace, and keeps the reading for lane use</div></div>
+  <p>This reading is independent of the trace: a separate call that never sees the traced lines. Asked plainly how many lanes there are, a model can be wrong in ways that differ from tracing errors, so the two readings check each other. If shadow, occlusion or image age prevents a reliable count, the model sets <code>count_settled</code> to false instead of guessing, and the reading is then not used to change anything.</p>
+  <p>Here all three readings counted two lanes, the same as the traces: WB left and through, NB left and right, EB right in lane 2 (lane 1's arrow lies in deep shadow, so its turns are left empty).</p>
+  <div class="viewer" data-step="read"></div>
+</section>
+
+<section id="r5">
+  <div class="step-head"><span class="badge b-V">V</span><h2>5 Re-trace</h2><span class="calls-count">no calls in this run</span></div>
+  <div class="io"><div><b>WHEN</b>the blind reading is settled and sees more lanes than the trace, or a measured issue was found (step 3)</div><div><b>THE MODEL SEES</b>its trace drawn back on the crop and projected into the street views</div><div><b>IT IS ASKED</b>to correct the trace where the issues show it is wrong, or keep it</div></div>
+  <p>A re-trace shows the model what it traced, on the satellite crop and projected into each street view from the camera's pose (the projection assumes flat ground and a typical camera height, so it can sit up to about a lane to one side). The prompt lists the measured issues and, when the blind reading saw more lanes, that reading.</p>
+  <p>A reading that sees <b>fewer</b> lanes than the trace is not a reason to re-trace: shown such a reading, a re-trace tends to remove a correct lane more often than a wrong one. Lane use judges each traced lane from the images instead (step 6), and a lane is dropped only when the blind reading agrees (step 7).</p>
+  <p>At this junction the readings and the traces agreed on every approach and no lane measured out of range, so no arm was traced again.</p>
+</section>
+
+<section id="r6">
+  <div class="step-head"><span class="badge b-A">A</span><h2>6 Lane use and movements</h2><span class="calls-count">3 calls</span></div>
+  <div class="io"><div><b>THE MODEL SEES</b>the approach with its lanes outlined and labelled r1, r2; the same with shadows lightened; a north-up overview of the junction with every exit lane outlined; the street views with the lanes projected into them</div><div><b>IT IS ASKED</b>for each lane: does it exist at the stop bar, which turns it allows, on what basis; for each turn: its exit, whether it is proposed, and its lane pairs</div><div><b>THE CODE THEN</b>checks the pairs against the lanes and exits, and writes the lane and movement tables</div></div>
+  <p>The prompt gives the measured cross-section at the stop line (lanes, bicycle lanes, parking and medians with their widths), every exit with its heading and the turn it means from this approach, and the blind reading with its limits. The model binds a marking to a lane by where it lies in the images, says whether each turn is <code>observed</code> (an arrow, an ONLY word or a sign read for that lane) or <code>inferred</code> (from lane order or the junction layout), and names the exit lane each turn reaches. The curbside lane may also turn right unless a marking or sign rules it out. Cones, barrels and other temporary traffic control are reported apart and do not change the permanent layout.</p>
+  <p>Here every lane exists. WB: lane 1 left, lane 2 through, both from arrows. NB: lane 1 left, lane 2 right, from arrows. EB: lane 2 right only, from arrows and the word ONLY; lane 1 through, inferred, because no arrow is legible in its shadow and the road continues straight ahead. No call asked for detail crops, saw a lane without an outline, or reported temporary traffic control.</p>
+  <div class="viewer" data-step="use"></div>
+</section>
+
+<section id="r7">
+  <div class="step-head"><span class="badge b-V">V</span><h2>7 Further checks</h2><span class="calls-count">no calls in this run</span></div>
+  <p>Each of these runs only where its condition holds, and each sends its own call:</p>
+  <div class="tablewrap"><table>
+    <tr><th>Check</th><th>When</th><th>What happens</th></tr>
+    <tr><td>Detail crops</td><td>Lane use asks for them (up to three)</td><td>The code cuts native-resolution crops of the named panels, and lane use answers again with them.</td></tr>
+    <tr><td>Add a lane</td><td>Lane use sees a motor lane at the stop bar with no outline of its own</td><td>The arm is traced again with that report. The new lanes are kept only if there are more of them, and lane use runs again on them.</td></tr>
+    <tr><td>Keep a lane</td><td>Lane use judges a traced lane not to exist</td><td>The lane is dropped only if the blind reading is settled and counts no more lanes than would remain. Otherwise lane use is asked again, told why, and must keep it. A lane as wide as a motor lane is not dropped on the reading's agreement alone: lane use is asked once more, told its width.</td></tr>
+    <tr><td>Left-turn lane</td><td>An exit lies to the left, but no lane allows a left turn</td><td>The arm is traced again to look for a left-turn lane on the road-centre side. If none is found, lane use is asked once more whether the leftmost lane allows left turns.</td></tr>
+    <tr><td>Shared left and through</td><td>A lane is given left and through by inference (no arrow) while other lanes carry through</td><td>Lane use is asked once more, with a note that a left-turn lane may lie outside the outlines.</td></tr>
+  </table></div>
+  <p>So the lane-use call can only ask: a lane is added only when a second trace finds it, and removed only when the blind reading agrees. At this junction no condition held. The T-junction has no exit to the left of approach EB, so the left-turn check did not apply there; WB and NB have left-turn lanes.</p>
+</section>
+
+<section id="r8">
+  <div class="step-head"><span class="badge b-E">E</span><h2>8 Result</h2><span class="calls-count">no model calls</span></div>
+  <div class="io"><div><b>INPUT</b>the settled traces and lane-use answers</div><div><b>THE CODE</b>numbers the lanes of every section from the driver's left and resolves each lane pair</div><div><b>OUTPUT</b><code>lanes.json</code>, <code>movements.json</code>, <code>result.jpg</code></div></div>
+  <div class="tablewrap"><table>
+    <tr><th>Approach</th><th>Lanes from the driver's left</th><th>Turns and the exit lanes they reach</th></tr>
+    <tr><td>EB (Broadway from the west)</td><td>through, right only</td><td>through: lane 1 → exit EB lane 1; right: lane 2 → exit SB lane 1</td></tr>
+    <tr><td>WB (Broadway from the east)</td><td>left only, through</td><td>left: lane 1 → exit SB lane 1; through: lane 2 → exit WB lane 1</td></tr>
+    <tr><td>NB (Ames Street)</td><td>left only, right only</td><td>left: lane 1 → exit WB lane 1; right: lane 2 → exit EB lane 1</td></tr>
+  </table></div>
+  <p><code>lanes.json</code> lists every section (approach at the stop bar, exit) with its traced regions: surface type, width, outline on the satellite image, and for approach lanes the allowed turns with their basis and confidence. <code>movements.json</code> lists each turn of each approach with its exit and lane pairs. <code>traces.json</code>, <code>readings.json</code> and <code>uses.json</code> keep every answer with the checks applied, and <code>summary.json</code> the requests by step.</p>
+  <figure><img data-img="images/read/results/result.jpg" alt="Every traced lane on the satellite image, labelled, with an arrow for each turn"><figcaption><code>result.jpg</code>: every traced region on the satellite image, labelled, with an arrow for each turn from its approach lane to the exit lane it reaches.</figcaption></figure>
+</section>
+
+<!--BASE:edit-->
+<!--BASE:e1-->
+<!--BASE:e2-->
+<!--BASE:e4-->
+<!--BASE:e5-->
+
+<section id="faq">
+  <h2>Troubleshooting</h2>
+  <h4>"OPENAI_API_KEY not found" or "no model given"</h4>
+  <p>pave did not find its settings. They belong in <code>.env</code> at the pave root (Read also reads <code>read/.env</code>, Edit <code>edit/.env</code>), or in the environment of the run. With Read's agent queue (<code>PAVE_VLM_BACKEND=bridge</code>) no API settings are needed.</p>
+  <h4>"requested model …, the response came from …"</h4>
+  <p>The server answered with a different model than <code>OPENAI_MODEL</code>; pave accepts only the same name or a dated variant of it (<code>name-2026-…</code>). Set <code>OPENAI_MODEL</code> to the name the server reports.</p>
+  <h4>"model mismatch: requested …, received …"</h4>
+  <p>A cached answer recorded under another model is being reused, for example with <code>--reuse-cache-from</code> a run made with a different model. Use the same model (for the example: the three variables under <a href="#prep">Setup</a>), or a fresh run folder.</p>
+  <h4>The server rejects <code>temperature</code>, <code>max_completion_tokens</code> or <code>response_format</code></h4>
+  <p>pave's client always sends them. Put the tutorial's gateway in between: fill in your API's <code>OPENAI_*</code> in <code>tools/.env</code>, add <code>OPENAI_LEGACY_MAX_TOKENS=1</code> and/or <code>OPENAI_JSON_MODE=0</code> as needed, start <code>python tools/pave_gateway.py --backend openai</code>, and run pave with <code>OPENAI_BASE_URL=http://127.0.0.1:8765/v1</code>, <code>OPENAI_API_KEY=local</code> and <code>OPENAI_MODEL</code> set to your model's name. The gateway sends no temperature and adapts the other two.</p>
+  <h4>"VLM API call budget exhausted"</h4>
+  <p>The run's <code>--max-calls</code> (40 by default) is used up. It is a guard against runaway spending; check whether something is retrying over and over.</p>
+  <h4>Timeout: "timed out" after 150 seconds</h4>
+  <p>Read waits 150 seconds per API request, with one retry. For a slow API, set <code>PAVE_VLM_TIMEOUT_S</code> (seconds) in the run's environment. A request in the agent queue waits up to 4 hours (<code>PAVE_BRIDGE_TIMEOUT_S</code>).</p>
+  <h4>Structural check failures</h4>
+  <p>Read appends the error to the prompt and asks again automatically, at most 2 times (these are the dashed buttons in the viewers); if it still fails, the step stops with an error. Edit allows 1 repair (<code>--max-repairs</code>).</p>
+  <h4>Replay without spending anything</h4>
+  <p>Add <code>--cache-only</code> to Read: any request without a cached answer fails instead of being sent. Edit's default mock backend is a replay.</p>
+  <h4>A different model gives different results than this tutorial</h4>
+  <p>That is expected. The outputs here are one model's prediction on one run, not the right answer. Compare whether the structure and the evidence hold up, not whether the words match.</p>
+  <h4>Nobody answers the queued requests</h4>
+  <p>Check the counts with <code>python scripts/pipeline/vlm_bridge.py status</code> (from <code>read/</code>, with <code>PAVE_VLM_BRIDGE_DIR</code> set to the queue). Requests that stay claimed for a long time mean the agent stopped: put them back with <code>release --older-than-min 30</code> and start an agent again. On a rerun of the pipeline, answered requests are taken from the cache and unanswered ones keep waiting in the queue.</p>
+</section>
+
+<section id="files">
+  <h2>Files</h2>
+  <div class="only-single">
+  <p class="ed-2">This page is <code>tutorial/PAVE_tutorial.html</code> in the <a href="https://github.com/yajunliu99/pave" target="_blank" rel="noopener">pave repository</a>, and it is the whole tutorial: one file. <code>tutorial/build_tutorial.py</code> builds it from <code>tutorial/src/</code> and the Read example.</p>
+  <p>The tutorial is built from these files of the repository; each line says where it appears:</p>
+  <div class="code"><pre>pave/
+  .env.example                       the settings of API setup (copy to .env)
+  tutorial/
+    PAVE_tutorial.html               this page
+    build_tutorial.py, src/          how this page is built
+  read/
+    pave_read/                       the Read pipeline. The code that writes each prompt:
+      hybrid/prompts.py                the system prompt
+      harness/stages.py                the trace, re-trace and lane-use prompts and their checks (steps 3, 5, 6, 7)
+      harness/views.py                 the blind reading and its sheet (step 4)
+      harness/geometry.py              arm windows, lane widths and the measured issues (steps 1, 3)
+      hybrid/inference.py              the cache, and the repair request after a failed check
+      vision_client.py                 sends every request to the model; vlm_bridge.py queues it for agents
+    scripts/pipeline/                acquire_site_imagery.py (step 2), run_read.py (steps 3–8), vlm_bridge.py
+    configs/acquisition/             cambridge_pre_construction.json: the imagery policy (step 2)
+    docs/agent_queue.md              how agents answer the queue
+    examples/broadway_ames_2021/
+      network/                       node.csv, link.csv: the network excerpt (step 1)
+      imagery/                       site.json, base_config.json, satellite.jpg, street_views/ (step 2)
+      run/                           the run this tutorial shows:
+        sheets/                        every image sent to the model
+        vlm/&lt;step&gt;/                    each call's prompt and answer (steps 3–7)
+        lanes.json, movements.json     the result (step 8)
+  edit/
+    pave_edit/proposal.py            the Edit system prompt, prompt and repair prompt (steps 2, 4)
+    scenarios/sr347_i10_ddi/
+      base/                          node.csv, link.csv, movement.csv, config.csv (Edit step 1)
+      scenario.json                  the request sentence and the site
+      proposals/                     blind_mapbox_nonames.input.png, .prompt.txt, .json: the Edit call (steps 2–3)
+      mock_proposal_bad.json         the deliberately wrong answer (step 4)
+  dashboard/pave.html                the PAVE dashboard (both worked examples)</pre></div>
+  <p>Each answer file is <code>vlm/&lt;step&gt;/&lt;signature&gt;.raw.json</code>; the model's JSON is under <code>"response"</code>, the same answer the call viewer shows, and the prompt sent is beside it as <code>&lt;signature&gt;.prompt.txt</code>. The tutorial's tools are not in the repository as files; this page carries them, and <code>calls.zip</code> and <code>tools.zip</code> (see <a href="#intro">How to use this tutorial</a>) save them as files.</p>
+  </div>
+  <div class="only-folder">
+  <div class="code ed-2"><pre>pave_tutorial/
+  index.html                  this page
+  assets/data.js              page data: prompts and outputs of the 11 calls
+  images/                     reduced images for this page
+  calls/
+    read/&lt;step&gt;_&lt;place&gt;/      the 9 Read calls, one folder each
+      input.jpg               the original input image
+      system.txt  prompt.txt  the system prompt and prompt as sent
+      answer.json             the saved answer from the example
+      call.json               what call_vlm.py --call reads
+    read/_network/            GMNS network excerpt
+    edit/propose/             the Edit proposal call
+    edit/repair/              wrong answer, check results, repair prompt
+  tools/
+    .env.example              template for tools/.env
+    vlm_backends.py           backends: openai, queue
+    call_vlm.py               one call
+    pave_gateway.py           local OpenAI-compatible endpoint in front of another server
+    subagent_queue.py         queue worker commands: status / claim / answer / release
+    SUBAGENT_WORKER.md        instructions for agent workers</pre></div>
+  </div>
+  <p>Step names: <code>trace_&lt;arm&gt;</code> step 3, <code>read_&lt;approach&gt;</code> step 4, <code>retrace_&lt;arm&gt;</code> step 5, <code>use_&lt;approach&gt;</code> step 6, and the further checks of step 7 (<code>detail_*</code>, <code>addlane_*</code>, <code>keepuse_*</code>, <code>leftlane_*</code> …). Arms: SE = Broadway east (approach WB), SW = Ames Street (approach NB), NW = Broadway west (approach EB).</p>
+  <p>Imagery: satellite © MassGIS (Commonwealth of Massachusetts); street views © Google; Edit satellite © Mapbox © Maxar; network © OpenStreetMap contributors (ODbL). The images are included only to illustrate the method.</p>
+</section>
+</main>

@@ -11,7 +11,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))
 from pave_read.fusion.control_acquisition import StreetViewClient, official, probe_points
 from pave_read.fusion.coordinates import local_lonlat
 from pave_read.fusion.lane_acquisition import MapboxClient, TileMosaicClient, acquire, assess, mapbox_viewport, plan_site, policy_with, site_files

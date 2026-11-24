@@ -1,0 +1,39 @@
+{
+  "response": {
+    "lanes": [
+      {
+        "lane": 1,
+        "turns": [
+          "left"
+        ],
+        "evidence": "Leftmost lane at the stop bar, next to the tree-lined median. Satellite shows a left-turn arrow in it about 6 m before the stop bar, and a second left arrow further upstream. A solid white line separates it from lane 2. C1 (look-back) shows the left-turn arrow and the word ONLY in this lane on the photo's right side (the driver's left), next to the grass median. C2 (forward) shows ONLY in the left lane."
+      },
+      {
+        "lane": 2,
+        "turns": [
+          "through"
+        ],
+        "evidence": "Lane right of the solid lane line. Satellite shows a straight-ahead arrow in it, with another one upstream, and a car standing at the stop bar in this lane. C1 shows a large through arrow in this lane, pointing toward the junction. A solid white line on its right separates it from the narrow curbside bicycle strip. No right-turn arrow is visible."
+      }
+    ],
+    "bicycle_lanes": 1,
+    "rail_or_bus_only_lanes": 0,
+    "parking_lanes": 0,
+    "count_confidence": "medium",
+    "count_settled": true,
+    "limitations": "Building shadow covers most of the satellite approach, so faint markings are hard to read. The curbside strip, between a solid white line and the curb with brick sidewalk, holds no parked cars. It carries a worn symbol in C1 and is read as a bicycle lane. In the satellite, the line between lane 2 and this strip is visible upstream but not in the last ~7 m before the stop bar (shadow, maybe dashed or ending). C1, however, shows it solid well past the arrows. So it is not certain whether right-turning motor vehicles enter the strip at the stop bar, and it is not counted as a lane. The opposing carriageway beyond the median on the left is excluded. The street views date from 2020-11 and the satellite date is unknown."
+  },
+  "metadata": {
+    "model_details": {
+      "inference_provider": "claude_code_subagent",
+      "inference_model": "claude-opus-5-5"
+    },
+    "bridge": {
+      "request_id": "20261124_120831_read_WB_3cd8708c",
+      "worker": "c95_002",
+      "claimed_utc": "2026-11-24T18:47:13.071923+00:00",
+      "answered_utc": "2026-11-24T18:49:14.736247+00:00",
+      "waited_s": 2.0
+    }
+  }
+}

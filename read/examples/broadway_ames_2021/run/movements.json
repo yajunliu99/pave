@@ -1,0 +1,164 @@
+[
+  {
+    "from_direction": "WB",
+    "turn": "left",
+    "status": "candidate",
+    "in_section_id": "in_WB",
+    "out_section_id": "out_SB",
+    "to_direction": "SB",
+    "reason": "Left arrows and ONLY in r1; Ames Street leg to the south-west is the only left exit (out_SB, -91 deg).",
+    "lane_pairs": [
+      {
+        "in_region_id": "r1",
+        "out_region_id": "r1",
+        "ib_lane": 1,
+        "ob_lane": 1
+      }
+    ]
+  },
+  {
+    "from_direction": "WB",
+    "turn": "through",
+    "status": "candidate",
+    "in_section_id": "in_WB",
+    "out_section_id": "out_WB",
+    "to_direction": "WB",
+    "reason": "Straight arrows in r2; Broadway continues north-west as out_WB.",
+    "lane_pairs": [
+      {
+        "in_region_id": "r2",
+        "out_region_id": "r1",
+        "ib_lane": 2,
+        "ob_lane": 1
+      }
+    ]
+  },
+  {
+    "from_direction": "WB",
+    "turn": "right",
+    "status": "not_proposed",
+    "in_section_id": "in_WB",
+    "out_section_id": null,
+    "to_direction": null,
+    "reason": "T-junction: no road leaves to the driver's right (north-east), the overview shows a building and park there and no right exit is listed.",
+    "lane_pairs": []
+  },
+  {
+    "from_direction": "WB",
+    "turn": "u_turn",
+    "status": "not_proposed",
+    "in_section_id": "in_WB",
+    "out_section_id": "out_EB",
+    "to_direction": "EB",
+    "reason": "No U-turn arrow or sign seen; r1 shows plain left-turn arrows only. A U-turn around the median into out_EB is not evidenced.",
+    "lane_pairs": []
+  },
+  {
+    "from_direction": "NB",
+    "turn": "left",
+    "status": "candidate",
+    "in_section_id": "in_NB",
+    "out_section_id": "out_WB",
+    "to_direction": "WB",
+    "reason": "Left-turn arrows in r1; out_WB is the -90 deg exit and has one lane r1.",
+    "lane_pairs": [
+      {
+        "in_region_id": "r1",
+        "out_region_id": "r1",
+        "ib_lane": 1,
+        "ob_lane": 1
+      }
+    ]
+  },
+  {
+    "from_direction": "NB",
+    "turn": "through",
+    "status": "not_proposed",
+    "in_section_id": "in_NB",
+    "out_section_id": null,
+    "to_direction": null,
+    "reason": "No exit lies straight ahead (the overview shows a building on the far side, a T junction) and no through arrow is painted in either general lane; the only through arrow is in the bicycle lane.",
+    "lane_pairs": []
+  },
+  {
+    "from_direction": "NB",
+    "turn": "right",
+    "status": "candidate",
+    "in_section_id": "in_NB",
+    "out_section_id": "out_EB",
+    "to_direction": "EB",
+    "reason": "Right-turn arrows in r2, the curbside general lane; out_EB is the +91 deg exit with one lane r1.",
+    "lane_pairs": [
+      {
+        "in_region_id": "r2",
+        "out_region_id": "r1",
+        "ib_lane": 2,
+        "ob_lane": 1
+      }
+    ]
+  },
+  {
+    "from_direction": "NB",
+    "turn": "u_turn",
+    "status": "not_proposed",
+    "in_section_id": "in_NB",
+    "out_section_id": "out_SB",
+    "to_direction": "SB",
+    "reason": "No U-turn arrow or sign seen; r1 carries left-only arrows and the approach is a narrow two-lane street separated from out_SB only by a painted double yellow line.",
+    "lane_pairs": []
+  },
+  {
+    "from_direction": "EB",
+    "turn": "left",
+    "status": "not_proposed",
+    "in_section_id": "in_EB",
+    "out_section_id": null,
+    "to_direction": null,
+    "reason": "No exit to the driver's left of the EB approach; the overview shows a building and park on that side.",
+    "lane_pairs": []
+  },
+  {
+    "from_direction": "EB",
+    "turn": "through",
+    "status": "candidate",
+    "in_section_id": "in_EB",
+    "out_section_id": "out_EB",
+    "to_direction": "EB",
+    "reason": "r1 is the only lane not marked RIGHT ONLY; out_EB continues straight ahead (+0 deg) with one lane.",
+    "lane_pairs": [
+      {
+        "in_region_id": "r1",
+        "out_region_id": "r1",
+        "ib_lane": 1,
+        "ob_lane": 1
+      }
+    ]
+  },
+  {
+    "from_direction": "EB",
+    "turn": "right",
+    "status": "candidate",
+    "in_section_id": "in_EB",
+    "out_section_id": "out_SB",
+    "to_direction": "SB",
+    "reason": "r2 carries a right-turn arrow (satellite) and ONLY (C1, C2); out_SB lies +90 deg to the right with one lane.",
+    "lane_pairs": [
+      {
+        "in_region_id": "r2",
+        "out_region_id": "r1",
+        "ib_lane": 2,
+        "ob_lane": 1
+      }
+    ]
+  },
+  {
+    "from_direction": "EB",
+    "turn": "u_turn",
+    "status": "not_proposed",
+    "in_section_id": "in_EB",
+    "out_section_id": "out_WB",
+    "to_direction": "WB",
+    "reason": "No U-turn arrow or sign seen; the raised median separates the opposing carriageway and nothing marks a U-turn movement.",
+    "lane_pairs": []
+  }
+]

@@ -1,0 +1,12 @@
+This image shows one approach to a signalised intersection.
+Left: a satellite crop rotated so that traffic on this approach drives UP toward the intersection; the stop bar and crosswalk are near the top. The road's other carriageway runs down the left side.
+Right: street views of this approach (C1 near look-back, facing away from the junction: 29.57 m from the centre, 2020-11; C2 mid forward, facing the junction: 59.36 m from the centre, 2020-11; C3 far forward, facing the junction: 113.12 m from the centre, 2020-11). A forward photo looks along the direction of travel toward the junction. A look-back photo is taken near the stop bar facing away from the junction: the approach's traffic comes toward the camera, so the driver's left is on the RIGHT of that photo. A street view may be old, taken from the opposite carriageway, or partly blocked; say so when it is.
+Read the lane layout of THIS approach at the stop bar, counting from the driver's left.
+- Count only lanes open to general motor traffic in the direction of travel. Turn pockets count; a lane shared with a streetcar counts.
+- A strip can change along the road: parking or a shoulder upstream can become a turn lane near the stop bar, and turning traffic can enter a bicycle lane to turn right. What it is at the stop bar is what counts. So a curbside turn lane counts where it opens from parking or a shoulder or lies beside a bicycle lane, and so does a bicycle lane that turning motor traffic also uses at the stop bar.
+- A lane may be paved differently from its neighbours (brick, concrete or coloured surfacing): tell a lane from a median or buffer by whether it is raised or curbed, whether vehicles stand or drive in it and whether the stop bar and lane lines reach it, not by its colour.
+- Do not count opposing lanes, medians, rail- or bus-only lanes, gutters, or bicycle lanes, parking and shoulders that motor traffic does not use at the stop bar; report those separately.
+- For each counted lane give the movements its pavement arrows allow (left, through, right, u_turn), or an empty list if no arrow is legible.
+- If shadow, occlusion, image age or camera position prevents a reliable count, set count_settled to false instead of guessing.
+Return JSON only:
+{"lanes":[{"lane":1,"turns":["left"],"evidence":"what shows this lane and its arrows"}],"bicycle_lanes":0,"rail_or_bus_only_lanes":0,"parking_lanes":0,"count_confidence":"high|medium|low","count_settled":true,"limitations":"what limited the reading"}

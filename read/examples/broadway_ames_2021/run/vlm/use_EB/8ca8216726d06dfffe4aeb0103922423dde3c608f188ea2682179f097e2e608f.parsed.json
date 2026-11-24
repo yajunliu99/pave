@@ -1,0 +1,73 @@
+{
+  "lanes": [
+    {
+      "region_id": "r1",
+      "exists": "yes",
+      "turns": [
+        "through"
+      ],
+      "basis": "inferred",
+      "confidence": "high",
+      "evidence": "Left lane between the yellow median edge line/raised planted median and the solid white lane line; stop bar reaches it (C2), vehicles drive in it (C1). No arrow or word visible in it in the satellite (only a long dark shadow/wire line) or in C1/C2. Not the curbside lane (r2 is to its right), and the junction has no exit to the driver's left (north-east side is building/park), so it feeds straight ahead to out_EB only."
+    },
+    {
+      "region_id": "r2",
+      "exists": "yes",
+      "turns": [
+        "right"
+      ],
+      "basis": "observed",
+      "confidence": "high",
+      "evidence": "Right lane between the solid white lane line and the green bicycle lane. Satellite shows a right-curving arrow in r2 just upstream of the stop bar (and a second faint right arrow further upstream in shadow); C2 forward view shows the word ONLY in this lane near the stop bar, and C1 look-back shows the same ONLY (seen reversed) in the lane next to the green bike lane. Right arrow + ONLY = right-turn-only lane."
+    }
+  ],
+  "movements": [
+    {
+      "turn": "left",
+      "to": "none",
+      "status": "not_proposed",
+      "lane_pairs": [],
+      "reason": "No exit to the driver's left of the EB approach; the overview shows a building and park on that side."
+    },
+    {
+      "turn": "through",
+      "to": "out_EB",
+      "status": "candidate",
+      "lane_pairs": [
+        [
+          "r1",
+          "r1"
+        ]
+      ],
+      "reason": "r1 is the only lane not marked RIGHT ONLY; out_EB continues straight ahead (+0 deg) with one lane."
+    },
+    {
+      "turn": "right",
+      "to": "out_SB",
+      "status": "candidate",
+      "lane_pairs": [
+        [
+          "r2",
+          "r1"
+        ]
+      ],
+      "reason": "r2 carries a right-turn arrow (satellite) and ONLY (C1, C2); out_SB lies +90 deg to the right with one lane."
+    },
+    {
+      "turn": "u_turn",
+      "to": "out_WB",
+      "status": "not_proposed",
+      "lane_pairs": [],
+      "reason": "No U-turn arrow or sign seen; the raised median separates the opposing carriageway and nothing marks a U-turn movement."
+    }
+  ],
+  "detail_requests": [],
+  "missing_lanes": [],
+  "temporary_control": {
+    "seen": "no",
+    "lanes": [],
+    "effect": "none on this approach's lanes",
+    "evidence": "No cones, barrels or work-zone devices in r1 or r2 in C1/C2 or the satellite. An orange object lies on the median grass in C3 (101 m upstream), an orange diamond sign stands by the opposite carriageway in C1, and orange cones sit on the sidewalk by out_WB in the overview; none affects r1/r2."
+  },
+  "notes": "Bicycle lane (1.63 m, green) runs to the right of r2 to the stop bar and is not a motor lane. C3 at 101 m appears to be at an upstream crossing with chevron hatching and a green conflict zone, not at this stop bar, so it was not used for lane use. Street views 2020-11; satellite date unknown but its right arrow in r2 agrees with the street views."
+}

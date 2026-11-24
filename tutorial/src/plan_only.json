@@ -1,0 +1,65 @@
+{
+  "node_id": 95,
+  "name": "Ames Street x Broadway",
+  "sections": [
+    {
+      "section_id": "in_EB",
+      "kind": "inbound_stopbar",
+      "direction": "EB",
+      "arm": "NW",
+      "link_id": 3,
+      "road_name": "Broadway"
+    },
+    {
+      "section_id": "in_NB",
+      "kind": "inbound_stopbar",
+      "direction": "NB",
+      "arm": "SW",
+      "link_id": 158,
+      "road_name": "Ames Street"
+    },
+    {
+      "section_id": "in_WB",
+      "kind": "inbound_stopbar",
+      "direction": "WB",
+      "arm": "SE",
+      "link_id": 112,
+      "road_name": "Broadway"
+    },
+    {
+      "section_id": "out_EB",
+      "kind": "outbound_receiving",
+      "direction": "EB",
+      "arm": "SE",
+      "link_id": 104,
+      "road_name": "Broadway"
+    },
+    {
+      "section_id": "out_SB",
+      "kind": "outbound_receiving",
+      "direction": "SB",
+      "arm": "SW",
+      "link_id": 159,
+      "road_name": "Ames Street"
+    },
+    {
+      "section_id": "out_WB",
+      "kind": "outbound_receiving",
+      "direction": "WB",
+      "arm": "NW",
+      "link_id": 114,
+      "road_name": "Broadway"
+    }
+  ],
+  "budget": {
+    "satellite_requests": 1,
+    "street_view_metadata": {
+      "typical": 18,
+      "upper_bound": 54
+    },
+    "street_view_images": {
+      "upper_bound": 30
+    },
+    "note": "Street View metadata requests are not billed; images and the satellite image are."
+  }
+}

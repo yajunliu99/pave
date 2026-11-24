@@ -1,0 +1,14 @@
+{
+  "signature": "91369332778b8760129bede33e5d907a36bc7ffcca5e1ca1f5ee3a4d8b50e0f4",
+  "cached": false,
+  "elapsed_s": 2.009,
+  "actual_model": {
+    "inference_provider": "claude_code_subagent",
+    "inference_model": "claude-opus-5-5"
+  },
+  "raw_file": "91369332778b8760129bede33e5d907a36bc7ffcca5e1ca1f5ee3a4d8b50e0f4.raw.json",
+  "parsed_file": "91369332778b8760129bede33e5d907a36bc7ffcca5e1ca1f5ee3a4d8b50e0f4.parsed.json",
+  "validated_file": "91369332778b8760129bede33e5d907a36bc7ffcca5e1ca1f5ee3a4d8b50e0f4.validated.json",
+  "repair_stage": null,
+  "cache_origin": null
+}

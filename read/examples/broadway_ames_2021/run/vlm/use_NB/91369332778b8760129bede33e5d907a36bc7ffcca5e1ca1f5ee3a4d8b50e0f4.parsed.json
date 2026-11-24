@@ -1,0 +1,73 @@
+{
+  "lanes": [
+    {
+      "region_id": "r1",
+      "exists": "yes",
+      "turns": [
+        "left"
+      ],
+      "basis": "observed",
+      "confidence": "high",
+      "evidence": "Satellite (both panels, contrast-enhanced crop): two left-turn arrows painted inside r1, one just behind its stop bar and one about mid-outline; r1 is a driven lane next to the centre line, and its stop bar reaches it. C1 look-back shows the same left arrow (seen from behind) in the lane next to the double yellow centre line; C1's outline sits about a lane to the right of the paint. No through arrow or straight shaft in r1."
+    },
+    {
+      "region_id": "r2",
+      "exists": "yes",
+      "turns": [
+        "right"
+      ],
+      "basis": "observed",
+      "confidence": "high",
+      "evidence": "Satellite: two right-turn arrows painted inside r2 (near the stop line and mid-outline); stop line spans it. It is the rightmost general motor lane at the stop bar; to its right is a buffered bicycle lane with flex posts, a bicycle symbol and a through arrow, not a motor lane. C1 look-back shows the matching right arrow in the lane between the r1 lane and the bike-lane buffer. Upstream in C3 the curbside strip is used for parking, but at the stop bar it is a marked lane with its own arrows. No through arrow seen."
+    }
+  ],
+  "movements": [
+    {
+      "turn": "left",
+      "to": "out_WB",
+      "status": "candidate",
+      "lane_pairs": [
+        [
+          "r1",
+          "r1"
+        ]
+      ],
+      "reason": "Left-turn arrows in r1; out_WB is the -90 deg exit and has one lane r1."
+    },
+    {
+      "turn": "through",
+      "to": "none",
+      "status": "not_proposed",
+      "lane_pairs": [],
+      "reason": "No exit lies straight ahead (the overview shows a building on the far side, a T junction) and no through arrow is painted in either general lane; the only through arrow is in the bicycle lane."
+    },
+    {
+      "turn": "right",
+      "to": "out_EB",
+      "status": "candidate",
+      "lane_pairs": [
+        [
+          "r2",
+          "r1"
+        ]
+      ],
+      "reason": "Right-turn arrows in r2, the curbside general lane; out_EB is the +91 deg exit with one lane r1."
+    },
+    {
+      "turn": "u_turn",
+      "to": "out_SB",
+      "status": "not_proposed",
+      "lane_pairs": [],
+      "reason": "No U-turn arrow or sign seen; r1 carries left-only arrows and the approach is a narrow two-lane street separated from out_SB only by a painted double yellow line."
+    }
+  ],
+  "detail_requests": [],
+  "missing_lanes": [],
+  "temporary_control": {
+    "seen": "no",
+    "lanes": [],
+    "effect": "None affecting r1 or r2.",
+    "evidence": "Satellite and C1/C2 show only permanent paint and the bike-lane flex posts. In C3 (113 m upstream) one orange post stands among the white flex posts of the bicycle-lane buffer, outside the general motor lanes; it does not close a lane or ban a turn."
+  },
+  "notes": "Two general motor lanes at the stop bar: r1 left only, r2 right only, both read from painted arrows that are clear in the shadow-lightened satellite crop. The bicycle lane on the driver's right is separated by flex posts and is not a motor lane. C2 was taken from the opposing side and only gives an oblique view of the arrows."
+}

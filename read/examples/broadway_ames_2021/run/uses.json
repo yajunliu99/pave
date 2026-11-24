@@ -1,0 +1,227 @@
+{
+  "WB": {
+    "use": {
+      "lanes": [
+        {
+          "region_id": "r1",
+          "exists": "yes",
+          "turns": [
+            "left"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "evidence": "Satellite: two curved left-turn arrows inside the r1 outline (near the stop bar and about mid-panel). C1 look-back: a large left-turn arrow in the lane on the right of the photo (driver's left = r1) with the word ONLY just upstream of it; C2 forward also shows ONLY in the left lane r1. Lane lines and stop bar reach it; vehicles drive in it. Left-only lane next to the median."
+        },
+        {
+          "region_id": "r2",
+          "exists": "yes",
+          "turns": [
+            "through"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "evidence": "Satellite: two straight-ahead arrows in the r2 outline aligned with the r1 left arrows. C1 look-back: a large straight arrow pointing toward the junction in the lane left of the photo centre (driver's right general lane = r2). r2 is the curbside general motor lane, but the junction has no exit on the driver's right (north-east side is a building and a park in the overview), so no right turn is available; the bicycle lane between r2 and the curb is not a motor lane."
+        }
+      ],
+      "movements": [
+        {
+          "turn": "left",
+          "to": "out_SB",
+          "status": "candidate",
+          "lane_pairs": [
+            [
+              "r1",
+              "r1"
+            ]
+          ],
+          "reason": "Left arrows and ONLY in r1; Ames Street leg to the south-west is the only left exit (out_SB, -91 deg)."
+        },
+        {
+          "turn": "through",
+          "to": "out_WB",
+          "status": "candidate",
+          "lane_pairs": [
+            [
+              "r2",
+              "r1"
+            ]
+          ],
+          "reason": "Straight arrows in r2; Broadway continues north-west as out_WB."
+        },
+        {
+          "turn": "right",
+          "to": "none",
+          "status": "not_proposed",
+          "lane_pairs": [],
+          "reason": "T-junction: no road leaves to the driver's right (north-east), the overview shows a building and park there and no right exit is listed."
+        },
+        {
+          "turn": "u_turn",
+          "to": "out_EB",
+          "status": "not_proposed",
+          "lane_pairs": [],
+          "reason": "No U-turn arrow or sign seen; r1 shows plain left-turn arrows only. A U-turn around the median into out_EB is not evidenced."
+        }
+      ],
+      "detail_requests": [],
+      "missing_lanes": [],
+      "temporary_control": {
+        "seen": "no",
+        "lanes": [],
+        "effect": "none",
+        "evidence": "No cones, barrels or work-zone devices on the approach lanes in the satellite or in C1-C3."
+      },
+      "notes": "Approach widens from one lane upstream (C3) to two lanes near the junction: r1 left-only, r2 through. The curbside strip right of r2 is a bicycle lane behind a solid white line (bicycle symbol visible in C1); it is not counted as a motor lane, and it does not matter for turns because no right exit exists. Satellite date unknown; street views 2020-11."
+    }
+  },
+  "NB": {
+    "use": {
+      "lanes": [
+        {
+          "region_id": "r1",
+          "exists": "yes",
+          "turns": [
+            "left"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "evidence": "Satellite (both panels, contrast-enhanced crop): two left-turn arrows painted inside r1, one just behind its stop bar and one about mid-outline; r1 is a driven lane next to the centre line, and its stop bar reaches it. C1 look-back shows the same left arrow (seen from behind) in the lane next to the double yellow centre line; C1's outline sits about a lane to the right of the paint. No through arrow or straight shaft in r1."
+        },
+        {
+          "region_id": "r2",
+          "exists": "yes",
+          "turns": [
+            "right"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "evidence": "Satellite: two right-turn arrows painted inside r2 (near the stop line and mid-outline); stop line spans it. It is the rightmost general motor lane at the stop bar; to its right is a buffered bicycle lane with flex posts, a bicycle symbol and a through arrow, not a motor lane. C1 look-back shows the matching right arrow in the lane between the r1 lane and the bike-lane buffer. Upstream in C3 the curbside strip is used for parking, but at the stop bar it is a marked lane with its own arrows. No through arrow seen."
+        }
+      ],
+      "movements": [
+        {
+          "turn": "left",
+          "to": "out_WB",
+          "status": "candidate",
+          "lane_pairs": [
+            [
+              "r1",
+              "r1"
+            ]
+          ],
+          "reason": "Left-turn arrows in r1; out_WB is the -90 deg exit and has one lane r1."
+        },
+        {
+          "turn": "through",
+          "to": "none",
+          "status": "not_proposed",
+          "lane_pairs": [],
+          "reason": "No exit lies straight ahead (the overview shows a building on the far side, a T junction) and no through arrow is painted in either general lane; the only through arrow is in the bicycle lane."
+        },
+        {
+          "turn": "right",
+          "to": "out_EB",
+          "status": "candidate",
+          "lane_pairs": [
+            [
+              "r2",
+              "r1"
+            ]
+          ],
+          "reason": "Right-turn arrows in r2, the curbside general lane; out_EB is the +91 deg exit with one lane r1."
+        },
+        {
+          "turn": "u_turn",
+          "to": "out_SB",
+          "status": "not_proposed",
+          "lane_pairs": [],
+          "reason": "No U-turn arrow or sign seen; r1 carries left-only arrows and the approach is a narrow two-lane street separated from out_SB only by a painted double yellow line."
+        }
+      ],
+      "detail_requests": [],
+      "missing_lanes": [],
+      "temporary_control": {
+        "seen": "no",
+        "lanes": [],
+        "effect": "None affecting r1 or r2.",
+        "evidence": "Satellite and C1/C2 show only permanent paint and the bike-lane flex posts. In C3 (113 m upstream) one orange post stands among the white flex posts of the bicycle-lane buffer, outside the general motor lanes; it does not close a lane or ban a turn."
+      },
+      "notes": "Two general motor lanes at the stop bar: r1 left only, r2 right only, both read from painted arrows that are clear in the shadow-lightened satellite crop. The bicycle lane on the driver's right is separated by flex posts and is not a motor lane. C2 was taken from the opposing side and only gives an oblique view of the arrows."
+    }
+  },
+  "EB": {
+    "use": {
+      "lanes": [
+        {
+          "region_id": "r1",
+          "exists": "yes",
+          "turns": [
+            "through"
+          ],
+          "basis": "inferred",
+          "confidence": "high",
+          "evidence": "Left lane between the yellow median edge line/raised planted median and the solid white lane line; stop bar reaches it (C2), vehicles drive in it (C1). No arrow or word visible in it in the satellite (only a long dark shadow/wire line) or in C1/C2. Not the curbside lane (r2 is to its right), and the junction has no exit to the driver's left (north-east side is building/park), so it feeds straight ahead to out_EB only."
+        },
+        {
+          "region_id": "r2",
+          "exists": "yes",
+          "turns": [
+            "right"
+          ],
+          "basis": "observed",
+          "confidence": "high",
+          "evidence": "Right lane between the solid white lane line and the green bicycle lane. Satellite shows a right-curving arrow in r2 just upstream of the stop bar (and a second faint right arrow further upstream in shadow); C2 forward view shows the word ONLY in this lane near the stop bar, and C1 look-back shows the same ONLY (seen reversed) in the lane next to the green bike lane. Right arrow + ONLY = right-turn-only lane."
+        }
+      ],
+      "movements": [
+        {
+          "turn": "left",
+          "to": "none",
+          "status": "not_proposed",
+          "lane_pairs": [],
+          "reason": "No exit to the driver's left of the EB approach; the overview shows a building and park on that side."
+        },
+        {
+          "turn": "through",
+          "to": "out_EB",
+          "status": "candidate",
+          "lane_pairs": [
+            [
+              "r1",
+              "r1"
+            ]
+          ],
+          "reason": "r1 is the only lane not marked RIGHT ONLY; out_EB continues straight ahead (+0 deg) with one lane."
+        },
+        {
+          "turn": "right",
+          "to": "out_SB",
+          "status": "candidate",
+          "lane_pairs": [
+            [
+              "r2",
+              "r1"
+            ]
+          ],
+          "reason": "r2 carries a right-turn arrow (satellite) and ONLY (C1, C2); out_SB lies +90 deg to the right with one lane."
+        },
+        {
+          "turn": "u_turn",
+          "to": "out_WB",
+          "status": "not_proposed",
+          "lane_pairs": [],
+          "reason": "No U-turn arrow or sign seen; the raised median separates the opposing carriageway and nothing marks a U-turn movement."
+        }
+      ],
+      "detail_requests": [],
+      "missing_lanes": [],
+      "temporary_control": {
+        "seen": "no",
+        "lanes": [],
+        "effect": "none on this approach's lanes",
+        "evidence": "No cones, barrels or work-zone devices in r1 or r2 in C1/C2 or the satellite. An orange object lies on the median grass in C3 (101 m upstream), an orange diamond sign stands by the opposite carriageway in C1, and orange cones sit on the sidewalk by out_WB in the overview; none affects r1/r2."
+      },
+      "notes": "Bicycle lane (1.63 m, green) runs to the right of r2 to the stop bar and is not a motor lane. C3 at 101 m appears to be at an upstream crossing with chevron hatching and a green conflict zone, not at this stop bar, so it was not used for lane use. Street views 2020-11; satellite date unknown but its right arrow in r2 agrees with the street views."
+    }
+  }
+}
