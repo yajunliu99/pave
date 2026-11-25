@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": {
+    "one_result_per_approach": true,
+    "unique_view_ids": true,
+    "image_hashes": true,
+    "distinct_context_panoramas": true,
+    "detail_parents_same_panorama": true,
+    "bounded_detail_fov": true,
+    "no_movement_constraints": true,
+    "bounded_rounds": true,
+    "bounded_context_views": true,
+    "bounded_requests": true
+  },
+  "scope": "Structural and provenance checks only; not an accuracy score or proof that every sign is visible."
+}

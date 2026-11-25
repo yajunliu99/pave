@@ -1,0 +1,9 @@
+{
+  "status": "ZERO_RESULTS",
+  "request": {
+    "location": "42.36411678,-71.08743113",
+    "radius": 3,
+    "source": "outdoor"
+  },
+  "retrieved_utc": "2026-10-11T16:08:10.269997+00:00"
+}

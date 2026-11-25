@@ -1,0 +1,14 @@
+{
+  "status": "OK",
+  "request": {
+    "pano": "zSmejX__7oeQV0DVT1Yepg"
+  },
+  "retrieved_utc": "2026-10-11T16:07:57.899580+00:00",
+  "actual_lonlat": [
+    -71.08762297470886,
+    42.36401059099301
+  ],
+  "pano_id": "zSmejX__7oeQV0DVT1Yepg",
+  "capture_date": "2020-11",
+  "copyright": "© Google"
+}

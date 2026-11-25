@@ -1,0 +1,40 @@
+{
+  "preferred_date_window": [
+    "2019-01",
+    "2022-12"
+  ],
+  "date_search": {
+    "along_m": 9,
+    "across_m": 12,
+    "step_m": 3,
+    "radius_m": 3
+  },
+  "max_metadata_requests": 3000,
+  "known_panoramas": {
+    "in_EB": [
+      "zSmejX__7oeQV0DVT1Yepg",
+      "_3whLBv7hjtOb-Hj2ZsBvQ",
+      "hRVL8qhrNI-JfNB6FQeqGw",
+      "kD7P5QIM1p11ulUllRiVMA",
+      "jWg2LDUhjA5GbBY1BQHT5g",
+      "pI_xCj7iSJiBEPU3LBAWeQ"
+    ],
+    "in_WB": [
+      "dN6_8TPddi3FgosgsLQvqQ",
+      "Cvz0-VR_-batzNSOOqbJzg",
+      "uhFChog3QwBpKqKx650Sug",
+      "lzsK1P01E2cICP8hIN7rww",
+      "jWg2LDUhjA5GbBY1BQHT5g",
+      "pI_xCj7iSJiBEPU3LBAWeQ"
+    ],
+    "in_NB": [
+      "jeeFWfXPQq05atLjxvWcnw",
+      "_3whLBv7hjtOb-Hj2ZsBvQ",
+      "b8uhYxEbQFfYKJCTGCaozA",
+      "pftZedWg5jk2t7Cj1rGcMA",
+      "jWg2LDUhjA5GbBY1BQHT5g",
+      "pI_xCj7iSJiBEPU3LBAWeQ"
+    ]
+  },
+  "date_fallback": false
+}

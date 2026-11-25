@@ -1,0 +1,93 @@
+[
+  {
+    "image_id": "scene_in_WB",
+    "native_size": [
+      232,
+      778
+    ],
+    "sheet_box_xyxy": [
+      342,
+      68,
+      558,
+      794
+    ]
+  },
+  {
+    "image_id": "gsv_control_link_112_c28aca3e20",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      987,
+      68,
+      1713,
+      794
+    ]
+  },
+  {
+    "image_id": "gsv_control_link_112_2313b6b71a",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      1887,
+      68,
+      2613,
+      794
+    ]
+  },
+  {
+    "image_id": "gsv_detail_link_112_35566928c1a6",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      87,
+      868,
+      813,
+      1594
+    ]
+  },
+  {
+    "image_id": "gsv_detail_link_112_f263eb5f82e3",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      987,
+      868,
+      1713,
+      1594
+    ]
+  },
+  {
+    "image_id": "gsv_detail_link_112_944a9202c344",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      1887,
+      868,
+      2613,
+      1594
+    ]
+  },
+  {
+    "image_id": "gsv_detail_link_112_ee6fb1954242",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      87,
+      1668,
+      813,
+      2394
+    ]
+  }
+]

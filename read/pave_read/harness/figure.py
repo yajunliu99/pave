@@ -72,16 +72,19 @@ def arrow(d, points, color, width=5):
     d.polygon([(bx, by)] + [(bx - 26 * math.cos(angle + s), by - 26 * math.sin(angle + s)) for s in (.42, -.42)], fill=color, outline="black")
 
 
-def overview(image, sections, movements, margin=70):
-    """The labelled figure, cropped to what it shows, with a legend above it."""
-    canvas = image.convert("RGB")
+def overview(image, sections, movements, margin=70, pad=240):
+    """The labelled figure, cropped to what it shows, with a legend above it. The image sits on a dark border `pad`
+    pixels wide, so a tag placed beyond the image's edge still shows."""
+    canvas = Image.new("RGB", (image.width + 2 * pad, image.height + 2 * pad), "#161a22")
+    canvas.paste(image.convert("RGB"), (pad, pad))
+    moved = lambda points: [(x + pad, y + pad) for x, y in points]
     d = ImageDraw.Draw(canvas)
     f = font(22)
     shown, tags, colours = [], [], []
     for section in sections:
         inbound = section["kind"] == "inbound_stopbar"
         for i, region in enumerate(section["regions"]):
-            polygon = [tuple(p) for p in region.get("polygon_px") or []]
+            polygon = moved(region.get("polygon_px") or [])
             if len(polygon) < 3:
                 continue
             text, color = label(region, inbound)
@@ -118,8 +121,9 @@ def overview(image, sections, movements, margin=70):
             a, b = regions.get((m["in_section_id"], pair["in_region_id"])), regions.get((m["out_section_id"], pair["out_region_id"]))
             if not a or not b:
                 continue
-            p, q = gate(a["polygon_px"]), gate(b["polygon_px"])
-            points = curve(p, crossing(p, axis(a["polygon_px"]), q, axis(b["polygon_px"])), q)
+            pa, pb = moved(a["polygon_px"]), moved(b["polygon_px"])
+            p, q = gate(pa), gate(pb)
+            points = curve(p, crossing(p, axis(pa), q, axis(pb)), q)
             arrow(d, points, TURN_COLOR[m["turn"]])
             shown.extend(points)
             turns.append(m["turn"])

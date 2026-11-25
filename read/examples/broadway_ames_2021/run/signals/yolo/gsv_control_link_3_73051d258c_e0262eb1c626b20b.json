@@ -1,0 +1,62 @@
+{
+  "model": "yolo26n",
+  "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+  "ultralytics": "8.4.171",
+  "elapsed_s": 0.083,
+  "image_size": [
+    640,
+    640
+  ],
+  "detections": [
+    {
+      "class": "traffic light",
+      "confidence": 0.69261,
+      "bbox_xyxy": [
+        385.65,
+        295.66,
+        400.17,
+        332.01
+      ]
+    },
+    {
+      "class": "traffic light",
+      "confidence": 0.66528,
+      "bbox_xyxy": [
+        288.87,
+        295.39,
+        307.5,
+        331.61
+      ]
+    },
+    {
+      "class": "traffic light",
+      "confidence": 0.47948,
+      "bbox_xyxy": [
+        524.64,
+        296.61,
+        558.18,
+        335.86
+      ]
+    },
+    {
+      "class": "traffic light",
+      "confidence": 0.44746,
+      "bbox_xyxy": [
+        480.03,
+        296.33,
+        503.85,
+        335.88
+      ]
+    },
+    {
+      "class": "traffic light",
+      "confidence": 0.28484,
+      "bbox_xyxy": [
+        571.73,
+        372.27,
+        593.46,
+        384.38
+      ]
+    }
+  ]
+}

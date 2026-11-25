@@ -4,7 +4,8 @@ read_view(run, imagery, title, base) returns the two parts of the Read view in p
 - the index (one entry per junction: name, position, approaches with their lanes, turns; the traced lanes in lon/lat
   for the map), and
 - one JSON block per junction, parsed only when the junction is selected: the satellite image with every traced
-  region, the street views, the checks, the figures, and the images themselves (AVIF, inline).
+  region, the street views, the checks, the signals and signs (when the run has a signals/ folder from
+  run_signals.py), the figures, and the images themselves (AVIF, inline).
 """
 import base64
 import csv
@@ -194,6 +195,37 @@ def read_view(run, imagery, title, base):
         img[name], size = avif(f, 2000, QUALITY["figure"])
         figures["sheets"].append({"src": name, "size": size, "step": STEP_NAMES.get(step, step.title()), "place": place})
 
+    # signals and signs (run_signals.py), when the run has them: each reading, and the street views that show it
+    controls, signals = [], run / "signals"
+    if (signals / "signals.json").exists():
+        readings = load(signals / "signals.json")
+        cited = {r["source_id"] for s in readings for c in s["controls"] for r in c["visual_refs"]}
+        index_of = {}
+        for v in load(signals / "views.json")["views"]:
+            if v["id"] not in cited:
+                continue
+            name = f"s{len(index_of)}.avif"
+            img[name], size = avif(Path(base) / v["path"], VIEW_MAX, QUALITY["view"])
+            mx, my = mercator(*v["actual_lonlat"])
+            detail = v["view_role"] == "control_detail"
+            index_of[v["id"]] = len(views)
+            views.append({"id": v["id"], "src": name, "size": size, "group": f"Signals {v['direction']}",
+                          "role": "signal close-up" if detail else "signal overview", "position": "detail" if detail else "",
+                          "date": v.get("capture_date"), "dist": round(abs(v.get("signed_station_m") or 0), 1),
+                          "heading": round(v.get("compass_heading_deg") or 0),
+                          "xy": [round((mx - x0) / (x1 - x0) * sat_size[0], 1), round((y1 - my) / (y1 - y0) * sat_size[1], 1)]})
+        for s in readings:
+            for c in s["controls"]:
+                controls.append({"kind": c["kind"], "dir": s["direction"], "symbol": c.get("symbol"), "text": c.get("observed_text"),
+                                 "description": c.get("description", ""), "confidence": c.get("confidence"), "applies": c.get("applies_to"),
+                                 "binding": c.get("binding_status"), "lanes": c.get("lane_candidates") or [],
+                                 "readability": c.get("readability"), "face": c.get("face_status"),
+                                 "refs": [{"view": index_of[r["source_id"]], "box": r["bbox_xyxy"], "finding": r.get("finding", "")}
+                                          for r in c["visual_refs"] if r["source_id"] in index_of]})
+        checks["signals"] = {"requests": load(signals / "summary.json").get("model_requests"),
+                             "stop_reasons": {s["direction"]: s["sampling_status"] for s in readings},
+                             "unresolved": {s["direction"]: s.get("unresolved", []) for s in readings}}
+
     lon, lat = node_position(base, site)
     dates = sorted(d for d in view_dates | {sat_source.get("capture_date")} if d)
     motor_lanes = sum(len(a["vlm"]) for a in approaches)
@@ -203,7 +235,8 @@ def read_view(run, imagery, title, base):
     index = {"title": title, "sites": [entry], "geo": {node: geo},
              "metrics": [[str(motor_lanes), f"motor lanes on {len(approaches)} approaches"],
                          [str(sum(m["status"] == "candidate" for m in movements)), "turns proposed"],
-                         [str(sum(checks["requests"].values())), "model requests"]]}
+                         [str(sum(checks["requests"].values()) + ((checks.get("signals") or {}).get("requests") or 0)), "model requests"]]
+             + ([[str(len(controls)), "signals and signs read"]] if controls else [])}
     data = {"id": node, "sat": {"src": "sat.avif", "size": sat_size}, "regions": regions, "views": views, "checks": checks,
-            "figures": figures, "img": img}
+            "controls": controls, "figures": figures, "img": img}
     return index, {node: data}

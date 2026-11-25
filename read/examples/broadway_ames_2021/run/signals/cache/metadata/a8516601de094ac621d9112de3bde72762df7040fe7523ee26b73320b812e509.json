@@ -1,0 +1,16 @@
+{
+  "status": "OK",
+  "request": {
+    "location": "42.36395622,-71.08745568",
+    "radius": 10,
+    "source": "outdoor"
+  },
+  "retrieved_utc": "2026-10-11T05:49:55.797576+00:00",
+  "actual_lonlat": [
+    -71.08745251014001,
+    42.36394142372148
+  ],
+  "pano_id": "_OwCOjHzPPfGuTmS_hUiBA",
+  "capture_date": "2026-06",
+  "copyright": "© Google"
+}

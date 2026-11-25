@@ -1,0 +1,184 @@
+{
+  "requests": [
+    {
+      "approach_id": "link_3",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "role": "upstream_context",
+      "requested_station_m": -8.44,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -71.08754264027039,
+        42.36399369656728
+      ],
+      "requested_local_xy": [
+        -11.987372687908643,
+        -1.0579172121452927
+      ],
+      "nominal_heading_deg": 120.25087036054458,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_3_a1054269832e"
+    },
+    {
+      "approach_id": "link_3",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "role": "near_reference",
+      "requested_station_m": -5.4,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -71.08751071339996,
+        42.3639799387503
+      ],
+      "requested_local_xy": [
+        -9.361336016469934,
+        -2.5894299937632135
+      ],
+      "nominal_heading_deg": 120.24625361427657,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_3_23585ed02a11"
+    },
+    {
+      "approach_id": "link_3",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "role": "junction_context",
+      "requested_station_m": 1.28,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -71.0874405564755,
+        42.36394970803216
+      ],
+      "requested_local_xy": [
+        -3.5908156382566414,
+        -5.9546960881282445
+      ],
+      "nominal_heading_deg": 120.24625361427657,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_3_5a3e5aac7fbd"
+    },
+    {
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "role": "upstream_context",
+      "requested_station_m": -10.68,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -71.08723468530384,
+        42.36396927483387
+      ],
+      "requested_local_xy": [
+        13.342420825053487,
+        -3.7765312002874345
+      ],
+      "nominal_heading_deg": 300.3830291562602,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_112_b52d5a27531e"
+    },
+    {
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "role": "near_reference",
+      "requested_station_m": -4.6,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -71.08729845297756,
+        42.36399689922228
+      ],
+      "requested_local_xy": [
+        8.097426641065937,
+        -0.7013993315805429
+      ],
+      "nominal_heading_deg": 300.34681034611236,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_112_f83771996e28"
+    },
+    {
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "role": "junction_context",
+      "requested_station_m": 2.56,
+      "requested_lateral_m": 0.0,
+      "requested_lonlat": [
+        -71.08737355949248,
+        42.364029418770926
+      ],
+      "requested_local_xy": [
+        1.9197944516879355,
+        2.9186608362172115
+      ],
+      "nominal_heading_deg": 300.34681034611236,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_112_5101dbccd374"
+    },
+    {
+      "approach_id": "link_158",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "role": "upstream_context",
+      "requested_station_m": -11.64,
+      "requested_lateral_m": 1.6,
+      "requested_lonlat": [
+        -71.08750857389312,
+        42.36385804070293
+      ],
+      "requested_local_xy": [
+        -9.185358122048482,
+        -16.159040367010626
+      ],
+      "nominal_heading_deg": 29.993959883470172,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_158_7ed61a1d5335"
+    },
+    {
+      "approach_id": "link_158",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "role": "near_reference",
+      "requested_station_m": -8.6,
+      "requested_lateral_m": 1.6,
+      "requested_lonlat": [
+        -71.08748997551938,
+        42.36388155144008
+      ],
+      "requested_local_xy": [
+        -7.655611835982184,
+        -13.541842637209799
+      ],
+      "nominal_heading_deg": 30.299199268649616,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_158_8dbeb41c43d8"
+    },
+    {
+      "approach_id": "link_158",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "role": "junction_context",
+      "requested_station_m": -3.29,
+      "requested_lateral_m": 1.6,
+      "requested_lonlat": [
+        -71.08745730378794,
+        42.36392285064296
+      ],
+      "requested_local_xy": [
+        -4.968309142326376,
+        -8.944443794331498
+      ],
+      "nominal_heading_deg": 29.76289663431264,
+      "radius_m": 10,
+      "reference_kind": "estimated_junction_envelope",
+      "id": "request_link_158_8f7cdb9c41d2"
+    }
+  ]
+}

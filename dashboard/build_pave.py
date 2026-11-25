@@ -46,7 +46,9 @@ def read_facts(example):
     return [[str(len(lanes)), "sections traced"],
             [str(sum(s["count"]["model_motor_count"] for s in approaches)), f"motor lanes on {len(approaches)} approaches"],
             [str(sum(m.get("status") == "candidate" for m in movements)), "turns proposed"],
-            [str(len(list((run / "vlm").rglob("*.raw.json")))), "model requests"]]
+            [str(len(list((run / "vlm").rglob("*.raw.json"))) + len(list((run / "signals/vlm").rglob("*.raw.json")))), "model requests"]] \
+        + ([[str(sum(len(s["controls"]) for s in json.loads((run / "signals/signals.json").read_text()))), "signals and signs read"]]
+           if (run / "signals/signals.json").exists() else [])
 
 
 def edit_data(build):

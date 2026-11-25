@@ -1,0 +1,54 @@
+{
+  "observations": [
+    "Both sources face roughly along the NB approach heading (29.9 and 29.8 deg). gsv_control_link_158_a85b418687 (2019-10, station -3.6 m) is closer and shows the signal heads larger and lit, but the overcast light is dim and lit lenses bloom. gsv_control_link_158_ccf0dc5362 (2020-11, station -12.1 m) is sunlit and sharper, but the heads are smaller. I judge a85b418687 the clearest front-facing view of the heads.",
+    "a85b418687: a mast arm comes in from the far-right corner over the approach. Native-panel positions as fractions: one head showing a lit red indication at about x 0.44, y 0.58, possibly arrow-shaped but not resolvable; one head with a red ball at about x 0.50, y 0.58; one head with a green ball at about x 0.56, y 0.60; a white rectangular sign on the arm at about x 0.59, y 0.59 that cannot be read.",
+    "ccf0dc5362: the same mast arm seen from farther back. Two heads at about x 0.54 and 0.58, y 0.53 show light left-pointing arrow symbols in the sun; whether they are lit, and in which colour, is unresolved. A third dark head is at about x 0.62, and a rectangular arm sign at about x 0.64 cannot be read.",
+    "a85b418687: a pole near the far-left corner has an angled arm carrying about three heads (green ball near x 0.21, y 0.52; red near x 0.26, y 0.55; red near x 0.31, y 0.57). Which way they face, and which approach they govern, is not clear.",
+    "a85b418687: a red, vertically elongated sign stands on a post near the far-left kerb (about x 0.39, y 0.68), seen at an angle. Its shape and text cannot be read; I cannot confirm it is a stop sign.",
+    "a85b418687: a distant red head is visible on the far right (about x 0.69, y 0.64), likely a far-side or pedestrian-area head; its target is unknown.",
+    "ccf0dc5362: a white sign with dark symbols is on a post at the far-left crosswalk corner (about x 0.16, y 0.59). It is too small to read.",
+    "No YOLO proposals were supplied. No readable regulation text and no confirmed lane-use arrows are established from these images. The stations are relative to the road endpoint, and the reference is an estimated junction envelope, not an observed stopline."
+  ],
+  "detail_requests": [
+    {
+      "source_id": "gsv_control_link_158_a85b418687",
+      "bbox_xyxy": [
+        0.413,
+        0.544,
+        0.62,
+        0.64
+      ],
+      "question": "For each signal head on the right-side mast arm over the NB approach, give the lens arrangement and indication shape (ball vs left/through/right arrow) and its colour, and read the text or symbol on the white rectangular arm sign."
+    },
+    {
+      "source_id": "gsv_control_link_158_ccf0dc5362",
+      "bbox_xyxy": [
+        0.517,
+        0.496,
+        0.668,
+        0.572
+      ],
+      "question": "Confirm whether the two left heads on the mast arm show left-arrow indications (and which colour is lit). Give the third head's indications, and read the rectangular sign on the arm."
+    },
+    {
+      "source_id": "gsv_control_link_158_a85b418687",
+      "bbox_xyxy": [
+        0.179,
+        0.489,
+        0.337,
+        0.606
+      ],
+      "question": "For the heads on the angled arm from the far-left corner pole, do they face the NB approach? Give each head's indication shape (ball or arrow) and colour."
+    },
+    {
+      "source_id": "gsv_control_link_158_a85b418687",
+      "bbox_xyxy": [
+        0.361,
+        0.647,
+        0.416,
+        0.723
+      ],
+      "question": "What is the red sign on the post near the far-left kerb (shape, text or symbol), and does it face NB traffic?"
+    }
+  ]
+}

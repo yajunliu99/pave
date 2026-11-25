@@ -1,0 +1,382 @@
+{
+  "controls": [
+    {
+      "id": "c1",
+      "kind": "traffic_signal",
+      "observed_text": "",
+      "symbol": "three-section vehicle head; lit green left arrow (bottom) in 2020-11; lit red lamp (top, shape unresolved) in 2019-10",
+      "description": "Leftmost head on the far-side mast arm that extends leftward from the far-right corner pole over this approach. In the 2020-11 detail view the bottom lens shows a clearly lit green left-pointing arrow while the red and yellow lenses are dark; front face toward the NB camera. In the 2019-10 context view the same arm position shows a lit red top lamp; at that resolution arrow vs circular red cannot be resolved. Lamp states are instantaneous snapshots only; no phase sequence or permanent permission inferred.",
+      "face_status": "front",
+      "readability": "readable",
+      "confidence": "high",
+      "applies_to": "lane_candidates",
+      "lane_candidates": [
+        "r1"
+      ],
+      "binding_status": "candidate",
+      "binding_reason": "Head faces the NB approach from the far-side mast arm; its left-arrow indication matches the left-turn pavement arrow seen in candidate r1 on the satellite panel (a hypothesis, not measured). Position over the roadway alone does not prove exact lane binding.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.286,
+            0.442,
+            0.321,
+            0.515
+          ],
+          "finding": "lit green left arrow in bottom lens, red/yellow dark (2020-11)"
+        },
+        {
+          "source_id": "gsv_control_link_158_ccf0dc5362",
+          "bbox_xyxy": [
+            0.531,
+            0.519,
+            0.545,
+            0.546
+          ],
+          "finding": "same head, small; greenish lower arrow visible (same pano as detail)"
+        },
+        {
+          "source_id": "gsv_control_link_158_a85b418687",
+          "bbox_xyxy": [
+            0.437,
+            0.567,
+            0.452,
+            0.596
+          ],
+          "finding": "same arm position lit red top lamp, symbol shape unresolved (2019-10)"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "kind": "traffic_signal",
+      "observed_text": "",
+      "symbol": "three-section vehicle head; lit green left arrow (bottom) in 2020-11; lit red lamp (top, shape unresolved) in 2019-10",
+      "description": "Second head from the left on the same far-side mast arm. In the 2020-11 detail it shows a lit green left arrow in the bottom lens with red/yellow dark, front face toward the NB camera, matching head c1. In the 2019-10 context view the corresponding head shows a lit red top lamp whose arrow/ball shape is not resolvable. Instantaneous appearance only.",
+      "face_status": "front",
+      "readability": "readable",
+      "confidence": "high",
+      "applies_to": "lane_candidates",
+      "lane_candidates": [
+        "r1"
+      ],
+      "binding_status": "candidate",
+      "binding_reason": "Second left-arrow head facing NB on the far-side arm; left-arrow indication matches the r1 left-turn pavement arrow hypothesis. Whether it is a supplemental head for r1 or governs another left-turning lane is unresolved.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.446,
+            0.455,
+            0.479,
+            0.529
+          ],
+          "finding": "lit green left arrow in bottom lens (2020-11)"
+        },
+        {
+          "source_id": "gsv_control_link_158_ccf0dc5362",
+          "bbox_xyxy": [
+            0.575,
+            0.519,
+            0.589,
+            0.546
+          ],
+          "finding": "same head, greenish lower arrow visible at small scale"
+        },
+        {
+          "source_id": "gsv_control_link_158_a85b418687",
+          "bbox_xyxy": [
+            0.499,
+            0.572,
+            0.512,
+            0.627
+          ],
+          "finding": "lit red top lamp, shape unresolved (2019-10)"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "kind": "traffic_signal",
+      "observed_text": "",
+      "symbol": "vehicle head; lit red right arrow (top) in 2020-11; lit green lower lamp (arrow vs ball unresolved) in 2019-10",
+      "description": "Third head on the far-side mast arm, right of the two left-arrow heads and immediately left of the NO TURN ON RED sign. In the 2020-11 detail the top lens shows a lit red right-pointing arrow; lower lenses dark (bottom lens faintly arrow-shaped but not confirmed). In the 2019-10 context view a lit green lamp appears at this head's lower-lens position; at that resolution it cannot be told whether it is a green arrow or a green ball. Instantaneous appearance only.",
+      "face_status": "front",
+      "readability": "readable",
+      "confidence": "high",
+      "applies_to": "lane_candidates",
+      "lane_candidates": [
+        "r2"
+      ],
+      "binding_status": "candidate",
+      "binding_reason": "Front face toward NB on the far-side arm; right-arrow indication matches the right-turn pavement arrow seen in candidate r2 on the satellite panel (hypothesis). Exact lane binding not proven by position.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.6,
+            0.467,
+            0.632,
+            0.539
+          ],
+          "finding": "lit red right arrow in top lens (2020-11)"
+        },
+        {
+          "source_id": "gsv_control_link_158_ccf0dc5362",
+          "bbox_xyxy": [
+            0.618,
+            0.522,
+            0.633,
+            0.546
+          ],
+          "finding": "same head, too small to read lamp"
+        },
+        {
+          "source_id": "gsv_control_link_158_a85b418687",
+          "bbox_xyxy": [
+            0.555,
+            0.585,
+            0.575,
+            0.61
+          ],
+          "finding": "lit green lower lamp at this head position, symbol unresolved (2019-10)"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "kind": "turn_restriction_sign",
+      "observed_text": "NO TURN ON RED",
+      "symbol": "white rectangular regulatory sign, black text",
+      "description": "Small white sign mounted on the far-side mast arm just right of the right-arrow head c3. In the 2020-11 detail the three lines read as NO / TURN / ON RED, though the text is pixelated. No exception or time-qualifier plaque is visible; absence of a qualifier cannot be confirmed at this resolution. In the 2019-10 view a white sign sits at the same arm position but its text is unreadable.",
+      "face_status": "front",
+      "readability": "partial",
+      "confidence": "medium",
+      "applies_to": "approach",
+      "lane_candidates": [],
+      "binding_status": "unresolved",
+      "binding_reason": "Mounted on the NB-facing far-side mast arm and faces the NB camera, so it addresses this approach; placement beside the right-arrow head suggests the right-turn movement (possibly r2), but sign placement alone does not prove lane binding.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.669,
+            0.485,
+            0.703,
+            0.519
+          ],
+          "finding": "text reads NO TURN ON RED (pixelated)"
+        },
+        {
+          "source_id": "gsv_control_link_158_ccf0dc5362",
+          "bbox_xyxy": [
+            0.64,
+            0.525,
+            0.652,
+            0.539
+          ],
+          "finding": "white sign on arm, unreadable at this scale"
+        },
+        {
+          "source_id": "gsv_control_link_158_a85b418687",
+          "bbox_xyxy": [
+            0.584,
+            0.581,
+            0.598,
+            0.595
+          ],
+          "finding": "white sign at same arm position, unreadable (2019-10)"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "kind": "traffic_signal",
+      "observed_text": "",
+      "symbol": "pole-mounted three-section head; lit green bottom lamp (ball, arrow or bicycle symbol unresolved) in 2020-11; lit red lamp in 2019-10",
+      "description": "Head mounted on the far-right corner mast-arm pole, lower than the arm heads, front lenses toward the NB camera. In 2020-11 its bottom lens is lit green but the symbol shape is blurred; in 2019-10 a lit red lamp appears at the same pole position. Its purpose (supplemental vehicle head, bicycle signal for the adjacent bike lane, or other) cannot be determined from visible evidence.",
+      "face_status": "front",
+      "readability": "partial",
+      "confidence": "medium",
+      "applies_to": "unknown",
+      "lane_candidates": [],
+      "binding_status": "unresolved",
+      "binding_reason": "Faces NB, but the lit symbol is unresolved, so whether it serves the r1/r2 vehicle lanes or the separate curbside lane cannot be decided.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.891,
+            0.605,
+            0.915,
+            0.675
+          ],
+          "finding": "lit green bottom lamp, symbol blurred (2020-11)"
+        },
+        {
+          "source_id": "gsv_control_link_158_a85b418687",
+          "bbox_xyxy": [
+            0.678,
+            0.625,
+            0.697,
+            0.648
+          ],
+          "finding": "lit red lamp at far-right pole (2019-10)"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "kind": "traffic_signal",
+      "observed_text": "",
+      "symbol": "unknown (heads seen side-on)",
+      "description": "Mast arm and heads on the far-left corner pole, extending toward the left of the image. Heads are seen side-on/obliquely; in 2019-10 some lamp glow (green, red) leaks into view from the side, in 2020-11 they appear as dark silhouettes. The front symbols cannot be read from a side view.",
+      "face_status": "side",
+      "readability": "unreadable",
+      "confidence": "medium",
+      "applies_to": "other_approach",
+      "lane_candidates": [],
+      "binding_status": "not_applicable",
+      "binding_reason": "Arm orientation and head facing point across the cross street, away from the NB camera axis, so they most likely govern a crossing approach.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_control_link_158_a85b418687",
+          "bbox_xyxy": [
+            0.193,
+            0.49,
+            0.331,
+            0.595
+          ],
+          "finding": "far-left mast arm with side-on heads, lamp glow visible obliquely"
+        },
+        {
+          "source_id": "gsv_control_link_158_ccf0dc5362",
+          "bbox_xyxy": [
+            0.428,
+            0.489,
+            0.461,
+            0.534
+          ],
+          "finding": "same pole heads as dark side-on silhouettes (2020-11)"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "kind": "pedestrian_signal",
+      "observed_text": "",
+      "symbol": "unknown (dark housing)",
+      "description": "Small dark signal housing atop a short pole on the far-right sidewalk near the crosswalk, with a small push-button style plaque lower on the same pole. No lit indication or symbol is visible; may be a pedestrian head seen from the back or side.",
+      "face_status": "unclear",
+      "readability": "unreadable",
+      "confidence": "low",
+      "applies_to": "pedestrians",
+      "lane_candidates": [],
+      "binding_status": "not_applicable",
+      "binding_reason": "Pedestrian-scale device at a crosswalk; not a vehicle lane control. Which crosswalk it serves is not determinable.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.553,
+            0.682,
+            0.579,
+            0.701
+          ],
+          "finding": "dark housing on short pole, no visible indication"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "kind": "other_sign",
+      "observed_text": "[?]",
+      "symbol": "small round red/white sign above a green rectangular sign",
+      "description": "Sidewalk-level signs on a post on the far-right corner behind the crosswalk; too small and blurred to read text or symbols.",
+      "face_status": "front",
+      "readability": "unreadable",
+      "confidence": "low",
+      "applies_to": "unknown",
+      "lane_candidates": [],
+      "binding_status": "unresolved",
+      "binding_reason": "Content unreadable; facing and scope cannot be established.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_detail_link_158_a5aff97f304d",
+          "bbox_xyxy": [
+            0.618,
+            0.711,
+            0.639,
+            0.756
+          ],
+          "finding": "round red/white and green signs, unreadable"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "kind": "other_sign",
+      "observed_text": "[?]",
+      "symbol": "white rectangular sign with dark symbols",
+      "description": "Post-mounted sign at the near-left curb before the crosswalk; content not readable (possibly a parking regulation sign, unconfirmed).",
+      "face_status": "front",
+      "readability": "unreadable",
+      "confidence": "low",
+      "applies_to": "unknown",
+      "lane_candidates": [],
+      "binding_status": "unresolved",
+      "binding_reason": "Curbside placement on the left; text unreadable so scope unknown.",
+      "visual_refs": [
+        {
+          "source_id": "gsv_control_link_158_ccf0dc5362",
+          "bbox_xyxy": [
+            0.147,
+            0.568,
+            0.167,
+            0.614
+          ],
+          "finding": "white sign, symbols illegible"
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    "Symbol of the lit green bottom lamp on the far-right pole head (c5) is blurred; its purpose (vehicle supplemental vs bicycle or other) is unknown.",
+    "In 2019-10 the red lamps of heads c1/c2 and the green lamp of c3 are too small to tell arrow from circular indication.",
+    "NO TURN ON RED text is pixelated; no exception or time-qualifier plaque visible, but absence cannot be confirmed.",
+    "Exact lane binding of the two left-arrow heads and the right-arrow head relies on satellite pavement-arrow hypotheses for r1/r2.",
+    "Image dates differ (2019-10 and 2020-11); both within the preferred window. The detail and 2020-11 context views are the same panorama (one source)."
+  ],
+  "notes": [
+    "Lamp states are instantaneous; in 2020-11 the left-arrow heads were green while the right-arrow head was red, and in 2019-10 the reverse appearance was seen. No phase sequence or permanent movement permission is inferred.",
+    "A small red object on the far-left sidewalk in the 2019-10 view could not be identified as a sign."
+  ],
+  "resampling_requests": [
+    {
+      "source_id": "gsv_detail_link_158_a5aff97f304d",
+      "bbox_xyxy": [
+        0.88,
+        0.59,
+        0.93,
+        0.69
+      ],
+      "problem": "small_target",
+      "reason": "A closer view of the far-right pole head could resolve whether its lit lamp is a ball, arrow or bicycle symbol and hence its scope."
+    },
+    {
+      "source_id": "gsv_control_link_158_a85b418687",
+      "bbox_xyxy": [
+        0.42,
+        0.55,
+        0.61,
+        0.64
+      ],
+      "problem": "unresolved_arrow",
+      "reason": "Zoomed 2019-10 view of the mast-arm heads could confirm whether the lit red/green lamps are arrows, verifying head symbols across dates."
+    }
+  ],
+  "signal_phase_plan": "not_observable_from_static_imagery",
+  "movement_constraints_applied": false,
+  "human_verified": false
+}

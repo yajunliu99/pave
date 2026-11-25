@@ -1,0 +1,12 @@
+{
+  "request": {
+    "pano": "Cvz0-VR_-batzNSOOqbJzg",
+    "size": "640x640",
+    "heading": 284.427,
+    "pitch": 0.116,
+    "fov": 15.0,
+    "return_error_code": "true"
+  },
+  "image_sha256": "76316be6f1c81cf49da8f72b6fda8c34305d7f9ebda7ae55717fa472c8662277",
+  "retrieved_utc": "2026-11-25T23:37:01.091518+00:00"
+}

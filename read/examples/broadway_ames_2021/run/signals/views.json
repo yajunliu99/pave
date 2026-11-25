@@ -1,0 +1,1787 @@
+{
+  "views": [
+    {
+      "status": "OK",
+      "request": {
+        "pano": "_3whLBv7hjtOb-Hj2ZsBvQ"
+      },
+      "retrieved_utc": "2026-10-11T16:07:58.018809+00:00",
+      "actual_lonlat": [
+        -71.08750219875577,
+        42.36396157124192
+      ],
+      "pano_id": "_3whLBv7hjtOb-Hj2ZsBvQ",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": -3.7650642320616043,
+      "right_of_axis_m": 1.4134109067858642,
+      "request_snap_distance_m": 4.8840372176694515,
+      "distance_to_center_m": 9.822809767698235,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.884,
+      "id": "gsv_control_link_3_1c684f5e7f",
+      "approach_id": "link_3",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "upstream_context",
+      "view_role": "control_context",
+      "camera_role": "control_context",
+      "reverse_view": false,
+      "signed_station_m": -3.7650642320616043,
+      "requested_station_m": -8.44,
+      "compass_heading_deg": 120.24625361427657,
+      "pitch_deg": 23.629377730656817,
+      "hfov_deg": 100.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_3_a1054269832e",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/8fca02c5b4661a70db9317cefb4059d83143f9f406c461f1b7a8774118efffa8.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "889b3a9fecb6e1de043dfe9b08f025472133930d98d47972dff56f351165d85a",
+      "image_request_signature": "8fca02c5b4661a70db9317cefb4059d83143f9f406c461f1b7a8774118efffa8",
+      "image_origin": "official_static_street_view"
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "jWg2LDUhjA5GbBY1BQHT5g"
+      },
+      "retrieved_utc": "2026-10-11T16:33:07.290561+00:00",
+      "actual_lonlat": [
+        -71.08744398690968,
+        42.36395011878343
+      ],
+      "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+      "capture_date": "2020-10",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": 1.0132196835442926,
+      "right_of_axis_m": 0.10262827251587246,
+      "request_snap_distance_m": 6.414161609790026,
+      "distance_to_center_m": 7.065116761005004,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 6.414,
+      "id": "gsv_control_link_3_73051d258c",
+      "approach_id": "link_3",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "near_reference",
+      "view_role": "control_context",
+      "camera_role": "control_context",
+      "reverse_view": false,
+      "signed_station_m": 1.0132196835442926,
+      "requested_station_m": -5.4,
+      "compass_heading_deg": 120.24625361427657,
+      "pitch_deg": 23.629377730656817,
+      "hfov_deg": 100.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_3_23585ed02a11",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/a94cd0af57d384052e3cf304b100d9c42f4871cf8b2ccf259791f84705ed1c65.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "09895ab7bf0de1abbfd5630418ae3c126b8ed9db8cfce71c2f8602aa1ad1b696",
+      "image_request_signature": "a94cd0af57d384052e3cf304b100d9c42f4871cf8b2ccf259791f84705ed1c65",
+      "image_origin": "official_static_street_view"
+    },
+    {
+      "status": "OK",
+      "request": {
+        "location": "42.36396927,-71.08723469",
+        "radius": 10,
+        "source": "outdoor"
+      },
+      "retrieved_utc": "2026-10-11T05:50:09.808924+00:00",
+      "actual_lonlat": [
+        -71.08726681248558,
+        42.36395382181839
+      ],
+      "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": -9.270617204318206,
+      "right_of_axis_m": -2.8204970647622893,
+      "request_snap_distance_m": 3.15309879645985,
+      "distance_to_center_m": 12.029227622621715,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 3.153,
+      "id": "gsv_control_link_112_c28aca3e20",
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "upstream_context",
+      "view_role": "control_context",
+      "camera_role": "control_context",
+      "reverse_view": false,
+      "signed_station_m": -9.270617204318206,
+      "requested_station_m": -10.68,
+      "compass_heading_deg": 300.3830291562602,
+      "pitch_deg": 12.590256425571303,
+      "hfov_deg": 100.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_112_b52d5a27531e",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/9ef015c217991966851da4a72d07949b5605b805d895ed3abbee4a87d4906c4f.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "8541599161c585ed62f3092f382a6a72213930613b8298794b045aa84363e55f",
+      "image_request_signature": "9ef015c217991966851da4a72d07949b5605b805d895ed3abbee4a87d4906c4f",
+      "image_origin": "official_static_street_view"
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "Cvz0-VR_-batzNSOOqbJzg"
+      },
+      "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+      "actual_lonlat": [
+        -71.08738359891098,
+        42.36399694178242
+      ],
+      "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": 1.4460358883335118,
+      "right_of_axis_m": -3.5371622671933562,
+      "request_snap_distance_m": 4.746325674733636,
+      "distance_to_center_m": 1.2970166660402043,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.746,
+      "id": "gsv_control_link_112_2313b6b71a",
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "near_reference_fallback",
+      "view_role": "control_context",
+      "camera_role": "control_context",
+      "reverse_view": false,
+      "signed_station_m": 1.4460358883335118,
+      "requested_station_m": -1.72,
+      "compass_heading_deg": 300.34681034611236,
+      "pitch_deg": 23.629377730656817,
+      "hfov_deg": 100.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_112_05a44d84aa1a",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/a800ed5f37ace45042646e9467b5386d5ad778a6a89db2fa971fec6c57509c90.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "e9a5f9e88c95b57957b033c3c5e756731316079715c8f981640ff3a8827ccc4b",
+      "image_request_signature": "a800ed5f37ace45042646e9467b5386d5ad778a6a89db2fa971fec6c57509c90",
+      "image_origin": "official_static_street_view"
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "jeeFWfXPQq05atLjxvWcnw"
+      },
+      "retrieved_utc": "2026-10-11T16:08:23.015267+00:00",
+      "actual_lonlat": [
+        -71.08753157669362,
+        42.36386328022004
+      ],
+      "pano_id": "jeeFWfXPQq05atLjxvWcnw",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": -12.082810847349009,
+      "right_of_axis_m": -0.32780826569660626,
+      "request_snap_distance_m": 1.9798791267956848,
+      "distance_to_center_m": 19.113168609968074,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 1.98,
+      "id": "gsv_control_link_158_ccf0dc5362",
+      "approach_id": "link_158",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "upstream_context",
+      "view_role": "control_context",
+      "camera_role": "control_context",
+      "reverse_view": false,
+      "signed_station_m": -12.082810847349009,
+      "requested_station_m": -11.64,
+      "compass_heading_deg": 29.949556427021463,
+      "pitch_deg": 12.899177334206895,
+      "hfov_deg": 100.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_158_7ed61a1d5335",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/b24f4cf8f1aa176a94e0d4004eee50c8fb5a25dd2c9a2e4c22803bfbdec6bdbe.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "1fbaa51ddd861ef32cade509527b741a582ecac458da5cb7a76f23077adc069b",
+      "image_request_signature": "b24f4cf8f1aa176a94e0d4004eee50c8fb5a25dd2c9a2e4c22803bfbdec6bdbe",
+      "image_origin": "official_static_street_view"
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "pI_xCj7iSJiBEPU3LBAWeQ"
+      },
+      "retrieved_utc": "2026-10-11T16:33:07.395370+00:00",
+      "actual_lonlat": [
+        -71.08746964727277,
+        42.36392448401435
+      ],
+      "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+      "capture_date": "2019-10",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": -3.6302011237492025,
+      "right_of_axis_m": 0.6316996095020417,
+      "request_snap_distance_m": 1.0314247406981527,
+      "distance_to_center_m": 10.610688549418079,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 1.031,
+      "id": "gsv_control_link_158_a85b418687",
+      "approach_id": "link_158",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "junction_context",
+      "view_role": "control_context",
+      "camera_role": "control_context",
+      "reverse_view": false,
+      "signed_station_m": -3.6302011237492025,
+      "requested_station_m": -3.29,
+      "compass_heading_deg": 29.76289663431264,
+      "pitch_deg": 23.629377730656817,
+      "hfov_deg": 100.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_158_8f7cdb9c41d2",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/821906c1a953c961bf3cdd420f7e8d19c2c106afe86bf48026820c5ad66b4252.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "a53aa53cb513ff7abfb9b27bfe6b399cc424b8cb39ab255030e4799887703c8c",
+      "image_request_signature": "821906c1a953c961bf3cdd420f7e8d19c2c106afe86bf48026820c5ad66b4252",
+      "image_origin": "official_static_street_view"
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "_3whLBv7hjtOb-Hj2ZsBvQ"
+      },
+      "retrieved_utc": "2026-10-11T16:07:58.018809+00:00",
+      "actual_lonlat": [
+        -71.08750219875577,
+        42.36396157124192
+      ],
+      "pano_id": "_3whLBv7hjtOb-Hj2ZsBvQ",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": -3.7650642320616043,
+      "right_of_axis_m": 1.4134109067858642,
+      "request_snap_distance_m": 4.8840372176694515,
+      "distance_to_center_m": 9.822809767698235,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.884,
+      "id": "gsv_detail_link_3_2bf5db1b42de",
+      "approach_id": "link_3",
+      "direction": "EB",
+      "target_section": "in_EB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "detail",
+      "view_role": "control_detail",
+      "camera_role": "control_detail",
+      "reverse_view": false,
+      "signed_station_m": -3.7650642320616043,
+      "requested_station_m": -8.44,
+      "compass_heading_deg": 134.268,
+      "pitch_deg": 13.106,
+      "hfov_deg": 53.63,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_3_a1054269832e",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/1c3f3f6364f4088baf917521cc597f8cd27ebfbcda1a0faa40bcd51c9ccfb24c.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "f49c0759412388bc8868954a381f3698c03e3241ce2df9cd278f1d6ab4a15290",
+      "image_request_signature": "1c3f3f6364f4088baf917521cc597f8cd27ebfbcda1a0faa40bcd51c9ccfb24c",
+      "image_origin": "official_static_street_view",
+      "parent_view_id": "gsv_control_link_3_1c684f5e7f",
+      "requested_bbox": [
+        0.485,
+        0.548,
+        0.722,
+        0.602
+      ],
+      "detail_question": "In this green phase, what is the shape of each lit indication on the four mast-arm heads: circular ball or arrow, and if an arrow, which direction (through, right, left)? Note head 4's lit lower section.",
+      "adaptive_round": 1
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "Cvz0-VR_-batzNSOOqbJzg"
+      },
+      "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+      "actual_lonlat": [
+        -71.08738359891098,
+        42.36399694178242
+      ],
+      "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": 1.4460358883335118,
+      "right_of_axis_m": -3.5371622671933562,
+      "request_snap_distance_m": 4.746325674733636,
+      "distance_to_center_m": 1.2970166660402043,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.746,
+      "id": "gsv_detail_link_112_35566928c1a6",
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "detail",
+      "view_role": "control_detail",
+      "camera_role": "control_detail",
+      "reverse_view": false,
+      "signed_station_m": 1.4460358883335118,
+      "requested_station_m": -1.72,
+      "compass_heading_deg": 294.34,
+      "pitch_deg": 20.117,
+      "hfov_deg": 37.38,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_112_05a44d84aa1a",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/5e5147c7a8ca40b99f56cba05b8a91510861ccd88d4cc695e58c0d580823b95b.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "a1702e4816722feec672580b28e1553f2a8ebb4ae19b9085f7f1ea705468d462",
+      "image_request_signature": "5e5147c7a8ca40b99f56cba05b8a91510861ccd88d4cc695e58c0d580823b95b",
+      "image_origin": "official_static_street_view",
+      "parent_view_id": "gsv_control_link_112_2313b6b71a",
+      "requested_bbox": [
+        0.377,
+        0.485,
+        0.54,
+        0.565
+      ],
+      "detail_question": "Far mast-arm left head and middle head: is the lit red lens of the left head a circular ball or a left-turn arrow, and are the unlit lenses of both heads balls or arrows (and in which directions)? Confirm the middle head's green upward arrow.",
+      "adaptive_round": 1
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "Cvz0-VR_-batzNSOOqbJzg"
+      },
+      "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+      "actual_lonlat": [
+        -71.08738359891098,
+        42.36399694178242
+      ],
+      "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": 1.4460358883335118,
+      "right_of_axis_m": -3.5371622671933562,
+      "request_snap_distance_m": 4.746325674733636,
+      "distance_to_center_m": 1.2970166660402043,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.746,
+      "id": "gsv_detail_link_112_f263eb5f82e3",
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "detail",
+      "view_role": "control_detail",
+      "camera_role": "control_detail",
+      "reverse_view": false,
+      "signed_station_m": 1.4460358883335118,
+      "requested_station_m": -1.72,
+      "compass_heading_deg": 348.294,
+      "pitch_deg": 26.002,
+      "hfov_deg": 26.08,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_112_05a44d84aa1a",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/94d68a754d61dfd3cefc34503523779f486c574e184affddb61e0cbc80387aaf.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "21094ccd6eedc1258f9531cce172522769b9532a51c35e0767cc4b505acb2c25",
+      "image_request_signature": "94d68a754d61dfd3cefc34503523779f486c574e184affddb61e0cbc80387aaf",
+      "image_origin": "official_static_street_view",
+      "parent_view_id": "gsv_control_link_112_2313b6b71a",
+      "requested_bbox": [
+        0.84,
+        0.351,
+        0.93,
+        0.464
+      ],
+      "detail_question": "Upper-right head on the near mast arm: does its face point toward this approach, which lens is lit, and is that lens a ball or an arrow?",
+      "adaptive_round": 1
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "Cvz0-VR_-batzNSOOqbJzg"
+      },
+      "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+      "actual_lonlat": [
+        -71.08738359891098,
+        42.36399694178242
+      ],
+      "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": 1.4460358883335118,
+      "right_of_axis_m": -3.5371622671933562,
+      "request_snap_distance_m": 4.746325674733636,
+      "distance_to_center_m": 1.2970166660402043,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.746,
+      "id": "gsv_detail_link_112_944a9202c344",
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "detail",
+      "view_role": "control_detail",
+      "camera_role": "control_detail",
+      "reverse_view": false,
+      "signed_station_m": 1.4460358883335118,
+      "requested_station_m": -1.72,
+      "compass_heading_deg": 284.427,
+      "pitch_deg": 0.116,
+      "hfov_deg": 15.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_112_05a44d84aa1a",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/46cd8d9f207cca3c844b9afc71edbcb87a76dc115d76e022773d2d6b2aa4e14e.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "76316be6f1c81cf49da8f72b6fda8c34305d7f9ebda7ae55717fa472c8662277",
+      "image_request_signature": "46cd8d9f207cca3c844b9afc71edbcb87a76dc115d76e022773d2d6b2aa4e14e",
+      "image_origin": "official_static_street_view",
+      "parent_view_id": "gsv_control_link_112_2313b6b71a",
+      "requested_bbox": [
+        0.351,
+        0.654,
+        0.388,
+        0.711
+      ],
+      "detail_question": "Read the two signs on the median post (text or symbol, e.g. keep right, no turn, lane use).",
+      "adaptive_round": 1
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "Cvz0-VR_-batzNSOOqbJzg"
+      },
+      "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+      "actual_lonlat": [
+        -71.08738359891098,
+        42.36399694178242
+      ],
+      "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": 1.4460358883335118,
+      "right_of_axis_m": -3.5371622671933562,
+      "request_snap_distance_m": 4.746325674733636,
+      "distance_to_center_m": 1.2970166660402043,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 4.746,
+      "id": "gsv_detail_link_112_ee6fb1954242",
+      "approach_id": "link_112",
+      "direction": "WB",
+      "target_section": "in_WB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "detail",
+      "view_role": "control_detail",
+      "camera_role": "control_detail",
+      "reverse_view": false,
+      "signed_station_m": 1.4460358883335118,
+      "requested_station_m": -1.72,
+      "compass_heading_deg": 308.276,
+      "pitch_deg": -0.447,
+      "hfov_deg": 15.0,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_112_05a44d84aa1a",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/cc801c8d0cbada6dd06c5636c33a2a00c669a6a30239372b80965b883ce1b1bb.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "5cd4759f9975734f9ffec07dbb2f02a8a18f7f3e7f6f14f9ad3cf28efec4d006",
+      "image_request_signature": "cc801c8d0cbada6dd06c5636c33a2a00c669a6a30239372b80965b883ce1b1bb",
+      "image_origin": "official_static_street_view",
+      "parent_view_id": "gsv_control_link_112_2313b6b71a",
+      "requested_bbox": [
+        0.548,
+        0.671,
+        0.58,
+        0.704
+      ],
+      "detail_question": "Identify the small red/orange sign far down the road on the right (stop sign, do-not-enter, or other) and which direction it faces.",
+      "adaptive_round": 1
+    },
+    {
+      "status": "OK",
+      "request": {
+        "pano": "jeeFWfXPQq05atLjxvWcnw"
+      },
+      "retrieved_utc": "2026-10-11T16:08:23.015267+00:00",
+      "actual_lonlat": [
+        -71.08753157669362,
+        42.36386328022004
+      ],
+      "pano_id": "jeeFWfXPQq05atLjxvWcnw",
+      "capture_date": "2020-11",
+      "copyright": "© Google",
+      "usable": true,
+      "reasons": [],
+      "actual_station_m": -12.082810847349009,
+      "right_of_axis_m": -0.32780826569660626,
+      "request_snap_distance_m": 1.9798791267956848,
+      "distance_to_center_m": 19.113168609968074,
+      "capture_relation": "target_window",
+      "camera_position_error_m": null,
+      "carriageway_status": "nominal_approach_corridor_not_surveyed",
+      "pose_score": 1.98,
+      "id": "gsv_detail_link_158_a5aff97f304d",
+      "approach_id": "link_158",
+      "direction": "NB",
+      "target_section": "in_NB",
+      "sampling_domain": "traffic_control",
+      "sampling_position": "detail",
+      "view_role": "control_detail",
+      "camera_role": "control_detail",
+      "reverse_view": false,
+      "signed_station_m": -12.082810847349009,
+      "requested_station_m": -11.64,
+      "compass_heading_deg": 42.47,
+      "pitch_deg": 8.072,
+      "hfov_deg": 34.68,
+      "pitch_basis": "3.5m target-minus-camera height prior / longitudinal range; aim only, not calibration",
+      "reference_kind": "estimated_junction_envelope",
+      "request_id": "request_link_158_7ed61a1d5335",
+      "path": "examples/broadway_ames_2021/run/signals/cache/images/0ae7c93d91fe3eef0f64a02835d5081962b57327008053fc3358490a308b2205.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "image_sha256": "59e1bd364630986a8210a2018e573b43ae4c3331e1a54eee29a98e659af5506d",
+      "image_request_signature": "0ae7c93d91fe3eef0f64a02835d5081962b57327008053fc3358490a308b2205",
+      "image_origin": "official_static_street_view",
+      "parent_view_id": "gsv_control_link_158_ccf0dc5362",
+      "requested_bbox": [
+        0.517,
+        0.496,
+        0.668,
+        0.572
+      ],
+      "detail_question": "Confirm whether the two left heads on the mast arm show left-arrow indications (and which colour is lit). Give the third head's indications, and read the rectangular sign on the arm.",
+      "adaptive_round": 1
+    }
+  ],
+  "positions": [
+    {
+      "request": {
+        "approach_id": "link_3",
+        "direction": "EB",
+        "target_section": "in_EB",
+        "role": "upstream_context",
+        "requested_station_m": -8.44,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08754264027039,
+          42.36399369656728
+        ],
+        "requested_local_xy": [
+          -11.987372687908643,
+          -1.0579172121452927
+        ],
+        "nominal_heading_deg": 120.25087036054458,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_3_a1054269832e"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "pano": "_3whLBv7hjtOb-Hj2ZsBvQ"
+        },
+        "retrieved_utc": "2026-10-11T16:07:58.018809+00:00",
+        "actual_lonlat": [
+          -71.08750219875577,
+          42.36396157124192
+        ],
+        "pano_id": "_3whLBv7hjtOb-Hj2ZsBvQ",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -3.7650642320616043,
+        "right_of_axis_m": 1.4134109067858642,
+        "request_snap_distance_m": 4.8840372176694515,
+        "distance_to_center_m": 9.822809767698235,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 4.884
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 13,
+        "in_window": 4
+      },
+      "status": "accepted",
+      "view_id": "gsv_control_link_3_1c684f5e7f"
+    },
+    {
+      "request": {
+        "approach_id": "link_3",
+        "direction": "EB",
+        "target_section": "in_EB",
+        "role": "near_reference",
+        "requested_station_m": -5.4,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08751071339996,
+          42.3639799387503
+        ],
+        "requested_local_xy": [
+          -9.361336016469934,
+          -2.5894299937632135
+        ],
+        "nominal_heading_deg": 120.24625361427657,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_3_23585ed02a11"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "pano": "jWg2LDUhjA5GbBY1BQHT5g"
+        },
+        "retrieved_utc": "2026-10-11T16:33:07.290561+00:00",
+        "actual_lonlat": [
+          -71.08744398690968,
+          42.36395011878343
+        ],
+        "pano_id": "jWg2LDUhjA5GbBY1BQHT5g",
+        "capture_date": "2020-10",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 1.0132196835442926,
+        "right_of_axis_m": 0.10262827251587246,
+        "request_snap_distance_m": 6.414161609790026,
+        "distance_to_center_m": 7.065116761005004,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 6.414
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 12,
+        "in_window": 3
+      },
+      "status": "accepted",
+      "view_id": "gsv_control_link_3_73051d258c"
+    },
+    {
+      "request": {
+        "approach_id": "link_3",
+        "direction": "EB",
+        "target_section": "in_EB",
+        "role": "junction_context",
+        "requested_station_m": 1.28,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.0874405564755,
+          42.36394970803216
+        ],
+        "requested_local_xy": [
+          -3.5908156382566414,
+          -5.9546960881282445
+        ],
+        "nominal_heading_deg": 120.24625361427657,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_3_5a3e5aac7fbd"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36394971,-71.08744056",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:49:50.827722+00:00",
+        "actual_lonlat": [
+          -71.08745251014001,
+          42.36394142372148
+        ],
+        "pano_id": "_OwCOjHzPPfGuTmS_hUiBA",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 0.895167935418641,
+        "right_of_axis_m": 1.2919224577360744,
+        "request_snap_distance_m": 1.3480205320145437,
+        "distance_to_center_m": 8.259143694043082,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 11.348
+      },
+      "status": "duplicate_position"
+    },
+    {
+      "request": {
+        "approach_id": "link_3",
+        "direction": "EB",
+        "target_section": "in_EB",
+        "role": "junction_context_fallback",
+        "requested_station_m": -0.16,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08745568036159,
+          42.363956224095986
+        ],
+        "requested_local_xy": [
+          -4.83477970233948,
+          -5.229331761778527
+        ],
+        "nominal_heading_deg": 120.24625361427657,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_3_657e3212e2e0"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36395622,-71.08745568",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:49:55.797576+00:00",
+        "actual_lonlat": [
+          -71.08745251014001,
+          42.36394142372148
+        ],
+        "pano_id": "_OwCOjHzPPfGuTmS_hUiBA",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 0.895167935418641,
+        "right_of_axis_m": 1.2919224577360744,
+        "request_snap_distance_m": 1.6680756336985632,
+        "distance_to_center_m": 8.259143694043082,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 11.668
+      },
+      "status": "duplicate_position"
+    },
+    {
+      "request": {
+        "approach_id": "link_3",
+        "direction": "EB",
+        "target_section": "in_EB",
+        "role": "junction_context_fallback",
+        "requested_station_m": 2.72,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08742543251046,
+          42.363943192067694
+        ],
+        "requested_local_xy": [
+          -2.346845079603892,
+          -6.680049277412723
+        ],
+        "nominal_heading_deg": 120.24625361427657,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_3_45c0aba33295"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36394319,-71.08742543",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:00.752660+00:00",
+        "actual_lonlat": [
+          -71.08745251014001,
+          42.36394142372148
+        ],
+        "pano_id": "_OwCOjHzPPfGuTmS_hUiBA",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 0.895167935418641,
+        "right_of_axis_m": 1.2919224577360744,
+        "request_snap_distance_m": 2.235861288346641,
+        "distance_to_center_m": 8.259143694043082,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 12.236
+      },
+      "status": "duplicate_position"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "upstream_context",
+        "requested_station_m": -10.68,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08723468530384,
+          42.36396927483387
+        ],
+        "requested_local_xy": [
+          13.342420825053487,
+          -3.7765312002874345
+        ],
+        "nominal_heading_deg": 300.3830291562602,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_b52d5a27531e"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36396927,-71.08723469",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:09.808924+00:00",
+        "actual_lonlat": [
+          -71.08726681248558,
+          42.36395382181839
+        ],
+        "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -9.270617204318206,
+        "right_of_axis_m": -2.8204970647622893,
+        "request_snap_distance_m": 3.15309879645985,
+        "distance_to_center_m": 12.029227622621715,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 3.153
+      },
+      "status": "accepted",
+      "view_id": "gsv_control_link_112_c28aca3e20"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "near_reference",
+        "requested_station_m": -4.6,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08729845297756,
+          42.36399689922228
+        ],
+        "requested_local_xy": [
+          8.097426641065937,
+          -0.7013993315805429
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_f83771996e28"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36399690,-71.08729845",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:10.449373+00:00",
+        "actual_lonlat": [
+          -71.08726681248558,
+          42.36395382181839
+        ],
+        "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -9.270617204318206,
+        "right_of_axis_m": -2.8204970647622893,
+        "request_snap_distance_m": 5.456034862390442,
+        "distance_to_center_m": 12.029227622621715,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 5.456
+      },
+      "status": "duplicate_panorama"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "near_reference_fallback",
+        "requested_station_m": -7.48,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08726824898034,
+          42.36398381474225
+        ],
+        "requested_local_xy": [
+          10.581754208904002,
+          -2.1579566904979224
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_b7a10cf90446"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36398381,-71.08726825",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:10.528013+00:00",
+        "actual_lonlat": [
+          -71.08726681248558,
+          42.36395382181839
+        ],
+        "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -9.270617204318206,
+        "right_of_axis_m": -2.8204970647622893,
+        "request_snap_distance_m": 3.3408851618595086,
+        "distance_to_center_m": 12.029227622621715,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 3.341
+      },
+      "status": "duplicate_panorama"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "near_reference_fallback",
+        "requested_station_m": -1.72,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08732866046073,
+          42.36400998520975
+        ],
+        "requested_local_xy": [
+          5.612812350389474,
+          0.7553261324875571
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_05a44d84aa1a"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "pano": "Cvz0-VR_-batzNSOOqbJzg"
+        },
+        "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+        "actual_lonlat": [
+          -71.08738359891098,
+          42.36399694178242
+        ],
+        "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 1.4460358883335118,
+        "right_of_axis_m": -3.5371622671933562,
+        "request_snap_distance_m": 4.746325674733636,
+        "distance_to_center_m": 1.2970166660402043,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 4.746
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 10,
+        "in_window": 1
+      },
+      "status": "accepted",
+      "view_id": "gsv_control_link_112_2313b6b71a"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "junction_context",
+        "requested_station_m": 2.56,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08737355949248,
+          42.364029418770926
+        ],
+        "requested_local_xy": [
+          1.9197944516879355,
+          2.9186608362172115
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_5101dbccd374"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36402942,-71.08737356",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:17.757888+00:00",
+        "actual_lonlat": [
+          -71.08741687578225,
+          42.36401081005138
+        ],
+        "pano_id": "Ge65vm97vDUf76wj956PxQ",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 4.588069330560231,
+        "right_of_axis_m": -3.587742447560168,
+        "request_snap_distance_m": 4.121281485118925,
+        "distance_to_center_m": 1.848577785853024,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 14.121
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 12,
+        "in_window": 0
+      },
+      "status": "outside_preferred_date_window"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "junction_context_fallback",
+        "requested_station_m": -0.32,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08734334380665,
+          42.364016346085606
+        ],
+        "requested_local_xy": [
+          4.405083426444966,
+          1.4634157075187524
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_0cee2f18793c"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36401635,-71.08734334",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:18.079758+00:00",
+        "actual_lonlat": [
+          -71.08741687578225,
+          42.36401081005138
+        ],
+        "pano_id": "Ge65vm97vDUf76wj956PxQ",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 4.588069330560231,
+        "right_of_axis_m": -3.587742447560168,
+        "request_snap_distance_m": 6.07943980571119,
+        "distance_to_center_m": 1.848577785853024,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 16.079
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 11,
+        "in_window": 0
+      },
+      "status": "outside_preferred_date_window"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "junction_context_fallback",
+        "requested_station_m": 5.44,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08740377642152,
+          42.364042489885634
+        ],
+        "requested_local_xy": [
+          -0.5655967787565741,
+          4.373731429566389
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_83177093d2ad"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36404249,-71.08740378",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:18.239832+00:00",
+        "actual_lonlat": [
+          -71.08741687578225,
+          42.36401081005138
+        ],
+        "pano_id": "Ge65vm97vDUf76wj956PxQ",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 4.588069330560231,
+        "right_of_axis_m": -3.587742447560168,
+        "request_snap_distance_m": 3.687503455667142,
+        "distance_to_center_m": 1.848577785853024,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 13.688
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 10,
+        "in_window": 0
+      },
+      "status": "outside_preferred_date_window"
+    },
+    {
+      "request": {
+        "approach_id": "link_158",
+        "direction": "NB",
+        "target_section": "in_NB",
+        "role": "upstream_context",
+        "requested_station_m": -11.64,
+        "requested_lateral_m": 1.6,
+        "requested_lonlat": [
+          -71.08750857389312,
+          42.36385804070293
+        ],
+        "requested_local_xy": [
+          -9.185358122048482,
+          -16.159040367010626
+        ],
+        "nominal_heading_deg": 29.993959883470172,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_158_7ed61a1d5335"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "pano": "jeeFWfXPQq05atLjxvWcnw"
+        },
+        "retrieved_utc": "2026-10-11T16:08:23.015267+00:00",
+        "actual_lonlat": [
+          -71.08753157669362,
+          42.36386328022004
+        ],
+        "pano_id": "jeeFWfXPQq05atLjxvWcnw",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -12.082810847349009,
+        "right_of_axis_m": -0.32780826569660626,
+        "request_snap_distance_m": 1.9798791267956848,
+        "distance_to_center_m": 19.113168609968074,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 1.98
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 11,
+        "in_window": 4
+      },
+      "status": "accepted",
+      "view_id": "gsv_control_link_158_ccf0dc5362"
+    },
+    {
+      "request": {
+        "approach_id": "link_158",
+        "direction": "NB",
+        "target_section": "in_NB",
+        "role": "near_reference",
+        "requested_station_m": -8.6,
+        "requested_lateral_m": 1.6,
+        "requested_lonlat": [
+          -71.08748997551938,
+          42.36388155144008
+        ],
+        "requested_local_xy": [
+          -7.655611835982184,
+          -13.541842637209799
+        ],
+        "nominal_heading_deg": 30.299199268649616,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_158_8dbeb41c43d8"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36388155,-71.08748998",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:35.571050+00:00",
+        "actual_lonlat": [
+          -71.08752876584164,
+          42.36386606291681
+        ],
+        "pano_id": "na0xuSpFwJ8Lsp0CAieZOQ",
+        "capture_date": "2026-08",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -11.698709114349214,
+        "right_of_axis_m": -0.2845185753622642,
+        "request_snap_distance_m": 3.62663497408242,
+        "distance_to_center_m": 18.726739164625762,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 13.627
+      },
+      "status": "duplicate_position"
+    },
+    {
+      "request": {
+        "approach_id": "link_158",
+        "direction": "NB",
+        "target_section": "in_NB",
+        "role": "near_reference_fallback",
+        "requested_station_m": -10.04,
+        "requested_lateral_m": 1.6,
+        "requested_lonlat": [
+          -71.08749878316695,
+          42.36387041734088
+        ],
+        "requested_local_xy": [
+          -8.380055077284789,
+          -14.781282381473888
+        ],
+        "nominal_heading_deg": 30.154554630220815,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_158_9863b430d6c3"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36387042,-71.08749878",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:35.659660+00:00",
+        "actual_lonlat": [
+          -71.08752876584164,
+          42.36386606291681
+        ],
+        "pano_id": "na0xuSpFwJ8Lsp0CAieZOQ",
+        "capture_date": "2026-08",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -11.698709114349214,
+        "right_of_axis_m": -0.2845185753622642,
+        "request_snap_distance_m": 2.5133103957655516,
+        "distance_to_center_m": 18.726739164625762,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 12.513
+      },
+      "status": "duplicate_position"
+    },
+    {
+      "request": {
+        "approach_id": "link_158",
+        "direction": "NB",
+        "target_section": "in_NB",
+        "role": "near_reference_fallback",
+        "requested_station_m": -7.16,
+        "requested_lateral_m": 1.6,
+        "requested_lonlat": [
+          -71.08748104794604,
+          42.36389283851877
+        ],
+        "requested_local_xy": [
+          -6.921304505705017,
+          -12.285373103739905
+        ],
+        "nominal_heading_deg": 29.76289663431264,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_158_238a2bea7e27"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36389284,-71.08748105",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:50:35.738620+00:00",
+        "actual_lonlat": [
+          -71.08752876584164,
+          42.36386606291681
+        ],
+        "pano_id": "na0xuSpFwJ8Lsp0CAieZOQ",
+        "capture_date": "2026-08",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -11.698709114349214,
+        "right_of_axis_m": -0.2845185753622642,
+        "request_snap_distance_m": 4.928372323784785,
+        "distance_to_center_m": 18.726739164625762,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 14.928
+      },
+      "status": "duplicate_position"
+    },
+    {
+      "request": {
+        "approach_id": "link_158",
+        "direction": "NB",
+        "target_section": "in_NB",
+        "role": "junction_context",
+        "requested_station_m": -3.29,
+        "requested_lateral_m": 1.6,
+        "requested_lonlat": [
+          -71.08745730378794,
+          42.36392285064296
+        ],
+        "requested_local_xy": [
+          -4.968309142326376,
+          -8.944443794331498
+        ],
+        "nominal_heading_deg": 29.76289663431264,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_158_8f7cdb9c41d2"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "pano": "pI_xCj7iSJiBEPU3LBAWeQ"
+        },
+        "retrieved_utc": "2026-10-11T16:33:07.395370+00:00",
+        "actual_lonlat": [
+          -71.08746964727277,
+          42.36392448401435
+        ],
+        "pano_id": "pI_xCj7iSJiBEPU3LBAWeQ",
+        "capture_date": "2019-10",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -3.6302011237492025,
+        "right_of_axis_m": 0.6316996095020417,
+        "request_snap_distance_m": 1.0314247406981527,
+        "distance_to_center_m": 10.610688549418079,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 1.031
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 13,
+        "in_window": 3
+      },
+      "status": "accepted",
+      "view_id": "gsv_control_link_158_a85b418687"
+    }
+  ],
+  "coverage": [
+    {
+      "approach_id": "link_3",
+      "views": 2,
+      "status": "partial"
+    },
+    {
+      "approach_id": "link_112",
+      "views": 2,
+      "status": "partial"
+    },
+    {
+      "approach_id": "link_158",
+      "views": 2,
+      "status": "partial"
+    }
+  ],
+  "adaptive_attempts": [
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "adaptive_round2",
+        "requested_station_m": -2.074,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08732494804823,
+          42.36400837697978
+        ],
+        "requested_local_xy": [
+          5.9181642758879995,
+          0.5762987771974037
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_48f2fbe582b8"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36400838,-71.08732495",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T16:22:39.299210+00:00",
+        "actual_lonlat": [
+          -71.08741687578225,
+          42.36401081005138
+        ],
+        "pano_id": "Ge65vm97vDUf76wj956PxQ",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 4.588069330560231,
+        "right_of_axis_m": -3.587742447560168,
+        "request_snap_distance_m": 7.5660540821709885,
+        "distance_to_center_m": 1.848577785853024,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 17.566
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 10,
+        "in_window": 0
+      },
+      "status": "outside_preferred_date_window"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "adaptive_round2",
+        "requested_station_m": 4.966,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08739880359515,
+          42.364040338761086
+        ],
+        "requested_local_xy": [
+          -0.15657377643667392,
+          4.13426919304251
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_239c5aacc4cd"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36404034,-71.08739880",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T16:54:42.286979+00:00",
+        "actual_lonlat": [
+          -71.08741687578225,
+          42.36401081005138
+        ],
+        "pano_id": "Ge65vm97vDUf76wj956PxQ",
+        "capture_date": "2026-06",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": 4.588069330560231,
+        "right_of_axis_m": -3.587742447560168,
+        "request_snap_distance_m": 3.6075967885588334,
+        "distance_to_center_m": 1.848577785853024,
+        "capture_relation": "later",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 13.608
+      },
+      "date_search": {
+        "probes": 63,
+        "panoramas": 11,
+        "in_window": 0
+      },
+      "status": "outside_preferred_date_window"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "adaptive_round2",
+        "requested_station_m": -12.791,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08721255067357,
+          42.363959686028615
+        ],
+        "requested_local_xy": [
+          15.163029924369994,
+          -4.843951461468648
+        ],
+        "nominal_heading_deg": 300.36489187863623,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_e102c5b5d5c3"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36395969,-71.08721255",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:58:29.616085+00:00",
+        "actual_lonlat": [
+          -71.08726681248558,
+          42.36395382181839
+        ],
+        "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -9.270617204318206,
+        "right_of_axis_m": -2.8204970647622893,
+        "request_snap_distance_m": 4.510610124177513,
+        "distance_to_center_m": 12.029227622621715,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 4.511
+      },
+      "status": "duplicate_panorama"
+    },
+    {
+      "request": {
+        "approach_id": "link_112",
+        "direction": "WB",
+        "target_section": "in_WB",
+        "role": "adaptive_round2",
+        "requested_station_m": -5.751,
+        "requested_lateral_m": 0.0,
+        "requested_lonlat": [
+          -71.08728638692736,
+          42.36399167216636
+        ],
+        "requested_local_xy": [
+          9.089878763963348,
+          -1.2832724555975066
+        ],
+        "nominal_heading_deg": 300.34681034611236,
+        "radius_m": 10,
+        "reference_kind": "estimated_junction_envelope",
+        "id": "request_link_112_4d715630b36e"
+      },
+      "metadata": {
+        "status": "OK",
+        "request": {
+          "location": "42.36399167,-71.08728639",
+          "radius": 10,
+          "source": "outdoor"
+        },
+        "retrieved_utc": "2026-10-11T05:58:29.725527+00:00",
+        "actual_lonlat": [
+          -71.08726681248558,
+          42.36395382181839
+        ],
+        "pano_id": "dN6_8TPddi3FgosgsLQvqQ",
+        "capture_date": "2020-11",
+        "copyright": "© Google"
+      },
+      "assessment": {
+        "usable": true,
+        "reasons": [],
+        "actual_station_m": -9.270617204318206,
+        "right_of_axis_m": -2.8204970647622893,
+        "request_snap_distance_m": 4.51061012417752,
+        "distance_to_center_m": 12.029227622621715,
+        "capture_relation": "target_window",
+        "camera_position_error_m": null,
+        "carriageway_status": "nominal_approach_corridor_not_surveyed",
+        "pose_score": 4.511
+      },
+      "status": "duplicate_panorama"
+    }
+  ],
+  "coordinate_note": "Stations are arc lengths relative to each incoming road endpoint, not distance to a traffic control or necessarily the node center."
+}

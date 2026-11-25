@@ -1,4 +1,4 @@
-"""Worker side of the agent queue for vision requests (pave_read/vlm_bridge.py; how-to in docs/vlm_bridge.md).
+"""Worker side of the agent queue for vision requests (pave_read/vlm_bridge.py; how-to in docs/agent_queue.md).
 
   status                     how many requests are pending, claimed, answered
   claim [--max N] [--worker W] [--wait S] [--only-stages P ...] [--skip-stages P ...]

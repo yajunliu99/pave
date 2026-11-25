@@ -36,6 +36,18 @@ The run took 9 model requests:
 
 The lane-use sheet of the eastbound approach: the approach crop with the traced lanes r1 and r2, the same crop with shadows lightened, the junction with the exit lanes, and the three street views with the lanes projected into them.
 
+## Signals and signs
+
+The optional signal and sign step ([`scripts/pipeline/run_signals.py`](../../scripts/pipeline/run_signals.py)) then read the same junction from Street View, with the policy in [`configs/signals/cambridge_pre_construction.json`](../../configs/signals/cambridge_pre_construction.json): two panoramas per approach from October 2019 to November 2020, looking toward the junction, and close-ups that the model asked for. It took 8 model requests: an inventory and a reading per approach, and two readings sent back once because a sign scoped to the whole approach was also tied to a lane.
+
+| Approach | What the model read |
+|---|---|
+| EB | two heads with green through arrows; a head with a red right arrow, tied to lane 2; NO TURN ON RED; a probable No U-Turn sign |
+| WB | a head with a red left arrow, tied to lane 1, beside the plaque LEFT TURN SIGNAL; two heads with green through arrows, tied to lane 2; a keep-right sign; a pedestrian signal |
+| NB | two heads with green left arrows, tied to lane 1; a head with a red right arrow, tied to lane 2; NO TURN ON RED |
+
+In all there are 27 readings, each with the image boxes that show it: 11 readable, 9 partly readable and 7 unreadable, each marked as such, and 7 tied to lanes. Lamp colours are as captured, not phases. Every approach asked for a second round of views, but no other usable panorama from the window was found near the cameras. Six close-ups could not be taken: the Street View Static API returned 404 for two of the older panoramas (EB 2020-10, NB 2019-10), and the readings were made without them.
+
 ## Files
 
 ```
@@ -51,6 +63,8 @@ run/              the run
   result.jpg        the figure above
   sheets/           every image sent to the model, and the trace prompts
   vlm/<step>/       for each request: the prompt, the raw answer, the parsed and validated answer
+  signals/          the signal and sign step: signals.json (the readings), summary.json, views.json, the lane
+                    scenes and sheets sent to the model, vlm/, yolo/ and cache/ (every Street View response used)
 ```
 
 The answers were given by `claude-opus-5-5` through the agent queue ([`docs/agent_queue.md`](../../docs/agent_queue.md)), one fresh agent per request. Each raw answer records the model, the agent and when it answered.
@@ -65,6 +79,15 @@ python scripts/pipeline/run_read.py --imagery examples/broadway_ames_2021/imager
   --reuse-cache-from examples/broadway_ames_2021/run --cache-only
 ```
 
-The replay writes the same `lanes.json` and `movements.json`. To read the junction with your own model, drop the first line and `--reuse-cache-from … --cache-only`, and set the model in `.env` (see [`../../README.md`](../../README.md#requirements)).
+The replay writes the same `lanes.json` and `movements.json`. The signal and sign step replays the same way, from its own Street View cache, and writes the same `signals.json` (it needs `pip install -e ".[signals]"` and the YOLO checkpoint, see [`../../README.md`](../../README.md#signals-and-signs-optional)):
+
+```bash
+PAVE_VLM_BACKEND=bridge PAVE_BRIDGE_MODEL=claude-opus-5-5 PAVE_BRIDGE_PROVIDER=claude_code_subagent \
+python scripts/pipeline/run_signals.py --imagery examples/broadway_ames_2021/imagery --read examples/broadway_ames_2021/run \
+  --policy configs/signals/cambridge_pre_construction.json --output runs/example_signals_replay \
+  --seed-cache examples/broadway_ames_2021/run/signals/cache --reuse-cache-from examples/broadway_ames_2021/run/signals --cache-only
+```
+
+To read the junction with your own model, drop the first line and `--reuse-cache-from … --cache-only`, and set the model in `.env` (see [`../../README.md`](../../README.md#requirements)).
 
 Imagery: MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts; street views © Google. Network data © OpenStreetMap contributors (ODbL).

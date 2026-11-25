@@ -1,0 +1,54 @@
+{
+  "observations": [
+    "Clearest front-facing view is gsv_control_link_3_73051d258c (2020-10, station 1.0 m): one mast arm from a right-side pole spans the approach with four vehicle signal heads facing the camera; gsv_control_link_3_1c684f5e7f (2020-11, station -3.8 m) shows the same mast arm from farther back, with the heads small.",
+    "In 73051d258c, heads 1 and 2 (left and centre-left, about x 0.45-0.48 and 0.60-0.63) show red circular indications; head 3 (about x 0.75-0.79) shows a red right-turn arrow; head 4 (rightmost, about x 0.82-0.87) is unlit in this frame and its lens symbols cannot be read.",
+    "In 1c684f5e7f (a different phase), heads 1 and 2 show green indications (head 2 may be an upward arrow, unconfirmed at this resolution), head 3 again shows a red right arrow, and head 4 shows a green indication in its lower section whose shape (ball or arrow) is unresolved.",
+    "A small white rectangular regulatory sign is mounted on the mast arm between heads 3 and 4 (73051d258c about x 0.78-0.81, y 0.47-0.51). It has about three lines of black text that cannot be read at this resolution, so its content is not confirmed.",
+    "On the right mast pole near the camera in 73051d258c (about x 0.89-0.93, y 0.58-0.60) there is a lower pole-mounted head showing red; it could be a near-side vehicle head or a pedestrian signal, and its type is unresolved.",
+    "Beyond the crosswalk on the far-left median in 73051d258c (about x 0.39-0.41, y 0.68-0.70) there is a red circle-and-slash prohibitive turn sign facing the camera; which movement it prohibits (left or U-turn) cannot be read.",
+    "An orange temporary work-zone sign stands on the far right side beyond the intersection (73051d258c about x 0.64-0.66, y 0.68-0.70); its text is unreadable. A pink banner on a pole is decorative.",
+    "No stop sign is visible in either view. Signal lenses, arrows and sign text are all small, so lane assignment for the heads is not established from these images."
+  ],
+  "detail_requests": [
+    {
+      "source_id": "gsv_control_link_3_73051d258c",
+      "bbox_xyxy": [
+        0.775,
+        0.455,
+        0.82,
+        0.515
+      ],
+      "question": "Read the text of the small white regulatory sign mounted on the mast arm between the third and fourth signal heads (for example a turn-on-red or lane-use restriction)."
+    },
+    {
+      "source_id": "gsv_control_link_3_73051d258c",
+      "bbox_xyxy": [
+        0.745,
+        0.455,
+        0.875,
+        0.53
+      ],
+      "question": "For the two right-hand signal heads, how many sections does each have, and what symbol is on each lens (circular ball, right arrow, other arrow)? Confirm that head 3's red indication is a right-turn arrow and identify head 4's unlit lens symbols."
+    },
+    {
+      "source_id": "gsv_control_link_3_1c684f5e7f",
+      "bbox_xyxy": [
+        0.485,
+        0.548,
+        0.722,
+        0.602
+      ],
+      "question": "In this green phase, what is the shape of each lit indication on the four mast-arm heads: circular ball or arrow, and if an arrow, which direction (through, right, left)? Note head 4's lit lower section."
+    },
+    {
+      "source_id": "gsv_control_link_3_73051d258c",
+      "bbox_xyxy": [
+        0.383,
+        0.668,
+        0.415,
+        0.703
+      ],
+      "question": "Which movement does this red circle-and-slash sign on the far-left median prohibit (left turn, U-turn, other)? Is there a supplementary plaque, and does it face this approach?"
+    }
+  ]
+}

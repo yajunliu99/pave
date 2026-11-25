@@ -1,0 +1,55 @@
+{
+  "observations": [
+    "Clearest front-facing camera: gsv_control_link_112_2313b6b71a (station 1.4 m, 2020-11). It is closer to the far-side mast arm, so the heads are larger and the arrows can be read. gsv_control_link_112_c28aca3e20 (station -9.3 m) shows the same far mast arm smaller and washed out by sun glare from the upper left.",
+    "Far-side mast arm over the approach, on a pole at the right kerb, holds three vertical 3-section heads facing the camera. In 2313b6b71a (native fractions approx.): left head x~0.39-0.42, y~0.50-0.55, top (red) section lit, lens shape (circular ball or left arrow) not resolvable at this scale; middle head x~0.50-0.53 (YOLO traffic-light box), bottom section shows a green upward (through) arrow; right head x~0.61-0.64, bottom section shows a green upward (through) arrow. The unlit upper lenses of the middle and right heads are unreadable.",
+    "The same three far heads appear in c28aca3e20 at x~0.43-0.57, y~0.50-0.53 (left head matches the YOLO box there). The left head looks red and the other two look green, but the arrow shapes cannot be read there.",
+    "No pole-mounted far-side head is visible on the far mast-arm pole, and no signal heads are visible on the left side or median of the approach.",
+    "Near-right corner (c28aca3e20): a pole with a mast arm reaching over the road carries three heads seen edge-on or from behind, with no lit lens visible. A pole-mounted 3-section head on the same pole faces left, toward the cross street, so it does not face this approach. A pedestrian signal on a sidewalk pedestal shows an orange hand. A small sign on that mast arm (x~0.74-0.76, y~0.41-0.44) and a white sign at the right image edge near the pole base cannot be read.",
+    "In 2313b6b71a a dark head hangs from a mast arm entering from the upper right (x~0.85-0.92, y~0.36-0.45). It may show a faint red lens at the top, but whether it faces this approach is unclear.",
+    "Signs: two white signs on a post in the median at the left beyond the crosswalk (2313b6b71a x~0.36-0.38, y~0.66-0.70). The lower one appears to carry a black curved arrow symbol, and neither can be read. A small red/orange sign far down the road on the right beyond the intersection (YOLO 'stop sign' box) is too small to identify and probably lies beyond this junction, so it is not shown to govern this approach.",
+    "Pavement: a zebra crosswalk spans the approach at the far side, and a marked bike lane runs along the right kerb with green paint at the right-side crosswalk. Dashed guide/lane lines cross the foreground in c28aca3e20. Turn arrows on the pavement are not readable in these street views. The overhead trace panel shows a left-turn arrow in r1 and a through arrow in r2, but it does not establish which signal head governs which lane.",
+    "No regulatory text (e.g. NO TURN ON RED, lane-use signs) is readable on any mast arm in the supplied views."
+  ],
+  "detail_requests": [
+    {
+      "source_id": "gsv_control_link_112_2313b6b71a",
+      "bbox_xyxy": [
+        0.377,
+        0.485,
+        0.54,
+        0.565
+      ],
+      "question": "Far mast-arm left head and middle head: is the lit red lens of the left head a circular ball or a left-turn arrow, and are the unlit lenses of both heads balls or arrows (and in which directions)? Confirm the middle head's green upward arrow."
+    },
+    {
+      "source_id": "gsv_control_link_112_2313b6b71a",
+      "bbox_xyxy": [
+        0.84,
+        0.351,
+        0.93,
+        0.464
+      ],
+      "question": "Upper-right head on the near mast arm: does its face point toward this approach, which lens is lit, and is that lens a ball or an arrow?"
+    },
+    {
+      "source_id": "gsv_control_link_112_2313b6b71a",
+      "bbox_xyxy": [
+        0.351,
+        0.654,
+        0.388,
+        0.711
+      ],
+      "question": "Read the two signs on the median post (text or symbol, e.g. keep right, no turn, lane use)."
+    },
+    {
+      "source_id": "gsv_control_link_112_2313b6b71a",
+      "bbox_xyxy": [
+        0.548,
+        0.671,
+        0.58,
+        0.704
+      ],
+      "question": "Identify the small red/orange sign far down the road on the right (stop sign, do-not-enter, or other) and which direction it faces."
+    }
+  ]
+}

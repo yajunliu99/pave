@@ -1,0 +1,6 @@
+{
+  "signature": "26bc80974616e494ecf57e2bd9505bc7b2fa1df62db0360c77ec4c0bc844c5a7",
+  "imagery": "examples/broadway_ames_2021/imagery",
+  "read": "examples/broadway_ames_2021/run",
+  "policy": "configs/signals/cambridge_pre_construction.json"
+}

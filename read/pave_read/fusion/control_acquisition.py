@@ -2,6 +2,7 @@
 import io
 import math
 import re
+import shutil
 from datetime import datetime,timezone
 from pathlib import Path
 import requests
@@ -16,10 +17,20 @@ class AcquisitionUnavailable(RuntimeError):pass
 
 
 class StreetViewClient:
-    def __init__(self,root,cache,policy,cache_only=False,session=None):
+    def __init__(self,root,cache,policy,cache_only=False,session=None,seed=()):
         self.root=Path(root);self.cache=Path(cache).resolve();self.cache.mkdir(parents=True,exist_ok=True)
         self.policy=policy;self.cache_only=cache_only;self.session=session or requests.Session();self.key=None
         self.counts={'metadata_requests':0,'image_requests':0,'metadata_cache_hits':0,'image_cache_hits':0}
+        # Read-only caches searched after this one; a file found there is copied here, so this cache ends up holding
+        # every response the run used.
+        self.seed=[Path(s).resolve() for s in seed]
+
+    def _adopt(self,*names):
+        if self.seed and not all((self.cache/n).exists() for n in names):
+            for s in self.seed:
+                if all((s/n).exists() for n in names):
+                    for n in names:(self.cache/n).parent.mkdir(parents=True,exist_ok=True);shutil.copy2(s/n,self.cache/n)
+                    return
 
     def _key(self):
         if self.key is None:
@@ -32,7 +43,7 @@ class StreetViewClient:
         # A request naming a panorama ('pano_id') asks for that one; otherwise the service picks one near the location.
         if request.get('pano_id'):params={'pano':request['pano_id']}
         else:ll=request['requested_lonlat'];params={'location':f'{ll[1]:.8f},{ll[0]:.8f}','radius':request['radius_m'],'source':'outdoor'}
-        path=self.cache/'metadata'/(digest(params)+'.json')
+        path=self.cache/'metadata'/(digest(params)+'.json');self._adopt(Path('metadata')/path.name)
         if path.exists():
             cached=read_json(path)
             if cached.get('status') in ('OK','ZERO_RESULTS') or self.cache_only:
@@ -54,6 +65,7 @@ class StreetViewClient:
         size=self.policy['image_size'];params={'pano':view['pano_id'],'size':f'{size[0]}x{size[1]}','heading':round(view['compass_heading_deg'],4),
                 'pitch':round(view['pitch_deg'],4),'fov':round(view['hfov_deg'],4),'return_error_code':'true'}
         signature=digest(params);path=self.cache/'images'/(signature+'.jpg');sidecar=path.with_suffix('.json')
+        self._adopt(Path('images')/path.name,Path('images')/sidecar.name)
         if path.exists() and sidecar.exists() and read_json(sidecar).get('image_sha256')==file_hash(path):self.counts['image_cache_hits']+=1
         else:
             if self.cache_only:raise AcquisitionUnavailable('image_cache_miss')

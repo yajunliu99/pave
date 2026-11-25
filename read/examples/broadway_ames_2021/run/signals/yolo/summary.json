@@ -1,0 +1,182 @@
+{
+  "gsv_control_link_3_1c684f5e7f": {
+    "model": "yolo26n",
+    "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ultralytics": "8.4.171",
+    "elapsed_s": 0.682,
+    "image_size": [
+      640,
+      640
+    ],
+    "detections": [
+      {
+        "class": "traffic light",
+        "confidence": 0.54051,
+        "bbox_xyxy": [
+          418.3,
+          357.7,
+          431.86,
+          380.54
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.51395,
+        "bbox_xyxy": [
+          444.9,
+          357.31,
+          460.1,
+          380.88
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.29205,
+        "bbox_xyxy": [
+          313.33,
+          354.69,
+          324.55,
+          377.1
+        ]
+      }
+    ]
+  },
+  "gsv_control_link_3_73051d258c": {
+    "model": "yolo26n",
+    "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ultralytics": "8.4.171",
+    "elapsed_s": 0.083,
+    "image_size": [
+      640,
+      640
+    ],
+    "detections": [
+      {
+        "class": "traffic light",
+        "confidence": 0.69261,
+        "bbox_xyxy": [
+          385.65,
+          295.66,
+          400.17,
+          332.01
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.66528,
+        "bbox_xyxy": [
+          288.87,
+          295.39,
+          307.5,
+          331.61
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.47948,
+        "bbox_xyxy": [
+          524.64,
+          296.61,
+          558.18,
+          335.86
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.44746,
+        "bbox_xyxy": [
+          480.03,
+          296.33,
+          503.85,
+          335.88
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.28484,
+        "bbox_xyxy": [
+          571.73,
+          372.27,
+          593.46,
+          384.38
+        ]
+      }
+    ]
+  },
+  "gsv_control_link_112_c28aca3e20": {
+    "model": "yolo26n",
+    "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ultralytics": "8.4.171",
+    "elapsed_s": 0.082,
+    "image_size": [
+      640,
+      640
+    ],
+    "detections": [
+      {
+        "class": "traffic light",
+        "confidence": 0.37581,
+        "bbox_xyxy": [
+          279.84,
+          321.02,
+          287.28,
+          338.03
+        ]
+      }
+    ]
+  },
+  "gsv_control_link_112_2313b6b71a": {
+    "model": "yolo26n",
+    "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ultralytics": "8.4.171",
+    "elapsed_s": 0.082,
+    "image_size": [
+      640,
+      640
+    ],
+    "detections": [
+      {
+        "class": "stop sign",
+        "confidence": 0.36735,
+        "bbox_xyxy": [
+          355.52,
+          434.14,
+          366.05,
+          446.16
+        ]
+      },
+      {
+        "class": "traffic light",
+        "confidence": 0.28626,
+        "bbox_xyxy": [
+          321.4,
+          322.02,
+          337.01,
+          353.08
+        ]
+      }
+    ]
+  },
+  "gsv_control_link_158_ccf0dc5362": {
+    "model": "yolo26n",
+    "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ultralytics": "8.4.171",
+    "elapsed_s": 0.083,
+    "image_size": [
+      640,
+      640
+    ],
+    "detections": []
+  },
+  "gsv_control_link_158_a85b418687": {
+    "model": "yolo26n",
+    "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ultralytics": "8.4.171",
+    "elapsed_s": 0.083,
+    "image_size": [
+      640,
+      640
+    ],
+    "detections": []
+  }
+}

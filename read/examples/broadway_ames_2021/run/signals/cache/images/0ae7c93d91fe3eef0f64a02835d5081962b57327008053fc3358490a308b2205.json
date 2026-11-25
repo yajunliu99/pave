@@ -1,0 +1,12 @@
+{
+  "request": {
+    "pano": "jeeFWfXPQq05atLjxvWcnw",
+    "size": "640x640",
+    "heading": 42.47,
+    "pitch": 8.072,
+    "fov": 34.68,
+    "return_error_code": "true"
+  },
+  "image_sha256": "59e1bd364630986a8210a2018e573b43ae4c3331e1a54eee29a98e659af5506d",
+  "retrieved_utc": "2026-11-25T23:45:52.593589+00:00"
+}

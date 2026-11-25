@@ -113,6 +113,30 @@ python scripts/pipeline/run_read.py --imagery runs/imagery_site_7828 --output ru
 
 Every answer is cached in the run folder, so a run that stops can be started again and resumes.
 
+## Signals and signs (optional)
+
+After the lanes are read, [`scripts/pipeline/run_signals.py`](scripts/pipeline/run_signals.py) reads the traffic signals and signs of the same junction. It does not change `lanes.json` or `movements.json`.
+
+```bash
+pip install -e ".[signals]"
+python scripts/pipeline/run_signals.py --imagery runs/imagery_site_7828 --read runs/read_site_7828
+```
+
+For each approach:
+
+| Step | What it does |
+|---|---|
+| Cameras | Three positions placed from the link geometry (upstream, near the junction, at it), each taken from the panorama the Street View metadata service returns there and checked for position, carriageway and date. Each view looks along the approach toward the junction. |
+| Detection | YOLO marks traffic lights and stop signs in these views, as proposals for the model. |
+| Inventory | The model sees the views and the approach's traced lanes (r1, r2, ..., travel up) and asks for up to four close-ups: the same panorama re-aimed at a box. |
+| Reading | With the close-ups, the model lists every signal head and sign: kind, literal text, symbol, facing, readability, what it applies to (the approach, lanes r#, another approach, pedestrians) and the image boxes that show it. |
+| Second round | Where the reading asks for it or an important object stays unreadable, new panoramas near the existing cameras, and inventory and reading again (two rounds at most). |
+
+A lamp's colour in a photo says nothing about phases or timing, and a sign is tied to lanes only where the model gives its reason. The readings are written to `signals/signals.json` in the run folder, with every view, sheet, prompt and answer. Every Street View response used is kept in `signals/cache/`, so the step replays with `--cache-only`.
+
+- YOLO needs the extra dependencies above (Ultralytics, AGPL-3.0, which brings PyTorch) and the `yolo26n.pt` checkpoint from [Ultralytics](https://docs.ultralytics.com/models/yolo26/). Its path comes from `PAVE_YOLO_WEIGHTS` (default `~/.cache/pave/weights/yolo26n.pt`); its sha256 is checked.
+- Close-ups and new panoramas are Street View image requests, billed like the lane street views. `--policy policy.json` sets the date window, pinned panoramas and request budgets (see [`configs/signals/`](configs/signals/)); `--plan-only` writes the camera plan without contacting any service.
+
 ## Outputs
 
 | File | Contents |
@@ -137,21 +161,19 @@ python -m unittest discover -s tests
 pave_read/            library
   harness/            windows and measurements, prompts and validators, street-view sheets
   autoloop/           crops, rulers, frames and street-view projection
-  fusion/             imagery acquisition, blind-reading validation
+  fusion/             imagery acquisition, blind-reading validation, signal and sign cameras, YOLO and checks
   hybrid/             model requests and their cache, geometry helpers
   vlm_bridge.py       file queue for agents answering in place of an API
-scripts/pipeline/     acquire_site_imagery.py, run_read.py, vlm_bridge.py
-configs/              imagery policies, run and result folders
+scripts/pipeline/     acquire_site_imagery.py, run_read.py, run_signals.py, vlm_bridge.py
+configs/              imagery and signal policies, run and result folders
 examples/             worked example: Broadway & Ames Street, Cambridge MA
 docs/                 answering requests with agents
 tests/                unit tests
 ```
 
-An earlier, longer pipeline (draft-and-review tracing, a lane atlas in GeoJSON, a signal and sign audit with YOLO, and an interactive explorer) is kept in the git tag `full-pipeline`.
-
 ## What is included
 
-Code, tests, the imagery policy of the example, and one worked example with its imagery, network excerpt and results. Imagery is © its providers and subject to their terms: Google for street views; MassGIS for the example's satellite image; Mapbox and its imagery providers for the default satellite source.
+Code, tests, the imagery and signal policies of the example, and one worked example with its imagery, network excerpt and results. Imagery is © its providers and subject to their terms: Google for street views; MassGIS for the example's satellite image; Mapbox and its imagery providers for the default satellite source.
 
 ## License
 

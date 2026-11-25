@@ -1,0 +1,14 @@
+{
+  "status": "OK",
+  "request": {
+    "pano": "Cvz0-VR_-batzNSOOqbJzg"
+  },
+  "retrieved_utc": "2026-10-11T16:08:05.750169+00:00",
+  "actual_lonlat": [
+    -71.08738359891098,
+    42.36399694178242
+  ],
+  "pano_id": "Cvz0-VR_-batzNSOOqbJzg",
+  "capture_date": "2020-11",
+  "copyright": "© Google"
+}

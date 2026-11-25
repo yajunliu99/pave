@@ -13,7 +13,7 @@ Every step is recorded so that a run can be replayed. The model makes the judgem
 
 The repository holds two applications of the same harness:
 
-- **[Read](read/):** the lanes of an intersection, read from satellite and street-level imagery: the lanes of each approach at the stop bar, the turns each lane allows and the exit lanes each turn reaches.
+- **[Read](read/):** the lanes of an intersection, read from satellite and street-level imagery: the lanes of each approach at the stop bar, the turns each lane allows and the exit lanes each turn reaches. An optional step reads the traffic signals and signs of each approach from street views.
 - **[Edit](edit/):** scenario design on an existing network. Example: rebuilding a diamond interchange as a diverging diamond, a single point urban interchange or roundabout ramp terminals.
 
 ![The PAVE dashboard](docs/pave_dashboard.png)
@@ -73,12 +73,13 @@ flowchart TB
   end
   R1 --> R2 --> R3
   R3 -- "settled" --> r8["E · 8 Lanes and movements<br/>tied to network sections"]
+  r8 -. "optional" .-> r9["A · 9 Signals and signs<br/>street views, YOLO proposals, close-ups"]
   classDef P fill:#eaf2fe,stroke:#3b82f6,stroke-width:2px,color:#10203a
   classDef A fill:#e3f6f3,stroke:#10b3a3,stroke-width:2px,color:#0a3631
   classDef V fill:#fdf3dc,stroke:#f2a516,stroke-width:2px,color:#4a3200
   classDef E fill:#fde8e8,stroke:#ef5350,stroke-width:2px,color:#4d1212
   class r1,r2 P
-  class r3,r4,r6 A
+  class r3,r4,r6,r9 A
   class r5,r7 V
   class r8 E
 ```

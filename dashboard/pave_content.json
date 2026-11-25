@@ -35,7 +35,7 @@
     "image": "read/examples/broadway_ames_2021/run/result.jpg",
     "kind": "Read · lanes and movements",
     "title": "Broadway & Ames Street, Cambridge MA",
-    "text": "The lanes of a signalised T-junction, their turns and the exit lanes each turn reaches, read from a 2021 orthophoto and 2020 street views. A lane is added only when a second trace finds it, and dropped only when a blind reading agrees.",
+    "text": "The lanes of a signalised T-junction, their turns and the exit lanes each turn reaches, read from a 2021 orthophoto and 2020 street views, and its signals and signs, read from street-view close-ups. A lane is added only when a second trace finds it, and dropped only when a blind reading agrees.",
     "view_title": "Broadway & Ames Street, Cambridge MA (2021 imagery)"
   },
   "edit": {

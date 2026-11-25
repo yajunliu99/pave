@@ -316,9 +316,10 @@ body.mapfull #read #sitecard.show{display:block}
 #read #theme{position:absolute;top:14px;right:16px}}
 
 /* stage letters: which harness stage each tab and check belongs to */
-#read .tabs button[data-t="views"]::before,#read .tabs button[data-t="checks"]::before,#read .tabs button[data-t="lanes"]::before,#read .tabs button[data-t="movements"]::before,#read .tabs button[data-t="figures"]::before,#read .check:not(.muted)::before{content:"";margin-right:7px;display:inline-grid;place-items:center;width:17px;height:17px;border-radius:5px;color:#fff;font:800 10px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
+#read .tabs button[data-t="views"]::before,#read .tabs button[data-t="checks"]::before,#read .tabs button[data-t="signals"]::before,#read .tabs button[data-t="lanes"]::before,#read .tabs button[data-t="movements"]::before,#read .tabs button[data-t="figures"]::before,#read .check:not(.muted)::before{content:"";margin-right:7px;display:inline-grid;place-items:center;width:17px;height:17px;border-radius:5px;color:#fff;font:800 10px/1 var(--pave-font);letter-spacing:0;text-transform:none;vertical-align:1px}
 #read .tabs button[data-t="views"]::before{content:"P";background:var(--stage-p)}
 #read .tabs button[data-t="checks"]::before{content:"V";background:var(--stage-v)}
+#read .tabs button[data-t="signals"]::before{content:"A";background:var(--stage-a)}
 #read .tabs button[data-t="lanes"]::before{content:"A";background:var(--stage-a)}
 #read .tabs button[data-t="movements"]::before{content:"A";background:var(--stage-a)}
 #read .tabs button[data-t="figures"]::before{content:"E";background:var(--stage-e)}
@@ -923,8 +924,10 @@ const viewsOf = (d, dir) => d.views.map((v, i) => [v, i]).filter(([v]) => v.grou
 function render(){
   const s = byId.get(state.id), d = data[state.id]; if (!s || !d) return;
   const dates = s.dates ? (s.dates[0] === s.dates[1] ? s.dates[0] : s.dates.join(' – ')) : 'unknown';
-  const figures = d.figures.sheets.length + (d.figures.result ? 1 : 0);
-  const TABS = [['lanes','Lanes',s.approaches.length],['movements','Movements',s.movements.length],['views','Street views',d.views.length],
+  const figures = d.figures.sheets.length + (d.figures.result ? 1 : 0), controls = d.controls || [];
+  const TABS = [['lanes','Lanes',s.approaches.length],['movements','Movements',s.movements.length],
+                ['views','Street views',d.views.filter(v => !v.group.startsWith('Signals')).length],
+                ...(controls.length ? [['signals','Signals & signs',controls.length]] : []),
                 ['checks','Checks',s.approaches.length],['figures','Figures',figures]];
   $('main').innerHTML = `<div class="fade"><div class="site-head"><div><div class="eyebrow">${idLine(s)}</div><h2>${esc(s.name)}</h2><div class="tags">
       <span class="tag">${s.legs||'?'} legs</span>
@@ -936,7 +939,8 @@ function render(){
   $('main').querySelector('.tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; state.tab = b.dataset.t; render(); };
   const shownKey = state.id + '/' + state.tab;
   if (render.last !== shownKey) { $('main').scrollTop = 0; render.last = shownKey; }
-  ({lanes:renderLanes, movements:renderMovements, views:renderViews, checks:renderChecks, figures:renderFigures})[state.tab](s, d);
+  if (!TABS.some(([k]) => k === state.tab)) state.tab = 'lanes';
+  ({lanes:renderLanes, movements:renderMovements, views:renderViews, signals:renderSignals, checks:renderChecks, figures:renderFigures})[state.tab](s, d);
 }
 
 /* Lanes */
@@ -1042,20 +1046,43 @@ function renderMovements(s, d){
 /* Street views */
 function renderViews(s, d){
   const groups = {};
-  d.views.forEach((v, i) => (groups[v.group] = groups[v.group] || []).push(i));
+  d.views.forEach((v, i) => { if (!v.group.startsWith('Signals')) (groups[v.group] = groups[v.group] || []).push(i); });
   const order = Object.keys(groups).sort();
   $('tab').innerHTML = order.map(g => `<div class="section-title">${esc(g)} <span class="muted small">${groups[g].length}</span></div><div class="gal" data-g="${esc(g)}">${groups[g].map(i => thumb(d.views[i], d)).join('')}</div>`).join('')
     || '<div class="empty">No street views.</div>';
   $('tab').querySelectorAll('.gal').forEach(g => wireThumbs(g, d, groups[g.dataset.g]));
 }
 
+/* Signals & signs */
+const CTL = {traffic_signal:'Vehicle signal',pedestrian_signal:'Pedestrian signal',lane_use_sign:'Lane-use sign',turn_restriction_sign:'Turn-restriction sign',
+             regulatory_sign:'Regulatory sign',street_name_sign:'Street-name sign',other_sign:'Other sign'};
+const SCOPE = {approach:'the whole approach', lane_candidates:'lanes', other_approach:'another approach', pedestrians:'pedestrians', unknown:'unknown'};
+function renderSignals(s, d){
+  const groups = {};
+  d.controls.forEach(c => (groups[c.dir || '–'] = groups[c.dir || '–'] || []).push(c));
+  const order = s.approaches.map(a => a.dir).filter(k => groups[k]).concat(Object.keys(groups).filter(k => !s.approaches.some(a => a.dir === k)));
+  $('tab').innerHTML = `<p class="small muted" style="margin:0 0 12px">What the model read in the street views of each approach: overviews looking toward the junction, and close-ups it asked for. A lamp's colour in a photo says nothing about phases or timing; a sign is tied to lanes only where the model gives its reason.</p>`
+    + order.map(g => `<div class="section-title">Approach ${esc(g)} <span class="muted small">${groups[g].length}</span></div><div class="stack">${groups[g].map((c, i) => {
+      const ref = c.refs[0], scope = c.applies === 'lane_candidates' && c.lanes.length ? 'lanes ' + c.lanes.join(', ') : SCOPE[c.applies] || c.applies;
+      return `<div class="card ctl"><div><b>${esc(CTL[c.kind]||c.kind)}</b>${c.text?` · “${esc(c.text)}”`:''}
+        <span class="small muted"> · ${esc(c.confidence||'')} confidence · ${esc(c.readability||'')} · applies to ${esc(scope)}</span>
+        ${c.symbol?`<p class="small" style="margin:6px 0 0"><b>Symbol:</b> ${esc(c.symbol)}</p>`:''}
+        <p class="small" style="margin:6px 0 0">${esc(c.description)}</p></div>
+        ${ref?`<div class="thumb" data-g="${esc(g)}" data-i="${i}"><img loading="lazy" src="${IMG(d, d.views[ref.view].src)}" alt=""><div class="cap">${c.refs.length} view${c.refs.length>1?'s':''}</div></div>`:'<div></div>'}</div>`; }).join('')}</div>`).join('');
+  $('tab').querySelectorAll('.thumb[data-g]').forEach(t => t.onclick = () => { const c = groups[t.dataset.g][+t.dataset.i];
+    openViews(d, [...new Set(c.refs.map(r => r.view))], c.refs[0].view, c); });
+}
+
 /* Checks */
+const STOP = {reading_sufficient:'read in one round', no_new_readings:'a second round added nothing', round_limit:'stopped at the round limit',
+              no_distinct_usable_panorama:'no other usable panorama for a second round', context_view_budget:'view budget reached',
+              vlm_budget_exhausted:'request budget reached', no_usable_imagery:'no usable street view'};
 const ACTION = {agree:'agrees with the trace', no_issue:'not settled, so not held against the trace', kept_reading_fewer:'sees fewer lanes; the trace is kept',
                 retraced:'the arm was traced again'};
 function renderChecks(s, d){
   const c = d.checks, req = Object.entries(c.requests || {});
   const step = (x, none, text) => x ? `<b>${esc(text(x))}</b>` : `<b class="muted" style="font-weight:500">${none}</b>`;
-  $('tab').innerHTML = `<div class="card" style="margin-bottom:14px"><div class="kv"><span>model requests</span><b>${req.map(([k, n]) => `${esc(k)} ${n}`).join(' · ') || '–'}</b></div></div>`
+  $('tab').innerHTML = `<div class="card" style="margin-bottom:14px"><div class="kv"><span>model requests</span><b>${req.map(([k, n]) => `${esc(k)} ${n}`).join(' · ') || '–'}${c.signals ? ` · signals and signs ${c.signals.requests}` : ''}</b></div></div>`
     + s.approaches.map(a => { const x = c.approaches[a.dir] || {}, r = x.reading || {}, issues = [...(r.issues || []), ...(r.issues_after || [])];
       return `<div class="section-title">Approach ${esc(a.dir)} <span class="muted small">${esc(a.road || '')}</span></div>
       <div class="card"><div class="kv">
@@ -1065,7 +1092,8 @@ function renderChecks(s, d){
         <span>add a lane</span>${step(x.addlane, 'not needed (lane use saw no lane without an outline)', v => `${v.missing.length} lane(s) seen without an outline; re-trace ${v.kept ? 'kept' : 'not kept'} (${v.lanes_before} → ${v.lanes_after_trace ?? '–'} lanes)`)}
         <span>keep a lane</span>${step(x.removal, 'not needed (no lane judged not to exist)', v => v.map(e => `${e.rejected.map(q => q.region_id).join(', ')} judged not to exist; ${e.dropped ? 'dropped, the blind reading agrees' : 'kept, asked again'}`).join('; '))}
         <span>left-turn lane</span>${step(x.leftlane, 'not needed (no left exit without a lane turning toward it)', v => `no lane turns toward ${v.left_exits.join(', ')}; re-trace ${v.kept ? 'kept' : 'not kept'} (${v.lanes_before} → ${v.lanes_after_trace ?? '–'} lanes)`)}
-        <span>temporary control</span><b>${x.temporary ? esc(x.temporary.seen === 'no' ? 'none seen' : (x.temporary.effect || x.temporary.seen)) : '–'}</b></div>
+        <span>temporary control</span><b>${x.temporary ? esc(x.temporary.seen === 'no' ? 'none seen' : (x.temporary.effect || x.temporary.seen)) : '–'}</b>
+        ${c.signals && c.signals.stop_reasons[a.dir] ? `<span>signals and signs</span><b>${esc(STOP[c.signals.stop_reasons[a.dir]] || c.signals.stop_reasons[a.dir])}${(c.signals.unresolved[a.dir] || []).length ? '<br><span class="muted" style="font-weight:500">unresolved: ' + c.signals.unresolved[a.dir].map(esc).join('; ') + '</span>' : ''}</b>` : ''}</div>
         ${x.limitations?`<p class="small muted" style="margin:10px 0 0"><b>What limited the blind reading:</b> ${esc(x.limitations)}</p>`:''}</div>`; }).join('');
 }
 
@@ -1081,19 +1109,21 @@ function renderFigures(s, d){
 }
 
 /* ---------- lightbox ---------- */
-function openViews(d, list, at){ lightboxList = list; lightboxAt = Math.max(0, list.indexOf(at)); showView(d); }
-function showView(d){
+function openViews(d, list, at, control){ lightboxList = list; lightboxAt = Math.max(0, list.indexOf(at)); showView(d, control); }
+function showView(d, control){
   const i = lightboxList[lightboxAt], v = d.views[i];
-  const [w, h] = v.size;
-  $('lightbox').innerHTML = `<div class="lb"><div class="pic"><span class="boxwrap"><img src="${IMG(d, v.src)}" width="${w}" height="${h}" alt=""></span></div>
+  const [w, h] = v.size, refs = control ? control.refs.filter(r => r.view === i) : [];
+  const boxes = refs.map(r => { const [a, b, c, e] = r.box; return `<span class="bx" style="left:${a*100}%;top:${b*100}%;width:${(c-a)*100}%;height:${(e-b)*100}%"></span>`; }).join('');
+  $('lightbox').innerHTML = `<div class="lb"><div class="pic"><span class="boxwrap"><img src="${IMG(d, v.src)}" width="${w}" height="${h}" alt="">${boxes}</span></div>
     <div class="info"><h3>${esc(v.group)} · ${esc(v.role)}</h3>
       <div class="kv small" style="margin-top:8px"><span>position</span><b>${esc(v.position||'–')} · ${v.dist} m from centre</b><span>heading</span><b>${v.heading}°</b>
         <span>captured</span><b>${esc(v.date||'unknown')}</b></div>
+      ${refs.length?`<div class="section-title">What the model noted here</div>${refs.map(r => `<div class="find">${esc(r.finding||'(no note)')}</div>`).join('')}`:''}
       <div class="nav"><button class="btn" id="lbPrev" ${lightboxAt?'':'disabled'}>‹ Prev</button><span class="small muted" style="align-self:center">${lightboxAt+1} / ${lightboxList.length}</span>
         <button class="btn" id="lbNext" ${lightboxAt<lightboxList.length-1?'':'disabled'}>Next ›</button><span style="flex:1"></span><button class="btn" id="lbClose">Close</button></div></div></div>`;
   $('lightbox').hidden = false;
-  $('lbPrev').onclick = () => { lightboxAt--; showView(d); };
-  $('lbNext').onclick = () => { lightboxAt++; showView(d); };
+  $('lbPrev').onclick = () => { lightboxAt--; showView(d, control); };
+  $('lbNext').onclick = () => { lightboxAt++; showView(d, control); };
   $('lbClose').onclick = closeLightbox;
 }
 function openImage(src, title){

@@ -1,0 +1,362 @@
+{
+  "schema": "control-site-1",
+  "site_id": "95",
+  "name": "Ames Street x Broadway",
+  "origin_lonlat": [
+    -71.0873969,
+    42.3640032
+  ],
+  "policy": {
+    "driving_side": "right",
+    "default_carriageway_width_m": 10.5,
+    "lane_width_prior_m": 3.2,
+    "context_pitch_deg": null,
+    "height_delta_prior_m": 3.5,
+    "context_fov_deg": 100.0,
+    "image_size": [
+      640,
+      640
+    ],
+    "near_reference_fraction": 0.25,
+    "upstream_reference_fraction": 0.7,
+    "interior_fraction": 0.4,
+    "tangent_trim_m": 8.0,
+    "tangent_lookback_m": 14.0,
+    "crosswalk_margin_m": 3.0,
+    "metadata_radius_m": 10,
+    "max_snap_distance_m": 14.0,
+    "max_station_error_m": 18.0,
+    "minimum_distinct_position_m": 3.0,
+    "max_metadata_requests": 3000,
+    "max_image_requests": 64,
+    "max_context_views_per_approach": 5,
+    "max_rounds": 2,
+    "max_details_per_round": 4,
+    "max_adaptive_positions_per_round": 2,
+    "max_vlm_calls": 24,
+    "detail_min_fov_deg": 15.0,
+    "detail_max_fov_deg": 55.0,
+    "preferred_date_window": [
+      "2019-01",
+      "2022-12"
+    ],
+    "date_search": {
+      "along_m": 9,
+      "across_m": 12,
+      "step_m": 3,
+      "radius_m": 3
+    },
+    "known_panoramas": {
+      "in_EB": [
+        "zSmejX__7oeQV0DVT1Yepg",
+        "_3whLBv7hjtOb-Hj2ZsBvQ",
+        "hRVL8qhrNI-JfNB6FQeqGw",
+        "kD7P5QIM1p11ulUllRiVMA",
+        "jWg2LDUhjA5GbBY1BQHT5g",
+        "pI_xCj7iSJiBEPU3LBAWeQ"
+      ],
+      "in_WB": [
+        "dN6_8TPddi3FgosgsLQvqQ",
+        "Cvz0-VR_-batzNSOOqbJzg",
+        "uhFChog3QwBpKqKx650Sug",
+        "lzsK1P01E2cICP8hIN7rww",
+        "jWg2LDUhjA5GbBY1BQHT5g",
+        "pI_xCj7iSJiBEPU3LBAWeQ"
+      ],
+      "in_NB": [
+        "jeeFWfXPQq05atLjxvWcnw",
+        "_3whLBv7hjtOb-Hj2ZsBvQ",
+        "b8uhYxEbQFfYKJCTGCaozA",
+        "pftZedWg5jk2t7Cj1rGcMA",
+        "jWg2LDUhjA5GbBY1BQHT5g",
+        "pI_xCj7iSJiBEPU3LBAWeQ"
+      ]
+    },
+    "date_fallback": false
+  },
+  "approaches": [
+    {
+      "id": "link_3",
+      "label": "EB",
+      "section_id": "in_EB",
+      "region_ids": [
+        "r1",
+        "r2"
+      ],
+      "centerline_lonlat": [
+        [
+          -71.0886049,
+          42.3644761
+        ],
+        [
+          -71.0885635,
+          42.3644509
+        ],
+        [
+          -71.0885198,
+          42.3644256
+        ],
+        [
+          -71.0884731,
+          42.3644004
+        ],
+        [
+          -71.0884258,
+          42.3643765
+        ],
+        [
+          -71.0881766,
+          42.3642668
+        ],
+        [
+          -71.0876002,
+          42.3640185
+        ],
+        [
+          -71.087454,
+          42.3639555
+        ]
+      ],
+      "centerline_reference": "directed_carriageway",
+      "carriageway_width_m": 3.2,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": true,
+      "road_name": "Broadway",
+      "in_link_id": "3",
+      "centerline_local": [
+        [
+          -99.35995158007354,
+          52.643185321272874
+        ],
+        [
+          -95.95473469645466,
+          49.837913601287084
+        ],
+        [
+          -92.36033909577938,
+          47.02151097897497
+        ],
+        [
+          -88.51918865071893,
+          44.21624151400607
+        ],
+        [
+          -84.62868723416653,
+          41.55568936965556
+        ],
+        [
+          -64.13158463965384,
+          29.343879331929845
+        ],
+        [
+          -16.72175344018727,
+          1.7031884167369422
+        ],
+        [
+          -4.696567245947975,
+          -5.309937697653151
+        ]
+      ],
+      "forward_unit": [
+        0.8638684435088538,
+        -0.5037174925586664
+      ],
+      "heading_deg": 120.24625361427657,
+      "tangent_trim_m": 8.0,
+      "interior_limit_m": 5,
+      "reference_station_m": -6.200113873740205,
+      "reference_kind": "estimated_junction_envelope",
+      "reference_provenance": "crossing road width priors; NOT an observed stopline"
+    },
+    {
+      "id": "link_112",
+      "label": "WB",
+      "section_id": "in_WB",
+      "region_ids": [
+        "r1",
+        "r2"
+      ],
+      "centerline_lonlat": [
+        [
+          -71.0866469,
+          42.3637153
+        ],
+        [
+          -71.0871925,
+          42.363951
+        ],
+        [
+          -71.0873467,
+          42.3640178
+        ]
+      ],
+      "centerline_reference": "directed_carriageway",
+      "carriageway_width_m": 6.4,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": true,
+      "road_name": "Broadway",
+      "in_link_id": "112",
+      "centerline_local": [
+        [
+          61.68871165987198,
+          -32.04880796792655
+        ],
+        [
+          16.812230218388606,
+          -5.810875008781669
+        ],
+        [
+          4.129031100971944,
+          1.6252647532401645
+        ]
+      ],
+      "forward_unit": [
+        -0.8629830661265657,
+        0.5052328449129089
+      ],
+      "heading_deg": 300.34681034611236,
+      "tangent_trim_m": 8.0,
+      "interior_limit_m": 6.4,
+      "reference_station_m": -6.20016618463208,
+      "reference_kind": "estimated_junction_envelope",
+      "reference_provenance": "crossing road width priors; NOT an observed stopline"
+    },
+    {
+      "id": "link_158",
+      "label": "NB",
+      "section_id": "in_NB",
+      "region_ids": [
+        "r1",
+        "r2"
+      ],
+      "centerline_lonlat": [
+        [
+          -71.0881107,
+          42.3629281
+        ],
+        [
+          -71.08811,
+          42.3629545
+        ],
+        [
+          -71.0881146,
+          42.3629809
+        ],
+        [
+          -71.0881211,
+          42.363009
+        ],
+        [
+          -71.0881257,
+          42.3630458
+        ],
+        [
+          -71.0881077,
+          42.3630935
+        ],
+        [
+          -71.0877889,
+          42.3635214
+        ],
+        [
+          -71.0875309,
+          42.3638583
+        ],
+        [
+          -71.0874832,
+          42.3639186
+        ],
+        [
+          -71.087454,
+          42.3639555
+        ]
+      ],
+      "centerline_reference": "shared_road_axis",
+      "carriageway_width_m": 3.2,
+      "width_source": "map_lane_count_times_width_prior_NOT_lane_evidence",
+      "allow_interior": false,
+      "road_name": "Ames Street",
+      "in_link_id": "158",
+      "centerline_local": [
+        [
+          -58.71120317566466,
+          -119.67856057598048
+        ],
+        [
+          -58.653627044895245,
+          -116.73977568893606
+        ],
+        [
+          -59.03198447694367,
+          -113.80098956944269
+        ],
+        [
+          -59.56661997655218,
+          -110.67296207617882
+        ],
+        [
+          -59.94497740997688,
+          -106.57646844036864
+        ],
+        [
+          -58.464448329215095,
+          -101.26660763005182
+        ],
+        [
+          -32.242633293494244,
+          -53.633525014019796
+        ],
+        [
+          -11.021716483004752,
+          -16.13017561750174
+        ],
+        [
+          -7.09831442039671,
+          -9.417622582436088
+        ],
+        [
+          -4.696567245947975,
+          -5.309937697653151
+        ]
+      ],
+      "forward_unit": [
+        0.49641191287273556,
+        0.8680870997532631
+      ],
+      "heading_deg": 29.76289663431264,
+      "tangent_trim_m": 8.0,
+      "interior_limit_m": 5,
+      "reference_station_m": -9.40033236926416,
+      "reference_kind": "estimated_junction_envelope",
+      "reference_provenance": "crossing road width priors; NOT an observed stopline"
+    }
+  ],
+  "geometry_provenance": {
+    "node_csv": "examples/broadway_ames_2021/network/node.csv",
+    "link_csv": "examples/broadway_ames_2021/network/link.csv",
+    "lane_attributes_role": "sampling_width_prior_only"
+  },
+  "models": {
+    "vlm": {
+      "preset": "default",
+      "max_tokens": 6144,
+      "temperature": 0.0
+    },
+    "yolo": {
+      "model": "yolo26n",
+      "expected_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+      "device": "auto",
+      "imgsz": 1280,
+      "confidence": 0.25,
+      "classes": [
+        "traffic light",
+        "stop sign"
+      ]
+    }
+  },
+  "lanes": {
+    "file": "examples/broadway_ames_2021/run/lanes.json",
+    "sha256": "fbfe363a4ca790758c4c97866fe625f111bed2f2e75f908578dcc6ff35a9a6fc"
+  },
+  "coordinate_note": "Stations are arc lengths relative to each incoming road endpoint, not distance to a traffic control or necessarily the node center."
+}

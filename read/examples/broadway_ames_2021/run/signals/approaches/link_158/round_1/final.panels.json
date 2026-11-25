@@ -1,0 +1,54 @@
+[
+  {
+    "image_id": "scene_in_NB",
+    "native_size": [
+      309,
+      765
+    ],
+    "sheet_box_xyxy": [
+      303,
+      68,
+      596,
+      794
+    ]
+  },
+  {
+    "image_id": "gsv_control_link_158_ccf0dc5362",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      987,
+      68,
+      1713,
+      794
+    ]
+  },
+  {
+    "image_id": "gsv_control_link_158_a85b418687",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      1887,
+      68,
+      2613,
+      794
+    ]
+  },
+  {
+    "image_id": "gsv_detail_link_158_a5aff97f304d",
+    "native_size": [
+      640,
+      640
+    ],
+    "sheet_box_xyxy": [
+      87,
+      868,
+      813,
+      1594
+    ]
+  }
+]
